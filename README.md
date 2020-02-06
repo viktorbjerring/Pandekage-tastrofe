@@ -1,5 +1,5 @@
 # Pandekage-tastrofe
-Til fjerde semester, navnet kan potentielt ændres
+Gruppe no., 4. Semesterprojekt F2020
 
 ## Vigtige Links
 

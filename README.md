@@ -1,4 +1,4 @@
-# 4SemesterProjekt
+# Pandekage-tastrofe
 Til fjerde semester, navnet kan potentielt ændres
 
 ## Vigtige Links

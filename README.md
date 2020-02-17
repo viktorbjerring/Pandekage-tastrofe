@@ -1,5 +1,5 @@
 # Pandekage-tastrofe
-Gruppe no., 4. Semesterprojekt F2020
+Gruppe no. 4. Semesterprojekt F2020
 
 ## Vigtige Links
 

@@ -1,7 +1,7 @@
 # Pandekage-tastrofe
 Gruppe no. 4. Semesterprojekt F2020
 
-## Vigtige Links
+## Overleaf dokumenter
 
 Projektet er skrevet i Latex. For at skrive i Latex har gruppen gjort brug af Overleaf, der er en online Latex compiler. Herunder findes links til alle de Overleaf dokumenter, som gruppen har arbejdet med under forløbet.
 

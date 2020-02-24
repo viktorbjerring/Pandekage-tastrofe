@@ -16,3 +16,5 @@ Projektet er skrevet i Latex. For at skrive i Latex har gruppen gjort brug af Ov
 [EMC-rapport](https://www.overleaf.com/2145621491fwyhhdcmzbnn)
 
 [Samarbejdskontrakt](https://www.overleaf.com/7638152918mzwvfrnpcqst)
+
+[Kodeeksempel](https://www.overleaf.com/3688422516tmnmgvbcnwhm)

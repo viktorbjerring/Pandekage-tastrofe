@@ -1,4 +1,4 @@
-# Pandekage-tastrofe
+# Pandemix
 Gruppe no. 4. Semesterprojekt F2020
 
 ## Overleaf dokumenter

@@ -1,7 +1,7 @@
 # Pandemix
 Gruppe no. 4. Semesterprojekt F2020
 
-![Rigt billede](./Arkitektur/Rige billeder/System_picture_1.png)
+![Rigt billede](./Arkitektur/Rige%20billeder/System_picture_1.png)
 
 ## Overleaf dokumenter
 

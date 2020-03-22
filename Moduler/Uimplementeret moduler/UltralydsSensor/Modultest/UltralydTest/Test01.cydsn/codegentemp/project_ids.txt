@@ -1,0 +1,6 @@
+E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\Test01.cyprj|a607cef5-9903-4c09-ac3e-968253e45764
+E:\Programs\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|7bdff12b-327a-4b98-b670-171475550681
+E:\User folders\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|49efccc5-3fda-4efd-a22e-4e42dcf43a70
+E:\Programs\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|03ed9d2b-4c99-4529-88aa-2523feb48b96
+E:\Programs\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|ce1da11d-3e45-4a8c-b2cd-47ffb4a6f2cd
+E:\Programs\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b299645d-f58c-44a8-a45e-0e705b3278cf

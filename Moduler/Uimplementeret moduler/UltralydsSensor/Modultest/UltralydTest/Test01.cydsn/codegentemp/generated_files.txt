@@ -36,6 +36,9 @@
   <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\UART_1_PM.c" value="SOURCE_C;CortexM3;;;;UART_1" />
   <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\UART_1_INT.c" value="SOURCE_C;CortexM3;;;;UART_1" />
   <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\UART_1_BOOT.c" value="SOURCE_C;CortexM3;;;;UART_1" />
+  <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\PWM_1.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
+  <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\PWM_1.h" value="HEADER;;;;;PWM_1" />
+  <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\PWM_1_PM.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
   <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\UART_1_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_1_IntClock" />
   <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\UART_1_IntClock.h" value="HEADER;;;;;UART_1_IntClock" />
   <file name="E:\User folders\Documents\GitHub\Pandekage-tastrofe\Moduler\Uimplementeret moduler\UltralydsSensor\Modultest\UltralydTest\Test01.cydsn\codegentemp\cy_em_eeprom.c" value="SOURCE_C;CortexM3;;;;Em_EEPROM_Dynamic" />

@@ -1,0 +1,1627 @@
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 1076
+  28              	cy_meta_configecc:
+  29 0000 01       		.byte	1
+  30 0001 45       		.byte	69
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 02       		.byte	2
+  34 0005 4F       		.byte	79
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 01       		.byte	1
+  38 0009 52       		.byte	82
+  39 000a 00       		.byte	0
+  40 000b 40       		.byte	64
+  41 000c 01       		.byte	1
+  42 000d 64       		.byte	100
+  43 000e 00       		.byte	0
+  44 000f 40       		.byte	64
+  45 0010 02       		.byte	2
+  46 0011 65       		.byte	101
+  47 0012 00       		.byte	0
+  48 0013 40       		.byte	64
+  49 0014 01       		.byte	1
+  50 0015 05       		.byte	5
+  51 0016 01       		.byte	1
+  52 0017 40       		.byte	64
+  53 0018 55       		.byte	85
+  54 0019 08       		.byte	8
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 39       		.byte	57
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 2
+
+
+  58 001d 09       		.byte	9
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 02       		.byte	2
+  62 0021 0B       		.byte	11
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 01       		.byte	1
+  66 0025 15       		.byte	21
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 01       		.byte	1
+  70 0029 17       		.byte	23
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 4B       		.byte	75
+  74 002d 18       		.byte	24
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 45       		.byte	69
+  78 0031 19       		.byte	25
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 4B       		.byte	75
+  82 0035 1A       		.byte	26
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 46       		.byte	70
+  86 0039 1B       		.byte	27
+  87 003a 01       		.byte	1
+  88 003b 40       		.byte	64
+  89 003c 02       		.byte	2
+  90 003d 40       		.byte	64
+  91 003e 01       		.byte	1
+  92 003f 40       		.byte	64
+  93 0040 05       		.byte	5
+  94 0041 41       		.byte	65
+  95 0042 01       		.byte	1
+  96 0043 40       		.byte	64
+  97 0044 02       		.byte	2
+  98 0045 42       		.byte	66
+  99 0046 01       		.byte	1
+ 100 0047 40       		.byte	64
+ 101 0048 02       		.byte	2
+ 102 0049 43       		.byte	67
+ 103 004a 01       		.byte	1
+ 104 004b 40       		.byte	64
+ 105 004c 04       		.byte	4
+ 106 004d 48       		.byte	72
+ 107 004e 01       		.byte	1
+ 108 004f 40       		.byte	64
+ 109 0050 02       		.byte	2
+ 110 0051 49       		.byte	73
+ 111 0052 01       		.byte	1
+ 112 0053 40       		.byte	64
+ 113 0054 07       		.byte	7
+ 114 0055 4D       		.byte	77
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 3
+
+
+ 115 0056 01       		.byte	1
+ 116 0057 40       		.byte	64
+ 117 0058 04       		.byte	4
+ 118 0059 50       		.byte	80
+ 119 005a 01       		.byte	1
+ 120 005b 40       		.byte	64
+ 121 005c 01       		.byte	1
+ 122 005d 51       		.byte	81
+ 123 005e 01       		.byte	1
+ 124 005f 40       		.byte	64
+ 125 0060 00       		.byte	0
+ 126 0061 02       		.byte	2
+ 127 0062 01       		.byte	1
+ 128 0063 10       		.byte	16
+ 129 0064 0A       		.byte	10
+ 130 0065 B1       		.byte	-79
+ 131 0066 04       		.byte	4
+ 132 0067 01       		.byte	1
+ 133 0068 89       		.byte	-119
+ 134 0069 38       		.byte	56
+ 135 006a 89       		.byte	-119
+ 136 006b 72       		.byte	114
+ 137 006c 8B       		.byte	-117
+ 138 006d 0F       		.byte	15
+ 139 006e EC       		.byte	-20
+ 140 006f 04       		.byte	4
+ 141 0070 04       		.byte	4
+ 142 0071 0C       		.byte	12
+ 143 0072 06       		.byte	6
+ 144 0073 13       		.byte	19
+ 145 0074 07       		.byte	7
+ 146 0075 01       		.byte	1
+ 147 0076 0D       		.byte	13
+ 148 0077 02       		.byte	2
+ 149 0078 12       		.byte	18
+ 150 0079 0C       		.byte	12
+ 151 007a 14       		.byte	20
+ 152 007b 20       		.byte	32
+ 153 007c 19       		.byte	25
+ 154 007d 02       		.byte	2
+ 155 007e 1A       		.byte	26
+ 156 007f 20       		.byte	32
+ 157 0080 1D       		.byte	29
+ 158 0081 02       		.byte	2
+ 159 0082 1E       		.byte	30
+ 160 0083 10       		.byte	16
+ 161 0084 20       		.byte	32
+ 162 0085 11       		.byte	17
+ 163 0086 22       		.byte	34
+ 164 0087 0E       		.byte	14
+ 165 0088 24       		.byte	36
+ 166 0089 11       		.byte	17
+ 167 008a 25       		.byte	37
+ 168 008b 02       		.byte	2
+ 169 008c 26       		.byte	38
+ 170 008d 06       		.byte	6
+ 171 008e 2A       		.byte	42
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 4
+
+
+ 172 008f 13       		.byte	19
+ 173 0090 2E       		.byte	46
+ 174 0091 08       		.byte	8
+ 175 0092 30       		.byte	48
+ 176 0093 10       		.byte	16
+ 177 0094 32       		.byte	50
+ 178 0095 0F       		.byte	15
+ 179 0096 33       		.byte	51
+ 180 0097 01       		.byte	1
+ 181 0098 36       		.byte	54
+ 182 0099 20       		.byte	32
+ 183 009a 37       		.byte	55
+ 184 009b 02       		.byte	2
+ 185 009c 3A       		.byte	58
+ 186 009d 08       		.byte	8
+ 187 009e 3E       		.byte	62
+ 188 009f 41       		.byte	65
+ 189 00a0 3F       		.byte	63
+ 190 00a1 40       		.byte	64
+ 191 00a2 58       		.byte	88
+ 192 00a3 04       		.byte	4
+ 193 00a4 59       		.byte	89
+ 194 00a5 04       		.byte	4
+ 195 00a6 5C       		.byte	92
+ 196 00a7 10       		.byte	16
+ 197 00a8 5F       		.byte	95
+ 198 00a9 01       		.byte	1
+ 199 00aa 83       		.byte	-125
+ 200 00ab 03       		.byte	3
+ 201 00ac 87       		.byte	-121
+ 202 00ad 10       		.byte	16
+ 203 00ae 8A       		.byte	-118
+ 204 00af 01       		.byte	1
+ 205 00b0 8B       		.byte	-117
+ 206 00b1 03       		.byte	3
+ 207 00b2 8F       		.byte	-113
+ 208 00b3 03       		.byte	3
+ 209 00b4 92       		.byte	-110
+ 210 00b5 02       		.byte	2
+ 211 00b6 95       		.byte	-107
+ 212 00b7 03       		.byte	3
+ 213 00b8 96       		.byte	-106
+ 214 00b9 02       		.byte	2
+ 215 00ba 97       		.byte	-105
+ 216 00bb 04       		.byte	4
+ 217 00bc 9B       		.byte	-101
+ 218 00bd 10       		.byte	16
+ 219 00be 9C       		.byte	-100
+ 220 00bf 02       		.byte	2
+ 221 00c0 9D       		.byte	-99
+ 222 00c1 03       		.byte	3
+ 223 00c2 A1       		.byte	-95
+ 224 00c3 02       		.byte	2
+ 225 00c4 A2       		.byte	-94
+ 226 00c5 01       		.byte	1
+ 227 00c6 A3       		.byte	-93
+ 228 00c7 08       		.byte	8
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 5
+
+
+ 229 00c8 A4       		.byte	-92
+ 230 00c9 02       		.byte	2
+ 231 00ca A5       		.byte	-91
+ 232 00cb 01       		.byte	1
+ 233 00cc A7       		.byte	-89
+ 234 00cd 08       		.byte	8
+ 235 00ce A9       		.byte	-87
+ 236 00cf 03       		.byte	3
+ 237 00d0 B1       		.byte	-79
+ 238 00d1 03       		.byte	3
+ 239 00d2 B2       		.byte	-78
+ 240 00d3 02       		.byte	2
+ 241 00d4 B4       		.byte	-76
+ 242 00d5 01       		.byte	1
+ 243 00d6 B5       		.byte	-75
+ 244 00d7 10       		.byte	16
+ 245 00d8 B7       		.byte	-73
+ 246 00d9 0C       		.byte	12
+ 247 00da B8       		.byte	-72
+ 248 00db 08       		.byte	8
+ 249 00dc BE       		.byte	-66
+ 250 00dd 10       		.byte	16
+ 251 00de BF       		.byte	-65
+ 252 00df 50       		.byte	80
+ 253 00e0 C0       		.byte	-64
+ 254 00e1 65       		.byte	101
+ 255 00e2 C1       		.byte	-63
+ 256 00e3 04       		.byte	4
+ 257 00e4 C2       		.byte	-62
+ 258 00e5 02       		.byte	2
+ 259 00e6 C4       		.byte	-60
+ 260 00e7 01       		.byte	1
+ 261 00e8 C6       		.byte	-58
+ 262 00e9 0E       		.byte	14
+ 263 00ea C7       		.byte	-57
+ 264 00eb 0C       		.byte	12
+ 265 00ec C8       		.byte	-56
+ 266 00ed 14       		.byte	20
+ 267 00ee C9       		.byte	-55
+ 268 00ef FF       		.byte	-1
+ 269 00f0 CA       		.byte	-54
+ 270 00f1 FF       		.byte	-1
+ 271 00f2 CB       		.byte	-53
+ 272 00f3 FF       		.byte	-1
+ 273 00f4 CC       		.byte	-52
+ 274 00f5 62       		.byte	98
+ 275 00f6 CD       		.byte	-51
+ 276 00f7 A0       		.byte	-96
+ 277 00f8 CE       		.byte	-50
+ 278 00f9 F0       		.byte	-16
+ 279 00fa CF       		.byte	-49
+ 280 00fb 41       		.byte	65
+ 281 00fc D0       		.byte	-48
+ 282 00fd 0C       		.byte	12
+ 283 00fe D4       		.byte	-44
+ 284 00ff 18       		.byte	24
+ 285 0100 D8       		.byte	-40
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 6
+
+
+ 286 0101 04       		.byte	4
+ 287 0102 D9       		.byte	-39
+ 288 0103 04       		.byte	4
+ 289 0104 DA       		.byte	-38
+ 290 0105 04       		.byte	4
+ 291 0106 DB       		.byte	-37
+ 292 0107 04       		.byte	4
+ 293 0108 DF       		.byte	-33
+ 294 0109 01       		.byte	1
+ 295 010a E6       		.byte	-26
+ 296 010b 40       		.byte	64
+ 297 010c E7       		.byte	-25
+ 298 010d 02       		.byte	2
+ 299 010e E9       		.byte	-23
+ 300 010f 10       		.byte	16
+ 301 0110 EA       		.byte	-22
+ 302 0111 30       		.byte	48
+ 303 0112 EB       		.byte	-21
+ 304 0113 10       		.byte	16
+ 305 0114 ED       		.byte	-19
+ 306 0115 10       		.byte	16
+ 307 0116 EE       		.byte	-18
+ 308 0117 10       		.byte	16
+ 309 0118 EF       		.byte	-17
+ 310 0119 12       		.byte	18
+ 311 011a 00       		.byte	0
+ 312 011b 10       		.byte	16
+ 313 011c 05       		.byte	5
+ 314 011d 04       		.byte	4
+ 315 011e 08       		.byte	8
+ 316 011f 80       		.byte	-128
+ 317 0120 0A       		.byte	10
+ 318 0121 40       		.byte	64
+ 319 0122 0B       		.byte	11
+ 320 0123 20       		.byte	32
+ 321 0124 0D       		.byte	13
+ 322 0125 0A       		.byte	10
+ 323 0126 0F       		.byte	15
+ 324 0127 0A       		.byte	10
+ 325 0128 10       		.byte	16
+ 326 0129 10       		.byte	16
+ 327 012a 12       		.byte	18
+ 328 012b 80       		.byte	-128
+ 329 012c 15       		.byte	21
+ 330 012d 20       		.byte	32
+ 331 012e 16       		.byte	22
+ 332 012f 21       		.byte	33
+ 333 0130 17       		.byte	23
+ 334 0131 02       		.byte	2
+ 335 0132 18       		.byte	24
+ 336 0133 14       		.byte	20
+ 337 0134 1C       		.byte	28
+ 338 0135 40       		.byte	64
+ 339 0136 1D       		.byte	29
+ 340 0137 04       		.byte	4
+ 341 0138 1E       		.byte	30
+ 342 0139 10       		.byte	16
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 7
+
+
+ 343 013a 1F       		.byte	31
+ 344 013b 40       		.byte	64
+ 345 013c 20       		.byte	32
+ 346 013d 01       		.byte	1
+ 347 013e 21       		.byte	33
+ 348 013f 20       		.byte	32
+ 349 0140 22       		.byte	34
+ 350 0141 01       		.byte	1
+ 351 0142 25       		.byte	37
+ 352 0143 08       		.byte	8
+ 353 0144 27       		.byte	39
+ 354 0145 01       		.byte	1
+ 355 0146 28       		.byte	40
+ 356 0147 20       		.byte	32
+ 357 0148 29       		.byte	41
+ 358 0149 22       		.byte	34
+ 359 014a 2F       		.byte	47
+ 360 014b 10       		.byte	16
+ 361 014c 32       		.byte	50
+ 362 014d 14       		.byte	20
+ 363 014e 33       		.byte	51
+ 364 014f 60       		.byte	96
+ 365 0150 34       		.byte	52
+ 366 0151 90       		.byte	-112
+ 367 0152 35       		.byte	53
+ 368 0153 20       		.byte	32
+ 369 0154 37       		.byte	55
+ 370 0155 40       		.byte	64
+ 371 0156 38       		.byte	56
+ 372 0157 08       		.byte	8
+ 373 0158 39       		.byte	57
+ 374 0159 41       		.byte	65
+ 375 015a 3B       		.byte	59
+ 376 015b 20       		.byte	32
+ 377 015c 3C       		.byte	60
+ 378 015d 02       		.byte	2
+ 379 015e 3D       		.byte	61
+ 380 015f 41       		.byte	65
+ 381 0160 3E       		.byte	62
+ 382 0161 40       		.byte	64
+ 383 0162 3F       		.byte	63
+ 384 0163 08       		.byte	8
+ 385 0164 40       		.byte	64
+ 386 0165 81       		.byte	-127
+ 387 0166 43       		.byte	67
+ 388 0167 20       		.byte	32
+ 389 0168 48       		.byte	72
+ 390 0169 01       		.byte	1
+ 391 016a 49       		.byte	73
+ 392 016b 20       		.byte	32
+ 393 016c 50       		.byte	80
+ 394 016d 04       		.byte	4
+ 395 016e 52       		.byte	82
+ 396 016f 80       		.byte	-128
+ 397 0170 5A       		.byte	90
+ 398 0171 02       		.byte	2
+ 399 0172 60       		.byte	96
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 8
+
+
+ 400 0173 04       		.byte	4
+ 401 0174 62       		.byte	98
+ 402 0175 40       		.byte	64
+ 403 0176 A3       		.byte	-93
+ 404 0177 04       		.byte	4
+ 405 0178 C0       		.byte	-64
+ 406 0179 22       		.byte	34
+ 407 017a C2       		.byte	-62
+ 408 017b FD       		.byte	-3
+ 409 017c C4       		.byte	-60
+ 410 017d FC       		.byte	-4
+ 411 017e CA       		.byte	-54
+ 412 017f 47       		.byte	71
+ 413 0180 CC       		.byte	-52
+ 414 0181 3E       		.byte	62
+ 415 0182 CE       		.byte	-50
+ 416 0183 5F       		.byte	95
+ 417 0184 D0       		.byte	-48
+ 418 0185 0D       		.byte	13
+ 419 0186 D2       		.byte	-46
+ 420 0187 0C       		.byte	12
+ 421 0188 D6       		.byte	-42
+ 422 0189 01       		.byte	1
+ 423 018a D8       		.byte	-40
+ 424 018b 0C       		.byte	12
+ 425 018c A3       		.byte	-93
+ 426 018d 04       		.byte	4
+ 427 018e AB       		.byte	-85
+ 428 018f 04       		.byte	4
+ 429 0190 EE       		.byte	-18
+ 430 0191 02       		.byte	2
+ 431 0192 EA       		.byte	-22
+ 432 0193 08       		.byte	8
+ 433 0194 00       		.byte	0
+ 434 0195 18       		.byte	24
+ 435 0196 02       		.byte	2
+ 436 0197 04       		.byte	4
+ 437 0198 04       		.byte	4
+ 438 0199 18       		.byte	24
+ 439 019a 08       		.byte	8
+ 440 019b 18       		.byte	24
+ 441 019c 0A       		.byte	10
+ 442 019d 04       		.byte	4
+ 443 019e 0C       		.byte	12
+ 444 019f 03       		.byte	3
+ 445 01a0 10       		.byte	16
+ 446 01a1 03       		.byte	3
+ 447 01a2 14       		.byte	20
+ 448 01a3 02       		.byte	2
+ 449 01a4 1A       		.byte	26
+ 450 01a5 01       		.byte	1
+ 451 01a6 1E       		.byte	30
+ 452 01a7 04       		.byte	4
+ 453 01a8 20       		.byte	32
+ 454 01a9 1C       		.byte	28
+ 455 01aa 24       		.byte	36
+ 456 01ab 08       		.byte	8
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 9
+
+
+ 457 01ac 28       		.byte	40
+ 458 01ad 04       		.byte	4
+ 459 01ae 2A       		.byte	42
+ 460 01af 18       		.byte	24
+ 461 01b0 2C       		.byte	44
+ 462 01b1 10       		.byte	16
+ 463 01b2 32       		.byte	50
+ 464 01b3 03       		.byte	3
+ 465 01b4 34       		.byte	52
+ 466 01b5 1C       		.byte	28
+ 467 01b6 38       		.byte	56
+ 468 01b7 08       		.byte	8
+ 469 01b8 3A       		.byte	58
+ 470 01b9 20       		.byte	32
+ 471 01ba 3B       		.byte	59
+ 472 01bb 02       		.byte	2
+ 473 01bc 3E       		.byte	62
+ 474 01bd 04       		.byte	4
+ 475 01be 40       		.byte	64
+ 476 01bf 03       		.byte	3
+ 477 01c0 47       		.byte	71
+ 478 01c1 40       		.byte	64
+ 479 01c2 49       		.byte	73
+ 480 01c3 FF       		.byte	-1
+ 481 01c4 4A       		.byte	74
+ 482 01c5 07       		.byte	7
+ 483 01c6 4B       		.byte	75
+ 484 01c7 FF       		.byte	-1
+ 485 01c8 4C       		.byte	76
+ 486 01c9 40       		.byte	64
+ 487 01ca 4D       		.byte	77
+ 488 01cb 20       		.byte	32
+ 489 01cc 4E       		.byte	78
+ 490 01cd F0       		.byte	-16
+ 491 01ce 4F       		.byte	79
+ 492 01cf 05       		.byte	5
+ 493 01d0 50       		.byte	80
+ 494 01d1 08       		.byte	8
+ 495 01d2 58       		.byte	88
+ 496 01d3 04       		.byte	4
+ 497 01d4 59       		.byte	89
+ 498 01d5 04       		.byte	4
+ 499 01d6 5A       		.byte	90
+ 500 01d7 04       		.byte	4
+ 501 01d8 5F       		.byte	95
+ 502 01d9 01       		.byte	1
+ 503 01da 60       		.byte	96
+ 504 01db 40       		.byte	64
+ 505 01dc 61       		.byte	97
+ 506 01dd A8       		.byte	-88
+ 507 01de 62       		.byte	98
+ 508 01df 40       		.byte	64
+ 509 01e0 63       		.byte	99
+ 510 01e1 20       		.byte	32
+ 511 01e2 80       		.byte	-128
+ 512 01e3 41       		.byte	65
+ 513 01e4 81       		.byte	-127
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 10
+
+
+ 514 01e5 04       		.byte	4
+ 515 01e6 84       		.byte	-124
+ 516 01e7 73       		.byte	115
+ 517 01e8 85       		.byte	-123
+ 518 01e9 06       		.byte	6
+ 519 01ea 86       		.byte	-122
+ 520 01eb 0C       		.byte	12
+ 521 01ec 89       		.byte	-119
+ 522 01ed 02       		.byte	2
+ 523 01ee 8A       		.byte	-118
+ 524 01ef 40       		.byte	64
+ 525 01f0 8C       		.byte	-116
+ 526 01f1 7F       		.byte	127
+ 527 01f2 8F       		.byte	-113
+ 528 01f3 01       		.byte	1
+ 529 01f4 90       		.byte	-112
+ 530 01f5 4C       		.byte	76
+ 531 01f6 92       		.byte	-110
+ 532 01f7 23       		.byte	35
+ 533 01f8 94       		.byte	-108
+ 534 01f9 4F       		.byte	79
+ 535 01fa 96       		.byte	-106
+ 536 01fb 10       		.byte	16
+ 537 01fc 98       		.byte	-104
+ 538 01fd 03       		.byte	3
+ 539 01fe 99       		.byte	-103
+ 540 01ff 06       		.byte	6
+ 541 0200 9B       		.byte	-101
+ 542 0201 01       		.byte	1
+ 543 0202 9D       		.byte	-99
+ 544 0203 07       		.byte	7
+ 545 0204 9E       		.byte	-98
+ 546 0205 33       		.byte	51
+ 547 0206 A0       		.byte	-96
+ 548 0207 08       		.byte	8
+ 549 0208 A1       		.byte	-95
+ 550 0209 07       		.byte	7
+ 551 020a A4       		.byte	-92
+ 552 020b 04       		.byte	4
+ 553 020c A8       		.byte	-88
+ 554 020d 0C       		.byte	12
+ 555 020e A9       		.byte	-87
+ 556 020f 01       		.byte	1
+ 557 0210 AB       		.byte	-85
+ 558 0211 06       		.byte	6
+ 559 0212 AC       		.byte	-84
+ 560 0213 02       		.byte	2
+ 561 0214 B0       		.byte	-80
+ 562 0215 7C       		.byte	124
+ 563 0216 B4       		.byte	-76
+ 564 0217 0F       		.byte	15
+ 565 0218 B5       		.byte	-75
+ 566 0219 07       		.byte	7
+ 567 021a BA       		.byte	-70
+ 568 021b 22       		.byte	34
+ 569 021c BE       		.byte	-66
+ 570 021d 40       		.byte	64
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 11
+
+
+ 571 021e D6       		.byte	-42
+ 572 021f 02       		.byte	2
+ 573 0220 D7       		.byte	-41
+ 574 0221 13       		.byte	19
+ 575 0222 D8       		.byte	-40
+ 576 0223 04       		.byte	4
+ 577 0224 D9       		.byte	-39
+ 578 0225 04       		.byte	4
+ 579 0226 DB       		.byte	-37
+ 580 0227 04       		.byte	4
+ 581 0228 DF       		.byte	-33
+ 582 0229 01       		.byte	1
+ 583 022a 00       		.byte	0
+ 584 022b 14       		.byte	20
+ 585 022c 02       		.byte	2
+ 586 022d 02       		.byte	2
+ 587 022e 03       		.byte	3
+ 588 022f 80       		.byte	-128
+ 589 0230 05       		.byte	5
+ 590 0231 11       		.byte	17
+ 591 0232 07       		.byte	7
+ 592 0233 22       		.byte	34
+ 593 0234 0A       		.byte	10
+ 594 0235 48       		.byte	72
+ 595 0236 0B       		.byte	11
+ 596 0237 21       		.byte	33
+ 597 0238 0C       		.byte	12
+ 598 0239 02       		.byte	2
+ 599 023a 0D       		.byte	13
+ 600 023b 74       		.byte	116
+ 601 023c 0E       		.byte	14
+ 602 023d 10       		.byte	16
+ 603 023e 0F       		.byte	15
+ 604 023f 05       		.byte	5
+ 605 0240 10       		.byte	16
+ 606 0241 81       		.byte	-127
+ 607 0242 13       		.byte	19
+ 608 0243 28       		.byte	40
+ 609 0244 14       		.byte	20
+ 610 0245 80       		.byte	-128
+ 611 0246 15       		.byte	21
+ 612 0247 10       		.byte	16
+ 613 0248 16       		.byte	22
+ 614 0249 02       		.byte	2
+ 615 024a 17       		.byte	23
+ 616 024b 08       		.byte	8
+ 617 024c 18       		.byte	24
+ 618 024d 04       		.byte	4
+ 619 024e 19       		.byte	25
+ 620 024f 21       		.byte	33
+ 621 0250 1A       		.byte	26
+ 622 0251 42       		.byte	66
+ 623 0252 1D       		.byte	29
+ 624 0253 18       		.byte	24
+ 625 0254 1F       		.byte	31
+ 626 0255 10       		.byte	16
+ 627 0256 22       		.byte	34
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 12
+
+
+ 628 0257 10       		.byte	16
+ 629 0258 26       		.byte	38
+ 630 0259 02       		.byte	2
+ 631 025a 27       		.byte	39
+ 632 025b 40       		.byte	64
+ 633 025c 29       		.byte	41
+ 634 025d 21       		.byte	33
+ 635 025e 2D       		.byte	45
+ 636 025f 30       		.byte	48
+ 637 0260 31       		.byte	49
+ 638 0261 10       		.byte	16
+ 639 0262 33       		.byte	51
+ 640 0263 40       		.byte	64
+ 641 0264 34       		.byte	52
+ 642 0265 01       		.byte	1
+ 643 0266 35       		.byte	53
+ 644 0267 02       		.byte	2
+ 645 0268 38       		.byte	56
+ 646 0269 28       		.byte	40
+ 647 026a 39       		.byte	57
+ 648 026b 80       		.byte	-128
+ 649 026c 3A       		.byte	58
+ 650 026d 02       		.byte	2
+ 651 026e 45       		.byte	69
+ 652 026f 08       		.byte	8
+ 653 0270 4F       		.byte	79
+ 654 0271 04       		.byte	4
+ 655 0272 55       		.byte	85
+ 656 0273 01       		.byte	1
+ 657 0274 56       		.byte	86
+ 658 0275 01       		.byte	1
+ 659 0276 5B       		.byte	91
+ 660 0277 01       		.byte	1
+ 661 0278 68       		.byte	104
+ 662 0279 08       		.byte	8
+ 663 027a 69       		.byte	105
+ 664 027b 44       		.byte	68
+ 665 027c 70       		.byte	112
+ 666 027d 94       		.byte	-108
+ 667 027e 72       		.byte	114
+ 668 027f 02       		.byte	2
+ 669 0280 73       		.byte	115
+ 670 0281 28       		.byte	40
+ 671 0282 90       		.byte	-112
+ 672 0283 40       		.byte	64
+ 673 0284 92       		.byte	-110
+ 674 0285 10       		.byte	16
+ 675 0286 95       		.byte	-107
+ 676 0287 20       		.byte	32
+ 677 0288 96       		.byte	-106
+ 678 0289 68       		.byte	104
+ 679 028a 97       		.byte	-105
+ 680 028b 20       		.byte	32
+ 681 028c 98       		.byte	-104
+ 682 028d 80       		.byte	-128
+ 683 028e 9B       		.byte	-101
+ 684 028f 01       		.byte	1
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 13
+
+
+ 685 0290 9C       		.byte	-100
+ 686 0291 20       		.byte	32
+ 687 0292 9D       		.byte	-99
+ 688 0293 22       		.byte	34
+ 689 0294 9E       		.byte	-98
+ 690 0295 21       		.byte	33
+ 691 0296 9F       		.byte	-97
+ 692 0297 42       		.byte	66
+ 693 0298 A4       		.byte	-92
+ 694 0299 01       		.byte	1
+ 695 029a A5       		.byte	-91
+ 696 029b 02       		.byte	2
+ 697 029c A7       		.byte	-89
+ 698 029d 01       		.byte	1
+ 699 029e AF       		.byte	-81
+ 700 029f 40       		.byte	64
+ 701 02a0 B1       		.byte	-79
+ 702 02a1 20       		.byte	32
+ 703 02a2 B2       		.byte	-78
+ 704 02a3 40       		.byte	64
+ 705 02a4 C0       		.byte	-64
+ 706 02a5 FF       		.byte	-1
+ 707 02a6 C2       		.byte	-62
+ 708 02a7 FF       		.byte	-1
+ 709 02a8 C4       		.byte	-60
+ 710 02a9 FF       		.byte	-1
+ 711 02aa CA       		.byte	-54
+ 712 02ab 05       		.byte	5
+ 713 02ac CC       		.byte	-52
+ 714 02ad 0C       		.byte	12
+ 715 02ae CE       		.byte	-50
+ 716 02af 0F       		.byte	15
+ 717 02b0 D0       		.byte	-48
+ 718 02b1 40       		.byte	64
+ 719 02b2 D6       		.byte	-42
+ 720 02b3 01       		.byte	1
+ 721 02b4 00       		.byte	0
+ 722 02b5 50       		.byte	80
+ 723 02b6 02       		.byte	2
+ 724 02b7 24       		.byte	36
+ 725 02b8 04       		.byte	4
+ 726 02b9 04       		.byte	4
+ 727 02ba 05       		.byte	5
+ 728 02bb 01       		.byte	1
+ 729 02bc 06       		.byte	6
+ 730 02bd 18       		.byte	24
+ 731 02be 0D       		.byte	13
+ 732 02bf 01       		.byte	1
+ 733 02c0 14       		.byte	20
+ 734 02c1 02       		.byte	2
+ 735 02c2 15       		.byte	21
+ 736 02c3 01       		.byte	1
+ 737 02c4 18       		.byte	24
+ 738 02c5 28       		.byte	40
+ 739 02c6 1A       		.byte	26
+ 740 02c7 45       		.byte	69
+ 741 02c8 24       		.byte	36
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 14
+
+
+ 742 02c9 7C       		.byte	124
+ 743 02ca 28       		.byte	40
+ 744 02cb 7C       		.byte	124
+ 745 02cc 30       		.byte	48
+ 746 02cd 60       		.byte	96
+ 747 02ce 32       		.byte	50
+ 748 02cf 01       		.byte	1
+ 749 02d0 34       		.byte	52
+ 750 02d1 1C       		.byte	28
+ 751 02d2 36       		.byte	54
+ 752 02d3 02       		.byte	2
+ 753 02d4 37       		.byte	55
+ 754 02d5 01       		.byte	1
+ 755 02d6 3E       		.byte	62
+ 756 02d7 40       		.byte	64
+ 757 02d8 58       		.byte	88
+ 758 02d9 04       		.byte	4
+ 759 02da 59       		.byte	89
+ 760 02db 04       		.byte	4
+ 761 02dc 5F       		.byte	95
+ 762 02dd 01       		.byte	1
+ 763 02de 81       		.byte	-127
+ 764 02df 10       		.byte	16
+ 765 02e0 83       		.byte	-125
+ 766 02e1 40       		.byte	64
+ 767 02e2 87       		.byte	-121
+ 768 02e3 20       		.byte	32
+ 769 02e4 8B       		.byte	-117
+ 770 02e5 03       		.byte	3
+ 771 02e6 8C       		.byte	-116
+ 772 02e7 40       		.byte	64
+ 773 02e8 91       		.byte	-111
+ 774 02e9 0C       		.byte	12
+ 775 02ea 92       		.byte	-110
+ 776 02eb 08       		.byte	8
+ 777 02ec 93       		.byte	-109
+ 778 02ed 71       		.byte	113
+ 779 02ee 94       		.byte	-108
+ 780 02ef 13       		.byte	19
+ 781 02f0 95       		.byte	-107
+ 782 02f1 DC       		.byte	-36
+ 783 02f2 96       		.byte	-106
+ 784 02f3 0C       		.byte	12
+ 785 02f4 97       		.byte	-105
+ 786 02f5 22       		.byte	34
+ 787 02f6 98       		.byte	-104
+ 788 02f7 20       		.byte	32
+ 789 02f8 99       		.byte	-103
+ 790 02f9 10       		.byte	16
+ 791 02fa 9A       		.byte	-102
+ 792 02fb 05       		.byte	5
+ 793 02fc 9B       		.byte	-101
+ 794 02fd AC       		.byte	-84
+ 795 02fe 9C       		.byte	-100
+ 796 02ff 03       		.byte	3
+ 797 0300 9E       		.byte	-98
+ 798 0301 04       		.byte	4
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 15
+
+
+ 799 0302 A0       		.byte	-96
+ 800 0303 13       		.byte	19
+ 801 0304 A2       		.byte	-94
+ 802 0305 04       		.byte	4
+ 803 0306 A4       		.byte	-92
+ 804 0307 0A       		.byte	10
+ 805 0308 A6       		.byte	-90
+ 806 0309 14       		.byte	20
+ 807 030a A9       		.byte	-87
+ 808 030b 14       		.byte	20
+ 809 030c AD       		.byte	-83
+ 810 030d 09       		.byte	9
+ 811 030e AF       		.byte	-81
+ 812 030f D0       		.byte	-48
+ 813 0310 B0       		.byte	-80
+ 814 0311 30       		.byte	48
+ 815 0312 B2       		.byte	-78
+ 816 0313 0F       		.byte	15
+ 817 0314 B4       		.byte	-76
+ 818 0315 40       		.byte	64
+ 819 0316 B5       		.byte	-75
+ 820 0317 1F       		.byte	31
+ 821 0318 B7       		.byte	-73
+ 822 0319 E0       		.byte	-32
+ 823 031a B8       		.byte	-72
+ 824 031b 02       		.byte	2
+ 825 031c BA       		.byte	-70
+ 826 031d 08       		.byte	8
+ 827 031e BB       		.byte	-69
+ 828 031f 80       		.byte	-128
+ 829 0320 BE       		.byte	-66
+ 830 0321 10       		.byte	16
+ 831 0322 C0       		.byte	-64
+ 832 0323 32       		.byte	50
+ 833 0324 C1       		.byte	-63
+ 834 0325 04       		.byte	4
+ 835 0326 C5       		.byte	-59
+ 836 0327 E0       		.byte	-32
+ 837 0328 C7       		.byte	-57
+ 838 0329 CB       		.byte	-53
+ 839 032a C8       		.byte	-56
+ 840 032b 32       		.byte	50
+ 841 032c C9       		.byte	-55
+ 842 032d FF       		.byte	-1
+ 843 032e CA       		.byte	-54
+ 844 032f FF       		.byte	-1
+ 845 0330 CB       		.byte	-53
+ 846 0331 FF       		.byte	-1
+ 847 0332 CE       		.byte	-50
+ 848 0333 F0       		.byte	-16
+ 849 0334 CF       		.byte	-49
+ 850 0335 44       		.byte	68
+ 851 0336 D0       		.byte	-48
+ 852 0337 0C       		.byte	12
+ 853 0338 D4       		.byte	-44
+ 854 0339 01       		.byte	1
+ 855 033a D8       		.byte	-40
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 16
+
+
+ 856 033b 04       		.byte	4
+ 857 033c D9       		.byte	-39
+ 858 033d 04       		.byte	4
+ 859 033e DA       		.byte	-38
+ 860 033f 04       		.byte	4
+ 861 0340 DB       		.byte	-37
+ 862 0341 04       		.byte	4
+ 863 0342 DF       		.byte	-33
+ 864 0343 01       		.byte	1
+ 865 0344 E6       		.byte	-26
+ 866 0345 C0       		.byte	-64
+ 867 0346 EA       		.byte	-22
+ 868 0347 40       		.byte	64
+ 869 0348 EB       		.byte	-21
+ 870 0349 02       		.byte	2
+ 871 034a 00       		.byte	0
+ 872 034b 04       		.byte	4
+ 873 034c 01       		.byte	1
+ 874 034d 02       		.byte	2
+ 875 034e 04       		.byte	4
+ 876 034f 80       		.byte	-128
+ 877 0350 08       		.byte	8
+ 878 0351 20       		.byte	32
+ 879 0352 0A       		.byte	10
+ 880 0353 10       		.byte	16
+ 881 0354 0D       		.byte	13
+ 882 0355 28       		.byte	40
+ 883 0356 0E       		.byte	14
+ 884 0357 40       		.byte	64
+ 885 0358 0F       		.byte	15
+ 886 0359 02       		.byte	2
+ 887 035a 10       		.byte	16
+ 888 035b 08       		.byte	8
+ 889 035c 11       		.byte	17
+ 890 035d 04       		.byte	4
+ 891 035e 15       		.byte	21
+ 892 035f 08       		.byte	8
+ 893 0360 17       		.byte	23
+ 894 0361 06       		.byte	6
+ 895 0362 18       		.byte	24
+ 896 0363 14       		.byte	20
+ 897 0364 19       		.byte	25
+ 898 0365 02       		.byte	2
+ 899 0366 1A       		.byte	26
+ 900 0367 0A       		.byte	10
+ 901 0368 1C       		.byte	28
+ 902 0369 20       		.byte	32
+ 903 036a 1D       		.byte	29
+ 904 036b 0A       		.byte	10
+ 905 036c 1E       		.byte	30
+ 906 036d 68       		.byte	104
+ 907 036e 20       		.byte	32
+ 908 036f 02       		.byte	2
+ 909 0370 21       		.byte	33
+ 910 0371 40       		.byte	64
+ 911 0372 25       		.byte	37
+ 912 0373 10       		.byte	16
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 17
+
+
+ 913 0374 27       		.byte	39
+ 914 0375 02       		.byte	2
+ 915 0376 2E       		.byte	46
+ 916 0377 40       		.byte	64
+ 917 0378 2F       		.byte	47
+ 918 0379 08       		.byte	8
+ 919 037a 30       		.byte	48
+ 920 037b 08       		.byte	8
+ 921 037c 36       		.byte	54
+ 922 037d 10       		.byte	16
+ 923 037e 37       		.byte	55
+ 924 037f 06       		.byte	6
+ 925 0380 39       		.byte	57
+ 926 0381 44       		.byte	68
+ 927 0382 3D       		.byte	61
+ 928 0383 22       		.byte	34
+ 929 0384 3E       		.byte	62
+ 930 0385 10       		.byte	16
+ 931 0386 3F       		.byte	63
+ 932 0387 04       		.byte	4
+ 933 0388 45       		.byte	69
+ 934 0389 28       		.byte	40
+ 935 038a 47       		.byte	71
+ 936 038b 02       		.byte	2
+ 937 038c 4C       		.byte	76
+ 938 038d 40       		.byte	64
+ 939 038e 4D       		.byte	77
+ 940 038f 01       		.byte	1
+ 941 0390 57       		.byte	87
+ 942 0391 09       		.byte	9
+ 943 0392 5C       		.byte	92
+ 944 0393 40       		.byte	64
+ 945 0394 5D       		.byte	93
+ 946 0395 11       		.byte	17
+ 947 0396 5E       		.byte	94
+ 948 0397 08       		.byte	8
+ 949 0398 85       		.byte	-123
+ 950 0399 10       		.byte	16
+ 951 039a 86       		.byte	-122
+ 952 039b 01       		.byte	1
+ 953 039c 87       		.byte	-121
+ 954 039d 01       		.byte	1
+ 955 039e 8C       		.byte	-116
+ 956 039f 20       		.byte	32
+ 957 03a0 8F       		.byte	-113
+ 958 03a1 80       		.byte	-128
+ 959 03a2 90       		.byte	-112
+ 960 03a3 40       		.byte	64
+ 961 03a4 91       		.byte	-111
+ 962 03a5 4C       		.byte	76
+ 963 03a6 93       		.byte	-109
+ 964 03a7 04       		.byte	4
+ 965 03a8 94       		.byte	-108
+ 966 03a9 10       		.byte	16
+ 967 03aa 95       		.byte	-107
+ 968 03ab 80       		.byte	-128
+ 969 03ac 96       		.byte	-106
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 18
+
+
+ 970 03ad 08       		.byte	8
+ 971 03ae 9C       		.byte	-100
+ 972 03af 20       		.byte	32
+ 973 03b0 9D       		.byte	-99
+ 974 03b1 02       		.byte	2
+ 975 03b2 9F       		.byte	-97
+ 976 03b3 02       		.byte	2
+ 977 03b4 A0       		.byte	-96
+ 978 03b5 08       		.byte	8
+ 979 03b6 A1       		.byte	-95
+ 980 03b7 21       		.byte	33
+ 981 03b8 A4       		.byte	-92
+ 982 03b9 11       		.byte	17
+ 983 03ba A5       		.byte	-91
+ 984 03bb 02       		.byte	2
+ 985 03bc A7       		.byte	-89
+ 986 03bd 81       		.byte	-127
+ 987 03be AE       		.byte	-82
+ 988 03bf 01       		.byte	1
+ 989 03c0 B0       		.byte	-80
+ 990 03c1 12       		.byte	18
+ 991 03c2 B2       		.byte	-78
+ 992 03c3 20       		.byte	32
+ 993 03c4 C0       		.byte	-64
+ 994 03c5 8C       		.byte	-116
+ 995 03c6 C2       		.byte	-62
+ 996 03c7 F6       		.byte	-10
+ 997 03c8 C4       		.byte	-60
+ 998 03c9 36       		.byte	54
+ 999 03ca CA       		.byte	-54
+ 1000 03cb 30       		.byte	48
+ 1001 03cc CC       		.byte	-52
+ 1002 03cd E2       		.byte	-30
+ 1003 03ce CE       		.byte	-50
+ 1004 03cf EA       		.byte	-22
+ 1005 03d0 D0       		.byte	-48
+ 1006 03d1 E0       		.byte	-32
+ 1007 03d2 D6       		.byte	-42
+ 1008 03d3 F0       		.byte	-16
+ 1009 03d4 E4       		.byte	-28
+ 1010 03d5 02       		.byte	2
+ 1011 03d6 30       		.byte	48
+ 1012 03d7 10       		.byte	16
+ 1013 03d8 CC       		.byte	-52
+ 1014 03d9 10       		.byte	16
+ 1015 03da 01       		.byte	1
+ 1016 03db 08       		.byte	8
+ 1017 03dc 2C       		.byte	44
+ 1018 03dd 10       		.byte	16
+ 1019 03de 9C       		.byte	-100
+ 1020 03df 10       		.byte	16
+ 1021 03e0 C0       		.byte	-64
+ 1022 03e1 10       		.byte	16
+ 1023 03e2 CA       		.byte	-54
+ 1024 03e3 80       		.byte	-128
+ 1025 03e4 A9       		.byte	-87
+ 1026 03e5 08       		.byte	8
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 19
+
+
+ 1027 03e6 EC       		.byte	-20
+ 1028 03e7 20       		.byte	32
+ 1029 03e8 73       		.byte	115
+ 1030 03e9 08       		.byte	8
+ 1031 03ea DC       		.byte	-36
+ 1032 03eb 20       		.byte	32
+ 1033 03ec 64       		.byte	100
+ 1034 03ed 10       		.byte	16
+ 1035 03ee AF       		.byte	-81
+ 1036 03ef 08       		.byte	8
+ 1037 03f0 D8       		.byte	-40
+ 1038 03f1 80       		.byte	-128
+ 1039 03f2 EA       		.byte	-22
+ 1040 03f3 10       		.byte	16
+ 1041 03f4 AC       		.byte	-84
+ 1042 03f5 10       		.byte	16
+ 1043 03f6 EE       		.byte	-18
+ 1044 03f7 40       		.byte	64
+ 1045 03f8 12       		.byte	18
+ 1046 03f9 80       		.byte	-128
+ 1047 03fa 74       		.byte	116
+ 1048 03fb 04       		.byte	4
+ 1049 03fc 84       		.byte	-124
+ 1050 03fd 04       		.byte	4
+ 1051 03fe 8E       		.byte	-114
+ 1052 03ff 80       		.byte	-128
+ 1053 0400 C4       		.byte	-60
+ 1054 0401 08       		.byte	8
+ 1055 0402 DE       		.byte	-34
+ 1056 0403 04       		.byte	4
+ 1057 0404 E2       		.byte	-30
+ 1058 0405 02       		.byte	2
+ 1059 0406 00       		.byte	0
+ 1060 0407 03       		.byte	3
+ 1061 0408 0C       		.byte	12
+ 1062 0409 03       		.byte	3
+ 1063 040a 10       		.byte	16
+ 1064 040b 01       		.byte	1
+ 1065 040c 1C       		.byte	28
+ 1066 040d 01       		.byte	1
+ 1067 040e 00       		.byte	0
+ 1068 040f 03       		.byte	3
+ 1069 0410 80       		.byte	-128
+ 1070 0411 80       		.byte	-128
+ 1071 0412 00       		.byte	0
+ 1072 0413 00       		.byte	0
+ 1073 0414 40       		.byte	64
+ 1074 0415 00       		.byte	0
+ 1075 0416 00       		.byte	0
+ 1076 0417 00       		.byte	0
+ 1077 0418 01       		.byte	1
+ 1078 0419 02       		.byte	2
+ 1079 041a 02       		.byte	2
+ 1080 041b 00       		.byte	0
+ 1081 041c 00       		.byte	0
+ 1082 041d 00       		.byte	0
+ 1083 041e 00       		.byte	0
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 20
+
+
+ 1084 041f 00       		.byte	0
+ 1085 0420 80       		.byte	-128
+ 1086 0421 00       		.byte	0
+ 1087 0422 40       		.byte	64
+ 1088 0423 80       		.byte	-128
+ 1089 0424 80       		.byte	-128
+ 1090 0425 00       		.byte	0
+ 1091 0426 80       		.byte	-128
+ 1092 0427 00       		.byte	0
+ 1093 0428 00       		.byte	0
+ 1094 0429 00       		.byte	0
+ 1095 042a 00       		.byte	0
+ 1096 042b 00       		.byte	0
+ 1097 042c 00       		.byte	0
+ 1098 042d 0B       		.byte	11
+ 1099 042e 0B       		.byte	11
+ 1100 042f 00       		.byte	0
+ 1101 0430 00       		.byte	0
+ 1102 0431 00       		.byte	0
+ 1103 0432 00       		.byte	0
+ 1104 0433 00       		.byte	0
+ 1105              		.section	.cywolatch,"a",%progbits
+ 1106              		.align	2
+ 1107              		.type	cy_meta_wonvl, %object
+ 1108              		.size	cy_meta_wonvl, 4
+ 1109              	cy_meta_wonvl:
+ 1110 0000 BC       		.byte	-68
+ 1111 0001 90       		.byte	-112
+ 1112 0002 AC       		.byte	-84
+ 1113 0003 AF       		.byte	-81
+ 1114              		.section	.cycustnvl,"a",%progbits
+ 1115              		.align	2
+ 1116              		.type	cy_meta_custnvl, %object
+ 1117              		.size	cy_meta_custnvl, 4
+ 1118              	cy_meta_custnvl:
+ 1119 0000 00       		.byte	0
+ 1120 0001 00       		.byte	0
+ 1121 0002 40       		.byte	64
+ 1122 0003 05       		.byte	5
+ 1123              		.section	.cymeta,"a",%progbits
+ 1124              		.align	2
+ 1125              		.type	cy_metadata, %object
+ 1126              		.size	cy_metadata, 12
+ 1127              	cy_metadata:
+ 1128 0000 00       		.byte	0
+ 1129 0001 01       		.byte	1
+ 1130 0002 2E       		.byte	46
+ 1131 0003 16       		.byte	22
+ 1132 0004 10       		.byte	16
+ 1133 0005 69       		.byte	105
+ 1134 0006 00       		.byte	0
+ 1135 0007 01       		.byte	1
+ 1136 0008 00       		.byte	0
+ 1137 0009 00       		.byte	0
+ 1138 000a 00       		.byte	0
+ 1139 000b 00       		.byte	0
+ 1140              		.section	.cyflashprotect,"a",%progbits
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 21
+
+
+ 1141              		.align	2
+ 1142              		.type	cy_meta_flashprotect, %object
+ 1143              		.size	cy_meta_flashprotect, 256
+ 1144              	cy_meta_flashprotect:
+ 1145 0000 00000000 		.space	256
+ 1145      00000000 
+ 1145      00000000 
+ 1145      00000000 
+ 1145      00000000 
+ 1146              		.text
+ 1147              	.Letext0:
+ 1148              		.file 1 "e:\\programs\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none
+ 1149              		.file 2 "e:\\programs\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none
+ 1150              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 1151              		.section	.debug_info,"",%progbits
+ 1152              	.Ldebug_info0:
+ 1153 0000 31010000 		.4byte	0x131
+ 1154 0004 0400     		.2byte	0x4
+ 1155 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1156 000a 04       		.byte	0x4
+ 1157 000b 01       		.uleb128 0x1
+ 1158 000c 24000000 		.4byte	.LASF17
+ 1159 0010 0C       		.byte	0xc
+ 1160 0011 05020000 		.4byte	.LASF18
+ 1161 0015 25010000 		.4byte	.LASF19
+ 1162 0019 00000000 		.4byte	.Ldebug_line0
+ 1163 001d 02       		.uleb128 0x2
+ 1164 001e 01       		.byte	0x1
+ 1165 001f 06       		.byte	0x6
+ 1166 0020 F9010000 		.4byte	.LASF0
+ 1167 0024 03       		.uleb128 0x3
+ 1168 0025 00000000 		.4byte	.LASF9
+ 1169 0029 01       		.byte	0x1
+ 1170 002a 1D       		.byte	0x1d
+ 1171 002b 2F000000 		.4byte	0x2f
+ 1172 002f 02       		.uleb128 0x2
+ 1173 0030 01       		.byte	0x1
+ 1174 0031 08       		.byte	0x8
+ 1175 0032 16000000 		.4byte	.LASF1
+ 1176 0036 02       		.uleb128 0x2
+ 1177 0037 02       		.byte	0x2
+ 1178 0038 05       		.byte	0x5
+ 1179 0039 E6010000 		.4byte	.LASF2
+ 1180 003d 02       		.uleb128 0x2
+ 1181 003e 02       		.byte	0x2
+ 1182 003f 07       		.byte	0x7
+ 1183 0040 C4000000 		.4byte	.LASF3
+ 1184 0044 02       		.uleb128 0x2
+ 1185 0045 04       		.byte	0x4
+ 1186 0046 05       		.byte	0x5
+ 1187 0047 F0010000 		.4byte	.LASF4
+ 1188 004b 02       		.uleb128 0x2
+ 1189 004c 04       		.byte	0x4
+ 1190 004d 07       		.byte	0x7
+ 1191 004e B2000000 		.4byte	.LASF5
+ 1192 0052 02       		.uleb128 0x2
+ 1193 0053 08       		.byte	0x8
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 22
+
+
+ 1194 0054 05       		.byte	0x5
+ 1195 0055 D8010000 		.4byte	.LASF6
+ 1196 0059 02       		.uleb128 0x2
+ 1197 005a 08       		.byte	0x8
+ 1198 005b 07       		.byte	0x7
+ 1199 005c 06010000 		.4byte	.LASF7
+ 1200 0060 04       		.uleb128 0x4
+ 1201 0061 04       		.byte	0x4
+ 1202 0062 05       		.byte	0x5
+ 1203 0063 696E7400 		.ascii	"int\000"
+ 1204 0067 02       		.uleb128 0x2
+ 1205 0068 04       		.byte	0x4
+ 1206 0069 07       		.byte	0x7
+ 1207 006a F9000000 		.4byte	.LASF8
+ 1208 006e 03       		.uleb128 0x3
+ 1209 006f 1D010000 		.4byte	.LASF10
+ 1210 0073 02       		.byte	0x2
+ 1211 0074 18       		.byte	0x18
+ 1212 0075 24000000 		.4byte	0x24
+ 1213 0079 05       		.uleb128 0x5
+ 1214 007a 91000000 		.4byte	0x91
+ 1215 007e 8A000000 		.4byte	0x8a
+ 1216 0082 06       		.uleb128 0x6
+ 1217 0083 8A000000 		.4byte	0x8a
+ 1218 0087 3304     		.2byte	0x433
+ 1219 0089 00       		.byte	0
+ 1220 008a 02       		.uleb128 0x2
+ 1221 008b 04       		.byte	0x4
+ 1222 008c 07       		.byte	0x7
+ 1223 008d CF010000 		.4byte	.LASF11
+ 1224 0091 07       		.uleb128 0x7
+ 1225 0092 6E000000 		.4byte	0x6e
+ 1226 0096 08       		.uleb128 0x8
+ 1227 0097 E7000000 		.4byte	.LASF12
+ 1228 009b 03       		.byte	0x3
+ 1229 009c 1F       		.byte	0x1f
+ 1230 009d A7000000 		.4byte	0xa7
+ 1231 00a1 05       		.uleb128 0x5
+ 1232 00a2 03       		.byte	0x3
+ 1233 00a3 00000000 		.4byte	cy_meta_configecc
+ 1234 00a7 07       		.uleb128 0x7
+ 1235 00a8 79000000 		.4byte	0x79
+ 1236 00ac 05       		.uleb128 0x5
+ 1237 00ad 91000000 		.4byte	0x91
+ 1238 00b1 BC000000 		.4byte	0xbc
+ 1239 00b5 09       		.uleb128 0x9
+ 1240 00b6 8A000000 		.4byte	0x8a
+ 1241 00ba 03       		.byte	0x3
+ 1242 00bb 00       		.byte	0
+ 1243 00bc 08       		.uleb128 0x8
+ 1244 00bd D7000000 		.4byte	.LASF13
+ 1245 00c1 03       		.byte	0x3
+ 1246 00c2 B3       		.byte	0xb3
+ 1247 00c3 CD000000 		.4byte	0xcd
+ 1248 00c7 05       		.uleb128 0x5
+ 1249 00c8 03       		.byte	0x3
+ 1250 00c9 00000000 		.4byte	cy_meta_custnvl
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 23
+
+
+ 1251 00cd 07       		.uleb128 0x7
+ 1252 00ce AC000000 		.4byte	0xac
+ 1253 00d2 08       		.uleb128 0x8
+ 1254 00d3 C1010000 		.4byte	.LASF14
+ 1255 00d7 03       		.byte	0x3
+ 1256 00d8 C1       		.byte	0xc1
+ 1257 00d9 E3000000 		.4byte	0xe3
+ 1258 00dd 05       		.uleb128 0x5
+ 1259 00de 03       		.byte	0x3
+ 1260 00df 00000000 		.4byte	cy_meta_wonvl
+ 1261 00e3 07       		.uleb128 0x7
+ 1262 00e4 AC000000 		.4byte	0xac
+ 1263 00e8 05       		.uleb128 0x5
+ 1264 00e9 91000000 		.4byte	0x91
+ 1265 00ed F8000000 		.4byte	0xf8
+ 1266 00f1 09       		.uleb128 0x9
+ 1267 00f2 8A000000 		.4byte	0x8a
+ 1268 00f6 FF       		.byte	0xff
+ 1269 00f7 00       		.byte	0
+ 1270 00f8 08       		.uleb128 0x8
+ 1271 00f9 AC010000 		.4byte	.LASF15
+ 1272 00fd 03       		.byte	0x3
+ 1273 00fe CF       		.byte	0xcf
+ 1274 00ff 09010000 		.4byte	0x109
+ 1275 0103 05       		.uleb128 0x5
+ 1276 0104 03       		.byte	0x3
+ 1277 0105 00000000 		.4byte	cy_meta_flashprotect
+ 1278 0109 07       		.uleb128 0x7
+ 1279 010a E8000000 		.4byte	0xe8
+ 1280 010e 05       		.uleb128 0x5
+ 1281 010f 91000000 		.4byte	0x91
+ 1282 0113 1E010000 		.4byte	0x11e
+ 1283 0117 09       		.uleb128 0x9
+ 1284 0118 8A000000 		.4byte	0x8a
+ 1285 011c 0B       		.byte	0xb
+ 1286 011d 00       		.byte	0
+ 1287 011e 08       		.uleb128 0x8
+ 1288 011f 0A000000 		.4byte	.LASF16
+ 1289 0123 03       		.byte	0x3
+ 1290 0124 FC       		.byte	0xfc
+ 1291 0125 2F010000 		.4byte	0x12f
+ 1292 0129 05       		.uleb128 0x5
+ 1293 012a 03       		.byte	0x3
+ 1294 012b 00000000 		.4byte	cy_metadata
+ 1295 012f 07       		.uleb128 0x7
+ 1296 0130 0E010000 		.4byte	0x10e
+ 1297 0134 00       		.byte	0
+ 1298              		.section	.debug_abbrev,"",%progbits
+ 1299              	.Ldebug_abbrev0:
+ 1300 0000 01       		.uleb128 0x1
+ 1301 0001 11       		.uleb128 0x11
+ 1302 0002 01       		.byte	0x1
+ 1303 0003 25       		.uleb128 0x25
+ 1304 0004 0E       		.uleb128 0xe
+ 1305 0005 13       		.uleb128 0x13
+ 1306 0006 0B       		.uleb128 0xb
+ 1307 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 24
+
+
+ 1308 0008 0E       		.uleb128 0xe
+ 1309 0009 1B       		.uleb128 0x1b
+ 1310 000a 0E       		.uleb128 0xe
+ 1311 000b 10       		.uleb128 0x10
+ 1312 000c 17       		.uleb128 0x17
+ 1313 000d 00       		.byte	0
+ 1314 000e 00       		.byte	0
+ 1315 000f 02       		.uleb128 0x2
+ 1316 0010 24       		.uleb128 0x24
+ 1317 0011 00       		.byte	0
+ 1318 0012 0B       		.uleb128 0xb
+ 1319 0013 0B       		.uleb128 0xb
+ 1320 0014 3E       		.uleb128 0x3e
+ 1321 0015 0B       		.uleb128 0xb
+ 1322 0016 03       		.uleb128 0x3
+ 1323 0017 0E       		.uleb128 0xe
+ 1324 0018 00       		.byte	0
+ 1325 0019 00       		.byte	0
+ 1326 001a 03       		.uleb128 0x3
+ 1327 001b 16       		.uleb128 0x16
+ 1328 001c 00       		.byte	0
+ 1329 001d 03       		.uleb128 0x3
+ 1330 001e 0E       		.uleb128 0xe
+ 1331 001f 3A       		.uleb128 0x3a
+ 1332 0020 0B       		.uleb128 0xb
+ 1333 0021 3B       		.uleb128 0x3b
+ 1334 0022 0B       		.uleb128 0xb
+ 1335 0023 49       		.uleb128 0x49
+ 1336 0024 13       		.uleb128 0x13
+ 1337 0025 00       		.byte	0
+ 1338 0026 00       		.byte	0
+ 1339 0027 04       		.uleb128 0x4
+ 1340 0028 24       		.uleb128 0x24
+ 1341 0029 00       		.byte	0
+ 1342 002a 0B       		.uleb128 0xb
+ 1343 002b 0B       		.uleb128 0xb
+ 1344 002c 3E       		.uleb128 0x3e
+ 1345 002d 0B       		.uleb128 0xb
+ 1346 002e 03       		.uleb128 0x3
+ 1347 002f 08       		.uleb128 0x8
+ 1348 0030 00       		.byte	0
+ 1349 0031 00       		.byte	0
+ 1350 0032 05       		.uleb128 0x5
+ 1351 0033 01       		.uleb128 0x1
+ 1352 0034 01       		.byte	0x1
+ 1353 0035 49       		.uleb128 0x49
+ 1354 0036 13       		.uleb128 0x13
+ 1355 0037 01       		.uleb128 0x1
+ 1356 0038 13       		.uleb128 0x13
+ 1357 0039 00       		.byte	0
+ 1358 003a 00       		.byte	0
+ 1359 003b 06       		.uleb128 0x6
+ 1360 003c 21       		.uleb128 0x21
+ 1361 003d 00       		.byte	0
+ 1362 003e 49       		.uleb128 0x49
+ 1363 003f 13       		.uleb128 0x13
+ 1364 0040 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 25
+
+
+ 1365 0041 05       		.uleb128 0x5
+ 1366 0042 00       		.byte	0
+ 1367 0043 00       		.byte	0
+ 1368 0044 07       		.uleb128 0x7
+ 1369 0045 26       		.uleb128 0x26
+ 1370 0046 00       		.byte	0
+ 1371 0047 49       		.uleb128 0x49
+ 1372 0048 13       		.uleb128 0x13
+ 1373 0049 00       		.byte	0
+ 1374 004a 00       		.byte	0
+ 1375 004b 08       		.uleb128 0x8
+ 1376 004c 34       		.uleb128 0x34
+ 1377 004d 00       		.byte	0
+ 1378 004e 03       		.uleb128 0x3
+ 1379 004f 0E       		.uleb128 0xe
+ 1380 0050 3A       		.uleb128 0x3a
+ 1381 0051 0B       		.uleb128 0xb
+ 1382 0052 3B       		.uleb128 0x3b
+ 1383 0053 0B       		.uleb128 0xb
+ 1384 0054 49       		.uleb128 0x49
+ 1385 0055 13       		.uleb128 0x13
+ 1386 0056 3F       		.uleb128 0x3f
+ 1387 0057 19       		.uleb128 0x19
+ 1388 0058 02       		.uleb128 0x2
+ 1389 0059 18       		.uleb128 0x18
+ 1390 005a 00       		.byte	0
+ 1391 005b 00       		.byte	0
+ 1392 005c 09       		.uleb128 0x9
+ 1393 005d 21       		.uleb128 0x21
+ 1394 005e 00       		.byte	0
+ 1395 005f 49       		.uleb128 0x49
+ 1396 0060 13       		.uleb128 0x13
+ 1397 0061 2F       		.uleb128 0x2f
+ 1398 0062 0B       		.uleb128 0xb
+ 1399 0063 00       		.byte	0
+ 1400 0064 00       		.byte	0
+ 1401 0065 00       		.byte	0
+ 1402              		.section	.debug_aranges,"",%progbits
+ 1403 0000 14000000 		.4byte	0x14
+ 1404 0004 0200     		.2byte	0x2
+ 1405 0006 00000000 		.4byte	.Ldebug_info0
+ 1406 000a 04       		.byte	0x4
+ 1407 000b 00       		.byte	0
+ 1408 000c 0000     		.2byte	0
+ 1409 000e 0000     		.2byte	0
+ 1410 0010 00000000 		.4byte	0
+ 1411 0014 00000000 		.4byte	0
+ 1412              		.section	.debug_line,"",%progbits
+ 1413              	.Ldebug_line0:
+ 1414 0000 27010000 		.section	.debug_str,"MS",%progbits,1
+ 1414      02002101 
+ 1414      00000201 
+ 1414      FB0E0D00 
+ 1414      01010101 
+ 1415              	.LASF9:
+ 1416 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1416      6E74385F 
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 26
+
+
+ 1416      7400
+ 1417              	.LASF16:
+ 1418 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 1418      65746164 
+ 1418      61746100 
+ 1419              	.LASF1:
+ 1420 0016 756E7369 		.ascii	"unsigned char\000"
+ 1420      676E6564 
+ 1420      20636861 
+ 1420      7200
+ 1421              	.LASF17:
+ 1422 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1422      43313120 
+ 1422      352E342E 
+ 1422      31203230 
+ 1422      31363036 
+ 1423 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1423      20726576 
+ 1423      6973696F 
+ 1423      6E203233 
+ 1423      37373135 
+ 1424 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1424      66756E63 
+ 1424      74696F6E 
+ 1424      2D736563 
+ 1424      74696F6E 
+ 1425              	.LASF5:
+ 1426 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1426      20756E73 
+ 1426      69676E65 
+ 1426      6420696E 
+ 1426      7400
+ 1427              	.LASF3:
+ 1428 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 1428      7420756E 
+ 1428      7369676E 
+ 1428      65642069 
+ 1428      6E7400
+ 1429              	.LASF13:
+ 1430 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1430      6574615F 
+ 1430      63757374 
+ 1430      6E766C00 
+ 1431              	.LASF12:
+ 1432 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1432      6574615F 
+ 1432      636F6E66 
+ 1432      69676563 
+ 1432      6300
+ 1433              	.LASF8:
+ 1434 00f9 756E7369 		.ascii	"unsigned int\000"
+ 1434      676E6564 
+ 1434      20696E74 
+ 1434      00
+ 1435              	.LASF7:
+ 1436 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1436      206C6F6E 
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 27
+
+
+ 1436      6720756E 
+ 1436      7369676E 
+ 1436      65642069 
+ 1437              	.LASF10:
+ 1438 011d 75696E74 		.ascii	"uint8_t\000"
+ 1438      385F7400 
+ 1439              	.LASF19:
+ 1440 0125 453A5C55 		.ascii	"E:\\User folders\\Documents\\GitHub\\Pandekage-tast"
+ 1440      73657220 
+ 1440      666F6C64 
+ 1440      6572735C 
+ 1440      446F6375 
+ 1441 0154 726F6665 		.ascii	"rofe\\Moduler\\Uimplementeret moduler\\UltralydsSen"
+ 1441      5C4D6F64 
+ 1441      756C6572 
+ 1441      5C55696D 
+ 1441      706C656D 
+ 1442 0184 736F725C 		.ascii	"sor\\Modultest\\UltralydTest\\Test01.cydsn\000"
+ 1442      4D6F6475 
+ 1442      6C746573 
+ 1442      745C556C 
+ 1442      7472616C 
+ 1443              	.LASF15:
+ 1444 01ac 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1444      6574615F 
+ 1444      666C6173 
+ 1444      6870726F 
+ 1444      74656374 
+ 1445              	.LASF14:
+ 1446 01c1 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1446      6574615F 
+ 1446      776F6E76 
+ 1446      6C00
+ 1447              	.LASF11:
+ 1448 01cf 73697A65 		.ascii	"sizetype\000"
+ 1448      74797065 
+ 1448      00
+ 1449              	.LASF6:
+ 1450 01d8 6C6F6E67 		.ascii	"long long int\000"
+ 1450      206C6F6E 
+ 1450      6720696E 
+ 1450      7400
+ 1451              	.LASF2:
+ 1452 01e6 73686F72 		.ascii	"short int\000"
+ 1452      7420696E 
+ 1452      7400
+ 1453              	.LASF4:
+ 1454 01f0 6C6F6E67 		.ascii	"long int\000"
+ 1454      20696E74 
+ 1454      00
+ 1455              	.LASF0:
+ 1456 01f9 7369676E 		.ascii	"signed char\000"
+ 1456      65642063 
+ 1456      68617200 
+ 1457              	.LASF18:
+ 1458 0205 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1458      72617465 
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccaMJTcl.s 			page 28
+
+
+ 1458      645F536F 
+ 1458      75726365 
+ 1458      5C50536F 
+ 1459              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

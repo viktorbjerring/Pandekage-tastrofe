@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
   29:Generated_Source\PSoC5/cyfitter_cfg.c **** 
   30:Generated_Source\PSoC5/cyfitter_cfg.c **** #if defined(__GNUC__) || defined(__ARMCC_VERSION)
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 2
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 2
 
 
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
   86:Generated_Source\PSoC5/cyfitter_cfg.c **** 	(void)memcpy(dest, src, n);
   87:Generated_Source\PSoC5/cyfitter_cfg.c **** }
   88:Generated_Source\PSoC5/cyfitter_cfg.c **** CY_CFG_UNUSED
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 3
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 3
 
 
   89:Generated_Source\PSoC5/cyfitter_cfg.c **** static void CYCONFIGCPYCODE(void *dest, const void *src, size_t n);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
   41              		.thumb
   42              		.thumb_func
   43              		.type	cfg_write_bytes32, %function
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 4
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 4
 
 
   44              	cfg_write_bytes32:
@@ -205,7 +205,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  148:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  149:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
  150:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 24u
+ 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 27u
  152:Generated_Source\PSoC5/cyfitter_cfg.c **** CYPACKED typedef struct
  153:Generated_Source\PSoC5/cyfitter_cfg.c **** {
  154:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 offset;
@@ -213,19 +213,19 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  156:Generated_Source\PSoC5/cyfitter_cfg.c **** } CYPACKED_ATTR cy_cfg_addrvalue_t;
  157:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  158:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_addr_table ((const uint32 CYFAR *)0x48000000u)
- 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000060u)
+ 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x4800006Cu)
  160:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  161:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPORT_7 Address: CYDEV_PRTDSI_PRT12_BASE Size (bytes): 6 */
- 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_7_VAL ((const uint8 CYFAR *)0x48000410u)
+ 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_7_VAL ((const uint8 CYFAR *)0x480004C0u)
  163:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_0 Address: CYREG_PRT0_DM0 Size (bytes): 8 */
- 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x48000418u)
+ 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x480004C8u)
  166:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  167:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_7 Address: CYREG_PRT12_DR Size (bytes): 10 */
- 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000420u)
+ 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x480004D0u)
  169:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  170:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
- 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x4800042Cu)
+ 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480004DCu)
  172:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  173:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  174:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  181:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
  182:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
  183:Generated_Source\PSoC5/cyfitter_cfg.c **** *
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 5
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 5
 
 
  184:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
   83 001c 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
   84 001e A555     		strb	r5, [r4, r6]
  201:Generated_Source\PSoC5/cyfitter_cfg.c **** 			j++;
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 6
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 6
 
 
   85              		.loc 1 201 0
@@ -323,7 +323,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  101              	.L4:
  193:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
  102              		.loc 1 193 0 is_stmt 0 discriminator 1
- 103 002c 172F     		cmp	r7, #23
+ 103 002c 1A2F     		cmp	r7, #26
  104 002e EBD9     		bls	.L7
  203:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
  204:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  214:Generated_Source\PSoC5/cyfitter_cfg.c **** *  clocks and setting the necessary dividers to produce the desired frequency. 
  215:Generated_Source\PSoC5/cyfitter_cfg.c **** *
  216:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 7
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 7
 
 
  217:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  271:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  272:Generated_Source\PSoC5/cyfitter_cfg.c **** /* Analog API Functions */
  273:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 8
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 8
 
 
  274:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  155              	.LFE6:
  156              		.size	AnalogSetDefault, .-AnalogSetDefault
  157              		.section	.text.CYMEMZERO,"ax",%progbits
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 9
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 9
 
 
  158              		.align	2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  207 000c 1370     		strb	r3, [r2]
  233:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0 + 0x2u), 0x18u);
  208              		.loc 1 233 0
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 10
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 10
 
 
  209 000e EF21     		movs	r1, #239
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  253              	.LVL19:
  254 0056 04F00304 		and	r4, r4, #3
  255              	.LVL20:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 11
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 11
 
 
  252:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  268:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  298              		.loc 1 268 0
  299 0092 0C4A     		ldr	r2, .L20+36
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 12
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 12
 
 
  300 0094 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  297:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  298:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  299:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 13
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 13
 
 
  300:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  377              		.thumb_func
  378              		.type	cyfitter_cfg, %function
  379              	cyfitter_cfg:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 14
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 14
 
 
  380              	.LFB8:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  403              	.LVL29:
  404              	.LBB3:
  360:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 15
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 15
 
 
  361:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  421 0024 FFF7FEFF 		bl	CYMEMZERO
  422              	.LVL31:
  423              	.LBE4:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 16
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 16
 
 
  395:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  409:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
  410:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  411:Generated_Source\PSoC5/cyfitter_cfg.c **** 		cfg_write_bytes32(cy_cfg_addr_table, cy_cfg_data_table);
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 17
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 17
 
 
  464              		.loc 1 411 0 is_stmt 1
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  426:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT1_DM0), (const void CYFAR *)(BS_IOPINS0_1_VAL), 8u);
  504              		.loc 1 426 0
  505 009a 0822     		movs	r2, #8
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 18
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 18
 
 
  506 009c 1649     		ldr	r1, .L33+36
@@ -1075,17 +1075,17 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  541              	.L33:
  542 00d4 E8460040 		.word	1073759976
  543 00d8 00000000 		.word	.LANCHOR0
- 544 00dc 60000048 		.word	1207959648
+ 544 00dc 6C000048 		.word	1207959660
  545 00e0 03500140 		.word	1073827843
  546 00e4 A0430040 		.word	1073759136
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 19
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 19
 
 
- 547 00e8 18040048 		.word	1207960600
+ 547 00e8 C8040048 		.word	1207960776
  548 00ec 02510040 		.word	1073762562
- 549 00f0 20040048 		.word	1207960608
+ 549 00f0 D0040048 		.word	1207960784
  550 00f4 C0510040 		.word	1073762752
- 551 00f8 2C040048 		.word	1207960620
+ 551 00f8 DC040048 		.word	1207960796
  552 00fc 12510040 		.word	1073762578
  553 0100 22430040 		.word	1073759010
  554 0104 00480040 		.word	1073760256
@@ -1120,7 +1120,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  583              		.size	cfg_memcpy_list.5019, 10
  584              	cfg_memcpy_list.5019:
  585 0030 60520040 		.word	1073762912
- 586 0034 10040048 		.word	1207960592
+ 586 0034 C0040048 		.word	1207960768
  587 0038 0600     		.short	6
  588              		.text
  589              	.Letext0:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  601 0010 0C       		.byte	0xc
  602 0011 3E030000 		.4byte	.LASF53
  603 0015 51010000 		.4byte	.LASF54
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 20
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 20
 
 
  604 0019 00000000 		.4byte	.Ldebug_ranges0+0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  658 007f 07       		.byte	0x7
  659 0080 48010000 		.4byte	.LASF10
  660 0084 05       		.uleb128 0x5
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 21
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 21
 
 
  661 0085 04       		.byte	0x4
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  715 00f6 ED000000 		.4byte	.LASF21
  716 00fa 01       		.byte	0x1
  717 00fb 9B       		.byte	0x9b
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 22
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 22
 
 
  718 00fc 8D000000 		.4byte	0x8d
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  772 016c 0D       		.uleb128 0xd
  773 016d 6A00     		.ascii	"j\000"
  774 016f 01       		.byte	0x1
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 23
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 23
 
 
  775 0170 C0       		.byte	0xc0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  829 01f0 2C020000 		.4byte	0x22c
  830 01f4 14       		.uleb128 0x14
  831 01f5 7300     		.ascii	"s\000"
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 24
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 24
 
 
  832 01f7 01       		.byte	0x1
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  886 025b EE000000 		.4byte	.LLST8
  887 025f 17       		.uleb128 0x17
  888 0260 62000000 		.4byte	.LVL21
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 25
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 25
 
 
  889 0264 7F050000 		.4byte	0x57f
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  943 02d2 01       		.uleb128 0x1
  944 02d3 50       		.byte	0x50
  945 02d4 16       		.uleb128 0x16
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 26
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 26
 
 
  946 02d5 01       		.uleb128 0x1
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1000 0339 78000000 		.4byte	.LBE3-.LBB3
  1001 033d D6040000 		.4byte	0x4d6
  1002 0341 1E       		.uleb128 0x1e
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 27
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 27
 
 
  1003 0342 06       		.byte	0x6
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1057 03b7 22       		.uleb128 0x22
  1058 03b8 7D000000 		.4byte	0x7d
  1059 03bc 07       		.byte	0x7
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 28
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 28
 
 
  1060 03bd 00       		.byte	0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1114 043f 16       		.uleb128 0x16
  1115 0440 01       		.uleb128 0x1
  1116 0441 51       		.byte	0x51
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 29
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 29
 
 
  1117 0442 14       		.uleb128 0x14
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1171 04ac 48000000 		.4byte	.LVL39
  1172 04b0 84020000 		.4byte	0x284
  1173 04b4 16       		.uleb128 0x16
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 30
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 30
 
 
  1174 04b5 01       		.uleb128 0x1
@@ -1762,7 +1762,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1192 04cd 51       		.byte	0x51
  1193 04ce 05       		.uleb128 0x5
  1194 04cf 0C       		.byte	0xc
- 1195 04d0 60000048 		.4byte	0x48000060
+ 1195 04d0 6C000048 		.4byte	0x4800006c
  1196 04d4 00       		.byte	0
  1197 04d5 00       		.byte	0
  1198 04d6 17       		.uleb128 0x17
@@ -1780,7 +1780,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1210 04ee 51       		.byte	0x51
  1211 04ef 05       		.uleb128 0x5
  1212 04f0 0C       		.byte	0xc
- 1213 04f1 18040048 		.4byte	0x48000418
+ 1213 04f1 C8040048 		.4byte	0x480004c8
  1214 04f5 16       		.uleb128 0x16
  1215 04f6 01       		.uleb128 0x1
  1216 04f7 52       		.byte	0x52
@@ -1798,14 +1798,14 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1228 050c 0C       		.byte	0xc
  1229 050d C0510040 		.4byte	0x400051c0
  1230 0511 16       		.uleb128 0x16
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 31
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 31
 
 
  1231 0512 01       		.uleb128 0x1
  1232 0513 51       		.byte	0x51
  1233 0514 05       		.uleb128 0x5
  1234 0515 0C       		.byte	0xc
- 1235 0516 20040048 		.4byte	0x48000420
+ 1235 0516 D0040048 		.4byte	0x480004d0
  1236 051a 16       		.uleb128 0x16
  1237 051b 01       		.uleb128 0x1
  1238 051c 52       		.byte	0x52
@@ -1827,7 +1827,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1254 0538 51       		.byte	0x51
  1255 0539 05       		.uleb128 0x5
  1256 053a 0C       		.byte	0xc
- 1257 053b 2C040048 		.4byte	0x4800042c
+ 1257 053b DC040048 		.4byte	0x480004dc
  1258 053f 16       		.uleb128 0x16
  1259 0540 01       		.uleb128 0x1
  1260 0541 52       		.byte	0x52
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1285 056f 16       		.uleb128 0x16
  1286 0570 01       		.uleb128 0x1
  1287 0571 52       		.byte	0x52
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 32
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 32
 
 
  1288 0572 01       		.uleb128 0x1
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1342 0024 0B       		.uleb128 0xb
  1343 0025 3B       		.uleb128 0x3b
  1344 0026 0B       		.uleb128 0xb
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 33
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 33
 
 
  1345 0027 49       		.uleb128 0x49
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1399 005d 00       		.byte	0
  1400 005e 09       		.uleb128 0x9
  1401 005f 0D       		.uleb128 0xd
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 34
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 34
 
 
  1402 0060 00       		.byte	0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1456 0098 2E       		.uleb128 0x2e
  1457 0099 01       		.byte	0x1
  1458 009a 03       		.uleb128 0x3
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 35
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 35
 
 
  1459 009b 0E       		.uleb128 0xe
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1513 00d2 02       		.uleb128 0x2
  1514 00d3 17       		.uleb128 0x17
  1515 00d4 00       		.byte	0
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 36
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 36
 
 
  1516 00d5 00       		.byte	0
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1570 010c 00       		.byte	0
  1571 010d 14       		.uleb128 0x14
  1572 010e 05       		.uleb128 0x5
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 37
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 37
 
 
  1573 010f 00       		.byte	0
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1627 014c 17       		.uleb128 0x17
  1628 014d 00       		.byte	0
  1629 014e 00       		.byte	0
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 38
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 38
 
 
  1630 014f 19       		.uleb128 0x19
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1684 0186 49       		.uleb128 0x49
  1685 0187 13       		.uleb128 0x13
  1686 0188 02       		.uleb128 0x2
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 39
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 39
 
 
  1687 0189 18       		.uleb128 0x18
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1741 01bf 0B       		.uleb128 0xb
  1742 01c0 00       		.byte	0
  1743 01c1 00       		.byte	0
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 40
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 40
 
 
  1744 01c2 21       		.uleb128 0x21
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1798 01fa 00       		.byte	0
  1799 01fb 26       		.uleb128 0x26
  1800 01fc 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 41
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 41
 
 
  1801 01fd 00       		.byte	0
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1855 005c 26000000 		.4byte	.LVL9
  1856 0060 2C000000 		.4byte	.LVL10
  1857 0064 0100     		.2byte	0x1
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 42
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 42
 
 
  1858 0066 53       		.byte	0x53
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1912              	.LLST8:
  1913 00ee 44000000 		.4byte	.LVL17
  1914 00f2 4A000000 		.4byte	.LVL18
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 43
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 43
 
 
  1915 00f6 0200     		.2byte	0x2
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  1969 0177 00000000 		.4byte	0
  1970              	.LLST12:
  1971 017b 0E000000 		.4byte	.LVL29
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 44
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 44
 
 
  1972 017f 12000000 		.4byte	.LVL30
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2026 01fa 1E       		.byte	0x1e
  2027 01fb 03       		.byte	0x3
  2028 01fc 30000000 		.4byte	cfg_memcpy_list.5019
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 45
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 45
 
 
  2029 0200 22       		.byte	0x22
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2083 0034 C8000000 		.4byte	.LFE5-.LFB5
  2084 0038 00000000 		.4byte	.LFB1
  2085 003c 08000000 		.4byte	.LFE1-.LFB1
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 46
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 46
 
 
  2086 0040 00000000 		.4byte	.LFB7
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2126      5F746162 
  2126      6C6500
  2127              	.LASF9:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 47
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 47
 
 
  2128 003c 6C6F6E67 		.ascii	"long long unsigned int\000"
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2153              	.LASF31:
  2154 00d3 43594D45 		.ascii	"CYMEMZERO\000"
  2154      4D5A4552 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 48
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 48
 
 
  2154      4F00
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2179      5C4D6F64 
  2179      756C6572 
  2179      5C55696D 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 49
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 49
 
 
  2179      706C656D 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2204      43313120 
  2204      352E342E 
  2204      31203230 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 50
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 50
 
 
  2204      31363036 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 1
  2229              	.LASF46:
  2230 036c 6366675F 		.ascii	"cfg_memcpy_list\000"
  2230      6D656D63 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccx83Koe.s 			page 51
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccl1CQeZ.s 			page 51
 
 
  2230      70795F6C 

@@ -24,8 +24,8 @@ int main(void)
 
     for(;;)
     {
-        Ultrasonic.ReadDist();
-        CyDelay(50);
+        //Ultrasonic.ReadDist();
+        CyDelay(200);
         sprintf(buffer, "Dist:\t%.2f\n\r", Ultrasonic.dist_);
         UART_1_PutString(buffer);
     }

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 1
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 1
   48 000c 201A     		subs	r0, r4, r0
   49 000e 80B2     		uxth	r0, r0
   50              	.LVL2:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 2
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 2
 
 
    8:..\..\..\Software/UltrasonicSensor.c ****     float pw_us = 1000000 * counter_diff_ / (float)CLOCK_FREQ;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 1
   13:..\..\..\Software/UltrasonicSensor.c **** void Init(void) {
  100              		.loc 1 13 0
  101              		.cfi_startproc
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 3
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 3
 
 
  102              		@ args = 0, pretend = 0, frame = 0
@@ -130,894 +130,911 @@ ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 1
   14:..\..\..\Software/UltrasonicSensor.c ****     Ultrasonic.dist_ = 0;
  108              		.loc 1 14 0
  109 0002 0022     		movs	r2, #0
- 110 0004 034B     		ldr	r3, .L7
+ 110 0004 044B     		ldr	r3, .L7
  111 0006 1A60     		str	r2, [r3]	@ float
   15:..\..\..\Software/UltrasonicSensor.c ****     
   16:..\..\..\Software/UltrasonicSensor.c ****     Counter_1_Start();
  112              		.loc 1 16 0
  113 0008 FFF7FEFF 		bl	Counter_1_Start
  114              	.LVL11:
-  17:..\..\..\Software/UltrasonicSensor.c ****     Falling_ISR_StartEx(Falling_ISR_addr);
+  17:..\..\..\Software/UltrasonicSensor.c ****     PWM_1_Start();
  115              		.loc 1 17 0
- 116 000c 0248     		ldr	r0, .L7+4
- 117 000e FFF7FEFF 		bl	Falling_ISR_StartEx
- 118              	.LVL12:
- 119 0012 08BD     		pop	{r3, pc}
- 120              	.L8:
- 121              		.align	2
- 122              	.L7:
- 123 0014 00000000 		.word	.LANCHOR0
- 124 0018 00000000 		.word	Falling_ISR_addr
- 125              		.cfi_endproc
- 126              	.LFE64:
- 127              		.size	Init, .-Init
- 128              		.section	.text.ReadDist,"ax",%progbits
- 129              		.align	2
- 130              		.global	ReadDist
- 131              		.thumb
- 132              		.thumb_func
- 133              		.type	ReadDist, %function
- 134              	ReadDist:
- 135              	.LFB65:
-  18:..\..\..\Software/UltrasonicSensor.c **** }
-  19:..\..\..\Software/UltrasonicSensor.c **** 
-  20:..\..\..\Software/UltrasonicSensor.c **** void ReadDist(void) {
- 136              		.loc 1 20 0
- 137              		.cfi_startproc
- 138              		@ args = 0, pretend = 0, frame = 0
- 139              		@ frame_needed = 0, uses_anonymous_args = 0
- 140 0000 08B5     		push	{r3, lr}
- 141              		.cfi_def_cfa_offset 8
- 142              		.cfi_offset 3, -8
- 143              		.cfi_offset 14, -4
-  21:..\..\..\Software/UltrasonicSensor.c ****     Trig_Write(1);
- 144              		.loc 1 21 0
- 145 0002 0120     		movs	r0, #1
- 146 0004 FFF7FEFF 		bl	Trig_Write
- 147              	.LVL13:
-  22:..\..\..\Software/UltrasonicSensor.c ****     CyDelayUs(10);
- 148              		.loc 1 22 0
- 149 0008 0A20     		movs	r0, #10
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 4
+ 116 000c FFF7FEFF 		bl	PWM_1_Start
+ 117              	.LVL12:
+  18:..\..\..\Software/UltrasonicSensor.c ****     Falling_ISR_StartEx(Falling_ISR_addr);
+ 118              		.loc 1 18 0
+ 119 0010 0248     		ldr	r0, .L7+4
+ 120 0012 FFF7FEFF 		bl	Falling_ISR_StartEx
+ 121              	.LVL13:
+ 122 0016 08BD     		pop	{r3, pc}
+ 123              	.L8:
+ 124              		.align	2
+ 125              	.L7:
+ 126 0018 00000000 		.word	.LANCHOR0
+ 127 001c 00000000 		.word	Falling_ISR_addr
+ 128              		.cfi_endproc
+ 129              	.LFE64:
+ 130              		.size	Init, .-Init
+ 131              		.section	.text.ReadDist,"ax",%progbits
+ 132              		.align	2
+ 133              		.global	ReadDist
+ 134              		.thumb
+ 135              		.thumb_func
+ 136              		.type	ReadDist, %function
+ 137              	ReadDist:
+ 138              	.LFB65:
+  19:..\..\..\Software/UltrasonicSensor.c **** }
+  20:..\..\..\Software/UltrasonicSensor.c **** 
+  21:..\..\..\Software/UltrasonicSensor.c **** void ReadDist(void) {
+ 139              		.loc 1 21 0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143 0000 08B5     		push	{r3, lr}
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 3, -8
+ 146              		.cfi_offset 14, -4
+  22:..\..\..\Software/UltrasonicSensor.c ****     Trig_Write(1);
+ 147              		.loc 1 22 0
+ 148 0002 0120     		movs	r0, #1
+ 149 0004 FFF7FEFF 		bl	Trig_Write
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 4
 
 
- 150 000a FFF7FEFF 		bl	CyDelayUs
- 151              	.LVL14:
-  23:..\..\..\Software/UltrasonicSensor.c ****     Trig_Write(0);
- 152              		.loc 1 23 0
- 153 000e 0020     		movs	r0, #0
- 154 0010 FFF7FEFF 		bl	Trig_Write
- 155              	.LVL15:
- 156 0014 08BD     		pop	{r3, pc}
- 157              		.cfi_endproc
- 158              	.LFE65:
- 159              		.size	ReadDist, .-ReadDist
- 160              		.global	Ultrasonic
- 161 0016 00BF     		.data
- 162              		.align	2
- 163              		.set	.LANCHOR0,. + 0
- 164              		.type	Ultrasonic, %object
- 165              		.size	Ultrasonic, 12
- 166              	Ultrasonic:
- 167 0000 00000000 		.space	4
- 168 0004 00000000 		.word	Init
- 169 0008 00000000 		.word	ReadDist
- 170              		.text
- 171              	.Letext0:
- 172              		.file 2 "e:\\programs\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none
- 173              		.file 3 "e:\\programs\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none
- 174              		.file 4 "..\\..\\..\\Software\\UltrasonicSensor.h"
- 175              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
- 176              		.file 6 "Generated_Source\\PSoC5/Counter_1.h"
- 177              		.file 7 "Generated_Source\\PSoC5/Echo.h"
- 178              		.file 8 "Generated_Source\\PSoC5/Falling_ISR.h"
- 179              		.file 9 "Generated_Source\\PSoC5/Trig.h"
- 180              		.file 10 "Generated_Source\\PSoC5/CyLib.h"
- 181              		.section	.debug_info,"",%progbits
- 182              	.Ldebug_info0:
- 183 0000 2A020000 		.4byte	0x22a
- 184 0004 0400     		.2byte	0x4
- 185 0006 00000000 		.4byte	.Ldebug_abbrev0
- 186 000a 04       		.byte	0x4
- 187 000b 01       		.uleb128 0x1
- 188 000c 72000000 		.4byte	.LASF33
- 189 0010 0C       		.byte	0xc
- 190 0011 5C010000 		.4byte	.LASF34
- 191 0015 BA010000 		.4byte	.LASF35
- 192 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 193 001d 00000000 		.4byte	0
- 194 0021 00000000 		.4byte	.Ldebug_line0
- 195 0025 02       		.uleb128 0x2
- 196 0026 01       		.byte	0x1
- 197 0027 06       		.byte	0x6
- 198 0028 C8020000 		.4byte	.LASF0
- 199 002c 02       		.uleb128 0x2
- 200 002d 01       		.byte	0x1
- 201 002e 08       		.byte	0x8
- 202 002f 64000000 		.4byte	.LASF1
- 203 0033 02       		.uleb128 0x2
- 204 0034 02       		.byte	0x2
- 205 0035 05       		.byte	0x5
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 5
+ 150              	.LVL14:
+  23:..\..\..\Software/UltrasonicSensor.c ****     CyDelayUs(10);
+ 151              		.loc 1 23 0
+ 152 0008 0A20     		movs	r0, #10
+ 153 000a FFF7FEFF 		bl	CyDelayUs
+ 154              	.LVL15:
+  24:..\..\..\Software/UltrasonicSensor.c ****     Trig_Write(0);
+ 155              		.loc 1 24 0
+ 156 000e 0020     		movs	r0, #0
+ 157 0010 FFF7FEFF 		bl	Trig_Write
+ 158              	.LVL16:
+ 159 0014 08BD     		pop	{r3, pc}
+ 160              		.cfi_endproc
+ 161              	.LFE65:
+ 162              		.size	ReadDist, .-ReadDist
+ 163              		.global	Ultrasonic
+ 164 0016 00BF     		.data
+ 165              		.align	2
+ 166              		.set	.LANCHOR0,. + 0
+ 167              		.type	Ultrasonic, %object
+ 168              		.size	Ultrasonic, 12
+ 169              	Ultrasonic:
+ 170 0000 00000000 		.space	4
+ 171 0004 00000000 		.word	Init
+ 172 0008 00000000 		.word	ReadDist
+ 173              		.text
+ 174              	.Letext0:
+ 175              		.file 2 "e:\\programs\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none
+ 176              		.file 3 "e:\\programs\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none
+ 177              		.file 4 "..\\..\\..\\Software\\UltrasonicSensor.h"
+ 178              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 179              		.file 6 "Generated_Source\\PSoC5/Counter_1.h"
+ 180              		.file 7 "Generated_Source\\PSoC5/Echo.h"
+ 181              		.file 8 "Generated_Source\\PSoC5/PWM_1.h"
+ 182              		.file 9 "Generated_Source\\PSoC5/Falling_ISR.h"
+ 183              		.file 10 "Generated_Source\\PSoC5/Trig.h"
+ 184              		.file 11 "Generated_Source\\PSoC5/CyLib.h"
+ 185              		.section	.debug_info,"",%progbits
+ 186              	.Ldebug_info0:
+ 187 0000 3E020000 		.4byte	0x23e
+ 188 0004 0400     		.2byte	0x4
+ 189 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 190 000a 04       		.byte	0x4
+ 191 000b 01       		.uleb128 0x1
+ 192 000c 85000000 		.4byte	.LASF34
+ 193 0010 0C       		.byte	0xc
+ 194 0011 68010000 		.4byte	.LASF35
+ 195 0015 C6010000 		.4byte	.LASF36
+ 196 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 197 001d 00000000 		.4byte	0
+ 198 0021 00000000 		.4byte	.Ldebug_line0
+ 199 0025 02       		.uleb128 0x2
+ 200 0026 01       		.byte	0x1
+ 201 0027 06       		.byte	0x6
+ 202 0028 D4020000 		.4byte	.LASF0
+ 203 002c 02       		.uleb128 0x2
+ 204 002d 01       		.byte	0x1
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 5
 
 
- 206 0036 7C020000 		.4byte	.LASF2
- 207 003a 03       		.uleb128 0x3
- 208 003b 40010000 		.4byte	.LASF4
- 209 003f 02       		.byte	0x2
- 210 0040 2B       		.byte	0x2b
- 211 0041 45000000 		.4byte	0x45
- 212 0045 02       		.uleb128 0x2
- 213 0046 02       		.byte	0x2
- 214 0047 07       		.byte	0x7
- 215 0048 12010000 		.4byte	.LASF3
- 216 004c 03       		.uleb128 0x3
- 217 004d 33000000 		.4byte	.LASF5
- 218 0051 02       		.byte	0x2
- 219 0052 3F       		.byte	0x3f
- 220 0053 57000000 		.4byte	0x57
- 221 0057 02       		.uleb128 0x2
- 222 0058 04       		.byte	0x4
- 223 0059 05       		.byte	0x5
- 224 005a 8F020000 		.4byte	.LASF6
- 225 005e 02       		.uleb128 0x2
- 226 005f 04       		.byte	0x4
- 227 0060 07       		.byte	0x7
- 228 0061 00010000 		.4byte	.LASF7
- 229 0065 02       		.uleb128 0x2
- 230 0066 08       		.byte	0x8
- 231 0067 05       		.byte	0x5
- 232 0068 69020000 		.4byte	.LASF8
- 233 006c 02       		.uleb128 0x2
- 234 006d 08       		.byte	0x8
- 235 006e 07       		.byte	0x7
- 236 006f A3010000 		.4byte	.LASF9
- 237 0073 04       		.uleb128 0x4
- 238 0074 04       		.byte	0x4
- 239 0075 05       		.byte	0x5
- 240 0076 696E7400 		.ascii	"int\000"
- 241 007a 02       		.uleb128 0x2
- 242 007b 04       		.byte	0x4
- 243 007c 07       		.byte	0x7
- 244 007d 81010000 		.4byte	.LASF10
- 245 0081 03       		.uleb128 0x3
- 246 0082 86020000 		.4byte	.LASF11
- 247 0086 03       		.byte	0x3
- 248 0087 24       		.byte	0x24
- 249 0088 3A000000 		.4byte	0x3a
- 250 008c 03       		.uleb128 0x3
- 251 008d 58020000 		.4byte	.LASF12
- 252 0091 03       		.byte	0x3
- 253 0092 2C       		.byte	0x2c
- 254 0093 4C000000 		.4byte	0x4c
- 255 0097 02       		.uleb128 0x2
- 256 0098 04       		.byte	0x4
- 257 0099 04       		.byte	0x4
- 258 009a 5E000000 		.4byte	.LASF13
- 259 009e 02       		.uleb128 0x2
- 260 009f 08       		.byte	0x8
- 261 00a0 04       		.byte	0x4
- 262 00a1 4B010000 		.4byte	.LASF14
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 6
+ 205 002e 08       		.byte	0x8
+ 206 002f 77000000 		.4byte	.LASF1
+ 207 0033 02       		.uleb128 0x2
+ 208 0034 02       		.byte	0x2
+ 209 0035 05       		.byte	0x5
+ 210 0036 88020000 		.4byte	.LASF2
+ 211 003a 03       		.uleb128 0x3
+ 212 003b 4C010000 		.4byte	.LASF4
+ 213 003f 02       		.byte	0x2
+ 214 0040 2B       		.byte	0x2b
+ 215 0041 45000000 		.4byte	0x45
+ 216 0045 02       		.uleb128 0x2
+ 217 0046 02       		.byte	0x2
+ 218 0047 07       		.byte	0x7
+ 219 0048 3D000000 		.4byte	.LASF3
+ 220 004c 03       		.uleb128 0x3
+ 221 004d 33000000 		.4byte	.LASF5
+ 222 0051 02       		.byte	0x2
+ 223 0052 3F       		.byte	0x3f
+ 224 0053 57000000 		.4byte	0x57
+ 225 0057 02       		.uleb128 0x2
+ 226 0058 04       		.byte	0x4
+ 227 0059 05       		.byte	0x5
+ 228 005a 9B020000 		.4byte	.LASF6
+ 229 005e 02       		.uleb128 0x2
+ 230 005f 04       		.byte	0x4
+ 231 0060 07       		.byte	0x7
+ 232 0061 13010000 		.4byte	.LASF7
+ 233 0065 02       		.uleb128 0x2
+ 234 0066 08       		.byte	0x8
+ 235 0067 05       		.byte	0x5
+ 236 0068 75020000 		.4byte	.LASF8
+ 237 006c 02       		.uleb128 0x2
+ 238 006d 08       		.byte	0x8
+ 239 006e 07       		.byte	0x7
+ 240 006f AF010000 		.4byte	.LASF9
+ 241 0073 04       		.uleb128 0x4
+ 242 0074 04       		.byte	0x4
+ 243 0075 05       		.byte	0x5
+ 244 0076 696E7400 		.ascii	"int\000"
+ 245 007a 02       		.uleb128 0x2
+ 246 007b 04       		.byte	0x4
+ 247 007c 07       		.byte	0x7
+ 248 007d 8D010000 		.4byte	.LASF10
+ 249 0081 03       		.uleb128 0x3
+ 250 0082 92020000 		.4byte	.LASF11
+ 251 0086 03       		.byte	0x3
+ 252 0087 24       		.byte	0x24
+ 253 0088 3A000000 		.4byte	0x3a
+ 254 008c 03       		.uleb128 0x3
+ 255 008d 64020000 		.4byte	.LASF12
+ 256 0091 03       		.byte	0x3
+ 257 0092 2C       		.byte	0x2c
+ 258 0093 4C000000 		.4byte	0x4c
+ 259 0097 02       		.uleb128 0x2
+ 260 0098 04       		.byte	0x4
+ 261 0099 04       		.byte	0x4
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 6
 
 
- 263 00a5 02       		.uleb128 0x2
- 264 00a6 01       		.byte	0x1
- 265 00a7 08       		.byte	0x8
- 266 00a8 77020000 		.4byte	.LASF15
- 267 00ac 05       		.uleb128 0x5
- 268 00ad 04       		.byte	0x4
- 269 00ae B2000000 		.4byte	0xb2
- 270 00b2 06       		.uleb128 0x6
- 271 00b3 02       		.uleb128 0x2
- 272 00b4 08       		.byte	0x8
- 273 00b5 04       		.byte	0x4
- 274 00b6 A8020000 		.4byte	.LASF16
- 275 00ba 02       		.uleb128 0x2
- 276 00bb 04       		.byte	0x4
- 277 00bc 07       		.byte	0x7
- 278 00bd 60020000 		.4byte	.LASF17
- 279 00c1 07       		.uleb128 0x7
- 280 00c2 53000000 		.4byte	.LASF25
- 281 00c6 0C       		.byte	0xc
- 282 00c7 04       		.byte	0x4
- 283 00c8 09       		.byte	0x9
- 284 00c9 F2000000 		.4byte	0xf2
- 285 00cd 08       		.uleb128 0x8
- 286 00ce 41020000 		.4byte	.LASF18
- 287 00d2 04       		.byte	0x4
- 288 00d3 0A       		.byte	0xa
- 289 00d4 97000000 		.4byte	0x97
- 290 00d8 00       		.byte	0
- 291 00d9 08       		.uleb128 0x8
- 292 00da 25010000 		.4byte	.LASF19
- 293 00de 04       		.byte	0x4
- 294 00df 0C       		.byte	0xc
- 295 00e0 AC000000 		.4byte	0xac
- 296 00e4 04       		.byte	0x4
- 297 00e5 08       		.uleb128 0x8
- 298 00e6 2A010000 		.4byte	.LASF20
- 299 00ea 04       		.byte	0x4
- 300 00eb 0D       		.byte	0xd
- 301 00ec AC000000 		.4byte	0xac
- 302 00f0 08       		.byte	0x8
- 303 00f1 00       		.byte	0
- 304 00f2 09       		.uleb128 0x9
- 305 00f3 47020000 		.4byte	.LASF23
- 306 00f7 01       		.byte	0x1
- 307 00f8 06       		.byte	0x6
- 308 00f9 00000000 		.4byte	.LFB63
- 309 00fd 64000000 		.4byte	.LFE63-.LFB63
- 310 0101 01       		.uleb128 0x1
- 311 0102 9C       		.byte	0x9c
- 312 0103 41010000 		.4byte	0x141
- 313 0107 0A       		.uleb128 0xa
- 314 0108 25000000 		.4byte	.LASF21
- 315 010c 01       		.byte	0x1
- 316 010d 07       		.byte	0x7
- 317 010e 81000000 		.4byte	0x81
- 318 0112 00000000 		.4byte	.LLST0
- 319 0116 0A       		.uleb128 0xa
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 7
+ 262 009a 71000000 		.4byte	.LASF13
+ 263 009e 02       		.uleb128 0x2
+ 264 009f 08       		.byte	0x8
+ 265 00a0 04       		.byte	0x4
+ 266 00a1 57010000 		.4byte	.LASF14
+ 267 00a5 02       		.uleb128 0x2
+ 268 00a6 01       		.byte	0x1
+ 269 00a7 08       		.byte	0x8
+ 270 00a8 83020000 		.4byte	.LASF15
+ 271 00ac 05       		.uleb128 0x5
+ 272 00ad 04       		.byte	0x4
+ 273 00ae B2000000 		.4byte	0xb2
+ 274 00b2 06       		.uleb128 0x6
+ 275 00b3 02       		.uleb128 0x2
+ 276 00b4 08       		.byte	0x8
+ 277 00b5 04       		.byte	0x4
+ 278 00b6 B4020000 		.4byte	.LASF16
+ 279 00ba 02       		.uleb128 0x2
+ 280 00bb 04       		.byte	0x4
+ 281 00bc 07       		.byte	0x7
+ 282 00bd 6C020000 		.4byte	.LASF17
+ 283 00c1 07       		.uleb128 0x7
+ 284 00c2 66000000 		.4byte	.LASF25
+ 285 00c6 0C       		.byte	0xc
+ 286 00c7 04       		.byte	0x4
+ 287 00c8 09       		.byte	0x9
+ 288 00c9 F2000000 		.4byte	0xf2
+ 289 00cd 08       		.uleb128 0x8
+ 290 00ce 4D020000 		.4byte	.LASF18
+ 291 00d2 04       		.byte	0x4
+ 292 00d3 0A       		.byte	0xa
+ 293 00d4 97000000 		.4byte	0x97
+ 294 00d8 00       		.byte	0
+ 295 00d9 08       		.uleb128 0x8
+ 296 00da 31010000 		.4byte	.LASF19
+ 297 00de 04       		.byte	0x4
+ 298 00df 0C       		.byte	0xc
+ 299 00e0 AC000000 		.4byte	0xac
+ 300 00e4 04       		.byte	0x4
+ 301 00e5 08       		.uleb128 0x8
+ 302 00e6 36010000 		.4byte	.LASF20
+ 303 00ea 04       		.byte	0x4
+ 304 00eb 0D       		.byte	0xd
+ 305 00ec AC000000 		.4byte	0xac
+ 306 00f0 08       		.byte	0x8
+ 307 00f1 00       		.byte	0
+ 308 00f2 09       		.uleb128 0x9
+ 309 00f3 53020000 		.4byte	.LASF23
+ 310 00f7 01       		.byte	0x1
+ 311 00f8 06       		.byte	0x6
+ 312 00f9 00000000 		.4byte	.LFB63
+ 313 00fd 64000000 		.4byte	.LFE63-.LFB63
+ 314 0101 01       		.uleb128 0x1
+ 315 0102 9C       		.byte	0x9c
+ 316 0103 41010000 		.4byte	0x141
+ 317 0107 0A       		.uleb128 0xa
+ 318 0108 25000000 		.4byte	.LASF21
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 7
 
 
- 320 0117 0B000000 		.4byte	.LASF22
- 321 011b 01       		.byte	0x1
- 322 011c 08       		.byte	0x8
- 323 011d 97000000 		.4byte	0x97
- 324 0121 13000000 		.4byte	.LLST1
- 325 0125 0B       		.uleb128 0xb
- 326 0126 06000000 		.4byte	.LVL0
- 327 012a E0010000 		.4byte	0x1e0
- 328 012e 0B       		.uleb128 0xb
- 329 012f 0C000000 		.4byte	.LVL1
- 330 0133 EB010000 		.4byte	0x1eb
- 331 0137 0B       		.uleb128 0xb
- 332 0138 44000000 		.4byte	.LVL10
- 333 013c F6010000 		.4byte	0x1f6
- 334 0140 00       		.byte	0
- 335 0141 0C       		.uleb128 0xc
- 336 0142 25010000 		.4byte	.LASF19
- 337 0146 01       		.byte	0x1
- 338 0147 0D       		.byte	0xd
- 339 0148 00000000 		.4byte	.LFB64
- 340 014c 1C000000 		.4byte	.LFE64-.LFB64
- 341 0150 01       		.uleb128 0x1
- 342 0151 9C       		.byte	0x9c
- 343 0152 73010000 		.4byte	0x173
- 344 0156 0B       		.uleb128 0xb
- 345 0157 0C000000 		.4byte	.LVL11
- 346 015b 01020000 		.4byte	0x201
- 347 015f 0D       		.uleb128 0xd
- 348 0160 12000000 		.4byte	.LVL12
- 349 0164 0C020000 		.4byte	0x20c
- 350 0168 0E       		.uleb128 0xe
- 351 0169 01       		.uleb128 0x1
- 352 016a 50       		.byte	0x50
- 353 016b 05       		.uleb128 0x5
- 354 016c 03       		.byte	0x3
- 355 016d 00000000 		.4byte	Falling_ISR_addr
- 356 0171 00       		.byte	0
- 357 0172 00       		.byte	0
- 358 0173 0C       		.uleb128 0xc
- 359 0174 2A010000 		.4byte	.LASF20
- 360 0178 01       		.byte	0x1
- 361 0179 14       		.byte	0x14
- 362 017a 00000000 		.4byte	.LFB65
- 363 017e 16000000 		.4byte	.LFE65-.LFB65
- 364 0182 01       		.uleb128 0x1
- 365 0183 9C       		.byte	0x9c
- 366 0184 BE010000 		.4byte	0x1be
- 367 0188 0F       		.uleb128 0xf
- 368 0189 08000000 		.4byte	.LVL13
- 369 018d 17020000 		.4byte	0x217
- 370 0191 9B010000 		.4byte	0x19b
- 371 0195 0E       		.uleb128 0xe
- 372 0196 01       		.uleb128 0x1
- 373 0197 50       		.byte	0x50
- 374 0198 01       		.uleb128 0x1
- 375 0199 31       		.byte	0x31
- 376 019a 00       		.byte	0
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 8
+ 319 010c 01       		.byte	0x1
+ 320 010d 07       		.byte	0x7
+ 321 010e 81000000 		.4byte	0x81
+ 322 0112 00000000 		.4byte	.LLST0
+ 323 0116 0A       		.uleb128 0xa
+ 324 0117 0B000000 		.4byte	.LASF22
+ 325 011b 01       		.byte	0x1
+ 326 011c 08       		.byte	0x8
+ 327 011d 97000000 		.4byte	0x97
+ 328 0121 13000000 		.4byte	.LLST1
+ 329 0125 0B       		.uleb128 0xb
+ 330 0126 06000000 		.4byte	.LVL0
+ 331 012a E9010000 		.4byte	0x1e9
+ 332 012e 0B       		.uleb128 0xb
+ 333 012f 0C000000 		.4byte	.LVL1
+ 334 0133 F4010000 		.4byte	0x1f4
+ 335 0137 0B       		.uleb128 0xb
+ 336 0138 44000000 		.4byte	.LVL10
+ 337 013c FF010000 		.4byte	0x1ff
+ 338 0140 00       		.byte	0
+ 339 0141 0C       		.uleb128 0xc
+ 340 0142 31010000 		.4byte	.LASF19
+ 341 0146 01       		.byte	0x1
+ 342 0147 0D       		.byte	0xd
+ 343 0148 00000000 		.4byte	.LFB64
+ 344 014c 20000000 		.4byte	.LFE64-.LFB64
+ 345 0150 01       		.uleb128 0x1
+ 346 0151 9C       		.byte	0x9c
+ 347 0152 7C010000 		.4byte	0x17c
+ 348 0156 0B       		.uleb128 0xb
+ 349 0157 0C000000 		.4byte	.LVL11
+ 350 015b 0A020000 		.4byte	0x20a
+ 351 015f 0B       		.uleb128 0xb
+ 352 0160 10000000 		.4byte	.LVL12
+ 353 0164 15020000 		.4byte	0x215
+ 354 0168 0D       		.uleb128 0xd
+ 355 0169 16000000 		.4byte	.LVL13
+ 356 016d 20020000 		.4byte	0x220
+ 357 0171 0E       		.uleb128 0xe
+ 358 0172 01       		.uleb128 0x1
+ 359 0173 50       		.byte	0x50
+ 360 0174 05       		.uleb128 0x5
+ 361 0175 03       		.byte	0x3
+ 362 0176 00000000 		.4byte	Falling_ISR_addr
+ 363 017a 00       		.byte	0
+ 364 017b 00       		.byte	0
+ 365 017c 0C       		.uleb128 0xc
+ 366 017d 36010000 		.4byte	.LASF20
+ 367 0181 01       		.byte	0x1
+ 368 0182 15       		.byte	0x15
+ 369 0183 00000000 		.4byte	.LFB65
+ 370 0187 16000000 		.4byte	.LFE65-.LFB65
+ 371 018b 01       		.uleb128 0x1
+ 372 018c 9C       		.byte	0x9c
+ 373 018d C7010000 		.4byte	0x1c7
+ 374 0191 0F       		.uleb128 0xf
+ 375 0192 08000000 		.4byte	.LVL14
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 8
 
 
- 377 019b 0F       		.uleb128 0xf
- 378 019c 0E000000 		.4byte	.LVL14
- 379 01a0 22020000 		.4byte	0x222
- 380 01a4 AE010000 		.4byte	0x1ae
- 381 01a8 0E       		.uleb128 0xe
- 382 01a9 01       		.uleb128 0x1
- 383 01aa 50       		.byte	0x50
- 384 01ab 01       		.uleb128 0x1
- 385 01ac 3A       		.byte	0x3a
- 386 01ad 00       		.byte	0
- 387 01ae 0D       		.uleb128 0xd
- 388 01af 14000000 		.4byte	.LVL15
- 389 01b3 17020000 		.4byte	0x217
- 390 01b7 0E       		.uleb128 0xe
- 391 01b8 01       		.uleb128 0x1
- 392 01b9 50       		.byte	0x50
- 393 01ba 01       		.uleb128 0x1
- 394 01bb 30       		.byte	0x30
- 395 01bc 00       		.byte	0
- 396 01bd 00       		.byte	0
- 397 01be 10       		.uleb128 0x10
- 398 01bf 33010000 		.4byte	.LASF24
- 399 01c3 05       		.byte	0x5
- 400 01c4 1207     		.2byte	0x712
- 401 01c6 CA010000 		.4byte	0x1ca
- 402 01ca 11       		.uleb128 0x11
- 403 01cb 8C000000 		.4byte	0x8c
- 404 01cf 12       		.uleb128 0x12
- 405 01d0 53000000 		.4byte	.LASF25
- 406 01d4 01       		.byte	0x1
- 407 01d5 1A       		.byte	0x1a
- 408 01d6 C1000000 		.4byte	0xc1
- 409 01da 05       		.uleb128 0x5
- 410 01db 03       		.byte	0x3
- 411 01dc 00000000 		.4byte	Ultrasonic
- 412 01e0 13       		.uleb128 0x13
- 413 01e1 8E010000 		.4byte	.LASF26
- 414 01e5 8E010000 		.4byte	.LASF26
- 415 01e9 06       		.byte	0x6
- 416 01ea 61       		.byte	0x61
- 417 01eb 13       		.uleb128 0x13
- 418 01ec 3D000000 		.4byte	.LASF27
- 419 01f0 3D000000 		.4byte	.LASF27
- 420 01f4 06       		.byte	0x6
- 421 01f5 5D       		.byte	0x5d
- 422 01f6 13       		.uleb128 0x13
- 423 01f7 B4020000 		.4byte	.LASF28
- 424 01fb B4020000 		.4byte	.LASF28
- 425 01ff 07       		.byte	0x7
- 426 0200 2B       		.byte	0x2b
- 427 0201 13       		.uleb128 0x13
- 428 0202 98020000 		.4byte	.LASF29
- 429 0206 98020000 		.4byte	.LASF29
- 430 020a 06       		.byte	0x6
- 431 020b 4F       		.byte	0x4f
- 432 020c 13       		.uleb128 0x13
- 433 020d 11000000 		.4byte	.LASF30
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 9
+ 376 0196 2B020000 		.4byte	0x22b
+ 377 019a A4010000 		.4byte	0x1a4
+ 378 019e 0E       		.uleb128 0xe
+ 379 019f 01       		.uleb128 0x1
+ 380 01a0 50       		.byte	0x50
+ 381 01a1 01       		.uleb128 0x1
+ 382 01a2 31       		.byte	0x31
+ 383 01a3 00       		.byte	0
+ 384 01a4 0F       		.uleb128 0xf
+ 385 01a5 0E000000 		.4byte	.LVL15
+ 386 01a9 36020000 		.4byte	0x236
+ 387 01ad B7010000 		.4byte	0x1b7
+ 388 01b1 0E       		.uleb128 0xe
+ 389 01b2 01       		.uleb128 0x1
+ 390 01b3 50       		.byte	0x50
+ 391 01b4 01       		.uleb128 0x1
+ 392 01b5 3A       		.byte	0x3a
+ 393 01b6 00       		.byte	0
+ 394 01b7 0D       		.uleb128 0xd
+ 395 01b8 14000000 		.4byte	.LVL16
+ 396 01bc 2B020000 		.4byte	0x22b
+ 397 01c0 0E       		.uleb128 0xe
+ 398 01c1 01       		.uleb128 0x1
+ 399 01c2 50       		.byte	0x50
+ 400 01c3 01       		.uleb128 0x1
+ 401 01c4 30       		.byte	0x30
+ 402 01c5 00       		.byte	0
+ 403 01c6 00       		.byte	0
+ 404 01c7 10       		.uleb128 0x10
+ 405 01c8 3F010000 		.4byte	.LASF24
+ 406 01cc 05       		.byte	0x5
+ 407 01cd 1207     		.2byte	0x712
+ 408 01cf D3010000 		.4byte	0x1d3
+ 409 01d3 11       		.uleb128 0x11
+ 410 01d4 8C000000 		.4byte	0x8c
+ 411 01d8 12       		.uleb128 0x12
+ 412 01d9 66000000 		.4byte	.LASF25
+ 413 01dd 01       		.byte	0x1
+ 414 01de 1B       		.byte	0x1b
+ 415 01df C1000000 		.4byte	0xc1
+ 416 01e3 05       		.uleb128 0x5
+ 417 01e4 03       		.byte	0x3
+ 418 01e5 00000000 		.4byte	Ultrasonic
+ 419 01e9 13       		.uleb128 0x13
+ 420 01ea 9A010000 		.4byte	.LASF26
+ 421 01ee 9A010000 		.4byte	.LASF26
+ 422 01f2 06       		.byte	0x6
+ 423 01f3 61       		.byte	0x61
+ 424 01f4 13       		.uleb128 0x13
+ 425 01f5 50000000 		.4byte	.LASF27
+ 426 01f9 50000000 		.4byte	.LASF27
+ 427 01fd 06       		.byte	0x6
+ 428 01fe 5D       		.byte	0x5d
+ 429 01ff 13       		.uleb128 0x13
+ 430 0200 C0020000 		.4byte	.LASF28
+ 431 0204 C0020000 		.4byte	.LASF28
+ 432 0208 07       		.byte	0x7
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 9
 
 
- 434 0211 11000000 		.4byte	.LASF30
- 435 0215 08       		.byte	0x8
- 436 0216 18       		.byte	0x18
- 437 0217 13       		.uleb128 0x13
- 438 0218 00000000 		.4byte	.LASF31
- 439 021c 00000000 		.4byte	.LASF31
- 440 0220 09       		.byte	0x9
- 441 0221 26       		.byte	0x26
- 442 0222 13       		.uleb128 0x13
- 443 0223 52010000 		.4byte	.LASF32
- 444 0227 52010000 		.4byte	.LASF32
- 445 022b 0A       		.byte	0xa
- 446 022c 77       		.byte	0x77
- 447 022d 00       		.byte	0
- 448              		.section	.debug_abbrev,"",%progbits
- 449              	.Ldebug_abbrev0:
- 450 0000 01       		.uleb128 0x1
- 451 0001 11       		.uleb128 0x11
- 452 0002 01       		.byte	0x1
- 453 0003 25       		.uleb128 0x25
- 454 0004 0E       		.uleb128 0xe
- 455 0005 13       		.uleb128 0x13
- 456 0006 0B       		.uleb128 0xb
- 457 0007 03       		.uleb128 0x3
- 458 0008 0E       		.uleb128 0xe
- 459 0009 1B       		.uleb128 0x1b
- 460 000a 0E       		.uleb128 0xe
- 461 000b 55       		.uleb128 0x55
- 462 000c 17       		.uleb128 0x17
- 463 000d 11       		.uleb128 0x11
- 464 000e 01       		.uleb128 0x1
- 465 000f 10       		.uleb128 0x10
- 466 0010 17       		.uleb128 0x17
- 467 0011 00       		.byte	0
- 468 0012 00       		.byte	0
- 469 0013 02       		.uleb128 0x2
- 470 0014 24       		.uleb128 0x24
- 471 0015 00       		.byte	0
- 472 0016 0B       		.uleb128 0xb
- 473 0017 0B       		.uleb128 0xb
- 474 0018 3E       		.uleb128 0x3e
- 475 0019 0B       		.uleb128 0xb
- 476 001a 03       		.uleb128 0x3
- 477 001b 0E       		.uleb128 0xe
- 478 001c 00       		.byte	0
- 479 001d 00       		.byte	0
- 480 001e 03       		.uleb128 0x3
- 481 001f 16       		.uleb128 0x16
- 482 0020 00       		.byte	0
- 483 0021 03       		.uleb128 0x3
- 484 0022 0E       		.uleb128 0xe
- 485 0023 3A       		.uleb128 0x3a
- 486 0024 0B       		.uleb128 0xb
- 487 0025 3B       		.uleb128 0x3b
- 488 0026 0B       		.uleb128 0xb
- 489 0027 49       		.uleb128 0x49
- 490 0028 13       		.uleb128 0x13
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 10
+ 433 0209 2B       		.byte	0x2b
+ 434 020a 13       		.uleb128 0x13
+ 435 020b A4020000 		.4byte	.LASF29
+ 436 020f A4020000 		.4byte	.LASF29
+ 437 0213 06       		.byte	0x6
+ 438 0214 4F       		.byte	0x4f
+ 439 0215 13       		.uleb128 0x13
+ 440 0216 25010000 		.4byte	.LASF30
+ 441 021a 25010000 		.4byte	.LASF30
+ 442 021e 08       		.byte	0x8
+ 443 021f 92       		.byte	0x92
+ 444 0220 13       		.uleb128 0x13
+ 445 0221 11000000 		.4byte	.LASF31
+ 446 0225 11000000 		.4byte	.LASF31
+ 447 0229 09       		.byte	0x9
+ 448 022a 18       		.byte	0x18
+ 449 022b 13       		.uleb128 0x13
+ 450 022c 00000000 		.4byte	.LASF32
+ 451 0230 00000000 		.4byte	.LASF32
+ 452 0234 0A       		.byte	0xa
+ 453 0235 26       		.byte	0x26
+ 454 0236 13       		.uleb128 0x13
+ 455 0237 5E010000 		.4byte	.LASF33
+ 456 023b 5E010000 		.4byte	.LASF33
+ 457 023f 0B       		.byte	0xb
+ 458 0240 77       		.byte	0x77
+ 459 0241 00       		.byte	0
+ 460              		.section	.debug_abbrev,"",%progbits
+ 461              	.Ldebug_abbrev0:
+ 462 0000 01       		.uleb128 0x1
+ 463 0001 11       		.uleb128 0x11
+ 464 0002 01       		.byte	0x1
+ 465 0003 25       		.uleb128 0x25
+ 466 0004 0E       		.uleb128 0xe
+ 467 0005 13       		.uleb128 0x13
+ 468 0006 0B       		.uleb128 0xb
+ 469 0007 03       		.uleb128 0x3
+ 470 0008 0E       		.uleb128 0xe
+ 471 0009 1B       		.uleb128 0x1b
+ 472 000a 0E       		.uleb128 0xe
+ 473 000b 55       		.uleb128 0x55
+ 474 000c 17       		.uleb128 0x17
+ 475 000d 11       		.uleb128 0x11
+ 476 000e 01       		.uleb128 0x1
+ 477 000f 10       		.uleb128 0x10
+ 478 0010 17       		.uleb128 0x17
+ 479 0011 00       		.byte	0
+ 480 0012 00       		.byte	0
+ 481 0013 02       		.uleb128 0x2
+ 482 0014 24       		.uleb128 0x24
+ 483 0015 00       		.byte	0
+ 484 0016 0B       		.uleb128 0xb
+ 485 0017 0B       		.uleb128 0xb
+ 486 0018 3E       		.uleb128 0x3e
+ 487 0019 0B       		.uleb128 0xb
+ 488 001a 03       		.uleb128 0x3
+ 489 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 10
 
 
- 491 0029 00       		.byte	0
- 492 002a 00       		.byte	0
- 493 002b 04       		.uleb128 0x4
- 494 002c 24       		.uleb128 0x24
- 495 002d 00       		.byte	0
- 496 002e 0B       		.uleb128 0xb
- 497 002f 0B       		.uleb128 0xb
- 498 0030 3E       		.uleb128 0x3e
- 499 0031 0B       		.uleb128 0xb
- 500 0032 03       		.uleb128 0x3
- 501 0033 08       		.uleb128 0x8
- 502 0034 00       		.byte	0
- 503 0035 00       		.byte	0
- 504 0036 05       		.uleb128 0x5
- 505 0037 0F       		.uleb128 0xf
- 506 0038 00       		.byte	0
- 507 0039 0B       		.uleb128 0xb
- 508 003a 0B       		.uleb128 0xb
- 509 003b 49       		.uleb128 0x49
- 510 003c 13       		.uleb128 0x13
- 511 003d 00       		.byte	0
- 512 003e 00       		.byte	0
- 513 003f 06       		.uleb128 0x6
- 514 0040 15       		.uleb128 0x15
- 515 0041 00       		.byte	0
- 516 0042 27       		.uleb128 0x27
- 517 0043 19       		.uleb128 0x19
- 518 0044 00       		.byte	0
- 519 0045 00       		.byte	0
- 520 0046 07       		.uleb128 0x7
- 521 0047 13       		.uleb128 0x13
- 522 0048 01       		.byte	0x1
- 523 0049 03       		.uleb128 0x3
- 524 004a 0E       		.uleb128 0xe
- 525 004b 0B       		.uleb128 0xb
- 526 004c 0B       		.uleb128 0xb
- 527 004d 3A       		.uleb128 0x3a
- 528 004e 0B       		.uleb128 0xb
- 529 004f 3B       		.uleb128 0x3b
- 530 0050 0B       		.uleb128 0xb
- 531 0051 01       		.uleb128 0x1
- 532 0052 13       		.uleb128 0x13
- 533 0053 00       		.byte	0
- 534 0054 00       		.byte	0
- 535 0055 08       		.uleb128 0x8
- 536 0056 0D       		.uleb128 0xd
- 537 0057 00       		.byte	0
- 538 0058 03       		.uleb128 0x3
- 539 0059 0E       		.uleb128 0xe
- 540 005a 3A       		.uleb128 0x3a
- 541 005b 0B       		.uleb128 0xb
- 542 005c 3B       		.uleb128 0x3b
- 543 005d 0B       		.uleb128 0xb
- 544 005e 49       		.uleb128 0x49
- 545 005f 13       		.uleb128 0x13
- 546 0060 38       		.uleb128 0x38
- 547 0061 0B       		.uleb128 0xb
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 11
+ 490 001c 00       		.byte	0
+ 491 001d 00       		.byte	0
+ 492 001e 03       		.uleb128 0x3
+ 493 001f 16       		.uleb128 0x16
+ 494 0020 00       		.byte	0
+ 495 0021 03       		.uleb128 0x3
+ 496 0022 0E       		.uleb128 0xe
+ 497 0023 3A       		.uleb128 0x3a
+ 498 0024 0B       		.uleb128 0xb
+ 499 0025 3B       		.uleb128 0x3b
+ 500 0026 0B       		.uleb128 0xb
+ 501 0027 49       		.uleb128 0x49
+ 502 0028 13       		.uleb128 0x13
+ 503 0029 00       		.byte	0
+ 504 002a 00       		.byte	0
+ 505 002b 04       		.uleb128 0x4
+ 506 002c 24       		.uleb128 0x24
+ 507 002d 00       		.byte	0
+ 508 002e 0B       		.uleb128 0xb
+ 509 002f 0B       		.uleb128 0xb
+ 510 0030 3E       		.uleb128 0x3e
+ 511 0031 0B       		.uleb128 0xb
+ 512 0032 03       		.uleb128 0x3
+ 513 0033 08       		.uleb128 0x8
+ 514 0034 00       		.byte	0
+ 515 0035 00       		.byte	0
+ 516 0036 05       		.uleb128 0x5
+ 517 0037 0F       		.uleb128 0xf
+ 518 0038 00       		.byte	0
+ 519 0039 0B       		.uleb128 0xb
+ 520 003a 0B       		.uleb128 0xb
+ 521 003b 49       		.uleb128 0x49
+ 522 003c 13       		.uleb128 0x13
+ 523 003d 00       		.byte	0
+ 524 003e 00       		.byte	0
+ 525 003f 06       		.uleb128 0x6
+ 526 0040 15       		.uleb128 0x15
+ 527 0041 00       		.byte	0
+ 528 0042 27       		.uleb128 0x27
+ 529 0043 19       		.uleb128 0x19
+ 530 0044 00       		.byte	0
+ 531 0045 00       		.byte	0
+ 532 0046 07       		.uleb128 0x7
+ 533 0047 13       		.uleb128 0x13
+ 534 0048 01       		.byte	0x1
+ 535 0049 03       		.uleb128 0x3
+ 536 004a 0E       		.uleb128 0xe
+ 537 004b 0B       		.uleb128 0xb
+ 538 004c 0B       		.uleb128 0xb
+ 539 004d 3A       		.uleb128 0x3a
+ 540 004e 0B       		.uleb128 0xb
+ 541 004f 3B       		.uleb128 0x3b
+ 542 0050 0B       		.uleb128 0xb
+ 543 0051 01       		.uleb128 0x1
+ 544 0052 13       		.uleb128 0x13
+ 545 0053 00       		.byte	0
+ 546 0054 00       		.byte	0
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 11
 
 
- 548 0062 00       		.byte	0
- 549 0063 00       		.byte	0
- 550 0064 09       		.uleb128 0x9
- 551 0065 2E       		.uleb128 0x2e
- 552 0066 01       		.byte	0x1
- 553 0067 3F       		.uleb128 0x3f
- 554 0068 19       		.uleb128 0x19
- 555 0069 03       		.uleb128 0x3
- 556 006a 0E       		.uleb128 0xe
- 557 006b 3A       		.uleb128 0x3a
- 558 006c 0B       		.uleb128 0xb
- 559 006d 3B       		.uleb128 0x3b
- 560 006e 0B       		.uleb128 0xb
- 561 006f 27       		.uleb128 0x27
- 562 0070 19       		.uleb128 0x19
- 563 0071 11       		.uleb128 0x11
- 564 0072 01       		.uleb128 0x1
- 565 0073 12       		.uleb128 0x12
- 566 0074 06       		.uleb128 0x6
- 567 0075 40       		.uleb128 0x40
- 568 0076 18       		.uleb128 0x18
- 569 0077 9642     		.uleb128 0x2116
- 570 0079 19       		.uleb128 0x19
- 571 007a 01       		.uleb128 0x1
- 572 007b 13       		.uleb128 0x13
- 573 007c 00       		.byte	0
- 574 007d 00       		.byte	0
- 575 007e 0A       		.uleb128 0xa
- 576 007f 34       		.uleb128 0x34
- 577 0080 00       		.byte	0
- 578 0081 03       		.uleb128 0x3
- 579 0082 0E       		.uleb128 0xe
- 580 0083 3A       		.uleb128 0x3a
- 581 0084 0B       		.uleb128 0xb
- 582 0085 3B       		.uleb128 0x3b
- 583 0086 0B       		.uleb128 0xb
- 584 0087 49       		.uleb128 0x49
- 585 0088 13       		.uleb128 0x13
- 586 0089 02       		.uleb128 0x2
- 587 008a 17       		.uleb128 0x17
- 588 008b 00       		.byte	0
- 589 008c 00       		.byte	0
- 590 008d 0B       		.uleb128 0xb
- 591 008e 898201   		.uleb128 0x4109
- 592 0091 00       		.byte	0
- 593 0092 11       		.uleb128 0x11
- 594 0093 01       		.uleb128 0x1
- 595 0094 31       		.uleb128 0x31
- 596 0095 13       		.uleb128 0x13
- 597 0096 00       		.byte	0
- 598 0097 00       		.byte	0
- 599 0098 0C       		.uleb128 0xc
- 600 0099 2E       		.uleb128 0x2e
- 601 009a 01       		.byte	0x1
- 602 009b 3F       		.uleb128 0x3f
- 603 009c 19       		.uleb128 0x19
- 604 009d 03       		.uleb128 0x3
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 12
+ 547 0055 08       		.uleb128 0x8
+ 548 0056 0D       		.uleb128 0xd
+ 549 0057 00       		.byte	0
+ 550 0058 03       		.uleb128 0x3
+ 551 0059 0E       		.uleb128 0xe
+ 552 005a 3A       		.uleb128 0x3a
+ 553 005b 0B       		.uleb128 0xb
+ 554 005c 3B       		.uleb128 0x3b
+ 555 005d 0B       		.uleb128 0xb
+ 556 005e 49       		.uleb128 0x49
+ 557 005f 13       		.uleb128 0x13
+ 558 0060 38       		.uleb128 0x38
+ 559 0061 0B       		.uleb128 0xb
+ 560 0062 00       		.byte	0
+ 561 0063 00       		.byte	0
+ 562 0064 09       		.uleb128 0x9
+ 563 0065 2E       		.uleb128 0x2e
+ 564 0066 01       		.byte	0x1
+ 565 0067 3F       		.uleb128 0x3f
+ 566 0068 19       		.uleb128 0x19
+ 567 0069 03       		.uleb128 0x3
+ 568 006a 0E       		.uleb128 0xe
+ 569 006b 3A       		.uleb128 0x3a
+ 570 006c 0B       		.uleb128 0xb
+ 571 006d 3B       		.uleb128 0x3b
+ 572 006e 0B       		.uleb128 0xb
+ 573 006f 27       		.uleb128 0x27
+ 574 0070 19       		.uleb128 0x19
+ 575 0071 11       		.uleb128 0x11
+ 576 0072 01       		.uleb128 0x1
+ 577 0073 12       		.uleb128 0x12
+ 578 0074 06       		.uleb128 0x6
+ 579 0075 40       		.uleb128 0x40
+ 580 0076 18       		.uleb128 0x18
+ 581 0077 9642     		.uleb128 0x2116
+ 582 0079 19       		.uleb128 0x19
+ 583 007a 01       		.uleb128 0x1
+ 584 007b 13       		.uleb128 0x13
+ 585 007c 00       		.byte	0
+ 586 007d 00       		.byte	0
+ 587 007e 0A       		.uleb128 0xa
+ 588 007f 34       		.uleb128 0x34
+ 589 0080 00       		.byte	0
+ 590 0081 03       		.uleb128 0x3
+ 591 0082 0E       		.uleb128 0xe
+ 592 0083 3A       		.uleb128 0x3a
+ 593 0084 0B       		.uleb128 0xb
+ 594 0085 3B       		.uleb128 0x3b
+ 595 0086 0B       		.uleb128 0xb
+ 596 0087 49       		.uleb128 0x49
+ 597 0088 13       		.uleb128 0x13
+ 598 0089 02       		.uleb128 0x2
+ 599 008a 17       		.uleb128 0x17
+ 600 008b 00       		.byte	0
+ 601 008c 00       		.byte	0
+ 602 008d 0B       		.uleb128 0xb
+ 603 008e 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 12
 
 
- 605 009e 0E       		.uleb128 0xe
- 606 009f 3A       		.uleb128 0x3a
- 607 00a0 0B       		.uleb128 0xb
- 608 00a1 3B       		.uleb128 0x3b
- 609 00a2 0B       		.uleb128 0xb
- 610 00a3 27       		.uleb128 0x27
- 611 00a4 19       		.uleb128 0x19
- 612 00a5 11       		.uleb128 0x11
- 613 00a6 01       		.uleb128 0x1
- 614 00a7 12       		.uleb128 0x12
- 615 00a8 06       		.uleb128 0x6
- 616 00a9 40       		.uleb128 0x40
- 617 00aa 18       		.uleb128 0x18
- 618 00ab 9742     		.uleb128 0x2117
- 619 00ad 19       		.uleb128 0x19
- 620 00ae 01       		.uleb128 0x1
- 621 00af 13       		.uleb128 0x13
- 622 00b0 00       		.byte	0
- 623 00b1 00       		.byte	0
- 624 00b2 0D       		.uleb128 0xd
- 625 00b3 898201   		.uleb128 0x4109
- 626 00b6 01       		.byte	0x1
- 627 00b7 11       		.uleb128 0x11
- 628 00b8 01       		.uleb128 0x1
- 629 00b9 31       		.uleb128 0x31
- 630 00ba 13       		.uleb128 0x13
- 631 00bb 00       		.byte	0
- 632 00bc 00       		.byte	0
- 633 00bd 0E       		.uleb128 0xe
- 634 00be 8A8201   		.uleb128 0x410a
- 635 00c1 00       		.byte	0
- 636 00c2 02       		.uleb128 0x2
- 637 00c3 18       		.uleb128 0x18
- 638 00c4 9142     		.uleb128 0x2111
- 639 00c6 18       		.uleb128 0x18
- 640 00c7 00       		.byte	0
- 641 00c8 00       		.byte	0
- 642 00c9 0F       		.uleb128 0xf
- 643 00ca 898201   		.uleb128 0x4109
- 644 00cd 01       		.byte	0x1
- 645 00ce 11       		.uleb128 0x11
- 646 00cf 01       		.uleb128 0x1
- 647 00d0 31       		.uleb128 0x31
- 648 00d1 13       		.uleb128 0x13
- 649 00d2 01       		.uleb128 0x1
- 650 00d3 13       		.uleb128 0x13
- 651 00d4 00       		.byte	0
- 652 00d5 00       		.byte	0
- 653 00d6 10       		.uleb128 0x10
- 654 00d7 34       		.uleb128 0x34
- 655 00d8 00       		.byte	0
- 656 00d9 03       		.uleb128 0x3
- 657 00da 0E       		.uleb128 0xe
- 658 00db 3A       		.uleb128 0x3a
- 659 00dc 0B       		.uleb128 0xb
- 660 00dd 3B       		.uleb128 0x3b
- 661 00de 05       		.uleb128 0x5
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 13
+ 604 0091 00       		.byte	0
+ 605 0092 11       		.uleb128 0x11
+ 606 0093 01       		.uleb128 0x1
+ 607 0094 31       		.uleb128 0x31
+ 608 0095 13       		.uleb128 0x13
+ 609 0096 00       		.byte	0
+ 610 0097 00       		.byte	0
+ 611 0098 0C       		.uleb128 0xc
+ 612 0099 2E       		.uleb128 0x2e
+ 613 009a 01       		.byte	0x1
+ 614 009b 3F       		.uleb128 0x3f
+ 615 009c 19       		.uleb128 0x19
+ 616 009d 03       		.uleb128 0x3
+ 617 009e 0E       		.uleb128 0xe
+ 618 009f 3A       		.uleb128 0x3a
+ 619 00a0 0B       		.uleb128 0xb
+ 620 00a1 3B       		.uleb128 0x3b
+ 621 00a2 0B       		.uleb128 0xb
+ 622 00a3 27       		.uleb128 0x27
+ 623 00a4 19       		.uleb128 0x19
+ 624 00a5 11       		.uleb128 0x11
+ 625 00a6 01       		.uleb128 0x1
+ 626 00a7 12       		.uleb128 0x12
+ 627 00a8 06       		.uleb128 0x6
+ 628 00a9 40       		.uleb128 0x40
+ 629 00aa 18       		.uleb128 0x18
+ 630 00ab 9742     		.uleb128 0x2117
+ 631 00ad 19       		.uleb128 0x19
+ 632 00ae 01       		.uleb128 0x1
+ 633 00af 13       		.uleb128 0x13
+ 634 00b0 00       		.byte	0
+ 635 00b1 00       		.byte	0
+ 636 00b2 0D       		.uleb128 0xd
+ 637 00b3 898201   		.uleb128 0x4109
+ 638 00b6 01       		.byte	0x1
+ 639 00b7 11       		.uleb128 0x11
+ 640 00b8 01       		.uleb128 0x1
+ 641 00b9 31       		.uleb128 0x31
+ 642 00ba 13       		.uleb128 0x13
+ 643 00bb 00       		.byte	0
+ 644 00bc 00       		.byte	0
+ 645 00bd 0E       		.uleb128 0xe
+ 646 00be 8A8201   		.uleb128 0x410a
+ 647 00c1 00       		.byte	0
+ 648 00c2 02       		.uleb128 0x2
+ 649 00c3 18       		.uleb128 0x18
+ 650 00c4 9142     		.uleb128 0x2111
+ 651 00c6 18       		.uleb128 0x18
+ 652 00c7 00       		.byte	0
+ 653 00c8 00       		.byte	0
+ 654 00c9 0F       		.uleb128 0xf
+ 655 00ca 898201   		.uleb128 0x4109
+ 656 00cd 01       		.byte	0x1
+ 657 00ce 11       		.uleb128 0x11
+ 658 00cf 01       		.uleb128 0x1
+ 659 00d0 31       		.uleb128 0x31
+ 660 00d1 13       		.uleb128 0x13
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 13
 
 
- 662 00df 49       		.uleb128 0x49
- 663 00e0 13       		.uleb128 0x13
- 664 00e1 3F       		.uleb128 0x3f
- 665 00e2 19       		.uleb128 0x19
- 666 00e3 3C       		.uleb128 0x3c
- 667 00e4 19       		.uleb128 0x19
- 668 00e5 00       		.byte	0
- 669 00e6 00       		.byte	0
- 670 00e7 11       		.uleb128 0x11
- 671 00e8 35       		.uleb128 0x35
- 672 00e9 00       		.byte	0
- 673 00ea 49       		.uleb128 0x49
- 674 00eb 13       		.uleb128 0x13
- 675 00ec 00       		.byte	0
- 676 00ed 00       		.byte	0
- 677 00ee 12       		.uleb128 0x12
- 678 00ef 34       		.uleb128 0x34
- 679 00f0 00       		.byte	0
- 680 00f1 03       		.uleb128 0x3
- 681 00f2 0E       		.uleb128 0xe
- 682 00f3 3A       		.uleb128 0x3a
- 683 00f4 0B       		.uleb128 0xb
- 684 00f5 3B       		.uleb128 0x3b
- 685 00f6 0B       		.uleb128 0xb
- 686 00f7 49       		.uleb128 0x49
- 687 00f8 13       		.uleb128 0x13
- 688 00f9 3F       		.uleb128 0x3f
- 689 00fa 19       		.uleb128 0x19
- 690 00fb 02       		.uleb128 0x2
- 691 00fc 18       		.uleb128 0x18
- 692 00fd 00       		.byte	0
- 693 00fe 00       		.byte	0
- 694 00ff 13       		.uleb128 0x13
- 695 0100 2E       		.uleb128 0x2e
- 696 0101 00       		.byte	0
- 697 0102 3F       		.uleb128 0x3f
- 698 0103 19       		.uleb128 0x19
- 699 0104 3C       		.uleb128 0x3c
- 700 0105 19       		.uleb128 0x19
- 701 0106 6E       		.uleb128 0x6e
- 702 0107 0E       		.uleb128 0xe
- 703 0108 03       		.uleb128 0x3
- 704 0109 0E       		.uleb128 0xe
- 705 010a 3A       		.uleb128 0x3a
- 706 010b 0B       		.uleb128 0xb
- 707 010c 3B       		.uleb128 0x3b
- 708 010d 0B       		.uleb128 0xb
- 709 010e 00       		.byte	0
- 710 010f 00       		.byte	0
- 711 0110 00       		.byte	0
- 712              		.section	.debug_loc,"",%progbits
- 713              	.Ldebug_loc0:
- 714              	.LLST0:
- 715 0000 10000000 		.4byte	.LVL2
- 716 0004 16000000 		.4byte	.LVL3
- 717 0008 0100     		.2byte	0x1
- 718 000a 50       		.byte	0x50
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 14
+ 661 00d2 01       		.uleb128 0x1
+ 662 00d3 13       		.uleb128 0x13
+ 663 00d4 00       		.byte	0
+ 664 00d5 00       		.byte	0
+ 665 00d6 10       		.uleb128 0x10
+ 666 00d7 34       		.uleb128 0x34
+ 667 00d8 00       		.byte	0
+ 668 00d9 03       		.uleb128 0x3
+ 669 00da 0E       		.uleb128 0xe
+ 670 00db 3A       		.uleb128 0x3a
+ 671 00dc 0B       		.uleb128 0xb
+ 672 00dd 3B       		.uleb128 0x3b
+ 673 00de 05       		.uleb128 0x5
+ 674 00df 49       		.uleb128 0x49
+ 675 00e0 13       		.uleb128 0x13
+ 676 00e1 3F       		.uleb128 0x3f
+ 677 00e2 19       		.uleb128 0x19
+ 678 00e3 3C       		.uleb128 0x3c
+ 679 00e4 19       		.uleb128 0x19
+ 680 00e5 00       		.byte	0
+ 681 00e6 00       		.byte	0
+ 682 00e7 11       		.uleb128 0x11
+ 683 00e8 35       		.uleb128 0x35
+ 684 00e9 00       		.byte	0
+ 685 00ea 49       		.uleb128 0x49
+ 686 00eb 13       		.uleb128 0x13
+ 687 00ec 00       		.byte	0
+ 688 00ed 00       		.byte	0
+ 689 00ee 12       		.uleb128 0x12
+ 690 00ef 34       		.uleb128 0x34
+ 691 00f0 00       		.byte	0
+ 692 00f1 03       		.uleb128 0x3
+ 693 00f2 0E       		.uleb128 0xe
+ 694 00f3 3A       		.uleb128 0x3a
+ 695 00f4 0B       		.uleb128 0xb
+ 696 00f5 3B       		.uleb128 0x3b
+ 697 00f6 0B       		.uleb128 0xb
+ 698 00f7 49       		.uleb128 0x49
+ 699 00f8 13       		.uleb128 0x13
+ 700 00f9 3F       		.uleb128 0x3f
+ 701 00fa 19       		.uleb128 0x19
+ 702 00fb 02       		.uleb128 0x2
+ 703 00fc 18       		.uleb128 0x18
+ 704 00fd 00       		.byte	0
+ 705 00fe 00       		.byte	0
+ 706 00ff 13       		.uleb128 0x13
+ 707 0100 2E       		.uleb128 0x2e
+ 708 0101 00       		.byte	0
+ 709 0102 3F       		.uleb128 0x3f
+ 710 0103 19       		.uleb128 0x19
+ 711 0104 3C       		.uleb128 0x3c
+ 712 0105 19       		.uleb128 0x19
+ 713 0106 6E       		.uleb128 0x6e
+ 714 0107 0E       		.uleb128 0xe
+ 715 0108 03       		.uleb128 0x3
+ 716 0109 0E       		.uleb128 0xe
+ 717 010a 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 14
 
 
- 719 000b 00000000 		.4byte	0
- 720 000f 00000000 		.4byte	0
- 721              	.LLST1:
- 722 0013 20000000 		.4byte	.LVL5
- 723 0017 23000000 		.4byte	.LVL6-1
- 724 001b 0100     		.2byte	0x1
- 725 001d 50       		.byte	0x50
- 726 001e 00000000 		.4byte	0
- 727 0022 00000000 		.4byte	0
- 728              		.section	.debug_aranges,"",%progbits
- 729 0000 2C000000 		.4byte	0x2c
- 730 0004 0200     		.2byte	0x2
- 731 0006 00000000 		.4byte	.Ldebug_info0
- 732 000a 04       		.byte	0x4
- 733 000b 00       		.byte	0
- 734 000c 0000     		.2byte	0
- 735 000e 0000     		.2byte	0
- 736 0010 00000000 		.4byte	.LFB63
- 737 0014 64000000 		.4byte	.LFE63-.LFB63
- 738 0018 00000000 		.4byte	.LFB64
- 739 001c 1C000000 		.4byte	.LFE64-.LFB64
- 740 0020 00000000 		.4byte	.LFB65
- 741 0024 16000000 		.4byte	.LFE65-.LFB65
- 742 0028 00000000 		.4byte	0
- 743 002c 00000000 		.4byte	0
- 744              		.section	.debug_ranges,"",%progbits
- 745              	.Ldebug_ranges0:
- 746 0000 00000000 		.4byte	.LFB63
- 747 0004 64000000 		.4byte	.LFE63
- 748 0008 00000000 		.4byte	.LFB64
- 749 000c 1C000000 		.4byte	.LFE64
- 750 0010 00000000 		.4byte	.LFB65
- 751 0014 16000000 		.4byte	.LFE65
- 752 0018 00000000 		.4byte	0
- 753 001c 00000000 		.4byte	0
- 754              		.section	.debug_line,"",%progbits
- 755              	.Ldebug_line0:
- 756 0000 D7010000 		.section	.debug_str,"MS",%progbits,1
- 756      02009C01 
- 756      00000201 
- 756      FB0E0D00 
- 756      01010101 
- 757              	.LASF31:
- 758 0000 54726967 		.ascii	"Trig_Write\000"
- 758      5F577269 
- 758      746500
- 759              	.LASF22:
- 760 000b 70775F75 		.ascii	"pw_us\000"
- 760      7300
- 761              	.LASF30:
- 762 0011 46616C6C 		.ascii	"Falling_ISR_StartEx\000"
- 762      696E675F 
- 762      4953525F 
- 762      53746172 
- 762      74457800 
- 763              	.LASF21:
- 764 0025 636F756E 		.ascii	"counter_diff_\000"
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 15
+ 718 010b 0B       		.uleb128 0xb
+ 719 010c 3B       		.uleb128 0x3b
+ 720 010d 0B       		.uleb128 0xb
+ 721 010e 00       		.byte	0
+ 722 010f 00       		.byte	0
+ 723 0110 00       		.byte	0
+ 724              		.section	.debug_loc,"",%progbits
+ 725              	.Ldebug_loc0:
+ 726              	.LLST0:
+ 727 0000 10000000 		.4byte	.LVL2
+ 728 0004 16000000 		.4byte	.LVL3
+ 729 0008 0100     		.2byte	0x1
+ 730 000a 50       		.byte	0x50
+ 731 000b 00000000 		.4byte	0
+ 732 000f 00000000 		.4byte	0
+ 733              	.LLST1:
+ 734 0013 20000000 		.4byte	.LVL5
+ 735 0017 23000000 		.4byte	.LVL6-1
+ 736 001b 0100     		.2byte	0x1
+ 737 001d 50       		.byte	0x50
+ 738 001e 00000000 		.4byte	0
+ 739 0022 00000000 		.4byte	0
+ 740              		.section	.debug_aranges,"",%progbits
+ 741 0000 2C000000 		.4byte	0x2c
+ 742 0004 0200     		.2byte	0x2
+ 743 0006 00000000 		.4byte	.Ldebug_info0
+ 744 000a 04       		.byte	0x4
+ 745 000b 00       		.byte	0
+ 746 000c 0000     		.2byte	0
+ 747 000e 0000     		.2byte	0
+ 748 0010 00000000 		.4byte	.LFB63
+ 749 0014 64000000 		.4byte	.LFE63-.LFB63
+ 750 0018 00000000 		.4byte	.LFB64
+ 751 001c 20000000 		.4byte	.LFE64-.LFB64
+ 752 0020 00000000 		.4byte	.LFB65
+ 753 0024 16000000 		.4byte	.LFE65-.LFB65
+ 754 0028 00000000 		.4byte	0
+ 755 002c 00000000 		.4byte	0
+ 756              		.section	.debug_ranges,"",%progbits
+ 757              	.Ldebug_ranges0:
+ 758 0000 00000000 		.4byte	.LFB63
+ 759 0004 64000000 		.4byte	.LFE63
+ 760 0008 00000000 		.4byte	.LFB64
+ 761 000c 20000000 		.4byte	.LFE64
+ 762 0010 00000000 		.4byte	.LFB65
+ 763 0014 16000000 		.4byte	.LFE65
+ 764 0018 00000000 		.4byte	0
+ 765 001c 00000000 		.4byte	0
+ 766              		.section	.debug_line,"",%progbits
+ 767              	.Ldebug_line0:
+ 768 0000 E3010000 		.section	.debug_str,"MS",%progbits,1
+ 768      0200A701 
+ 768      00000201 
+ 768      FB0E0D00 
+ 768      01010101 
+ 769              	.LASF32:
+ 770 0000 54726967 		.ascii	"Trig_Write\000"
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 15
 
 
- 764      7465725F 
- 764      64696666 
- 764      5F00
- 765              	.LASF5:
- 766 0033 5F5F696E 		.ascii	"__int32_t\000"
- 766      7433325F 
- 766      7400
- 767              	.LASF27:
- 768 003d 436F756E 		.ascii	"Counter_1_ReadCounter\000"
- 768      7465725F 
- 768      315F5265 
- 768      6164436F 
- 768      756E7465 
- 769              	.LASF25:
- 770 0053 556C7472 		.ascii	"Ultrasonic\000"
- 770      61736F6E 
- 770      696300
- 771              	.LASF13:
- 772 005e 666C6F61 		.ascii	"float\000"
- 772      7400
- 773              	.LASF1:
- 774 0064 756E7369 		.ascii	"unsigned char\000"
- 774      676E6564 
- 774      20636861 
- 774      7200
- 775              	.LASF33:
- 776 0072 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 776      43313120 
- 776      352E342E 
- 776      31203230 
- 776      31363036 
- 777 00a5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 777      20726576 
- 777      6973696F 
- 777      6E203233 
- 777      37373135 
- 778 00d8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 778      66756E63 
- 778      74696F6E 
- 778      2D736563 
- 778      74696F6E 
- 779              	.LASF7:
- 780 0100 6C6F6E67 		.ascii	"long unsigned int\000"
- 780      20756E73 
- 780      69676E65 
- 780      6420696E 
- 780      7400
- 781              	.LASF3:
- 782 0112 73686F72 		.ascii	"short unsigned int\000"
- 782      7420756E 
- 782      7369676E 
- 782      65642069 
- 782      6E7400
- 783              	.LASF19:
- 784 0125 496E6974 		.ascii	"Init\000"
- 784      00
- 785              	.LASF20:
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 16
+ 770      5F577269 
+ 770      746500
+ 771              	.LASF22:
+ 772 000b 70775F75 		.ascii	"pw_us\000"
+ 772      7300
+ 773              	.LASF31:
+ 774 0011 46616C6C 		.ascii	"Falling_ISR_StartEx\000"
+ 774      696E675F 
+ 774      4953525F 
+ 774      53746172 
+ 774      74457800 
+ 775              	.LASF21:
+ 776 0025 636F756E 		.ascii	"counter_diff_\000"
+ 776      7465725F 
+ 776      64696666 
+ 776      5F00
+ 777              	.LASF5:
+ 778 0033 5F5F696E 		.ascii	"__int32_t\000"
+ 778      7433325F 
+ 778      7400
+ 779              	.LASF3:
+ 780 003d 73686F72 		.ascii	"short unsigned int\000"
+ 780      7420756E 
+ 780      7369676E 
+ 780      65642069 
+ 780      6E7400
+ 781              	.LASF27:
+ 782 0050 436F756E 		.ascii	"Counter_1_ReadCounter\000"
+ 782      7465725F 
+ 782      315F5265 
+ 782      6164436F 
+ 782      756E7465 
+ 783              	.LASF25:
+ 784 0066 556C7472 		.ascii	"Ultrasonic\000"
+ 784      61736F6E 
+ 784      696300
+ 785              	.LASF13:
+ 786 0071 666C6F61 		.ascii	"float\000"
+ 786      7400
+ 787              	.LASF1:
+ 788 0077 756E7369 		.ascii	"unsigned char\000"
+ 788      676E6564 
+ 788      20636861 
+ 788      7200
+ 789              	.LASF34:
+ 790 0085 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 790      43313120 
+ 790      352E342E 
+ 790      31203230 
+ 790      31363036 
+ 791 00b8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 791      20726576 
+ 791      6973696F 
+ 791      6E203233 
+ 791      37373135 
+ 792 00eb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 792      66756E63 
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 16
 
 
- 786 012a 52656164 		.ascii	"ReadDist\000"
- 786      44697374 
- 786      00
- 787              	.LASF24:
- 788 0133 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 788      52784275 
- 788      66666572 
- 788      00
- 789              	.LASF4:
- 790 0140 5F5F7569 		.ascii	"__uint16_t\000"
- 790      6E743136 
- 790      5F7400
- 791              	.LASF14:
- 792 014b 646F7562 		.ascii	"double\000"
- 792      6C6500
- 793              	.LASF32:
- 794 0152 43794465 		.ascii	"CyDelayUs\000"
- 794      6C617955 
- 794      7300
- 795              	.LASF34:
- 796 015c 2E2E5C2E 		.ascii	"..\\..\\..\\Software\\UltrasonicSensor.c\000"
- 796      2E5C2E2E 
- 796      5C536F66 
- 796      74776172 
- 796      655C556C 
- 797              	.LASF10:
- 798 0181 756E7369 		.ascii	"unsigned int\000"
- 798      676E6564 
- 798      20696E74 
+ 792      74696F6E 
+ 792      2D736563 
+ 792      74696F6E 
+ 793              	.LASF7:
+ 794 0113 6C6F6E67 		.ascii	"long unsigned int\000"
+ 794      20756E73 
+ 794      69676E65 
+ 794      6420696E 
+ 794      7400
+ 795              	.LASF30:
+ 796 0125 50574D5F 		.ascii	"PWM_1_Start\000"
+ 796      315F5374 
+ 796      61727400 
+ 797              	.LASF19:
+ 798 0131 496E6974 		.ascii	"Init\000"
  798      00
- 799              	.LASF26:
- 800 018e 436F756E 		.ascii	"Counter_1_ReadPeriod\000"
- 800      7465725F 
- 800      315F5265 
- 800      61645065 
- 800      72696F64 
- 801              	.LASF9:
- 802 01a3 6C6F6E67 		.ascii	"long long unsigned int\000"
- 802      206C6F6E 
- 802      6720756E 
- 802      7369676E 
- 802      65642069 
- 803              	.LASF35:
- 804 01ba 453A5C55 		.ascii	"E:\\User folders\\Documents\\GitHub\\Pandekage-tast"
- 804      73657220 
- 804      666F6C64 
- 804      6572735C 
- 804      446F6375 
- 805 01e9 726F6665 		.ascii	"rofe\\Moduler\\Uimplementeret moduler\\UltralydsSen"
- 805      5C4D6F64 
- 805      756C6572 
- 805      5C55696D 
- 805      706C656D 
- 806 0219 736F725C 		.ascii	"sor\\Modultest\\UltralydTest\\Test01.cydsn\000"
- 806      4D6F6475 
- 806      6C746573 
- 806      745C556C 
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 17
-
-
- 806      7472616C 
- 807              	.LASF18:
- 808 0241 64697374 		.ascii	"dist_\000"
- 808      5F00
- 809              	.LASF23:
- 810 0247 46616C6C 		.ascii	"Falling_ISR_addr\000"
- 810      696E675F 
- 810      4953525F 
- 810      61646472 
- 810      00
- 811              	.LASF12:
- 812 0258 696E7433 		.ascii	"int32_t\000"
- 812      325F7400 
- 813              	.LASF17:
- 814 0260 73697A65 		.ascii	"sizetype\000"
- 814      74797065 
- 814      00
- 815              	.LASF8:
- 816 0269 6C6F6E67 		.ascii	"long long int\000"
+ 799              	.LASF20:
+ 800 0136 52656164 		.ascii	"ReadDist\000"
+ 800      44697374 
+ 800      00
+ 801              	.LASF24:
+ 802 013f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 802      52784275 
+ 802      66666572 
+ 802      00
+ 803              	.LASF4:
+ 804 014c 5F5F7569 		.ascii	"__uint16_t\000"
+ 804      6E743136 
+ 804      5F7400
+ 805              	.LASF14:
+ 806 0157 646F7562 		.ascii	"double\000"
+ 806      6C6500
+ 807              	.LASF33:
+ 808 015e 43794465 		.ascii	"CyDelayUs\000"
+ 808      6C617955 
+ 808      7300
+ 809              	.LASF35:
+ 810 0168 2E2E5C2E 		.ascii	"..\\..\\..\\Software\\UltrasonicSensor.c\000"
+ 810      2E5C2E2E 
+ 810      5C536F66 
+ 810      74776172 
+ 810      655C556C 
+ 811              	.LASF10:
+ 812 018d 756E7369 		.ascii	"unsigned int\000"
+ 812      676E6564 
+ 812      20696E74 
+ 812      00
+ 813              	.LASF26:
+ 814 019a 436F756E 		.ascii	"Counter_1_ReadPeriod\000"
+ 814      7465725F 
+ 814      315F5265 
+ 814      61645065 
+ 814      72696F64 
+ 815              	.LASF9:
+ 816 01af 6C6F6E67 		.ascii	"long long unsigned int\000"
  816      206C6F6E 
- 816      6720696E 
- 816      7400
- 817              	.LASF15:
- 818 0277 63686172 		.ascii	"char\000"
- 818      00
- 819              	.LASF2:
- 820 027c 73686F72 		.ascii	"short int\000"
- 820      7420696E 
- 820      7400
- 821              	.LASF11:
- 822 0286 75696E74 		.ascii	"uint16_t\000"
- 822      31365F74 
- 822      00
- 823              	.LASF6:
- 824 028f 6C6F6E67 		.ascii	"long int\000"
- 824      20696E74 
+ 816      6720756E 
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 17
+
+
+ 816      7369676E 
+ 816      65642069 
+ 817              	.LASF36:
+ 818 01c6 453A5C55 		.ascii	"E:\\User folders\\Documents\\GitHub\\Pandekage-tast"
+ 818      73657220 
+ 818      666F6C64 
+ 818      6572735C 
+ 818      446F6375 
+ 819 01f5 726F6665 		.ascii	"rofe\\Moduler\\Uimplementeret moduler\\UltralydsSen"
+ 819      5C4D6F64 
+ 819      756C6572 
+ 819      5C55696D 
+ 819      706C656D 
+ 820 0225 736F725C 		.ascii	"sor\\Modultest\\UltralydTest\\Test01.cydsn\000"
+ 820      4D6F6475 
+ 820      6C746573 
+ 820      745C556C 
+ 820      7472616C 
+ 821              	.LASF18:
+ 822 024d 64697374 		.ascii	"dist_\000"
+ 822      5F00
+ 823              	.LASF23:
+ 824 0253 46616C6C 		.ascii	"Falling_ISR_addr\000"
+ 824      696E675F 
+ 824      4953525F 
+ 824      61646472 
  824      00
- 825              	.LASF29:
- 826 0298 436F756E 		.ascii	"Counter_1_Start\000"
- 826      7465725F 
- 826      315F5374 
- 826      61727400 
- 827              	.LASF16:
- 828 02a8 6C6F6E67 		.ascii	"long double\000"
- 828      20646F75 
- 828      626C6500 
- 829              	.LASF28:
- 830 02b4 4563686F 		.ascii	"Echo_ClearInterrupt\000"
- 830      5F436C65 
- 830      6172496E 
- 830      74657272 
- 830      75707400 
- 831              	.LASF0:
- 832 02c8 7369676E 		.ascii	"signed char\000"
- 832      65642063 
- 832      68617200 
- 833              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
-ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccDUJiyG.s 			page 18
+ 825              	.LASF12:
+ 826 0264 696E7433 		.ascii	"int32_t\000"
+ 826      325F7400 
+ 827              	.LASF17:
+ 828 026c 73697A65 		.ascii	"sizetype\000"
+ 828      74797065 
+ 828      00
+ 829              	.LASF8:
+ 830 0275 6C6F6E67 		.ascii	"long long int\000"
+ 830      206C6F6E 
+ 830      6720696E 
+ 830      7400
+ 831              	.LASF15:
+ 832 0283 63686172 		.ascii	"char\000"
+ 832      00
+ 833              	.LASF2:
+ 834 0288 73686F72 		.ascii	"short int\000"
+ 834      7420696E 
+ 834      7400
+ 835              	.LASF11:
+ 836 0292 75696E74 		.ascii	"uint16_t\000"
+ 836      31365F74 
+ 836      00
+ 837              	.LASF6:
+ 838 029b 6C6F6E67 		.ascii	"long int\000"
+ 838      20696E74 
+ 838      00
+ 839              	.LASF29:
+ 840 02a4 436F756E 		.ascii	"Counter_1_Start\000"
+ 840      7465725F 
+ARM GAS  C:\Users\oskar\AppData\Local\Temp\ccS78d48.s 			page 18
 
 
+ 840      315F5374 
+ 840      61727400 
+ 841              	.LASF16:
+ 842 02b4 6C6F6E67 		.ascii	"long double\000"
+ 842      20646F75 
+ 842      626C6500 
+ 843              	.LASF28:
+ 844 02c0 4563686F 		.ascii	"Echo_ClearInterrupt\000"
+ 844      5F436C65 
+ 844      6172496E 
+ 844      74657272 
+ 844      75707400 
+ 845              	.LASF0:
+ 846 02d4 7369676E 		.ascii	"signed char\000"
+ 846      65642063 
+ 846      68617200 
+ 847              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

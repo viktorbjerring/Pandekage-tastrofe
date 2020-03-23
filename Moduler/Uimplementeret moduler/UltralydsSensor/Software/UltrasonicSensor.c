@@ -14,6 +14,7 @@ void Init(void) {
     Ultrasonic.dist_ = 0;
     
     Counter_1_Start();
+    PWM_1_Start();
     Falling_ISR_StartEx(Falling_ISR_addr);
 }
 

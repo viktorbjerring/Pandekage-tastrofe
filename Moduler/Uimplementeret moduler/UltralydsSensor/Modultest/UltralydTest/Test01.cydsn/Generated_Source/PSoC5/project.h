@@ -27,6 +27,7 @@
 #include "Trig_aliases.h"
 #include "Trig.h"
 #include "UART_1.h"
+#include "PWM_1.h"
 #include "UART_1_IntClock.h"
 #include "cy_em_eeprom.h"
 #include "core_cm3_psoc5.h"

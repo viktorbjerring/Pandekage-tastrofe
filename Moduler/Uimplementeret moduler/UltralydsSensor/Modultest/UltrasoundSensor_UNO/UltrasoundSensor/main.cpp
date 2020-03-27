@@ -24,26 +24,15 @@ int main(void)
 	/* Enable interrupts */
 	sei();
 	
-	DDRB |= (1<<5);
-	bool isEmpty = false;
+	Init();
 	
 	InitUART(57600, 8, 'N');
 	
     /* Replace with your application code */
     while (1) 
     {
-		if (Ultrasound::GetDist() > 25 && !isEmpty)
-		{
-			isEmpty = true;
-			PORTB |= (1<<5);
-		}
-		else if (Ultrasound::GetDist() < 10 && isEmpty)
-		{
-			isEmpty = false;
-			PORTB &= ~(1<<5);
-		}
-		
-		Ultrasound::StartReading();
+		sprintf(buffer, "%d mm\n\r", getBatterLevel());
+		SendString(buffer);
 		_delay_ms(100);
     }
 }

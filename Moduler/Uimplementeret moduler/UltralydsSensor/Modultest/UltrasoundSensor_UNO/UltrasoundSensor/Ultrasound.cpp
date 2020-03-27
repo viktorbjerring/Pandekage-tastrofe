@@ -15,42 +15,11 @@
 #include "Ultrasound.h"
 #include "uart.h"
 
+int16_t dist_ = 0;
+bool isEcho_ = false;
+static bool readingReady_ = false;
+
 ISR(INT0_vect)
-{
-	Ultrasound::Interrupt();
-}
-
-float Ultrasound::dist_ = 0;
-uint8_t Ultrasound::count_ = 0;
-bool Ultrasound::isEcho_ = false;
-
-/*
- * Create 10us pulse on trigger pin
-**/
-void Ultrasound::StartReading()
-{
-	PORTD |= (1<<6);
-	_delay_us(10);
-	PORTD &= ~(1<<6);
-}
-
-void Ultrasound::Init()
-{
-	/* Setup external interrupt */
-	EICRA |= 0b11;
-	EIMSK |= 0b1;
-	
-	/* Setup echo pin direction */
-	DDRD |= (1<<6);
-	
-	/* Setup trigger pin direction */
-	DDRD &= ~(1<<2);
-	
-	/* Clear timer0 register A */
-	TCCR0A = 0;
-}
-
-void Ultrasound::Interrupt()
 {
 	/* If currently timing PW */
 	if (isEcho_)
@@ -59,13 +28,11 @@ void Ultrasound::Interrupt()
 		TCCR0B = 0;
 		
 		/* Calculate and save distance */
-		count_ = TCNT0;
-		float dist = REGRESSION(TCNT0); // Distance in cm
-		dist_ = dist;
+		uint8_t count_ = TCNT0;
+		dist_ = static_cast<int16_t>(10*REGRESSION(TCNT0)); // Distance in cm
 		
-		isEcho_ = false;
-		/* Switch to rising edge */
-		EICRA |= 0b1;
+		readingReady_ = true;
+		EIMSK &= ~(1<<INT0);
 	}
 	else
 	{
@@ -73,9 +40,42 @@ void Ultrasound::Interrupt()
 		TCNT0 = 0;
 		TCCR0B = 0b00000100;
 		
-		isEcho_ = true;;
+		isEcho_ = true;
 		/* Switch to falling edge */
-		EICRA &= ~0b1;
+		EICRA &= ~(1<<ISC00);
 	}
+}
+
+int getBatterLevel()
+{
+	readingReady_ = false;
+	isEcho_ = false;
+	
+	/* Set INT0 to trigger on rising edge */
+	EIMSK |= (1<<INT0);
+	EICRA |= ((1<<ISC01) | (1<<ISC00));
+	
+	PORTD |= (1<<3);
+	_delay_us(10);
+	PORTD &= ~(1<<3);
+	
+	_delay_ms(4);
+	
+	while(!readingReady_) {continue;}
+	
+	return dist_;
+}
+
+void Init()
+{
+	/* Setup trigger pin direction */
+	DDRD |= (1<<3);
+	DDRD |= (1<<4);
+	
+	/* Setup echo pin direction */
+	DDRD &= ~(1<<2);
+	
+	/* Clear timer0 register A */
+	TCCR0A = 0;
 }
 

@@ -1,5 +1,5 @@
 ARCH?=host
-
+CXX=g++
 ifeq (${ARCH},host)
 BUILD_DIR=./build/host
 BUILD_BIN=./bin/host
@@ -17,7 +17,6 @@ OBJECTS=$(addprefix $(BUILD_DIR)/,$(SOURCES:.cpp=.o))
 DEPS=$(addprefix $(BUILD_DIR)/,$(SOURCES:.cpp=.d))
 EXE=prog
 CXXFLAGS=-I.
-CXX=g++
 MKDIR_P =@mkdir -p
 
 all: $(EXE)

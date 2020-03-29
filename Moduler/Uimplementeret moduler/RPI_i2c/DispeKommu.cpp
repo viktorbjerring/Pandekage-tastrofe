@@ -36,7 +36,8 @@ I2CData DispeKommu::readI2C(int length){
         data_.setErr(bytes_read);
         data_.setLength(0);
     }
-
+    atoi(&buf[0]);
+    atoi(&buf[1]);
     return data_;
 }
 

@@ -32,6 +32,13 @@ typedef enum {
 } ret_err_t;
 
 typedef enum {
+	I2C_MASTER_PRESCALE_1 = 0,
+	I2C_MASTER_PRESCALE_4 = 1,
+	I2C_MASTER_PRESCALE_16 = 2,
+	I2C_MASTER_PRESCALE_64 = 3,
+} I2C_MASTER_prescale_t;
+
+typedef enum {
 	I2C_HW_MASTER_MODE = 0,
 	I2C_HW_SLAVE_MODE,
 } I2C_HW_mode_t;

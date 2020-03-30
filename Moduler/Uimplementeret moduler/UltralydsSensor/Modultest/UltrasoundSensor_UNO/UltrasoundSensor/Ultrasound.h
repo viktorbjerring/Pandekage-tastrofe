@@ -13,11 +13,7 @@
 
 #define REGRESSION(x) (0.2779 * x - 0.2373)
 
-//extern int8_t dist_;
-//extern bool isEcho_;
-//extern bool readingReady_;
-
-int getBatterLevel();
+uint16_t getBatterLevel();
 void Init();
 void Interrupt();
 

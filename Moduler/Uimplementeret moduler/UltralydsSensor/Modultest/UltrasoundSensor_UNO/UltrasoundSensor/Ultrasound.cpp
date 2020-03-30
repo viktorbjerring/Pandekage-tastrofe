@@ -15,30 +15,27 @@
 #include "Ultrasound.h"
 #include "uart.h"
 
-int16_t dist_ = 0;
+uint16_t dist_ = 0;
 bool isEcho_ = false;
-static bool readingReady_ = false;
 
 ISR(INT0_vect)
 {
 	/* If currently timing PW */
 	if (isEcho_)
 	{
-		/* Turn off timer0 */
-		TCCR0B = 0;
+		/* Turn off timer2 */
+		TCCR2B = 0;
 		
 		/* Calculate and save distance */
-		uint8_t count_ = TCNT0;
-		dist_ = static_cast<int16_t>(10*REGRESSION(TCNT0)); // Distance in cm
+		dist_ = static_cast<uint16_t>(10*REGRESSION(TCNT2)); // Distance in cm
 		
-		readingReady_ = true;
 		EIMSK &= ~(1<<INT0);
 	}
 	else
 	{
-		/* Reset and start timer0 */
-		TCNT0 = 0;
-		TCCR0B = 0b00000100;
+		/* Reset and start timer2 */
+		TCNT2 = 0;
+		TCCR2B = 0b00000110;
 		
 		isEcho_ = true;
 		/* Switch to falling edge */
@@ -46,9 +43,8 @@ ISR(INT0_vect)
 	}
 }
 
-int getBatterLevel()
+uint16_t getBatterLevel()
 {
-	readingReady_ = false;
 	isEcho_ = false;
 	
 	/* Set INT0 to trigger on rising edge */
@@ -59,9 +55,7 @@ int getBatterLevel()
 	_delay_us(10);
 	PORTD &= ~(1<<3);
 	
-	_delay_ms(4);
-	
-	while(!readingReady_) {continue;}
+	_delay_ms(10);
 	
 	return dist_;
 }
@@ -70,12 +64,11 @@ void Init()
 {
 	/* Setup trigger pin direction */
 	DDRD |= (1<<3);
-	DDRD |= (1<<4);
 	
 	/* Setup echo pin direction */
 	DDRD &= ~(1<<2);
 	
-	/* Clear timer0 register A */
-	TCCR0A = 0;
+	/* Clear timer2 register A */
+	TCCR2A = 0;
 }
 

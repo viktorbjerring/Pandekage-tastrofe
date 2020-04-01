@@ -110,7 +110,14 @@ bool I2C_MASTER_checkData() {
 }
 
 char I2C_MASTER_getData() {
+	
+	//Block if no data
 	while(!I2C_MASTER_checkData());
+	
+	//Update status
+	data_ready_flag = false;
+	
+	//Return data
 	return local_read_data;
 }
 

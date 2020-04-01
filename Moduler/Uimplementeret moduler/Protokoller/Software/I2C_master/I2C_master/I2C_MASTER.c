@@ -110,6 +110,7 @@ bool I2C_MASTER_checkData() {
 }
 
 char I2C_MASTER_getData() {
+	while(!I2C_MASTER_checkData());
 	return local_read_data;
 }
 

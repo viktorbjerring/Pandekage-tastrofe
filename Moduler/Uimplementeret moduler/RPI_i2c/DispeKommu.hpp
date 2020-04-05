@@ -5,7 +5,7 @@ class DispeKommu
 public:
     DispeKommu();
     ~DispeKommu();
-    I2CData readI2C(int length);
+    I2CData readI2C(int addr);
     char writeI2C(int address, char cmd);
     I2CData getData() const;
 private:

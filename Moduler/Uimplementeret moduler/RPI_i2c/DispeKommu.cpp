@@ -23,9 +23,9 @@ DispeKommu::~DispeKommu() {
     }
 }
 
-I2CData DispeKommu::readI2C(int length){
+I2CData DispeKommu::readI2C(int addr){
     char buf[1024];
-    int bytes_read = read(I2CFile_,buf,length);
+    int bytes_read = read(I2CFile_,buf,addr);
     string s(buf);
     data_.setData(s);
     

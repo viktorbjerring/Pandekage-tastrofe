@@ -1,0 +1,135 @@
+/* Variables */
+:root {
+  --header-height: 60px;
+  --footer-height: 80px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: var(--footer-height);
+  line-height: var(--footer-height); /* Vertically center the text there */
+  background-color: #B45326;;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+html {
+  min-height: 100%;
+  position: relative; /* For sticky footer */
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: var(--footer-height);
+  background-color: #FFF2A4;
+  color: #373A3C;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.footer > .container img{
+  max-width: 85%;
+  max-height: 70px;
+}
+
+/* Pancake Button
+-------------------------------------------------- */
+.pancake-button {
+  max-width: 80vw;
+  max-height: 50vh;
+}
+
+/* System status
+-------------------------------------------------- */
+#system_status {
+  font-size: 1rem;
+  color: #55595C;
+}
+
+.navbar {
+  min-height: var(--header-height);
+  background-color: #B45326;
+}
+
+/* Action text
+-------------------------------------------------- */
+.action_text {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Delivery time
+-------------------------------------------------- */
+#delivery_time {
+  text-align: center;
+}
+
+/* HAMBURGER CSS 
+-------------------------------------------------- */
+/* Modified from: https://codepen.io/mranenko/pen/wevamj */
+
+/* nav toggle */
+.nav-toggle {
+  cursor: pointer;
+  top: 0.8rem;
+  left: 85vw;
+  position: fixed;
+  font-weight: 800;
+  height: 1.5rem; /* Defines area you can press.*/
+  z-index: 2;
+}
+
+#nav-icon {
+  font-size: 2rem;
+  color: #DAA992;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition:all 1s;
+}
+
+/* nav */
+.nav {
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -ms-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
+  background: #ECA24D;
+  color: #373A3C;
+  height: calc(100vh - var(--header-height) - var(--footer-height)); /* Fucking sexy */
+  margin-top: var(--header-height); /* Push down a bit */
+  left: -100vw;
+  padding: 6rem 2rem 2rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+}
+.nav.expanded {
+  left: 0;
+}
+.nav ul {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

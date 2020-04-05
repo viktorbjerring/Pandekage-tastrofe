@@ -27,11 +27,24 @@
 				</div>
 				</div>
 				<nav class="nav">
-					<ul>
-						<li><a href="#">Portfolio</a></li>
-						<li><a href="#">Services</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
+					<div class="nav_styling">
+						<img id="nav_logo" class="img-responsive" src="../static/img/logo.png" alt="Logo">
+						<h1>About the project</h1>
+						<p>This project was made as a part of our 4th semester studying Electronics Engineering at 
+							Aarhus University School of Engineering.</p>
+						<h1>Contributors</h1>
+						<p>Anton Vigen Smolarz<br>
+							Jesper Juhl Knudsen<br>
+							Jonas Christian Støttrup Höft<br>
+							Mikkel Kirkegaard<br>
+							Morten Haahr Kristensen<br>
+							Oskari Kristian Tourmaa<br>
+							Thomas Kloster Ulriksen<br>
+							Viktor Tornøe Bjerring</p>
+						<h1>Thanks to:</h1>
+						<p>Arne Justesen - Advisor</p>
+						<img id="nav_pancake" class="img-responsive" src="../static/img/pancake-nav.png" alt="Pancake">
+					</div>
 				</nav>
 			</div>
 		</div>
@@ -41,10 +54,9 @@
     <div class="container">
 		<div class="row justify-content-center mt-4">
 			<img class="img-responsive" src="../static/img/logo.png" alt="Logo">
-			
 		</div>
 		<div class="row justify-content-center">
-			<img id="order_pancake" class="img-responsive mt-5 pancake-button" src="../static/img/pancake-button.png" alt="pancake-button"></a>
+			<img id="order_pancake" class="img-responsive mt-5 pancake-button" src="../static/img/pancake-button.png" data-toggle="modal" data-target="#exampleModalCenter" alt="pancake-button"></a>
 		</div>
 		<div class="row justify-content-center">
 			<p id="system_status" class="mt-4">SYSTEM STATUS: </p>
@@ -54,6 +66,28 @@
 			<p id="delivery_time">Expected delivery time:<br></p>
 		</div>
 	</div>
+
+	<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<h2>YOU ARE ABOUT TO MAKE AN ORDER:</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+		  <p>There is no way to undo this, once it has been confirmed.</p>
+		  
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-primary">PANCAKE ME!</button>
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL IT</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 
     <!-- Begin footer -->

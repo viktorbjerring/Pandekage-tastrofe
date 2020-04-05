@@ -63,6 +63,7 @@ body > .container {
 .navbar {
   min-height: var(--header-height);
   background-color: #B45326;
+  display:block;
 }
 
 /* Action text
@@ -114,7 +115,6 @@ body > .container {
   height: calc(100vh - var(--header-height) - var(--footer-height)); /* Fucking sexy */
   margin-top: var(--header-height); /* Push down a bit */
   left: -100vw;
-  padding: 6rem 2rem 2rem 2rem;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -122,6 +122,7 @@ body > .container {
 }
 .nav.expanded {
   left: 0;
+  padding: 0;
 }
 .nav ul {
   position: absolute;
@@ -132,4 +133,71 @@ body > .container {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.nav_header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.nav_styling h1{
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-top: 2vh;
+}
+
+.nav_styling p{
+  text-align: center;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  margin-bottom: 0px;
+}
+
+.nav_styling img{
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+#nav_logo{
+  margin-top:1.5rem;
+}
+#nav_pancake {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+/* Modal confirmation box 
+-------------------------------------------------- */
+.modal-header h2 {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-top: 2rem;
+}
+
+.modal-content {
+  background-color: #FFF2A4;
+  border-radius: 1rem;
+}
+.btn-primary {
+  background-color: #75F676;
+  border-color: #B45326;
+}
+
+.btn-secondary{
+  background-color: #F67675;
+  border-color: #B45326;
+}
+.modal-footer {
+  border: none;
+  justify-content: center;
+}
+
+.modal-header{
+  border: none;
+  padding: none;
 }

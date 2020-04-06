@@ -13,21 +13,8 @@
 
 #define REGRESSION(x) (0.2779 * x - 0.2373)
 
-class Ultrasound
-{
-private:
-	static float dist_;
-	static uint8_t count_;
-	static bool isEcho_;
-
-public:
-	static void StartReading();
-	
-	static void Init();
-	static void Interrupt();
-	
-	static float GetDist() { return dist_; }
-	static uint8_t GetCount() { return count_; }
-};
+uint16_t getBatterLevel();
+void Init();
+void Interrupt();
 
 #endif //__ULTRASOUND_H__

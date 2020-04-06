@@ -15,67 +15,60 @@
 #include "Ultrasound.h"
 #include "uart.h"
 
+uint16_t dist_ = 0;
+bool isEcho_ = false;
+
 ISR(INT0_vect)
-{
-	Ultrasound::Interrupt();
-}
-
-float Ultrasound::dist_ = 0;
-uint8_t Ultrasound::count_ = 0;
-bool Ultrasound::isEcho_ = false;
-
-/*
- * Create 10us pulse on trigger pin
-**/
-void Ultrasound::StartReading()
-{
-	PORTD |= (1<<6);
-	_delay_us(10);
-	PORTD &= ~(1<<6);
-}
-
-void Ultrasound::Init()
-{
-	/* Setup external interrupt */
-	EICRA |= 0b11;
-	EIMSK |= 0b1;
-	
-	/* Setup echo pin direction */
-	DDRD |= (1<<6);
-	
-	/* Setup trigger pin direction */
-	DDRD &= ~(1<<2);
-	
-	/* Clear timer0 register A */
-	TCCR0A = 0;
-}
-
-void Ultrasound::Interrupt()
 {
 	/* If currently timing PW */
 	if (isEcho_)
 	{
-		/* Turn off timer0 */
-		TCCR0B = 0;
+		/* Turn off timer2 */
+		TCCR2B = 0;
 		
 		/* Calculate and save distance */
-		count_ = TCNT0;
-		float dist = REGRESSION(TCNT0); // Distance in cm
-		dist_ = dist;
+		dist_ = static_cast<uint16_t>(10*REGRESSION(TCNT2)); // Distance in cm
 		
-		isEcho_ = false;
-		/* Switch to rising edge */
-		EICRA |= 0b1;
+		EIMSK &= ~(1<<INT0);
 	}
 	else
 	{
-		/* Reset and start timer0 */
-		TCNT0 = 0;
-		TCCR0B = 0b00000100;
+		/* Reset and start timer2 */
+		TCNT2 = 0;
+		TCCR2B = 0b00000110;
 		
-		isEcho_ = true;;
+		isEcho_ = true;
 		/* Switch to falling edge */
-		EICRA &= ~0b1;
+		EICRA &= ~(1<<ISC00);
 	}
+}
+
+uint16_t getBatterLevel()
+{
+	isEcho_ = false;
+	
+	/* Set INT0 to trigger on rising edge */
+	EIMSK |= (1<<INT0);
+	EICRA |= ((1<<ISC01) | (1<<ISC00));
+	
+	PORTD |= (1<<3);
+	_delay_us(10);
+	PORTD &= ~(1<<3);
+	
+	_delay_ms(10);
+	
+	return dist_;
+}
+
+void Init()
+{
+	/* Setup trigger pin direction */
+	DDRD |= (1<<3);
+	
+	/* Setup echo pin direction */
+	DDRD &= ~(1<<2);
+	
+	/* Clear timer2 register A */
+	TCCR2A = 0;
 }
 

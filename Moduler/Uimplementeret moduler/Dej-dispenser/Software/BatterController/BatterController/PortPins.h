@@ -13,6 +13,15 @@ Timer 1 er sat til 50 af BatterCooler, og bruges både til PWM af køleelementet, 
 OCR1A er PWM til køleelementet
 OCR1B er PWM til servomotorer
 Timer 2 bruges af Ultrasonic aflæseren
+
+PORTB1 bruges af Dej-køleren
+PORTB2 bruges af Servo-pwm
+PORTB3 bruges af servo-select
+
+PINC3 bruges af køler-termometeret
+PINC5 bruges af ultrasonic echo
+
+PORTD4 bruges af ultrasonic trigger
 */
 
 #ifndef PORTPINS_H_

@@ -7,7 +7,8 @@
 
 #include "BatterCooler.h"
 
-static int temp = 0;
+volatile unsigned int temp = 0;
+volatile bool isReady = false;
 
 void beginCoolingRegulation()
 {
@@ -23,8 +24,6 @@ void beginCoolingRegulation()
 	TCCR0A |= (1 << WGM01); // Set CTC mode
 	TCCR0B |= (1 << CS00) | (1 << CS02); // Prescaler 1024
 	OCR0A = 67; // Compare register
-	OCR0B = 33;
-	TIMSK0 |= (1 << OCIE0B); // Enable interrupt on compare match
 	// ADC init
 	ADCSRA |= (1 << ADPS1); // Set ADC prescaler to 4
 	ADMUX |= (1 << ADLAR) | (1 << MUX0) | (1 << MUX1); // Left shift ADC reg, ADC port 3
@@ -32,8 +31,18 @@ void beginCoolingRegulation()
 	ADCSRB |= (1 << ADTS1) | (1 << ADTS0); // set autotrigger to timer0 compare A
 }
 
+unsigned int returnTemp() {
+	while (!isReady) {
+		_delay_ms(10);
+	}
+	isReady = false;
+	return temp;
+}
+
 ISR(ADC_vect) {
+	TIFR0 |= (1 << OCF0A);
 	temp = ADC >> 6; // Read ADC
+	isReady = true;
 	// Set OCR1A for PWM.
-	ADCSRA |= (1 << ADIF); //Clear interrupt
+	//ADCSRA |= (1 << ADIF); //Clear interrupt
 }

@@ -15,7 +15,7 @@
 
 #include "UltraSonic.h"
 
-uint16_t batterLevel_ = 0;
+volatile uint16_t batterLevel_ = 0;
 bool isEcho_ = false;
 
 ISR(PCINT1_vect) {
@@ -42,17 +42,17 @@ ISR(PCINT1_vect) {
 }
 
 void initUltrasonic() {
-	DDRD |=  (1<<PORTD4); // Trigger pin
-	DDRC &= ~(1<<PINC5); // Echo pin
+	DDRD |=  (1<<PORTC1); // Trigger pin
+	DDRD &= ~(1<<PINC2); // Echo pin
 	TCCR2A = 0; // Clear timer2 register A
-	PCIFR |= (1 << PCIE1); // enable pin change interrupt 1
+	PCICR |= (1 << PCIE1); // enable pin change interrupt 1
 }
 
 uint16_t getBatterLevel() {
 	isEcho_ = false;
 	
 	/* Set PC1 to trigger on pin 13, PINC5 */
-	PCMSK1 |= (1 << PCINT13);
+	PCMSK1 |= (1 << PCINT10);
 	
 	/* Pulse trigger pin */
 	PORTD |= (1<<PORTD4);

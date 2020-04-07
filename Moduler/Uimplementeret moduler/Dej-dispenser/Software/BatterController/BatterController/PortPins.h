@@ -7,7 +7,8 @@
 
 /*
 Opdeling af timers og pins beskrives i dette segment
-Timer 0 bruges af BatterCooler, for at sætte frekvensen af aflæsningen af ADC'en
+Timer 0, compare A bruges af BatterCooler, for at sætte frekvensen af aflæsningen af ADC'en
+Timer 0, compare B bruges af i2c protokollen
 Timer 1 er sat til 50 af BatterCooler, og bruges både til PWM af køleelementet, samt servomotorer for dispenseren
 OCR1A er PWM til køleelementet
 OCR1B er PWM til servomotorer

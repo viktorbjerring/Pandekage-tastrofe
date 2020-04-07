@@ -23,7 +23,8 @@ void beginCoolingRegulation()
 	TCCR0A |= (1 << WGM01); // Set CTC mode
 	TCCR0B |= (1 << CS00) | (1 << CS02); // Prescaler 1024
 	OCR0A = 67; // Compare register
-	//TIMSK0 |= (1 << OCIE0A); // Enable interrupt on compare match
+	OCR0B = 33;
+	TIMSK0 |= (1 << OCIE0B); // Enable interrupt on compare match
 	// ADC init
 	ADCSRA |= (1 << ADPS1); // Set ADC prescaler to 4
 	ADMUX |= (1 << ADLAR) | (1 << MUX0) | (1 << MUX1); // Left shift ADC reg, ADC port 3

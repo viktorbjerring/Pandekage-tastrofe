@@ -26,7 +26,7 @@ ISR(INT0_vect) {
 		TCCR2B = 0;
 		
 		/* Calculate and save distance */
-		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(TCNT2)); // Distance in cm
+		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(TCNT2)); // Distance in mm
 		
 		/* Turn off external interrupt */
 		EIMSK &= ~(1<<INT0);

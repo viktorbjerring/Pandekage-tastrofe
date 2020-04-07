@@ -1,0 +1,37 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "brcm,bcm2835", "brcm,bcm2708";
+    /* disable spi-dev for spi0.0 */
+    fragment@0 {
+        target = <&spi0>; // SPI Bus 0
+        __overlay__ {
+            status = "okay";
+            spidev@0{     // SPI Chip Select 0
+                status = "disabled";
+            };
+        };
+    };
+    fragment@1 {
+        /*
+        MCP3202:
+        SPI bus nummer (Diagram evt. støttet af datablad, i RPi tilfælde er dokumentationen mindre god, men kun bus 0 er tilgængelig på HAT): 0
+        SPI chip-select (ss) nummer (diagram): SS0
+        SPI max frekvens (datablad): 0.9MHz (when VDD = 2.7 V)
+        SPI Clock Mode (datablad): CPOL = 0. CPHA = 0.
+        */
+        target = <&spi0>; // SPI Bus 0
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            AnalogStick:AnalogStick@0 {
+                compatible = "DEM, AnalogStick";
+                reg = <0>; // SPI Chip Select 0
+                //spi-cpha; /* Comment in to set CPHA */
+                //spi-cpol; /* Comment in to set CPOL */
+                spi-max-frequency = <900000>;
+            };
+        };
+    };
+};

@@ -1,0 +1,35 @@
+// Definitions for buttons_drv module
+// Adapted from w1-gpio-pullup-overlay.dts
+/dts-v1/;
+/plugin/;
+
+/ {
+  compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2708", "brcm,bcm2709";
+
+  fragment@0 { /* Set pullup/pulldown */
+    target = <&gpio>;
+    __overlay__ {
+      buttons_pins: buttons_pins {
+        brcm,pins = <17 27 22>; /* GPIO Pin */
+        brcm,pull = <2 2 2>; /* none=0  down=1  up=2 */
+      };
+    };
+  };
+
+  fragment@1 {
+    /* Add device to base */
+      target-path = "/";
+    __overlay__ {
+
+      /* instance:type */
+      buttons_drv: buttons_drv@0 {
+        /* Label to match in driver */
+        compatible = "DEM, buttons_drv";
+        pinctrl-names = "default";
+        pinctrl-0 = <&buttons_pins>;
+        gpios = <&gpio 17 0>, <&gpio 27 0>, <&gpio 22 0> ; /* 17 = OP, 27 =  NED, 22 = SKYD */
+        status = "okay";
+      };
+    };
+  };
+};

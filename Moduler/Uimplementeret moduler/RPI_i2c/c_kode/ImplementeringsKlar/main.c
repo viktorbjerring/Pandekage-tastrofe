@@ -23,7 +23,4 @@ int main(int argc, char* argv[])
     I2C_MASTER_readData(addr);
     printf("Data read from addr %d is %x\n", addr, I2C_MASTER_getdata());
 
-    I2C_MASTER_close();
-
-
 }

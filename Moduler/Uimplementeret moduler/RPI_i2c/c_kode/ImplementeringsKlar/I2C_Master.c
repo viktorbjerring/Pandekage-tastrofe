@@ -56,8 +56,3 @@ void I2C_MASTER_init()
     } while (I2CFile == -1);
 
 }
-
-void I2C_MASTER_close()
-{
-    close(I2CFile);
-}

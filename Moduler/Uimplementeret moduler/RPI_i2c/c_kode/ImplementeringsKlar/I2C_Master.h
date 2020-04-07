@@ -27,8 +27,6 @@ char I2C_MASTER_getdata();
 
 void I2C_MASTER_init();
 
-void I2C_MASTER_close();
-
 #ifdef __cplusplus
 }
 #endif

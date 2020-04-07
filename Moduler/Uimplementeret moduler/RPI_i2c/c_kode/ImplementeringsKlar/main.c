@@ -4,23 +4,30 @@
 
 #include "I2C_Master.h"
 
-#define STD_ADDR    0x48
+#define ADDR        0x48
 #define STD_CMD     PING
 
 int main(int argc, char* argv[])
 {
-
-    char addr = (argc < 2? STD_ADDR : atoi(argv[1]));
-    I2C_commands_t cmd = (argc < 3? STD_CMD : atoi(argv[2]));        
+    I2C_commands_t cmd = (argc < 2? STD_CMD : atoi(argv[1]));        
 
     I2C_MASTER_init();
+    printf("Writing command %x to %d\n", cmd, ADDR);
+    switch (cmd)
+    {
+    case MAKE_PANCAKE :     // ingen returdata.
+    case TURN_ON_COOLING :
+        I2C_MASTER_sendData(ADDR,cmd);
+        return(true);
 
-    printf("Wrinting command %x to %d\n", cmd, addr);
-    I2C_MASTER_sendData(addr,PING);
+    case GET_BATTER_LEVEL : // rerunerer batter Level.
+        while (I2C_OK!=I2C_MASTER_sendData(ADDR,cmd));
+        while (I2C_OK!=I2C_MASTER_readData(ADDR));
+        I2C_MASTER_checkData();
+        return(I2C_MASTER_getdata());
 
-    printf("Reading data from addr %d\n", addr);
-    I2C_MASTER_checkData();
-    I2C_MASTER_readData(addr);
-    printf("Data read from addr %d is %x\n", addr, I2C_MASTER_getdata());
+    default:
+        return(-1);
+    }
 
 }

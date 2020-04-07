@@ -13,8 +13,7 @@
 
 #include <avr/interrupt.h>
 
-static bool I2C_MASTER_hw_mutex = false
-;
+static bool I2C_MASTER_hw_mutex = false;
 static uint8_t local_read_data = 0;
 static bool data_ready_flag = false;
 
@@ -26,90 +25,61 @@ void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre)
 	TWCR = (0 << TWEA) | (1 << TWEN);	//Setup TWI to send NACK when data is recieved and enable HW
 }
 
-void I2C_MASTER_sendData(char addr, I2C_commands_t cmd) 
+I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd) 
 {	
-	/*TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
-	sendChar(0x01);
-	while (!(TWCR & (1<<TWINT)));
-	if ((TWSR & 0xF8) != 0x08)
-	{
-		sendChar('E');
-		sendChar('1');
-	}
-	TWDR = (addr << 1) + I2C_write; 
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	sendChar(0x02);
-	while (!(TWCR & (1<<TWINT)));
-	if ((TWSR & 0xF8) != 0x18)
-	{
-		sendChar('E');
-		sendChar('2');
-	}
-	TWDR = cmd;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	sendChar(0x03);
-	while (!(TWCR & (1<<TWINT)));
-	if ((TWSR & 0xF8)!= 0x28)
-	{
-		sendChar('E');
-		sendChar('3');
-	}
-	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
-	sendChar(0x04);//*/
+
 	//Check and lock mutex
 	if (I2C_MASTER_hw_mutex)
-		return;
+		return I2C_NOT_EXCLUSIVE;
 	
 	I2C_MASTER_hw_mutex = true;
 	
-startTransmit:
 	//Start by sending a start condition
 	TWCR = (1 << TWEN) | (0 << TWSTO) | (1 << TWSTA) | (1 << TWINT);
-	//sendChar('C');
+
 	//Wait for start to transmit
 	while (!(TWCR & (1<<TWINT)));
 	if ((TWSR & 0xF8) != 0x08)
-	{
-		sendChar('E');
-		sendChar('1');
-		sendChar('\n');
-	}
+		goto I2C_write_fail;
+		
 	//Insert slave ADDR and write bit to data register
 	TWDR = (addr << 1) + I2C_write; 
 	
 	//Send addr and W
 	TWCR = (1 << TWEN) | (1 << TWINT);
-	sendChar('d');
+
 	//Wait for status
 	while (!(TWCR & (1 << TWINT)));
-	if (TWSR == 0x38)
-		goto startTransmit;	
-	
-	
-sendData:
-	
+	if ((TWSR & 0xF8) == 0x38) 
+		goto I2C_write_fail;
+			
 	//Write data
 	TWDR = cmd;
 	TWCR = (1 << TWEN) | (1 << TWINT);
 	
 	//Wait for status
 	while (!(TWCR & (1 << TWINT)));
-	if (TWSR == 0x38)
-		goto sendData;
+	if ((TWSR & 0xF8) == 0x38)
+		goto I2C_write_fail;
 	
 	//Send stop	
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (0 << TWSTA) | (1 << TWINT);
 	
 	//Unlock mutex	
-	I2C_MASTER_hw_mutex = false;//*/
+	I2C_MASTER_hw_mutex = false;
+	return I2C_OK;
+	
+	
+I2C_write_fail:
+	I2C_MASTER_hw_mutex = false;
+	return 	I2C_SEND_FAIL;
 }
 
-void I2C_MASTER_readData(char addr) {
+I2C_err_t I2C_MASTER_readData(char addr) {
 
-sendRead:
 	//Lock mutex
 	if (I2C_MASTER_hw_mutex)
-		return;
+		return I2C_NOT_EXCLUSIVE;
 		
 	I2C_MASTER_hw_mutex = true;
 
@@ -117,7 +87,10 @@ sendRead:
 	TWCR = (1 << TWEN) | (0 << TWSTO) | (1 << TWSTA) | (1 << TWINT);
 	
 	//Wait for start to transmit
-	while (TWSR != 0x08);
+	while (!(TWCR & (1<<TWINT)));
+	if ((TWSR & 0xF8) != 0x08)
+		goto I2C_read_fail;
+	
 	
 	//Insert slave ADDR and read bit to data register
 	TWDR = (addr << 1) + I2C_read;
@@ -125,15 +98,20 @@ sendRead:
 	//Send addr and R
 	TWCR = (1 << TWEN) | (1 << TWINT);
 	
+	//Wait for status
 	while (!(TWCR & (1 << TWINT)));
-	if (TWSR == 0x38)
-		goto sendRead;
+	if ((TWSR & 0xF8) == 0x38)
+		goto I2C_read_fail;
 		
 	//Enable read interrupt, so CPU can do other stuff
 	TWCR = (1 << TWEN) | (1 << TWIE) | (1 << TWINT);
 	
+	return I2C_OK;
 	//Do NOT unlock mutex before data is read
 	
+I2C_read_fail:
+	I2C_MASTER_hw_mutex = false;
+	return I2C_READ_FAIL;
 }
 
 bool I2C_MASTER_checkData() {

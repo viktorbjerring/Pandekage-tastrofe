@@ -12,7 +12,7 @@ static int temp = 0;
 void beginCoolingRegulation()
 {
 	DDRB |= (1 << PORTB1);
-	DDRC &= ~(1 << PORTC3);
+	DDRC &= ~(1 << PINC3);
 	// timer 1 fast PWM mode 50 Hz
 	TCCR1A |= (1 << COM1A1) | (1 << WGM11); //A1 clear on compare match, top = ICR1
 	TCCR1B |= (1 << WGM12) | (1 << WGM13) | (1 << CS11); //Prescaler 8

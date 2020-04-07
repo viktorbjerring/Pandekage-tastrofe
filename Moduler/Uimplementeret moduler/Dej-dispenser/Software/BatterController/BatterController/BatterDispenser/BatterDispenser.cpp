@@ -7,7 +7,14 @@
 
 #include "BatterDispenser.h"
 
-static unsigned int cycle;
+#define cycleCount 5
+#define extended 4000
+#define retracted 2000
+#define moveSpeed 200
+
+volatile unsigned int cycle;
+volatile unsigned int servoTop = extended;
+volatile unsigned int servoBottom = retracted;
 
 void initBatterDispenser() {
 	cycle = 0;
@@ -22,19 +29,26 @@ void initBatterDispenser() {
 
 void addDough()
 {
+	servoTop = extended;
+	_delay_ms(moveSpeed);
+	servoBottom = retracted;
+	_delay_ms(moveSpeed);
+	servoBottom = extended;
+	_delay_ms(moveSpeed);
+	servoTop = retracted;
 	return;
 }
 
 ISR(TIMER1_OVF_vect) {
 	cycle++;
-	if (cycle == 4) {
-		OCR1B = 30000;
-	} else if (cycle == 5) {
+	if (cycle == cycleCount - 1) {
+		OCR1B = servoBottom;
+	} else if (cycle == cycleCount) {
 		PORTB |= (1 << PORTB3);		
-	} else if (cycle == 9) {
-		OCR1B = 10000;		
-	} else if (cycle == 10) {
-		cycle = 0;
+	} else if (cycle == cycleCount * 2 - 1) {
+		OCR1B = servoTop;	
+	} else if (cycle == cycleCount * 2) {
+		cycle = 0;	
 		PORTB &= ~(1 << PORTB3);
 	}
 }

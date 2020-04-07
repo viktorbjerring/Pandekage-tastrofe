@@ -18,7 +18,7 @@
 uint16_t batterLevel_ = 0;
 bool isEcho_ = false;
 
-ISR(INT0_vect) {
+ISR(PCINT1_vect) {
 	/* If currently timing PW */
 	if (isEcho_)
 	{
@@ -28,8 +28,8 @@ ISR(INT0_vect) {
 		/* Calculate and save distance */
 		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(TCNT2)); // Distance in mm
 		
-		/* Turn off external interrupt */
-		EIMSK &= ~(1<<INT0);
+		/* Turn off pin change 13 interrupt */
+		PCMSK1 &= ~(1 << PCINT13);
 	}
 	else
 	{
@@ -38,28 +38,26 @@ ISR(INT0_vect) {
 		TCCR2B = 0b00000110;
 		
 		isEcho_ = true;
-		/* Switch to falling edge */
-		EICRA &= ~(1<<ISC00);
 	}
 }
 
 void initUltrasonic() {
-	DDRD |=  (1<<3); // Trigger pin
-	DDRD &= ~(1<<2); // Echo pin
-	TCCR0A = 0; // Clear timer0 register A
+	DDRD |=  (1<<PORTD4); // Trigger pin
+	DDRC &= ~(1<<PINC5); // Echo pin
+	TCCR2A = 0; // Clear timer2 register A
+	PCIFR |= (1 << PCIE1); // enable pin change interrupt 1
 }
 
 uint16_t getBatterLevel() {
 	isEcho_ = false;
 	
-	/* Set INT0 to trigger on rising edge */
-	EIMSK |= (1<<INT0);
-	EICRA |= ((1<<ISC01) | (1<<ISC00));
+	/* Set PC1 to trigger on pin 13, PINC5 */
+	PCMSK1 |= (1 << PCINT13);
 	
 	/* Pulse trigger pin */
-	PORTD |= (1<<3);
+	PORTD |= (1<<PORTD4);
 	_delay_us(10);
-	PORTD &= ~(1<<3);
+	PORTD &= ~(1<<PORTD4);
 	
 	/* Wait for measurement */
 	_delay_ms(10);

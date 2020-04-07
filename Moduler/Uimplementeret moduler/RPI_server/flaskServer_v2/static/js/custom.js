@@ -1,7 +1,5 @@
 // Ststem status function
 
-let userID; 
-
 // Delivery time function
 (function() {
 
@@ -28,14 +26,12 @@ let userID;
 
 // Order pancake function
 (function() {
-    userID = Date.now();
     document.getElementById("order_pancake").addEventListener("click", order_pancake);
 }());
 
 function order_pancake() {
     fetch('http://localhost:5000/order_pancake/', {
-      method: 'POST',
-      body: JSON.stringify(userID)  
+      method: 'POST'
     }).then((response) => {
         return response.json();
     })

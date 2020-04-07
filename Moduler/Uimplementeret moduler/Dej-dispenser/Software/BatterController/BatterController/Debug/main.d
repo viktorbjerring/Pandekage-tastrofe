@@ -10,14 +10,16 @@ main.d main.o: .././main.cpp \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- .././BatterCooler/BatterCooler.h \
+ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
+ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h \
+ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
+ .././uart.h .././BatterCooler/BatterCooler.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- .././BatterDispenser/BatterDispenser.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- .././ControlUnit/ControlUnit.h .././UltraSonic/UltraSonic.h \
- .././PanController/PanController.h
+ .././BatterDispenser/BatterDispenser.h .././ControlUnit/ControlUnit.h \
+ .././UltraSonic/UltraSonic.h .././PanController/PanController.h
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -41,17 +43,25 @@ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fu
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
+d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h:
+
+d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h:
+
+d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
+
+.././uart.h:
+
 .././BatterCooler/BatterCooler.h:
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
-
-.././BatterDispenser/BatterDispenser.h:
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+.././BatterDispenser/BatterDispenser.h:
 
 .././ControlUnit/ControlUnit.h:
 

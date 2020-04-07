@@ -9,8 +9,12 @@
 #ifndef BATTERCOOLER_H_
 #define BATTERCOOLER_H_
 
+#define F_CPU 16000000
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
-void beginCoolingRegulation();
+#include <util/delay.h>
 
+void beginCoolingRegulation();
+unsigned int returnTemp();
 #endif /* BATTERCOOLER_H_ */

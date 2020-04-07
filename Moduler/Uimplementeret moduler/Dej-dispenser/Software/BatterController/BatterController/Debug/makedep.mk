@@ -12,5 +12,7 @@ main.cpp
 
 PanController\PanController.cpp
 
+uart.cpp
+
 UltraSonic\UltraSonic.cpp
 

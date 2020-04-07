@@ -1,5 +1,4 @@
-BatterCooler/BatterCooler.d BatterCooler/BatterCooler.o: \
- ../BatterCooler/BatterCooler.cpp ../BatterCooler/BatterCooler.h \
+uart.d uart.o: .././uart.cpp \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -11,12 +10,9 @@ BatterCooler/BatterCooler.d BatterCooler/BatterCooler.o: \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
- d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
-
-../BatterCooler/BatterCooler.h:
+ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
+ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
+ .././uart.h
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -40,10 +36,8 @@ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fu
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
+d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
-d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
 
-d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
-
-d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+.././uart.h:

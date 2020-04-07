@@ -47,6 +47,7 @@ C_SRCS +=  \
 ../ControlUnit/ControlUnit.cpp \
 ../main.cpp \
 ../PanController/PanController.cpp \
+../uart.cpp \
 ../UltraSonic/UltraSonic.cpp
 
 
@@ -62,6 +63,7 @@ BatterDispenser/BatterDispenser.o \
 ControlUnit/ControlUnit.o \
 main.o \
 PanController/PanController.o \
+uart.o \
 UltraSonic/UltraSonic.o
 
 OBJS_AS_ARGS +=  \
@@ -70,6 +72,7 @@ BatterDispenser/BatterDispenser.o \
 ControlUnit/ControlUnit.o \
 main.o \
 PanController/PanController.o \
+uart.o \
 UltraSonic/UltraSonic.o
 
 C_DEPS +=  \
@@ -78,6 +81,7 @@ BatterDispenser/BatterDispenser.d \
 ControlUnit/ControlUnit.d \
 main.d \
 PanController/PanController.d \
+uart.d \
 UltraSonic/UltraSonic.d
 
 C_DEPS_AS_ARGS +=  \
@@ -86,6 +90,7 @@ BatterDispenser/BatterDispenser.d \
 ControlUnit/ControlUnit.d \
 main.d \
 PanController/PanController.d \
+uart.d \
 UltraSonic/UltraSonic.d
 
 OUTPUT_FILE_PATH +=BatterController.elf
@@ -131,6 +136,13 @@ ControlUnit/ControlUnit.o: ../ControlUnit/ControlUnit.cpp
 	
 
 PanController/PanController.o: ../PanController/PanController.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./uart.o: .././uart.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

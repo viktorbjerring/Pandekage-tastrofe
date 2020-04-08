@@ -20,7 +20,7 @@
     })
     .catch(err => {
         console.log(err);
-        system_status.append("Unknown");
+        delivery_time.append("Unknown");
     });
 }());
 
@@ -33,10 +33,15 @@ function order_pancake() {
     fetch('http://localhost:5000/order_pancake/', {
       method: 'POST'
     }).then((response) => {
-        return response.json();
+        return response.text();
     })
     .then((data) => {
-        console.log("Succes: ",data);
+        if(data === "1") {
+            console.log("Successfully ordered a pancake");
+        } else {
+            console.log("Error ordering");
+        }
+        return data
     })
     .catch(err => {
         console.error(err);

@@ -11,7 +11,7 @@ CCPREFIX = arm-poky-linux-gnueabi-
 # kernel Makefile or not.
 ifeq ($(KERNELRELEASE),)
     # The current directory is passed to sub-makes as argument
-    PWD := $(shell pwd)
+    PWD := "$(shell pwd)"
 modules:
 	$(MAKE) ARCH=arm CROSS_COMPILE=${CCPREFIX} -C ${KERNELDIR} M=$(PWD)
   # Rename .dtb to .dtbo, required by dtoverlay

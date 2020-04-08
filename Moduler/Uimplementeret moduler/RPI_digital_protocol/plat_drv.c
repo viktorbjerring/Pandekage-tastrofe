@@ -120,7 +120,7 @@ static int plat_drv_probe(struct platform_device *pdev){
         return -EINVAL;
     }
     
-    gpio_devs = kmalloc(gpios_len * sizeof(struct gpio_dev), GFP_ATOMIC);
+    gpio_devs = kmalloc(gpios_len * sizeof(struct gpio_dev), GFP_KERNEL);
 
     for (int i = 0; i < gpios_len; i++)
     {

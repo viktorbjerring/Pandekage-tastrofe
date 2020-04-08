@@ -1,13 +1,17 @@
 from flask import Flask, render_template, url_for, request, redirect, json, jsonify, Response
 from datetime import datetime
-from Watchdog import Handler
 import threading
-import time
-import random
+import time # for sleep
+import random # For randomIp
+import requests # for being able to make get requests
+import os # for forcing exits
 
 app = Flask(__name__) #__name__ = filename
 
-randomIP = True # Debugging
+randomIP = False # Debugging
+
+serverURL = "http://127.0.0.1:5000"
+
 
 # Note: Hvis vi skal lave en pandekage, skal vi køre programmet med et 4-tal
 
@@ -28,7 +32,8 @@ class API:
     def systemStatus(self): # Returns int
         pass
     def isPancakeDone(self): 
-        pass
+        return json.dumps(str(wifiObj.isPancakeDone()))
+
     def getStatusMsg(self): # Returns char
         # Mangler protokol pt, så vi returnerer bare level alarm
         levelalarm = wifiObj.getLevelAlarm()
@@ -55,10 +60,9 @@ class WiFi:
         return orderPancakeObj.estimateTime()
     def orderPancake(self): # Returns int
         maskedIp = self.__findUserID()
-        if(maskedIp not in self.__idDict.values()):
+        if(self.__idDict.get(maskedIp) == None):
             newDict = {maskedIp: 0}
             self.__idDict.update(newDict)
-            print(self.__idDict)
             return orderPancakeObj.orderPancake(maskedIp)
         else:
             print("Error in processing order: either the IP has made an order already, or a bug has occured")
@@ -75,8 +79,13 @@ class WiFi:
         pass
     def waitForDone(self, id):
         pass
-    def isPancakeDone(self, id):
-        pass
+    def isPancakeDone(self):
+        id = self.__findUserID()
+        if(self.__idDict.get(id)): # If it returns 1 = pancake is done
+            self.__idDict.pop(id)
+            return 1
+        else: # Returns 0 if pancake isn't done OR the ip hasn't made an order
+            return 0
     def getLevelAlarm(self): #Returns bool
         try:
             with open('level_alarm.txt', 'r') as systemfile: 
@@ -91,7 +100,12 @@ class WiFi:
             # If unable to open the file
             return False
     def connectToNetwork(self): # Returns bool
-        pass
+        try:
+            requests.get(serverURL+"/is_server_running/") # Ping /is_server_running/
+            return True
+        except:
+            print("Error on connectToNetwork")
+            return False
     def addMsg(self, type): # Type is char
         pass
     def getStatusMsg(self): # Returns char
@@ -132,15 +146,11 @@ class OrderPancake:
 
 class MakePancake:
     def __init__(self):
-        self.__ordersInProduction = []
+        pass
     def start(self):
         while True:
-            with open('queue.txt', 'r') as systemfile: 
-                contents = systemfile.read()
-                if(contents):
-                    self.__ordersInProduction.append(queueObj.getOrder())
-                    print("pancakeBegin()")
-                    # use i2c program to say pancakeBegin()
+            if(queueObj.getOrder()):
+                print("pancakeBegin()")
             self.pancakeDone()
             time.sleep(5)
     def pancakeDone(self):
@@ -150,41 +160,58 @@ class MakePancake:
             with open('pancakeDone.txt', 'w') as systemfile:
                 systemfile.write("0")
             # Handle the pancake
-            id = self.__ordersInProduction.pop(0)
-            wifiObj.pancakeDone(int(id))
+            order = queueObj.pancakeIsDone()
+            wifiObj.pancakeDone(int(order))
 
 class Queue:
     def __init__(self):
-        pass
+        self.__orders = []
+        self.__ordersInProduction = 0
     def estimateTime(self): # Returns time
-        try:
-            with open('queue.txt', 'r') as systemfile:
-                amountOfOrders = len(systemfile.readlines())
-                time = amountOfOrders * 3 # 3 minutes pr. pancake 
-                return int(time)
-        except:
-            print("Error in Queue: orderPancake()")
-            return -1
-    def orderPancake(self, id):
-        # This must be changed to the actual cooking time
-        try:
-            with open('queue.txt', 'a+') as systemfile: 
-                systemfile.write(str(id) + "\n") #Append
-            with open('queue.txt', 'r') as systemfile:
-                amountOfOrders = len(systemfile.readlines())
-                time = amountOfOrders * 3 # 3 minutes pr. pancake thread.start_new_thread(flaskThread,())
-                return time 
-        except:
-            print("Error in Queue: orderPancake()")
-            return -1
+        amountOfOrders = len(self.__orders)
+        time = amountOfOrders * 3 + 3 # 3 minutes pr. pancake. + 3 because the order hasn't been put in yet
+        return time
+ 
+    def orderPancake(self, id): # A new order has been put
+        self.__orders.append(id)
+        print("Order pancake called: orders list:")
+        print(self.__orders)
+        time = len(self.__orders) * 3 # 3 minutes pr. pancake 
+        return time
 
-    def getOrder(self):
-        with open('queue.txt', 'r') as systemfile:
-            contents = systemfile.read().splitlines(True)
-        with open('queue.txt', 'w') as systemfile:
-            systemfile.writelines(contents[1:]) # write everything except the oldest order
-        return contents[0]
+    def getOrder(self): # Gets called when we are about to put an order
+        try:
+            order = self.__orders[0 + self.__ordersInProduction]
+            self.__ordersInProduction = self.__ordersInProduction + 1
+            return order
+        except:
+            print("No orders waiting to be sent")
+            return False
 
+    def pancakeIsDone(self):
+        print("Queue before popping:")
+        print(self.__orders)
+        order = self.__orders.pop(0)
+        print("Queue after popping:")
+        print(self.__orders)
+        self.__ordersInProduction = self.__ordersInProduction - 1
+        return order
+
+class SystemStartup:
+    def __init__(self):
+        pass
+    def start(self):
+        time.sleep(3) # allow the server to boot
+        #turnOnCooling()
+        #turnOnPans()
+        #connectionLED(1)
+        status = wifiObj.connectToNetwork()
+        if(not status):
+            #connectionLED(-1) # maybe it should be 0?
+            # Restart server (should this be me?).
+            # Can't implement server elegantly... 
+            print("Server didn't boot. Quitting")
+            os._exit(1) # Hard exit this entire script
 
 class UserIF:
     def __init__(self):
@@ -195,6 +222,8 @@ class UserIF:
         return apiObj.estimateTime()
     def orderPancakePage(self):
         return apiObj.orderPancake()
+    def isPancakeDone(self):
+        return apiObj.isPancakeDone()
 
 class MaintenanceIF:
     def __init__(self):
@@ -228,10 +257,17 @@ def set_alarm_level_page():
 def time_estimate():
     return uiObj.timeEstimatePage()
     
-
 @app.route('/order_pancake/', methods=['POST'])
 def order_pancake():
     return uiObj.orderPancakePage()
+
+@app.route('/is_pancake_done/', methods=['GET'])
+def is_pancake_done():
+    return uiObj.isPancakeDone()
+
+@app.route('/is_server_running/', methods=['GET'])
+def is_server_running():
+    return "1"
 
 if __name__ == "__main__":
     # Object creation:
@@ -242,12 +278,12 @@ if __name__ == "__main__":
     queueObj = Queue()
     makePancakeObj = MakePancake()
     maintenanceObj = MaintenanceIF()
+    systemStartupObj = SystemStartup()
 
-    path = r"/home/stud/Pandekage-tastrofe/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v2/"
-    fileName = 'panController.txt'
-    event_handler = Handler(path, fileName)
 
-    x = threading.Thread(target=makePancakeObj.start, daemon=True).start() # Daemon means shut down thread immediately if we try to stop the proces
+    t1 = threading.Thread(target=makePancakeObj.start, daemon=True).start() # Daemon means shut down thread immediately if we try to stop the proces
+    t2 = threading.Thread(target=systemStartupObj.start, daemon=True).start()
+
 
     # Start API:
     app.run(debug=True,use_reloader = False)
@@ -276,4 +312,16 @@ if __name__ == "__main__":
                 contents = systemfile.read()
             return int(contents)
         except:
+            return -1"""
+
+     # This must be changed to the actual cooking time
+    """try:
+            with open('queue.txt', 'a+') as systemfile: 
+                systemfile.write(str(id) + "\n") #Append
+            with open('queue.txt', 'r') as systemfile:
+                amountOfOrders = len(systemfile.readlines())
+                time = amountOfOrders * 3 # 3 minutes pr. pancake 
+                return time 
+        except:
+            print("Error in Queue: orderPancake()")
             return -1"""

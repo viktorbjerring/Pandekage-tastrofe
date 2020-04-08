@@ -35,6 +35,7 @@ if __name__ == "__main__":
 	try: 
 		while True:
 			time.sleep(1) 
+			print("Hej")
 	except KeyboardInterrupt: 
 		#observer.stop() 
 		pass

@@ -56,19 +56,16 @@
 			<img class="img-responsive" src="../static/img/logo.png" alt="Logo">
 		</div>
 		<div class="row justify-content-center">
-			<img id="order_pancake" class="img-responsive mt-5 pancake-button" src="../static/img/pancake-button.png" data-toggle="modal" data-target="#exampleModalCenter" alt="pancake-button"></a>
+			<img class="img-responsive mt-5 pancake-button" src="../static/img/pancake-button.png" data-toggle="modal" data-target="#confirmation" alt="pancake-button"></a>
 		</div>
-		<div class="row justify-content-center">
-			<p id="system_status" class="mt-4">SYSTEM STATUS: </p>
-		</div>
-		<div class="row justify-content-center">
+		<div class="row text-center flex-column">
 			<h1 class="action_text">CLICK THE PANCAKE TO ORDER!</h1>
 			<p id="delivery_time">Expected delivery time:<br></p>
 		</div>
 	</div>
 
 	<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -82,7 +79,7 @@
 		  
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-success">PANCAKE ME!</button>
+		  <button id="order_pancake" type="button" class="btn btn-success">PANCAKE ME!</button>
 		  <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL IT</button>
 		</div>
 	  </div>

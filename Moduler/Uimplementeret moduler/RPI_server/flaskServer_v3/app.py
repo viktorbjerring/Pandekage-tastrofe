@@ -209,6 +209,10 @@ def order_pancake():
 @app.route('/is_pancake_done/', methods=['GET'])
 def is_pancake_done():
     return apiObj.isPancakeDone()
+
+@app.route('/waiting/', methods=['GET'])
+def waiting():
+    return render_template('waiting.html')
 #---------------------------UserIF END
 
 

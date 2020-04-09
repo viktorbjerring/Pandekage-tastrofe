@@ -15,29 +15,22 @@
 	
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/custom.css" rel="stylesheet">
+    <link href="../static/css/maintenance.css" rel="stylesheet">
+
   </head>
 
+    <body id="body_id" class="mt-4"> 
+        <h1 id="batter_status"></h1>
 
-    {% if status == 1 %}
-    <body style="background-color: orange; text-align: center;" class="justify-content-center mt-4"> 
-        <h1>Dispenser needs batter</h1>
-
-        <button type="button" id="resetSystemStatus" class="btn btn-secondary" data-dismiss="modal">Reset indicator</button>
-    {% elif status == 0 %}
-    <body style="background-color: greenyellow; text-align: center;" class="justify-content-center mt-4"> 
-        <h1>Dispenser is filled</h1>
-    {% else %}
-    <body style="background-color: red; text-align: center;" class="mt-4"> 
-        <h1>ERROR</h1>
-    {% endif%}
+        <button type="button" id="clearBatterAlarm" class="btn btn-danger" data-dismiss="modal">Reset indicator</button>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/maintenance.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/maintenance.js"></script>
+    
 	
   </body>
 </html>

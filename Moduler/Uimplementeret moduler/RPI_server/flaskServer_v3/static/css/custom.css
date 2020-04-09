@@ -183,12 +183,12 @@ body > .container {
   background-color: #FFF2A4;
   border-radius: 1rem;
 }
-.btn-primary {
+.btn-success {
   background-color: #75F676;
   border-color: #B45326;
 }
 
-.btn-secondary{
+.btn-danger{
   background-color: #F67675;
   border-color: #B45326;
 }

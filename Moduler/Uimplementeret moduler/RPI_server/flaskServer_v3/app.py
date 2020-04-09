@@ -27,6 +27,7 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
         return json.dumps(orderOverviewObj.estimateTime())
     def orderPancake(self):
         # return order overview in good format
+        # Skal ændres til at fortolke dataen i API i stedet for client side
         return json.dumps(int(orderOverviewObj.orderPancake()))
     def isPancakeDone(self):
         statusInt = orderOverviewObj.isPancakeDone()
@@ -38,8 +39,22 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
             status = "Order wasn't made or an error occured"
         print(status)
         return json.dumps(status)
-    def getBatterLevel(self):
-        return batterStatusObj.getBatterLevel()
+    def getBatterStatus(self):
+        statusInt = batterStatusObj.getBatterStatus()
+        if(statusInt == 1):
+            status = "Dispenser needs batter"
+        elif(statusInt == 0):
+            status = "Dispenser is ok"
+        else:
+            status = "An error occured trying to check batter status"
+        return json.dumps(status)
+    def clearBatterAlarm(self):
+        statusInt = batterStatusObj.clearBatterAlarm()
+        if(statusInt == 1):
+            status = "Batter alarm cleared"
+        else:
+            status = "Unable to clear batter alarm"
+        return json.dumps(status)
     
 class OrderOverview:
     def __init__(self):
@@ -124,22 +139,33 @@ class OrderHandling:
 class BatterStatus:
     def __init__(self):
         pass
-    def getBatterLevel(self):
+    def getBatterStatus(self):
         # Brug driver til at finde ud af hvad status på dejen er.
         # Til test er det implementeret med level_alarm filen
         try:
-            with open('level_alarm.txt', 'r') as systemfile: 
+            with open('batter_status.txt', 'r') as systemfile: 
                 contents = systemfile.read()
                 # If it reads 1, then the indicator is on. 0 means off.
                 if(contents == "1"):
-                    return True
+                    return 1
+                elif(contents == "0"):
+                    return 0
                 else:
                     # -1 means errors
-                    return False
+                    return -1
         except:
             # If unable to open the file
-            return False
-        pass
+            return -2
+    def clearBatterAlarm(self):
+        # Brug driver til at skrive, at vi gerne vil slukke indikater
+        # Til test er det implementeret med batter_status filen
+        try:
+            with open('batter_status.txt', 'w') as systemfile: 
+                systemfile.write("0") 
+            return 1 # Returns 1 if it was able to clear it
+        except:
+            return 0
+
 class SystemStatus:
     def __init__(self):
         pass
@@ -189,12 +215,17 @@ def is_pancake_done():
 #---------------------------MaintenanceIF:
 @app.route('/maintenance/', methods=['GET']) 
 def maintenance_page():
-    status = json.loads("pass")
-    return render_template('maintenance.html', status=status)
+    return render_template('maintenance.html')
 
-@app.route('/set_alarm_level/', methods=['POST'])
-def set_alarm_level_page():
-    return
+@app.route('/maintenance/get_batter_status/', methods=['GET'])
+def get_batter_status():
+    return apiObj.getBatterStatus()
+
+@app.route('/maintenance/clear_batter_alarm/', methods=['POST'])
+def set_batter_alarm():
+    return apiObj.clearBatterAlarm()
+
+
 #---------------------------MaintenanceIF END
 
 #---------------------------PING:

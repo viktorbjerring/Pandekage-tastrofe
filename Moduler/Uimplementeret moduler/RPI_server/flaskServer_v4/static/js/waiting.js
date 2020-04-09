@@ -30,9 +30,10 @@ var bar = new ProgressBar.Circle(waiting, {
   });
 
 let htmlTime = document.getElementsByClassName('progressBarTime'); // Returns an array of all elements with class progressBarTime 
-let timeLeft;
+let timeLeftInSeconds;
 let timeStart = timeEstimate();
-
+let minutes;
+let seconds;
 
 async function timeEstimate(){
 
@@ -42,16 +43,19 @@ async function timeEstimate(){
   })
   .then((data) => {
     timeStart = data;
-    timeLeft = timeStart;
+    timeLeftInSeconds = timeStart;
   }).then(() => {
     bar.animate(1);
     setInterval(function(){
-        timeLeft -= 1;
-        htmlTime[0].innerHTML = timeLeft;
-        console.log(timeLeft/timeStart);
-        bar.animate(timeLeft/timeStart);
-        if(timeleft == 0){
-          return;
+        timeLeftInSeconds -= 1;
+        minutes = Math.floor(timeLeftInSeconds/60);
+        seconds = timeLeftInSeconds - minutes * 60;
+        time = minutes.toString() + ":" + seconds.toString();
+        htmlTime[0].innerHTML = time;
+        console.log(timeLeftInSeconds/timeStart);
+        bar.animate(timeLeftInSeconds/timeStart);
+        if(timeLeftInSeconds == 0){
+          return
         }
     }, 1000);
   })

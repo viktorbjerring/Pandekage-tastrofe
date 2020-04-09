@@ -11,7 +11,7 @@ import os
 mainPath = os.getcwd() # Set the OS working directory (mainPath is used in os)
 
 # Debugging:
-randomIP = True # Debugging. Generate random IP instead of actual ones.
+randomIP = False # Debugging. Generate random IP instead of actual ones.
 
 # Global vars
 timePrPancake = 3 # In minutes for now
@@ -28,10 +28,22 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
     def orderPancake(self):
         # return order overview in good format
         return json.dumps(int(orderOverviewObj.orderPancake()))
+    def isPancakeDone(self):
+        statusInt = orderOverviewObj.isPancakeDone()
+        if(statusInt == 1):
+            status = "Pancake is ready"
+        elif(statusInt == 0):
+            status = "Pancake is not ready"
+        else:
+            status = "Order wasn't made or an error occured"
+        print(status)
+        return json.dumps(status)
+    def getBatterLevel(self):
+        return batterStatusObj.getBatterLevel()
     
 class OrderOverview:
     def __init__(self):
-        self.__orders = {}
+        self.__orders = {} # Could consider using a dataclass instead for readability, but since we implemented this as a dict already, and the performance is a tiny bit better, we stick to it.
         #Orders is structured as following:
         # id: status.
         # Where id is their ip address converted to a number and status is 1 for ready and 0 for not ready.
@@ -42,7 +54,7 @@ class OrderOverview:
         time = amountOfOrders * timePrPancake + timePrPancake # 3 minutes pr. pancake. + 3 because the order hasn't been put in yet
         return time
     def orderPancake(self):
-        id = self.__generateUserID()
+        id = self.__getUserID()
         if(self.__orders.get(id) == None):
             newDict = {id: 0}
             self.__orders.update(newDict)
@@ -66,10 +78,18 @@ class OrderOverview:
         except:
             print("Something went terribly wrong (Received signal that a pancake was done, but we haven't made any orders!)")
             return
+    def isPancakeDone(self):
+        id = self.__getUserID()
+        status = self.__orders.get(id)
+        if(status == None): # If the key doesn't exist
+            status = -1
+        
+        return self.__orders.get(id)
+
         
 
-#PRIVATE:
-    def __generateUserID(self):
+    #PRIVATE:
+    def __getUserID(self):
         ipStr = request.remote_addr # Get ip
         ipStrList = ipStr.split('.') # Seperate by .
         # Take each 8-bit byte from the IP and return it as one 32-bit byte.
@@ -104,7 +124,22 @@ class OrderHandling:
 class BatterStatus:
     def __init__(self):
         pass
-
+    def getBatterLevel(self):
+        # Brug driver til at finde ud af hvad status på dejen er.
+        # Til test er det implementeret med level_alarm filen
+        try:
+            with open('level_alarm.txt', 'r') as systemfile: 
+                contents = systemfile.read()
+                # If it reads 1, then the indicator is on. 0 means off.
+                if(contents == "1"):
+                    return True
+                else:
+                    # -1 means errors
+                    return False
+        except:
+            # If unable to open the file
+            return False
+        pass
 class SystemStatus:
     def __init__(self):
         pass
@@ -137,7 +172,6 @@ class PancakeHandler(watchdog.events.PatternMatchingEventHandler):
 def root_page():
     return render_template('index.html') #return index page.
 
-
 @app.route('/time_estimate/', methods=['GET']) 
 def time_estimate():
     return apiObj.estimateTime()
@@ -148,7 +182,7 @@ def order_pancake():
 
 @app.route('/is_pancake_done/', methods=['GET'])
 def is_pancake_done():
-    return "pass"
+    return apiObj.isPancakeDone()
 #---------------------------UserIF END
 
 

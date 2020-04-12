@@ -36,14 +36,12 @@ function order_pancake() {
         return response.text();
     })
     .then((data) => {
-        if(data === "1") {
-            console.log("Successfully ordered a pancake");
-        } else {
-            console.log("Error ordering");
-        }
+        data = data.replace(/['"]+/g, '') // Remove the extra quotation marks
+        console.log(data)
         return data
     })
     .catch(err => {
+        console.log("Error ordering");
         console.error(err);
     });
 }

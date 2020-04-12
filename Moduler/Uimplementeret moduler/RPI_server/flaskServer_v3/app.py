@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, request, redirect, json, jsonify, Response
-from datetime import datetime
 import threading
 import random
 
@@ -9,6 +8,7 @@ import watchdog.observers
 import time 
 import os
 mainPath = os.getcwd() # Set the OS working directory (mainPath is used in os)
+
 
 # Debugging:
 randomIP = False # Debugging. Generate random IP instead of actual ones.
@@ -26,9 +26,12 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
     def estimateTime(self):
         return json.dumps(orderOverviewObj.estimateTime())
     def orderPancake(self):
-        # return order overview in good format
-        # Skal ændres til at fortolke dataen i API i stedet for client side
-        return json.dumps(int(orderOverviewObj.orderPancake()))
+        statusInt = orderOverviewObj.orderPancake()
+        if(statusInt == 1):
+            status = "Successfully ordered a pancake"
+        else:
+            status = "Error in processing order: either the IP has made an order already, or a a bug has occured"
+        return json.dumps(status)
     def isPancakeDone(self):
         statusInt = orderOverviewObj.isPancakeDone()
         if(statusInt == 1):
@@ -37,7 +40,6 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
             status = "Pancake is not ready"
         else:
             status = "Order wasn't made or an error occured"
-        print(status)
         return json.dumps(status)
     def getBatterStatus(self):
         statusInt = batterStatusObj.getBatterStatus()
@@ -74,7 +76,7 @@ class OrderOverview:
             newDict = {id: 0}
             self.__orders.update(newDict)
             orderHandlingObj.newOrder() # Place a new order
-            return  "1"
+            return  1
         else:
             print("Error in processing order: either the IP has made an order already, or a bug has occured")
             return -1

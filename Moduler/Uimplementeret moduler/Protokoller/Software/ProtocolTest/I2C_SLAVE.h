@@ -16,12 +16,13 @@
 #endif
 
 #ifndef I2C_SLAVE_BUFFER_LENGTH
-#warning "I2C_SLAVE_BUFFER_LENGTH not defined, buffer may fill all ram."
-#define I2C_SLAVE_BUFFER_LENGTH 0
+#warning "I2C_SLAVE_BUFFER_LENGTH not defined, default buffer size of 10 used."
+#define I2C_SLAVE_BUFFER_LENGTH 10
 #endif
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <util/delay.h>
 #include "I2C_common.h"
 #include "USART.h"
 
@@ -49,201 +50,54 @@
 char I2C_SLAVE_shouldWrite = 0;
 char I2C_SLAVE_recevedAddr = 0;
 char I2C_SLAVE_recevedBits = 0;
-char I2C_SLAVE_toSend = 0;
+volatile char I2C_SLAVE_toSend = 0;
+char I2C_SLAVE_tempSave = 0;
 char I2C_SLAVE_dataReady = 0;
 char I2C_SLAVE_haveSended = 0;
-
-
-// ## DataReceve ##
-struct I2C_SLAVE_DATA{
-	char data;
-	struct I2C_SLAVE_DATA * ptr;
-	};
-char I2CC_SLAVE_numberOfReceved = 0;
 char I2C_SLAVE_recevedData = 0;
-struct I2C_SLAVE_DATA * I2C_SLAVE_first;
-struct I2C_SLAVE_DATA * I2C_SLAVE_last;
-
-void I2C_SLAVE_addData(char data)
-{
-	struct I2C_SLAVE_DATA * temp = (struct I2C_SLAVE_DATA *)malloc(sizeof(struct I2C_SLAVE_DATA));
-	I2CC_SLAVE_numberOfReceved++;
-	temp->ptr = temp;
-	temp->data = data;
-	if(I2CC_SLAVE_numberOfReceved == 0)
-	{
-		I2C_SLAVE_first = temp;
-		I2C_SLAVE_last = temp;
-	}
-	else
-	{
-		while(I2C_SLAVE_BUFFER_LENGTH != 0 && I2C_SLAVE_BUFFER_LENGTH > I2CC_SLAVE_numberOfReceved-1)
-		{
-			struct I2C_SLAVE_DATA * temp = I2C_SLAVE_first->ptr;
-			free(I2C_SLAVE_first);
-			I2C_SLAVE_first = temp;
-			I2CC_SLAVE_numberOfReceved--;
-		}
-		I2C_SLAVE_last->ptr = temp;
-		I2C_SLAVE_last = temp;
-	}
-	I2CC_SLAVE_numberOfReceved++;
-}
-
-char I2C_SLAVE_readFirst()
-{
-	if(I2CC_SLAVE_numberOfReceved != 0)
-	{
-		char r = I2C_SLAVE_first->data;
-		struct I2C_SLAVE_DATA * temp = I2C_SLAVE_first->ptr;
-		free(I2C_SLAVE_first);
-		I2C_SLAVE_first = temp;
-		I2CC_SLAVE_numberOfReceved--;
-		return r;
-	}
-	return 0;
-}
+bool I2C_SLAVE_startRecived = false;
 
 // ## Functional macros ##
-#define I2C_SLAVE_SET_BIT(toByte,toBit,fromByte,fromBit)  (((toByte) & ~(1 << (toBit))) + ((1 << (toBit))& ((fromByte) >> (fromBit))<<(toBit)))
+#define I2C_SLAVE_SET_BIT(toByte,toBit,fromByte,fromBit)  (((toByte) & ~(1 << (toBit))) + ((1 << (toBit))& (((fromByte) >> (fromBit))<<(toBit))))
 
 //SCL interrupt defines.
 #define I2C_SLAVE_SCL_FALLING() EICRA = I2C_SLAVE_SET_BIT(EICRA,I2C_SLAVE_ISC1,1,0); EICRA = I2C_SLAVE_SET_BIT(EICRA,I2C_SLAVE_ISC0,0,0)
 #define I2C_SLAVE_SCL_RISING() EICRA = I2C_SLAVE_SET_BIT(EICRA,I2C_SLAVE_ISC1,1,0); EICRA = I2C_SLAVE_SET_BIT(EICRA,I2C_SLAVE_ISC0,1,0)
 #define I2C_SLAVE_SCL_INT_ENAB(enable) EIMSK = I2C_SLAVE_SET_BIT(EIMSK,I2C_SLAVE_INT,enable,0)
 
-#define I2C_SLAVE_SCL_IS_FALLING() (EICRA & (1<<I2C_SLAVE_ISC1 | 1<<I2C_SLAVE_ISC0)) == (1<<I2C_SLAVE_ISC1)
-#define I2C_SLAVE_SCL_IS_RISING() (EICRA & (1<<I2C_SLAVE_ISC1 | 1<<I2C_SLAVE_ISC0)) == (1<<I2C_SLAVE_ISC1 | 1<<I2C_SLAVE_ISC0)
+#define I2C_SLAVE_SCL_IS_FALLING() ((EICRA & (1<<I2C_SLAVE_ISC1 | 1<<I2C_SLAVE_ISC0)) == (1<<I2C_SLAVE_ISC1))
+#define I2C_SLAVE_SCL_IS_RISING() ((EICRA & (1<<I2C_SLAVE_ISC1 | 1<<I2C_SLAVE_ISC0)) == (1<<I2C_SLAVE_ISC1 | 1<<I2C_SLAVE_ISC0))
 
 //SDA interrupt defines.
 #define I2C_SLAVE_SDA_INT_ENAB(enable) PCICR = I2C_SLAVE_SET_BIT(PCICR,I2C_SLAVE_PCIE,enable,0)
-#define I2C_SLAVE_SDA_INT_INIT() PCICR = I2C_SLAVE_SET_BIT(PCICR,I2C_SLAVE_PCIE,1,0);
+#define I2C_SLAVE_SDA_INT_INIT() I2C_SLAVE_PCMSK = I2C_SLAVE_SET_BIT(PCICR,I2C_SLAVE_PCINT,1,0);
 
-void I2C_SLAVE_init()
-{
-	I2C_SLAVE_SCL_RISING();
-	I2C_SLAVE_SDA_INT_INIT();
-	I2C_SLAVE_SDA_INT_ENAB(1);
-	I2C_SLAVE_PORT &= ~(1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
-	I2C_SLAVE_DDR |= 1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL;
-}
+// ## DataReceve ##
+bool I2C_SLAVE_beginHold = false;
+unsigned char I2C_SLAVE_first = 0;
+unsigned char I2C_SLAVE_last = 0;
+bool I2C_SLAVE_full = false;
+char I2C_SLAVE_Buffer[I2C_SLAVE_BUFFER_LENGTH];
 
-
-void I2C_SLAVE_sendBit(char bit)
-{
-	I2C_SLAVE_toSend = bit << 7;
-	I2C_SLAVE_haveSended = 7;
-	I2C_SLAVE_dataReady = 1;
-}
-
-void I2C_SLAVE_beginSend()
-{
-	I2C_SLAVE_SCL_FALLING();
-	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);
-	I2C_SLAVE_dataReady = 0;
-	if((I2C_SLAVE_DDR & (1 << I2C_SLAVE_SCL)) == 0)
-	{
-		I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,I2C_SLAVE_haveSended);
-		I2C_SLAVE_haveSended++;
-		I2C_SLAVE_DDR |= 1 << I2C_SLAVE_SCL;
-		if(I2C_SLAVE_haveSended > 7)
-		{
-			I2C_SLAVE_SCL_RISING();
-		}
-	}
-}
-
-
-int I2C_SLAVE_hold()
-{
-	I2C_SLAVE_DDR &=  ~(1 << I2C_SLAVE_SCL);
-	I2C_SLAVE_PORT &=  ~(1 << I2C_SLAVE_SCL);
-	if(I2C_SLAVE_dataReady)
-	{
-		return 1;
-	}
-	return 0;
-}
-
-ISR(I2C_SLAVE_SCL_vect)
-{
-	if(I2C_SLAVE_SCL_IS_RISING())
-	{
-		if(I2C_SLAVE_haveSended > 7)
-		{
-			I2C_SLAVE_haveSended = 0;
-			I2C_SLAVE_PORT &= ~(1 << I2C_SLAVE_SDA);
-			I2C_SLAVE_DDR |= 1 << I2C_SLAVE_SDA;
-		}
-		else if(I2C_SLAVE_recevedBits < 6)
-		{
-			I2C_SLAVE_recevedAddr = I2C_SLAVE_SET_BIT(I2C_SLAVE_recevedAddr,6-I2C_SLAVE_recevedBits,I2C_SLAVE_PIN,I2C_SLAVE_SDA);
-			I2C_SLAVE_recevedBits++;
-		}
-		else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < 7)
-		{
-			I2C_SLAVE_shouldWrite = I2C_SLAVE_SET_BIT(I2C_SLAVE_shouldWrite,0,I2C_SLAVE_PIN,I2C_SLAVE_SDA);
-			I2C_SLAVE_sendBit(0);
-			I2C_SLAVE_beginSend();
-			I2C_SLAVE_recevedBits++;
-		}
-		else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < 15)
-		{
-			if(!I2C_SLAVE_shouldWrite)
-			{
-				I2C_SLAVE_recevedData = I2C_SLAVE_SET_BIT(I2C_SLAVE_recevedData,7-(I2C_SLAVE_recevedBits-7),I2C_SLAVE_PIN,I2C_SLAVE_SDA);
-				I2C_SLAVE_recevedBits++;
-			}
-			else if(I2C_SLAVE_shouldWrite && I2C_SLAVE_hold())
-			{
-				I2C_SLAVE_beginSend();
-			}
-		}
-		else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < 16)
-		{
-			I2C_SLAVE_addData(I2C_SLAVE_recevedData);
-			I2C_SLAVE_recevedBits = 7;
-			I2C_SLAVE_SCL_INT_ENAB(0);
-			I2C_SLAVE_SDA_INT_ENAB(1);
-		}
-	}
-	else if(I2C_SLAVE_SCL_IS_FALLING())
-	{
-		I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,I2C_SLAVE_haveSended);
-		I2C_SLAVE_haveSended++;
-		if(I2C_SLAVE_haveSended > 7)
-		{
-			I2C_SLAVE_recevedBits += I2C_SLAVE_haveSended;
-			I2C_SLAVE_SCL_RISING();
-		}
-	}
-	
-}
-
-ISR(I2C_SLAVE_SDA_vect)
-{
-	if(((I2C_SLAVE_PIN & 1 << I2C_SLAVE_SCL)))
-	{
-		if((I2C_SLAVE_PIN & 1 << I2C_SLAVE_SDA) == 0)
-		{
-			I2C_SLAVE_SCL_INT_ENAB(1);
-			sendChar('i');
-		}
-		else
-		{
-			I2C_SLAVE_SCL_INT_ENAB(0);
-			I2C_SLAVE_recevedAddr = 0;
-			I2C_SLAVE_recevedBits = 0;
-			sendChar('e');
-		}
-	}
-}
+void I2C_SLAVE_addData(char data);
+char I2C_SLAVE_readFirst();
 
 // ## USER COMMANDS Below ##
+bool I2C_SLAVE_checkData();
+void I2C_SLAVE_sendData(char data);
+I2C_commands_t I2C_SLAVE_getData();
+void I2C_SLAVE_init();
+
+// ## Internal commands ##
+void I2C_SLAVE_sendBit(char bit);
+void I2C_SLAVE_beginSend();
+int I2C_SLAVE_hold();
+
+// ## Definitions bellow ##
 
 bool I2C_SLAVE_checkData()
 {
-	if(I2CC_SLAVE_numberOfReceved)
+	if(I2C_SLAVE_first != I2C_SLAVE_last || I2C_SLAVE_full)
 	{
 		return true;
 	}
@@ -255,11 +109,236 @@ void I2C_SLAVE_sendData(char data)
 	I2C_SLAVE_toSend = data;
 	I2C_SLAVE_haveSended = 0;
 	I2C_SLAVE_dataReady = 1;
+	
+	if(I2C_SLAVE_beginHold)
+	{
+		I2C_SLAVE_beginHold = false;
+		I2C_SLAVE_SDA_INT_ENAB(0);
+		I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT, I2C_SLAVE_SDA, I2C_SLAVE_toSend, 7);
+		I2C_SLAVE_haveSended++;
+		while(((I2C_SLAVE_toSend>>7)<<I2C_SLAVE_SDA) != (I2C_SLAVE_PIN & 1 << I2C_SLAVE_SDA)){}
+		I2C_SLAVE_SDA_INT_ENAB(1);
+	}
+	I2C_SLAVE_PORT |= 1 << I2C_SLAVE_SCL;
 }
 
 I2C_commands_t I2C_SLAVE_getData()
 {
 	return (I2C_commands_t)I2C_SLAVE_readFirst();
+}
+
+void I2C_SLAVE_init()
+{
+	I2C_SLAVE_SCL_RISING();
+	I2C_SLAVE_SDA_INT_INIT();
+	I2C_SLAVE_SDA_INT_ENAB(1);
+	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
+	I2C_SLAVE_DDR |= 1 << 6 | 1 << 5 | 1 << 7;
+	I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
+}
+
+// ## Internal commands ##
+
+void I2C_SLAVE_sendBit(char bit)
+{
+	if(I2C_SLAVE_dataReady == 1)
+	{
+		I2C_SLAVE_tempSave = I2C_SLAVE_toSend;
+		I2C_SLAVE_dataReady = 2;
+	}
+	else
+	{
+		I2C_SLAVE_dataReady = 1;
+	}
+	I2C_SLAVE_toSend = bit << 7;
+	I2C_SLAVE_haveSended = 7;
+}
+
+void I2C_SLAVE_beginSend()
+{
+	I2C_SLAVE_SCL_FALLING();
+	if(I2C_SLAVE_dataReady == 2)
+		I2C_SLAVE_dataReady = 3;
+	else
+		I2C_SLAVE_dataReady = 0;
+}
+
+int I2C_SLAVE_hold()
+{
+	//I2C_SLAVE_DDR &=  ~(1 << I2C_SLAVE_SCL);
+	
+	if(I2C_SLAVE_dataReady == 1 || I2C_SLAVE_dataReady == 2)
+	{
+		I2C_SLAVE_beginHold = false;
+		return 1;
+	}
+	else
+	{
+		I2C_SLAVE_PORT &=  ~(1 << I2C_SLAVE_SCL);
+	}
+	return 0;
+}
+
+unsigned char I2C_SLAVE_inc(unsigned char * num)
+{
+	unsigned char temp = *num;
+	(*num)++;
+	if(*num >= I2C_SLAVE_BUFFER_LENGTH)
+	{
+		*num = 0;
+	}
+	return temp;
+}
+
+void I2C_SLAVE_addData(char data)
+{
+	if(I2C_SLAVE_full)
+	{
+		I2C_SLAVE_first++;
+	}
+	I2C_SLAVE_Buffer[I2C_SLAVE_inc(&I2C_SLAVE_last)] = data;
+	if(I2C_SLAVE_last == I2C_SLAVE_first)
+	{
+		I2C_SLAVE_full = true;
+	}
+}
+
+char I2C_SLAVE_readFirst()
+{
+	if(I2C_SLAVE_checkData())
+	{
+		if(I2C_SLAVE_first >= I2C_SLAVE_BUFFER_LENGTH)
+		{
+			I2C_SLAVE_first = 0;
+		}
+		if(I2C_SLAVE_full)
+		{
+			I2C_SLAVE_full = false;
+		}
+		return I2C_SLAVE_Buffer[I2C_SLAVE_inc(&I2C_SLAVE_first)];
+	}
+	return 0;
+}
+
+
+ISR(I2C_SLAVE_SCL_vect)
+{
+	if(I2C_SLAVE_startRecived)
+	{
+		if(I2C_SLAVE_SCL_IS_RISING())
+		{
+			if(I2C_SLAVE_haveSended > 7)
+			{
+				I2C_SLAVE_haveSended = 0;
+				I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
+				//I2C_SLAVE_DDR |= 1 << I2C_SLAVE_SDA;
+			}
+			if(I2C_SLAVE_recevedBits < 7)
+			{
+				I2C_SLAVE_recevedAddr = I2C_SLAVE_SET_BIT(I2C_SLAVE_recevedAddr,6-I2C_SLAVE_recevedBits,I2C_SLAVE_PIN,I2C_SLAVE_SDA);
+				I2C_SLAVE_recevedBits++;
+				if(I2C_SLAVE_recevedBits == 6)
+				{
+					sendChar(I2C_SLAVE_recevedAddr);
+				}
+			}
+			else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < 8)
+			{
+				I2C_SLAVE_recevedBits++;
+				I2C_SLAVE_shouldWrite = I2C_SLAVE_SET_BIT(I2C_SLAVE_shouldWrite,0,I2C_SLAVE_PIN,I2C_SLAVE_SDA);//0;
+				if(I2C_SLAVE_shouldWrite)
+				{
+					I2C_SLAVE_beginHold = true;
+				}
+				I2C_SLAVE_sendBit(0);
+				I2C_SLAVE_beginSend();
+			}
+			else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < (9))
+			{
+				I2C_SLAVE_recevedBits++;
+			}
+			else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < (17))
+			{
+				if(!I2C_SLAVE_shouldWrite)
+				{
+					I2C_SLAVE_recevedData = I2C_SLAVE_SET_BIT(I2C_SLAVE_recevedData,7-(I2C_SLAVE_recevedBits-8),I2C_SLAVE_PIN,I2C_SLAVE_SDA);
+					I2C_SLAVE_recevedBits++;
+					if(I2C_SLAVE_recevedBits == 16)
+					{
+						I2C_SLAVE_addData(I2C_SLAVE_recevedData);
+						I2C_SLAVE_sendBit(0);
+						I2C_SLAVE_beginSend();
+						I2C_SLAVE_recevedBits = 8;
+					}
+				}
+				else if(I2C_SLAVE_shouldWrite && I2C_SLAVE_hold())
+				{
+					I2C_SLAVE_beginSend();
+					I2C_SLAVE_recevedBits = 7;
+				}
+			}
+		}
+		else if(I2C_SLAVE_SCL_IS_FALLING())
+		{
+			//sendChar(I2C_SLAVE_haveSended);
+			if(I2C_SLAVE_haveSended > 7)
+			{
+				if(I2C_SLAVE_dataReady == 2 || I2C_SLAVE_dataReady == 3)
+				{
+					//sendChar(I2C_SLAVE_tempSave);
+					I2C_SLAVE_dataReady = 1;
+					I2C_SLAVE_haveSended = 1;
+					I2C_SLAVE_toSend = I2C_SLAVE_tempSave;
+					I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,7);
+				}
+				else
+				{
+					//I2C_SLAVE_recevedBits += I2C_SLAVE_haveSended;
+					I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);
+				}
+				if(I2C_SLAVE_beginHold)
+				{
+					I2C_SLAVE_hold();
+				}
+				else
+				{
+					I2C_SLAVE_SCL_RISING();
+				}
+			}
+			else
+			{
+				
+				I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,(7-I2C_SLAVE_haveSended));//&= ~(1 << I2C_SLAVE_SDA);
+				
+				I2C_SLAVE_haveSended++;
+			}
+		}
+	}
+	
+}
+
+
+ISR(I2C_SLAVE_SDA_vect)
+{
+	if((I2C_SLAVE_PIN & 1 << I2C_SLAVE_SCL) ==(1 << I2C_SLAVE_SCL))
+	{
+		if(I2C_SLAVE_PIN & 1 << I2C_SLAVE_SDA)
+		{
+			I2C_SLAVE_startRecived = false;
+		}
+		else
+		{
+			I2C_SLAVE_startRecived = true;
+		}
+		if(I2C_SLAVE_startRecived == false)
+		{
+			//sendChar(0xDA);
+			I2C_SLAVE_recevedAddr = 0;
+			I2C_SLAVE_recevedBits = 0;
+			I2C_SLAVE_SCL_RISING();
+			I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
+		}
+	}
 }
 
 #endif /* I2C_SLAVE_SLAVE_H_ */

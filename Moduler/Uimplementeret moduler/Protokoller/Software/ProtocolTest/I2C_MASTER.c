@@ -15,12 +15,12 @@
 
 static bool I2C_MASTER_hw_mutex = false;
 static uint8_t local_read_data = 0;
-static bool data_ready_flag = false;
+volatile bool data_ready_flag = false;
 
 void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre) 
 {	
 	TWBR = bitRate;	//Set bitRate
-	TWSR = ((pre & 0x01) << TWPS0) | ((pre & 0x02) << TWPS1);	//Set prescaler
+	TWSR = (char)pre;	//Set prescaler
 	
 	TWCR = (0 << TWEA) | (1 << TWEN);	//Setup TWI to send NACK when data is recieved and enable HW
 }

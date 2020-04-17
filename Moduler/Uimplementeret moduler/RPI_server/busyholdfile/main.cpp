@@ -10,10 +10,10 @@ char buffer[90000];
 
 int main() {
    int fp;
-   fp = open("../flaskServer/pancake_status.txt", O_RDWR);
+   fp = open("../flaskServer_v1/pancake_status.txt", O_RDWR);
    read(fp, buffer, 90000);
-   write(fp, buffer, strlen(buffer));
    while(1){
+      read(fp, buffer, 90000);
       strcat(buffer, "C-fil\n");
       write(fp, "C-fil\n", strlen("C-fil\n"));
       sleep(1);

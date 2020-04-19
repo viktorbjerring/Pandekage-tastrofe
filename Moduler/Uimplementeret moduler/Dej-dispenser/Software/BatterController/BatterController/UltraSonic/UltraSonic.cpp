@@ -48,7 +48,7 @@ void initUltrasonic() {
 	PCICR |= (1 << PCIE1); // enable pin change interrupt 1
 }
 
-uint16_t getBatterLevel() {
+uint16_t readBatterLevel() {
 	isEcho_ = false;
 	
 	/* Set PC1 to trigger on pin 13, PINC5 */

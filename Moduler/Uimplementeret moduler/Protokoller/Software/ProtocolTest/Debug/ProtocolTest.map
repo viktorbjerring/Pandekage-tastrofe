@@ -32,10 +32,10 @@ Discarded input sections
  .bss           0x00000000        0x0 main.o
  .text.I2C_SLAVE_checkData
                 0x00000000       0x16 main.o
- .text.I2C_SLAVE_readFirst
-                0x00000000       0x36 main.o
  .text.I2C_SLAVE_getData
                 0x00000000        0x6 main.o
+ .text.I2C_SLAVE_readFirst
+                0x00000000       0x36 main.o
  .text          0x00000000        0x0 USART.o
  .data          0x00000000        0x0 USART.o
  .bss           0x00000000        0x0 USART.o
@@ -237,7 +237,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x6e0
+.text           0x00000000      0x710
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -356,27 +356,29 @@ END GROUP
                 0x00000288       0x3e main.o
                 0x00000288                I2C_SLAVE_addData
  .text.__vector_1
-                0x000002c6      0x246 main.o
+                0x000002c6      0x23c main.o
                 0x000002c6                __vector_1
  .text.__vector_5
-                0x0000050c       0x52 main.o
-                0x0000050c                __vector_5
- .text.main     0x0000055e       0x4c main.o
-                0x0000055e                main
+                0x00000502       0x52 main.o
+                0x00000502                __vector_5
+ .text.main     0x00000554       0x66 main.o
+                0x00000554                main
+ .text.wait     0x000005ba       0x20 main.o
+                0x000005ba                wait
  .text.initUART
-                0x000005aa       0xde USART.o
-                0x000005aa                initUART
+                0x000005da       0xde USART.o
+                0x000005da                initUART
  .text.sendChar
-                0x00000688       0x10 USART.o
-                0x00000688                sendChar
+                0x000006b8       0x10 USART.o
+                0x000006b8                sendChar
  .text.libgcc.div
-                0x00000698       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000698                __udivmodsi4
-                0x000006dc                . = ALIGN (0x2)
+                0x000006c8       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000006c8                __udivmodsi4
+                0x0000070c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000006dc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000006dc                _exit
-                0x000006dc                exit
+ .fini9         0x0000070c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000070c                _exit
+                0x0000070c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -395,11 +397,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000006dc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000070c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000006e0                _etext = .
+                0x00000710                _etext = .
 
-.data           0x00800100        0x0 load address 0x000006e0
+.data           0x00800100        0x0 load address 0x00000710
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -422,51 +424,52 @@ END GROUP
                 0x00800101        0x1 I2C_MASTER.o
  .bss.I2C_MASTER_hw_mutex
                 0x00800102        0x1 I2C_MASTER.o
- .bss.I2C_SLAVE_full
+                0x00800102                I2C_MASTER_hw_mutex
+ .bss.I2C_SLAVE_shouldWrite
                 0x00800103        0x1 main.o
-                0x00800103                I2C_SLAVE_full
- .bss.I2C_SLAVE_last
+                0x00800103                I2C_SLAVE_shouldWrite
+ .bss.I2C_SLAVE_recevedAddr
                 0x00800104        0x1 main.o
-                0x00800104                I2C_SLAVE_last
- .bss.I2C_SLAVE_first
+                0x00800104                I2C_SLAVE_recevedAddr
+ .bss.I2C_SLAVE_recevedBits
                 0x00800105        0x1 main.o
-                0x00800105                I2C_SLAVE_first
- .bss.I2C_SLAVE_beginHold
+                0x00800105                I2C_SLAVE_recevedBits
+ .bss.I2C_SLAVE_toSend
                 0x00800106        0x1 main.o
-                0x00800106                I2C_SLAVE_beginHold
- .bss.I2C_SLAVE_startRecived
+                0x00800106                I2C_SLAVE_toSend
+ .bss.I2C_SLAVE_tempSave
                 0x00800107        0x1 main.o
-                0x00800107                I2C_SLAVE_startRecived
- .bss.I2C_SLAVE_recevedData
+                0x00800107                I2C_SLAVE_tempSave
+ .bss.I2C_SLAVE_dataReady
                 0x00800108        0x1 main.o
-                0x00800108                I2C_SLAVE_recevedData
+                0x00800108                I2C_SLAVE_dataReady
  .bss.I2C_SLAVE_haveSended
                 0x00800109        0x1 main.o
                 0x00800109                I2C_SLAVE_haveSended
- .bss.I2C_SLAVE_dataReady
+ .bss.I2C_SLAVE_recevedData
                 0x0080010a        0x1 main.o
-                0x0080010a                I2C_SLAVE_dataReady
- .bss.I2C_SLAVE_tempSave
+                0x0080010a                I2C_SLAVE_recevedData
+ .bss.I2C_SLAVE_startRecived
                 0x0080010b        0x1 main.o
-                0x0080010b                I2C_SLAVE_tempSave
- .bss.I2C_SLAVE_toSend
+                0x0080010b                I2C_SLAVE_startRecived
+ .bss.I2C_SLAVE_beginHold
                 0x0080010c        0x1 main.o
-                0x0080010c                I2C_SLAVE_toSend
- .bss.I2C_SLAVE_recevedBits
+                0x0080010c                I2C_SLAVE_beginHold
+ .bss.I2C_SLAVE_first
                 0x0080010d        0x1 main.o
-                0x0080010d                I2C_SLAVE_recevedBits
- .bss.I2C_SLAVE_recevedAddr
+                0x0080010d                I2C_SLAVE_first
+ .bss.I2C_SLAVE_last
                 0x0080010e        0x1 main.o
-                0x0080010e                I2C_SLAVE_recevedAddr
- .bss.I2C_SLAVE_shouldWrite
+                0x0080010e                I2C_SLAVE_last
+ .bss.I2C_SLAVE_full
                 0x0080010f        0x1 main.o
-                0x0080010f                I2C_SLAVE_shouldWrite
+                0x0080010f                I2C_SLAVE_full
  *(COMMON)
  COMMON         0x00800110        0x2 main.o
                 0x00800110                I2C_SLAVE_Buffer
                 0x00800112                PROVIDE (__bss_end, .)
-                0x000006e0                __data_load_start = LOADADDR (.data)
-                0x000006e0                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000710                __data_load_start = LOADADDR (.data)
+                0x00000710                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800112        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -539,60 +542,60 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x110
+.debug_aranges  0x00000000      0x118
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x48 I2C_MASTER.o
  .debug_aranges
-                0x00000048       0x80 main.o
+                0x00000048       0x88 main.o
  .debug_aranges
-                0x000000c8       0x48 USART.o
+                0x000000d0       0x48 USART.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1038
+.debug_info     0x00000000     0x10c4
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0x268 I2C_MASTER.o
- .debug_info    0x0000085c      0x534 main.o
- .debug_info    0x00000d90      0x2a8 USART.o
+ .debug_info    0x000005f4      0x269 I2C_MASTER.o
+ .debug_info    0x0000085d      0x5bf main.o
+ .debug_info    0x00000e1c      0x2a8 USART.o
 
-.debug_abbrev   0x00000000      0xa39
+.debug_abbrev   0x00000000      0xa5c
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x13b I2C_MASTER.o
- .debug_abbrev  0x000006dd      0x1d0 main.o
- .debug_abbrev  0x000008ad      0x18c USART.o
+ .debug_abbrev  0x000006dd      0x1f3 main.o
+ .debug_abbrev  0x000008d0      0x18c USART.o
 
-.debug_line     0x00000000      0xa2d
+.debug_line     0x00000000      0xa7e
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000133      0x27f I2C_MASTER.o
- .debug_line    0x000003b2      0x4c3 main.o
- .debug_line    0x00000875      0x1b8 USART.o
+ .debug_line    0x000003b2      0x514 main.o
+ .debug_line    0x000008c6      0x1b8 USART.o
 
-.debug_frame    0x00000000      0x280
+.debug_frame    0x00000000      0x2a0
  *(.debug_frame)
  .debug_frame   0x00000000       0x84 I2C_MASTER.o
- .debug_frame   0x00000084      0x150 main.o
- .debug_frame   0x000001d4       0xac USART.o
+ .debug_frame   0x00000084      0x170 main.o
+ .debug_frame   0x000001f4       0xac USART.o
 
-.debug_str      0x00000000      0x7db
+.debug_str      0x00000000      0x7e0
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x32d I2C_MASTER.o
                                 0x366 (size before relaxing)
- .debug_str     0x00000535      0x207 main.o
-                                0x48d (size before relaxing)
- .debug_str     0x0000073c       0x9f USART.o
+ .debug_str     0x00000535      0x20c main.o
+                                0x4d1 (size before relaxing)
+ .debug_str     0x00000741       0x9f USART.o
                                 0x22e (size before relaxing)
 
-.debug_loc      0x00000000      0x505
+.debug_loc      0x00000000      0x55e
  *(.debug_loc)
  .debug_loc     0x00000000       0xd1 I2C_MASTER.o
- .debug_loc     0x000000d1      0x205 main.o
- .debug_loc     0x000002d6      0x22f USART.o
+ .debug_loc     0x000000d1      0x25e main.o
+ .debug_loc     0x0000032f      0x22f USART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -612,11 +615,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xe0
+.debug_ranges   0x00000000       0xe8
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x38 I2C_MASTER.o
- .debug_ranges  0x00000038       0x70 main.o
- .debug_ranges  0x000000a8       0x38 USART.o
+ .debug_ranges  0x00000038       0x78 main.o
+ .debug_ranges  0x000000b0       0x38 USART.o
 
 .debug_macro
  *(.debug_macro)

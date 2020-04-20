@@ -36,6 +36,7 @@ SUBDIRS :=  \
 ../ControlUnit \
 ../BatterDispenser \
 ../BatterCooler \
+../I2C \
 ../UltraSonic \
 ../PanController
 
@@ -45,6 +46,7 @@ C_SRCS +=  \
 ../BatterCooler/BatterCooler.cpp \
 ../BatterDispenser/BatterDispenser.cpp \
 ../ControlUnit/ControlUnit.cpp \
+../I2C/I2C_MASTER.c \
 ../main.cpp \
 ../PanController/PanController.cpp \
 ../uart.cpp \
@@ -61,6 +63,7 @@ OBJS +=  \
 BatterCooler/BatterCooler.o \
 BatterDispenser/BatterDispenser.o \
 ControlUnit/ControlUnit.o \
+I2C/I2C_MASTER.o \
 main.o \
 PanController/PanController.o \
 uart.o \
@@ -70,6 +73,7 @@ OBJS_AS_ARGS +=  \
 BatterCooler/BatterCooler.o \
 BatterDispenser/BatterDispenser.o \
 ControlUnit/ControlUnit.o \
+I2C/I2C_MASTER.o \
 main.o \
 PanController/PanController.o \
 uart.o \
@@ -79,6 +83,7 @@ C_DEPS +=  \
 BatterCooler/BatterCooler.d \
 BatterDispenser/BatterDispenser.d \
 ControlUnit/ControlUnit.d \
+I2C/I2C_MASTER.d \
 main.d \
 PanController/PanController.d \
 uart.d \
@@ -88,6 +93,7 @@ C_DEPS_AS_ARGS +=  \
 BatterCooler/BatterCooler.d \
 BatterDispenser/BatterDispenser.d \
 ControlUnit/ControlUnit.d \
+I2C/I2C_MASTER.d \
 main.d \
 PanController/PanController.d \
 uart.d \
@@ -110,49 +116,56 @@ LINKER_SCRIPT_DEP+=
 BatterCooler/BatterCooler.o: ../BatterCooler/BatterCooler.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 BatterDispenser/BatterDispenser.o: ../BatterDispenser/BatterDispenser.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ControlUnit/ControlUnit.o: ../ControlUnit/ControlUnit.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+I2C/I2C_MASTER.o: ../I2C/I2C_MASTER.c
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 PanController/PanController.o: ../PanController/PanController.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./uart.o: .././uart.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 UltraSonic/UltraSonic.o: ../UltraSonic/UltraSonic.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
@@ -182,13 +195,13 @@ all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER_SCRIPT_DEP)
 	@echo Building target: $@
 	@echo Invoking: AVR8/GNU Linker : 5.4.0
-	$(QUOTE)D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="BatterController.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega328p -B "D:\AU programmer\Atmel\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p"  
+	$(QUOTE)E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="BatterController.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega328p -B "E:\Programs\Atmel_Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p"  
 	@echo Finished building target: $@
-	"D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "BatterController.elf" "BatterController.hex"
-	"D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "BatterController.elf" "BatterController.eep" || exit 0
-	"D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "BatterController.elf" > "BatterController.lss"
-	"D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "BatterController.elf" "BatterController.srec"
-	"D:\AU programmer\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "BatterController.elf"
+	"E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "BatterController.elf" "BatterController.hex"
+	"E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "BatterController.elf" "BatterController.eep" || exit 0
+	"E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "BatterController.elf" > "BatterController.lss"
+	"E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "BatterController.elf" "BatterController.srec"
+	"E:\Programs\Atmel_Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "BatterController.elf"
 	
 	
 

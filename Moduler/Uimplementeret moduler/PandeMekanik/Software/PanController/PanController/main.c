@@ -12,13 +12,6 @@
 #include "I2C_SLAVE.h"
 #include "Motor.h"
 
-//Set main clock to 8 MHz
-FUSES = {
-	.low = 0x12,			//Internal occilator at 8 MHz and startup time at fastest possible
-	.high = HFUSE_DEFAULT,
-	.extended = EFUSE_DEFAULT,
-};
-
 void init_1Hz_timer();
 
 int main(void)
@@ -31,6 +24,9 @@ int main(void)
 	I2C_SLAVE_init();			//Initialize the I2C communication
 	init_regulation();			//Initialize the regulation
 	init_motors();				//Initialize the motor pins and PWMs
+
+	I2C_err_t ret = I2C_OK;
+	I2C_commands_t temp = 0xFF;
 	
     /* Replace with your application code */
     while (1) 
@@ -44,21 +40,30 @@ int main(void)
 		}
 		
 		if (I2C_SLAVE_checkData()){
-			I2C_commands_t temp = I2C_SLAVE_getData();
-			switch (temp) {
+			temp = I2C_SLAVE_getData();
+		}
+		
+		switch (temp) {
 				
-				case PING:
-					I2C_SLAVE_sendData(temp);
-					break;
-				case GET_FIRST_PAN_STATUS:
-					I2C_SLAVE_sendData(pan1Free & heat_ok);
-					break;
-				case BEGIN_COOCKING:
-					startTimePan1();
-					break;
-				default:
-					break;
-			}	
+			case PING:
+				ret = I2C_SLAVE_sendData(temp);
+				if (ret == I2C_OK)
+					temp = 0xFF;
+				break;
+
+			case GET_FIRST_PAN_STATUS:
+				ret = I2C_SLAVE_sendData(pan1Free & heat_ok);
+				if (ret == I2C_OK)
+					temp = 0xFF;
+				break;
+
+			case BEGIN_COOCKING:
+				if (pan1Free & heat_ok)
+				startTimePan1();
+				break;
+
+			default:
+				break;
 		}
 		
     }

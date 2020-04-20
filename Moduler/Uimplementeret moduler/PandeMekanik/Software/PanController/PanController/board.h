@@ -20,11 +20,11 @@ extern volatile uint16_t pan2_cooking_time;
 extern volatile bool pan1Free;
 extern volatile bool pan2Free;
 
-#define F_CPU				8000000		//8 MHZ
+#define F_CPU				16000000		//16 MHZ
 
 
-#define TIMER_1HZ_TOP					0x7A11	//TOP = (800000/256) - 1 = 31249
-#define TIMER2_COUNTS_PR_SECOND			125		//Timer 2 has a freq of 125 Hz
+#define TIMER_1HZ_TOP					62499?	//TOP = (1600000/256) - 1 = 62.499?
+#define TIMER2_COUNTS_PR_SECOND			250		//Timer 2 has a freq of 250 Hz
 
 //Baking time
 
@@ -37,7 +37,7 @@ extern volatile bool pan2Free;
 #define MOTOR_OPTIMUM_PWM_BACKWARD		100		//100% duty cycle
 #define MOTOR_OPTIMUM_PWM_BREAK			100		//100% duty cycle
 
-//NOTE max 332 seconds total
+//NOTE max 166 seconds total
 #define MOTOR_FORWARD_TIME_S			TIMER2_COUNTS_PR_SECOND * 0x04								//4 seconds
 #define MOTOR_BREAK_FORWARD_TIME_S		MOTOR_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds
 #define MOTOR_BACKWARD_TIME_S			MOTOR_BREAK_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x04		//4 seconds

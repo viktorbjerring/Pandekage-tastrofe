@@ -31,9 +31,6 @@ void slavePoll() {
 				int level = getBatterLevel();
 				I2C_SLAVE_sendData(static_cast<char>(level));
 				break;
-
-			default:
-				break;
 		}
 	}
 }

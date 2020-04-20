@@ -12,8 +12,7 @@
 
 #include <avr/interrupt.h>
 
-static bool I2C_MASTER_hw_mutex = false
-;
+static bool I2C_MASTER_hw_mutex = false;
 static uint8_t local_read_data = 0;
 static bool data_ready_flag = false;
 

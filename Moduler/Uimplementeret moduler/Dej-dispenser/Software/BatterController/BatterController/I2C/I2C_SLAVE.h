@@ -131,6 +131,7 @@ void I2C_SLAVE_init()
 	I2C_SLAVE_SCL_RISING();
 	I2C_SLAVE_SDA_INT_INIT();
 	I2C_SLAVE_SDA_INT_ENAB(1);
+	I2C_SLAVE_SCL_INT_ENAB(1);
 	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
 	I2C_SLAVE_DDR |= 1 << 6 | 1 << 5 | 1 << 7;
 	I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
@@ -219,6 +220,29 @@ char I2C_SLAVE_readFirst()
 	return 0;
 }
 
+
+ISR(I2C_SLAVE_SDA_vect)
+{
+	if((I2C_SLAVE_PIN & 1 << I2C_SLAVE_SCL) ==(1 << I2C_SLAVE_SCL))
+	{
+		if(I2C_SLAVE_PIN & 1 << I2C_SLAVE_SDA)
+		{
+			I2C_SLAVE_startRecived = false;
+		}
+		else
+		{
+			I2C_SLAVE_startRecived = true;
+		}
+		if(I2C_SLAVE_startRecived == false)
+		{
+			//sendChar(0xDA);
+			I2C_SLAVE_recevedAddr = 0;
+			I2C_SLAVE_recevedBits = 0;
+			I2C_SLAVE_SCL_RISING();
+			I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
+		}
+	}
+}
 
 ISR(I2C_SLAVE_SCL_vect)
 {
@@ -313,27 +337,6 @@ ISR(I2C_SLAVE_SCL_vect)
 }
 
 
-ISR(I2C_SLAVE_SDA_vect)
-{
-	if((I2C_SLAVE_PIN & 1 << I2C_SLAVE_SCL) ==(1 << I2C_SLAVE_SCL))
-	{
-		if(I2C_SLAVE_PIN & 1 << I2C_SLAVE_SDA)
-		{
-			I2C_SLAVE_startRecived = false;
-		}
-		else
-		{
-			I2C_SLAVE_startRecived = true;
-		}
-		if(I2C_SLAVE_startRecived == false)
-		{
-			//sendChar(0xDA);
-			I2C_SLAVE_recevedAddr = 0;
-			I2C_SLAVE_recevedBits = 0;
-			I2C_SLAVE_SCL_RISING();
-			I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
-		}
-	}
-}
+
 
 #endif /* I2C_SLAVE_SLAVE_H_ */

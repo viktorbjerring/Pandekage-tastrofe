@@ -80,11 +80,9 @@ static uint16_t readHeatLevel(){
 	return ((ADCH & 0x03) << 8) + temp;
 }
 
-//Regulation loop
-ISR(ADC_vect)
+//Regulation loop - not time critical
+ISR(ADC_vect, ISR_NOBLOCK)
 {
-	//Not time critical, so use sei to enable interrupt nesting
-	sei();
 	
 	uint16_t temp = readHeatLevel();
 	

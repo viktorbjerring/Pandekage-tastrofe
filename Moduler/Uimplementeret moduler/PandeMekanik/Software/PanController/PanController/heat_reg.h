@@ -11,8 +11,8 @@
 
 #include "board.h"
 
-extern bool heat_on_ctrl;
-extern bool heat_ok;
+extern volatile bool heat_on_ctrl;
+extern volatile bool heat_ok;
 
 /*
 	Probename is:
@@ -63,9 +63,9 @@ void init_regulation(){
 #define PAN2	true
 
 
-static bool curr_pan = PAN1;
+static volatile bool curr_pan = PAN1;
 
-void setPWMLevel(uint8_t PWM_level){	//Sets the PWM level for the heating
+static void setPWMLevel(uint8_t PWM_level){	//Sets the PWM level for the heating
 	
 	if (curr_pan)
 		OCR1B = ceil(TIMER_1HZ_TOP - ((TIMER_1HZ_TOP/100) * (PWM_level > 100 ? 100 : PWM_level)));
@@ -73,7 +73,7 @@ void setPWMLevel(uint8_t PWM_level){	//Sets the PWM level for the heating
 		OCR1A = ceil(TIMER_1HZ_TOP - ((TIMER_1HZ_TOP/100) * (PWM_level > 100 ? 100 : PWM_level)));
 }
 
-uint16_t readHeatLevel(){
+static uint16_t readHeatLevel(){
 	
 	//Read ADCL first - it is important
 	uint8_t temp = ADCL & 0xFC;	//Don't count lowest 2 bits to reduce mistakes

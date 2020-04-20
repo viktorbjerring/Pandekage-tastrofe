@@ -11,7 +11,7 @@
 
 #include "board.h"
 
-extern bool heat_on_ctrl;
+extern volatile bool heat_on_ctrl;
 
 //PAN_ON_OFF interrupt
 // pin for heat on/off is B0
@@ -43,7 +43,7 @@ void pancakeDone(){
 
 }
 
-void turnOnPans() {
+static void turnOnPans() {
 	if(PINB0){
 		heat_on_ctrl = !heat_on_ctrl;		//Toggle the heat control variable
 	}

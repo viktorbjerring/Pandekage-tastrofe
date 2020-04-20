@@ -13,9 +13,9 @@
 #include "heat_reg.h"
 #include "Digital_protocol.h"
 
-extern bool heat_ok;
-extern bool pan1Free;
-extern bool pan2Free;
+extern volatile bool heat_ok;
+extern volatile bool pan1Free;
+extern volatile bool pan2Free;
 
 typedef enum {
 	//Motor states
@@ -37,7 +37,7 @@ typedef enum {
 #define	MOTOR2		true
 
 
-void setMotorPWM(uint8_t PWM, bool motor);
+static void setMotorPWM(uint8_t PWM, bool motor);
 
 
 //Direction ports
@@ -63,8 +63,9 @@ void setMotorPWM(uint8_t PWM, bool motor);
 #define TIMER0_TOP		0xFF
 #define TIMER2_TOP		250-1
 
-void startTimer2();
-void stopTimer2();
+static void startTimer2();
+static void stopTimer2();
+static void startTimePan2();
 
 void init_motors(){
 	
@@ -109,7 +110,7 @@ void startTimePan1(){
 	
 }
 
-void startTimePan2(){
+static void startTimePan2(){
 	
 	//Set internal flag
 	pan2_cooking_time = 0;
@@ -117,10 +118,10 @@ void startTimePan2(){
 	
 }
 
-static uint16_t curr_time = 0;	
-static bool motor_flipping = MOTOR1;
+static volatile uint16_t curr_time = 0;	
+static volatile bool motor_flipping = MOTOR1;
 
-void setMotorPWM(uint8_t PWM, bool motor) {
+static void setMotorPWM(uint8_t PWM, bool motor) {
 	if (motor == MOTOR1) {
 		OCR0A = (TIMER0_TOP - ceil(((256/100) * (PWM > 100? 100 : PWM))));
 	}
@@ -154,12 +155,12 @@ void flipPan2(){
 	
 }
 
-void startTimer2(){
+static void startTimer2(){
 	curr_time = 0;
 	TCCR2B |= (1 << CS22) | (1 << CS20);
 }
 
-void stopTimer2(){
+static void stopTimer2(){
 	//Stop clock
 	TCCR2B &= ~((1 << CS22) | (1 << CS20));
 	

@@ -12,13 +12,13 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
-extern bool heat_on_ctrl;
-extern bool heat_ok;
-extern bool pancake_done;
-extern uint16_t pan1_cooking_time;
-extern uint16_t pan2_cooking_time;
-extern bool pan1Free;
-extern bool pan2Free;
+extern volatile bool heat_on_ctrl;
+extern volatile bool heat_ok;
+extern volatile bool pancake_done;
+extern volatile uint16_t pan1_cooking_time;
+extern volatile uint16_t pan2_cooking_time;
+extern volatile bool pan1Free;
+extern volatile bool pan2Free;
 
 #define F_CPU				8000000		//8 MHZ
 

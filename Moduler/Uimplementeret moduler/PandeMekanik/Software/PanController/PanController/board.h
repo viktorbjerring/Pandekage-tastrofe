@@ -37,10 +37,11 @@ extern bool pan2Free;
 #define MOTOR_OPTIMUM_PWM_BACKWARD		0xFF
 #define MOTOR_OPTIMUM_PWM_BREAK			0xFF
 
-#define MOTOR_FORWARD_TIME_S			TIMER2_COUNTS_PR_SECOND * 0x83		//83 seconds = 1/4 possible time
-#define MOTOR_BREAK_FORWARD_TIME_S		MOTOR_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x83		//83 seconds = 1/4 possible time
-#define MOTOR_BACKWARD_TIME_S			MOTOR_BREAK_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x83		//83 seconds = 1/4 possible time
-#define MOTOR_BREAK_BACKWARD_TIME_S		MOTOR_BACKWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x83		//83 seconds = 1/4 possible time
+//NOTE max 83 seconds pr stage
+#define MOTOR_FORWARD_TIME_S			TIMER2_COUNTS_PR_SECOND * 0x04		//4 seconds = 1/4 possible time
+#define MOTOR_BREAK_FORWARD_TIME_S		MOTOR_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds = 1/4 possible time
+#define MOTOR_BACKWARD_TIME_S			MOTOR_BREAK_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x04		//4 seconds = 1/4 possible time
+#define MOTOR_BREAK_BACKWARD_TIME_S		MOTOR_BACKWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds = 1/4 possible time
 
 
 

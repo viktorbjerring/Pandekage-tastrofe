@@ -23,44 +23,51 @@ ISR(PCINT1_vect) {
 	if (isEcho_)
 	{
 		/* Turn off timer2 */
-		TCCR2B = 0;
+		ULTRSNC_TCCRB = 0;
 		
 		/* Calculate and save distance */
-		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(TCNT2)); // Distance in mm
+		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(ULTRSNC_TCNT)); // Distance in mm
+		
+		/* Calculate batter level from bottom of container */
+		batterLevel_ = CNTNR_H - batterLevel_;
 		
 		/* Turn off pin change 13 interrupt */
-		PCMSK1 &= ~(1 << PCINT13);
+		ULTRSNC_PCMSK &= ~(1 << ULTRSNC_PCINT);
 	}
 	else
 	{
 		/* Reset and start timer2 */
-		TCNT2 = 0;
-		TCCR2B = 0b00000110;
+		ULTRSNC_TCNT = 0;
+		ULTRSNC_TCCRB = 0b00000110;
 		
 		isEcho_ = true;
 	}
 }
 
 void initUltrasonic() {
-	DDRD |=  (1<<PORTC1); // Trigger pin
-	DDRD &= ~(1<<PINC2); // Echo pin
-	TCCR2A = 0; // Clear timer2 register A
-	PCICR |= (1 << PCIE1); // enable pin change interrupt 1
+	ULTRSNC_TRGGR_DDR |=  (1<<ULTRSNC_TRGGR_PORT_NUM); // Trigger pin
+	ULTRSNC_ECHO_DDR &= ~(1<<ULTRSNC_ECHO_PIN_NUM); // Echo pin
+	ULTRSNC_TCCRA = 0; // Clear timer2 register A
+	PCICR |= (1 << ULTRSNC_PCIE); // enable pin change interrupt 1
 }
 
-uint16_t readBatterLevel() {
+int readBatterAmount() {
 	isEcho_ = false;
 	
 	/* Set PC1 to trigger on pin 13, PINC5 */
-	PCMSK1 |= (1 << PCINT10);
+	ULTRSNC_PCMSK |= (1 << ULTRSNC_PCINT);
 	
 	/* Pulse trigger pin */
-	PORTD |= (1<<PORTD4);
+	ULTRSNC_TRGGR_PORT |= (1<<ULTRSNC_TRGGR_PORT_NUM);
 	_delay_us(10);
-	PORTD &= ~(1<<PORTD4);
+	ULTRSNC_TRGGR_PORT &= ~(1<<ULTRSNC_TRGGR_PORT_NUM);
 	
 	/* Wait for measurement */
 	_delay_ms(10);
 	
-	return batterLevel_;
+	/* Calculate amount of pancakes that can be made with current amount of batter */
+	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
+	int pancakesLeft = batterVolume / DSG_VOL;
+	
+	return pancakesLeft;
 }

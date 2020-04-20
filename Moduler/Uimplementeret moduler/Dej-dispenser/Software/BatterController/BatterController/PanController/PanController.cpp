@@ -14,7 +14,7 @@ void initPanController() {
 
 void waitForFreePan() {
 	I2C_MASTER_sendData(I2C_PAN_ADDR, GET_FIRST_PAN_STATUS);
-}
+} 
 
 void cookingBegin() {
 	I2C_MASTER_sendData(I2C_PAN_ADDR, BEGIN_COOCKING);

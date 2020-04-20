@@ -14,8 +14,7 @@ PanController/PanController.d PanController/PanController.o: \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
- ../PanController/../I2C/I2C_MASTER.h
+ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h
 
 ../PanController/PanController.h:
 
@@ -48,5 +47,3 @@ d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lo
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 d:\au\ programmer\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h:
-
-../PanController/../I2C/I2C_MASTER.h:

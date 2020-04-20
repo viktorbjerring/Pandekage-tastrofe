@@ -1,7 +1,8 @@
 #ifndef I2C_COMMON_HEADER
 #define I2C_COMMON_HEADER
 
-#define I2C_SLAVE_ADDR	0x01
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 typedef enum {
 	PING = 0,				//CHECK/DEBUG

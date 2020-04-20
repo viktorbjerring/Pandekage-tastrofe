@@ -29,7 +29,9 @@ int main()
 	initUltrasonic();
 	initBatterDispenser();
 	
-    /* Replace with your application code */
+	/* Initialize indicator */
+	INDCTR_DDR |= (1<<INDCTR_PORT_NUM);
+	
     while (1) 
     {
 		slavePoll();
@@ -43,8 +45,15 @@ void pancakeBegin() {
 	cookingBegin();
 }
 
-int getBatterLevel() {
-	return readBatterLevel();
+int getBatterAmount() {
+	int level = readBatterAmount();
+	
+	if (level > MIN_BATTER_LEVEL)
+		INDCTR_PORT |=  (1<<INDCTR_PORT_NUM);
+	else
+		INDCTR_PORT &= !(1<<INDCTR_PORT_NUM);
+	
+	return level;
 }
 
 void turnOnCooling() {

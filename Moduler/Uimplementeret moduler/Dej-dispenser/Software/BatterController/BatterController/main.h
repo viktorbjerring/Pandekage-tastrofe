@@ -9,6 +9,12 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#define INDCTR_DDR      DDRB
+#define INDCTR_PORT     PORTB
+#define INDCTR_PORT_NUM PORTB0
+
+#define MIN_BATTER_LEVEL 5
+
 // Main function
 int main();
 
@@ -16,7 +22,7 @@ int main();
 void pancakeBegin();
 
 // UC3
-int getBatterLevel();
+int getBatterAmount();
 
 // UC4
 void turnOnCooling();

@@ -46,15 +46,15 @@
 #define I2C_SLAVE_SDA_vect PCINT2_vect
 
 // ## DataContainers ##
-char I2C_SLAVE_shouldWrite = 0;
-char I2C_SLAVE_recevedAddr = 0;
-char I2C_SLAVE_recevedBits = 0;
-volatile char I2C_SLAVE_toSend = 0;
-char I2C_SLAVE_tempSave = 0;
-char I2C_SLAVE_dataReady = 0;
-char I2C_SLAVE_haveSended = 0;
-char I2C_SLAVE_recevedData = 0;
-bool I2C_SLAVE_startRecived = false;
+static char I2C_SLAVE_shouldWrite = 0;
+static char I2C_SLAVE_recevedAddr = 0;
+static char I2C_SLAVE_recevedBits = 0;
+static volatile char I2C_SLAVE_toSend = 0;
+static char I2C_SLAVE_tempSave = 0;
+static char I2C_SLAVE_dataReady = 0;
+static char I2C_SLAVE_haveSended = 0;
+static char I2C_SLAVE_recevedData = 0;
+static bool I2C_SLAVE_startRecived = false;
 
 // ## Functional macros ##
 #define I2C_SLAVE_SET_BIT(toByte,toBit,fromByte,fromBit)  (((toByte) & ~(1 << (toBit))) + ((1 << (toBit))& (((fromByte) >> (fromBit))<<(toBit))))
@@ -72,29 +72,29 @@ bool I2C_SLAVE_startRecived = false;
 #define I2C_SLAVE_SDA_INT_INIT() I2C_SLAVE_PCMSK = I2C_SLAVE_SET_BIT(PCICR,I2C_SLAVE_PCINT,1,0);
 
 // ## DataReceve ##
-bool I2C_SLAVE_beginHold = false;
-unsigned char I2C_SLAVE_first = 0;
-unsigned char I2C_SLAVE_last = 0;
-bool I2C_SLAVE_full = false;
-char I2C_SLAVE_Buffer[I2C_SLAVE_BUFFER_LENGTH];
+static bool I2C_SLAVE_beginHold = false;
+volatile static unsigned char I2C_SLAVE_first = 0;
+volatile static unsigned char I2C_SLAVE_last = 0;
+volatile static bool I2C_SLAVE_full = false;
+static char I2C_SLAVE_Buffer[I2C_SLAVE_BUFFER_LENGTH];
 
-void I2C_SLAVE_addData(char data);
-char I2C_SLAVE_readFirst();
+static void I2C_SLAVE_addData(char data);
+static char I2C_SLAVE_readFirst();
 
 // ## USER COMMANDS Below ##
-bool I2C_SLAVE_checkData();
+volatile bool I2C_SLAVE_checkData();
 void I2C_SLAVE_sendData(char data);
 I2C_commands_t I2C_SLAVE_getData();
 void I2C_SLAVE_init();
 
 // ## Internal commands ##
-void I2C_SLAVE_sendBit(char bit);
-void I2C_SLAVE_beginSend();
-int I2C_SLAVE_hold();
+static void I2C_SLAVE_sendBit(char bit);
+static void I2C_SLAVE_beginSend();
+static int I2C_SLAVE_hold();
 
 // ## Definitions bellow ##
 
-bool I2C_SLAVE_checkData()
+volatile bool I2C_SLAVE_checkData()
 {
 	if(I2C_SLAVE_first != I2C_SLAVE_last || I2C_SLAVE_full)
 	{
@@ -123,6 +123,7 @@ void I2C_SLAVE_sendData(char data)
 
 I2C_commands_t I2C_SLAVE_getData()
 {
+	while(!I2C_SLAVE_checkData());
 	return (I2C_commands_t)I2C_SLAVE_readFirst();
 }
 
@@ -131,6 +132,7 @@ void I2C_SLAVE_init()
 	I2C_SLAVE_SCL_RISING();
 	I2C_SLAVE_SDA_INT_INIT();
 	I2C_SLAVE_SDA_INT_ENAB(1);
+	I2C_SLAVE_SCL_INT_ENAB(1);
 	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
 	I2C_SLAVE_DDR |= 1 << 6 | 1 << 5 | 1 << 7;
 	I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
@@ -138,7 +140,7 @@ void I2C_SLAVE_init()
 
 // ## Internal commands ##
 
-void I2C_SLAVE_sendBit(char bit)
+static void I2C_SLAVE_sendBit(char bit)
 {
 	if(I2C_SLAVE_dataReady == 1)
 	{
@@ -153,7 +155,7 @@ void I2C_SLAVE_sendBit(char bit)
 	I2C_SLAVE_haveSended = 7;
 }
 
-void I2C_SLAVE_beginSend()
+static void I2C_SLAVE_beginSend()
 {
 	I2C_SLAVE_SCL_FALLING();
 	if(I2C_SLAVE_dataReady == 2)
@@ -162,7 +164,7 @@ void I2C_SLAVE_beginSend()
 		I2C_SLAVE_dataReady = 0;
 }
 
-int I2C_SLAVE_hold()
+static int I2C_SLAVE_hold()
 {
 	//I2C_SLAVE_DDR &=  ~(1 << I2C_SLAVE_SCL);
 	
@@ -178,7 +180,7 @@ int I2C_SLAVE_hold()
 	return 0;
 }
 
-unsigned char I2C_SLAVE_inc(unsigned char * num)
+static unsigned char I2C_SLAVE_inc(volatile unsigned char * num)
 {
 	unsigned char temp = *num;
 	(*num)++;
@@ -189,7 +191,7 @@ unsigned char I2C_SLAVE_inc(unsigned char * num)
 	return temp;
 }
 
-void I2C_SLAVE_addData(char data)
+static void I2C_SLAVE_addData(char data)
 {
 	if(I2C_SLAVE_full)
 	{
@@ -202,7 +204,7 @@ void I2C_SLAVE_addData(char data)
 	}
 }
 
-char I2C_SLAVE_readFirst()
+static char I2C_SLAVE_readFirst()
 {
 	if(I2C_SLAVE_checkData())
 	{
@@ -230,6 +232,7 @@ ISR(I2C_SLAVE_SCL_vect)
 			{
 				I2C_SLAVE_haveSended = 0;
 				I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
+				//I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
 				//I2C_SLAVE_DDR |= 1 << I2C_SLAVE_SDA;
 			}
 			if(I2C_SLAVE_recevedBits < 7)
@@ -250,6 +253,10 @@ ISR(I2C_SLAVE_SCL_vect)
 			}
 			else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < (9))
 			{
+				if(!I2C_SLAVE_shouldWrite)
+				{
+					I2C_SLAVE_recevedData = I2C_SLAVE_SET_BIT(I2C_SLAVE_recevedData,7-(I2C_SLAVE_recevedBits-8),I2C_SLAVE_PIN,I2C_SLAVE_SDA);
+				}
 				I2C_SLAVE_recevedBits++;
 			}
 			else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < (17))

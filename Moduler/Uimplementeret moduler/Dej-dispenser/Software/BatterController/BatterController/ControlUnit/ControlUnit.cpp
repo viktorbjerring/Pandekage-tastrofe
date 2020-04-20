@@ -27,8 +27,8 @@ void slavePoll() {
 				turnOnCooling();
 				break;
 			
-			case GET_BATTER_LEVEL:
-				int level = getBatterLevel();
+			case GET_BATTER_AMOUNT:
+				int level = getBatterAmount();
 				I2C_SLAVE_sendData(static_cast<char>(level));
 				break;
 		}

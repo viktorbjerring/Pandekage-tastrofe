@@ -33,22 +33,18 @@ extern bool pan2Free;
 
 //Motor timing
 
-#define MOTOR_OPTIMUM_PWM_FORWARD		0xFF
-#define MOTOR_OPTIMUM_PWM_BACKWARD		0xFF
-#define MOTOR_OPTIMUM_PWM_BREAK			0xFF
+#define MOTOR_OPTIMUM_PWM_FORWARD		100		//100% duty cycle
+#define MOTOR_OPTIMUM_PWM_BACKWARD		100		//100% duty cycle
+#define MOTOR_OPTIMUM_PWM_BREAK			100		//100% duty cycle
 
-//NOTE max 83 seconds pr stage
-#define MOTOR_FORWARD_TIME_S			TIMER2_COUNTS_PR_SECOND * 0x04		//4 seconds = 1/4 possible time
-#define MOTOR_BREAK_FORWARD_TIME_S		MOTOR_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds = 1/4 possible time
-#define MOTOR_BACKWARD_TIME_S			MOTOR_BREAK_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x04		//4 seconds = 1/4 possible time
-#define MOTOR_BREAK_BACKWARD_TIME_S		MOTOR_BACKWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds = 1/4 possible time
+//NOTE max 332 seconds total
+#define MOTOR_FORWARD_TIME_S			TIMER2_COUNTS_PR_SECOND * 0x04								//4 seconds
+#define MOTOR_BREAK_FORWARD_TIME_S		MOTOR_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds
+#define MOTOR_BACKWARD_TIME_S			MOTOR_BREAK_FORWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x04		//4 seconds
+#define MOTOR_BREAK_BACKWARD_TIME_S		MOTOR_BACKWARD_TIME_S + TIMER2_COUNTS_PR_SECOND * 0x03		//3 seconds
 
-
-
-//Communication
-
-#define SCL_PIN_AS_I2C_SLAVE			//SCL pin of I2C connection
-#define SDA_PIN_AS_I2C_SLAVE			//SDA pin of I2C connection
-
+//I2C
+#define I2C_SLAVE_ADDR				0x70
+#define I2C_SLAVE_BUFFER_LENGTH		10
 
 #endif /* BOARD_H_ */

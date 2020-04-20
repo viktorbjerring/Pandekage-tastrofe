@@ -50,7 +50,7 @@ void turnOnPans() {
 }
 
 //PAN_ON/OFF interrupt
-ISR(DIGITAL_PROTOCOL_vect){
+	ISR(DIGITAL_PROTOCOL_vect){
 	turnOnPans();
 }
 

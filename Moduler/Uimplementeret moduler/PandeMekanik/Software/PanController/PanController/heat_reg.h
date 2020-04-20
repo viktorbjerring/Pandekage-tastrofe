@@ -109,7 +109,7 @@ ISR(ADC_vect)
 	}
 	
 	//Regulate
-	uint8_t beregning;
+	uint8_t beregning = 0;
 	setPWMLevel(beregning);
 	
 	

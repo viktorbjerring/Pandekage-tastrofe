@@ -1,6 +1,6 @@
 #ifndef I2C_COMMON_HEADER
 #define I2C_COMMON_HEADER
-
+#define ERROR 255 // 255 er fejlkode.
 typedef enum {
 	PING = 0,				//CHECK/DEBUG
 	GET_FIRST_PAN_STATUS,	//BATTER - PAN

@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
         return(I2C_MASTER_getdata());
 
     default:
-        return(-1);
+        return(ERROR); // har værdien 255
     }
 
 }

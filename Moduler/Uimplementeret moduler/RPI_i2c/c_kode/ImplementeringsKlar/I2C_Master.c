@@ -33,7 +33,6 @@ I2C_err_t I2C_MASTER_readData(char addr)
     printf("%c\n",buf);
     //Set read flag
     data_ready_flag = true;
-    
     return I2C_OK;
 }
 

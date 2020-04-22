@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect, json, json
 from datetime import datetime, timedelta
 import threading
 import random
+import subprocess
 
 # Handler stuff
 import watchdog.events 
@@ -145,17 +146,19 @@ class OrderHandling:
     def __init__(self):
         pass
     def newOrder(self):
-        #do beginPancake() in driver
-        print("Told Jesper we made a new order")
+        makePancakeCode = "3"
+        returnValue = subprocess.run(["./prog", makePancakeCode])
+        print("Told Jesper we made a new order:")
+        print(returnValue.returncode)
         return
     def checkIfPancakeIsDone(self):
         time.sleep(1) # DONT REMOVE. It is necessary or the watchdog will bug!
-        with open('pancakeDone.txt', 'r') as systemfile:
-                content = systemfile.read()
-        if(content[0] == "1"): # if we received a signal that the pancake is done
+        with open('/dev/pan', 'r') as systemfile: 
+            contents = systemfile.read()
+            print("Checked if pancake was done - result was:")
+            print(contents)
+        if(contents[0] == "1"):
             orderOverviewObj.oldestPancakeDone()
-            with open('pancakeDone.txt', 'w') as systemfile:
-                systemfile.write("0")
         return
 
 class BatterStatus:
@@ -164,20 +167,11 @@ class BatterStatus:
     def getBatterStatus(self):
         # Brug driver til at finde ud af hvad status på dejen er.
         # Til test er det implementeret med level_alarm filen
-        try:
-            with open('batter_status.txt', 'r') as systemfile: 
-                contents = systemfile.read()
-                # If it reads 1, then the indicator is on. 0 means off.
-                if(contents == "1"):
-                    return 1
-                elif(contents == "0"):
-                    return 0
-                else:
-                    # -1 means errors
-                    return -1
-        except:
-            # If unable to open the file
-            return -2
+        batterStatusCode = "4"
+        returnValue = subprocess.run(["./prog", batterStatusCode])
+        print("Asked Jesper for batter status:")
+        print(returnValue.returncode)
+        return returnValue.returncode
     def clearBatterAlarm(self):
         # Brug driver til at skrive, at vi gerne vil slukke indikater
         # Til test er det implementeret med batter_status filen
@@ -268,8 +262,9 @@ if __name__ == "__main__":
     batterStatusObj = BatterStatus()
 
 
-    path = r"/home/morten/pandemix/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/"
-    fileName = 'pancakeDone.txt'
+    #path = r"/home/morten/pandemix/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/" # For testing on mortens PC
+    path = r"/dev/"
+    fileName = 'pan'
     event_handler = PancakeHandler(path, fileName)
 
     # Start API:

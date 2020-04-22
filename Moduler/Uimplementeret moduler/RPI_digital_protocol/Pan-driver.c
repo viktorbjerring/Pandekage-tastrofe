@@ -73,7 +73,7 @@ ssize_t Pan_drv_write(struct file* filep, const char* buf, size_t count, loff_t*
 	gpio_set_value(TRIGGER_PIN, 1);
 	msleep(PIN_HIGH);
 	gpio_set_value(TRIGGER_PIN, 0);
-	return 3;
+	return 1;
 }
 
 /************************************

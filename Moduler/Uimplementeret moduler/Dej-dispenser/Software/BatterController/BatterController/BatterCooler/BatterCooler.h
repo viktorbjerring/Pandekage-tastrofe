@@ -16,5 +16,6 @@
 #include <util/delay.h>
 
 void beginCoolingRegulation();
+void endCoolingRegulation();
 unsigned int returnTemp();
 #endif /* BATTERCOOLER_H_ */

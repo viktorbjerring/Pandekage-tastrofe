@@ -31,6 +31,13 @@ void beginCoolingRegulation()
 	ADCSRB |= (1 << ADTS1) | (1 << ADTS0); // set autotrigger to timer0 compare A
 }
 
+void endCoolingRegulation()
+{
+	TCCR0B = 0;
+	TCCR1A &= ~(1 << COM1A1);
+	ADCSRA &= ~(1 << ADEN);
+}
+
 unsigned int returnTemp() {
 	while (!isReady) {
 		_delay_ms(10);

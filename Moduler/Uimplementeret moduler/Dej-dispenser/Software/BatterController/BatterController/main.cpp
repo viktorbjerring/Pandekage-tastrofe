@@ -60,3 +60,11 @@ void turnOnCooling() {
 	beginCoolingRegulation();
 }
 
+void turnOffCooling() {
+	
+}
+
+void turnOffAlarm() {
+	
+}
+

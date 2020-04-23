@@ -26,6 +26,14 @@ void slavePoll() {
 			case TURN_ON_COOLING:
 				turnOnCooling();
 				break;
+				
+			case TURN_OFF_COOLING:
+				turnOffCooling();
+				break;
+				
+			case TURN_OFF_ALARM:
+				turnOffAlarm();
+				break;
 			
 			case GET_BATTER_AMOUNT:
 				int level = getBatterAmount();

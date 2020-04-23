@@ -26,5 +26,8 @@ int getBatterAmount();
 
 // UC4
 void turnOnCooling();
+void turnOffCooling();
+
+void turnOffAlarm();
 
 #endif /* MAIN_H_ */

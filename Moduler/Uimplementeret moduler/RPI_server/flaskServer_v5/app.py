@@ -263,6 +263,10 @@ if __name__ == "__main__":
     orderHandlingObj = OrderHandling()
     batterStatusObj = BatterStatus()
 
+    turnOnCoolingCode = "5"
+    returnValue = subprocess.run(["./prog", turnOnCoolingCode])
+    print("Asked Jesper to turn on cooling:")
+    print(returnValue.returncode)
 
     #path = r"/home/morten/pandemix/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/" # For testing on mortens PC
     path = r"/dev/"

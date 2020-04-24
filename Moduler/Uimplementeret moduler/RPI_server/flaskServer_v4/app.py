@@ -270,7 +270,7 @@ if __name__ == "__main__":
     batterStatusObj = BatterStatus()
 
 
-    path = r"/home/morten/pandemix/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/"
+    path = r"/home/pi/Pandekage-tastrofe/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/"
     fileName = 'pancakeDone.txt'
     event_handler = PancakeHandler(path, fileName)
 

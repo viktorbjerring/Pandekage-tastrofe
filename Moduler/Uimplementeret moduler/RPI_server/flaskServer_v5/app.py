@@ -272,9 +272,9 @@ if __name__ == "__main__":
     
 
     #path = r"/home/morten/pandemix/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/" # For testing on mortens PC
-    #path = r"/dev/"
-    #fileName = 'pan'
-    #event_handler = PancakeHandler(path, fileName)
+    path = r"/dev/"
+    fileName = 'pan'
+    event_handler = PancakeHandler(path, fileName)
 
     # Start API:
     app.run(debug=True,use_reloader = False, host="0.0.0.0")

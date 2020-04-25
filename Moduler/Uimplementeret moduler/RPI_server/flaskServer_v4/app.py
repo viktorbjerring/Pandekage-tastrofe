@@ -269,8 +269,7 @@ if __name__ == "__main__":
     orderHandlingObj = OrderHandling()
     batterStatusObj = BatterStatus()
 
-
-    path = r"/home/pi/Pandekage-tastrofe/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/"
+    path = os.getcwd()
     fileName = 'pancakeDone.txt'
     event_handler = PancakeHandler(path, fileName)
 

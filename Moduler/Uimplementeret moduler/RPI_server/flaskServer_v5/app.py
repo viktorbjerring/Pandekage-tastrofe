@@ -148,10 +148,8 @@ class OrderHandling:
     def __init__(self):
         pass
     def newOrder(self):
-        makePancakeCode = "3"
-        returnValue = subprocess.run(["./prog", makePancakeCode])
-        print("Told Jesper we made a new order:")
-        print(returnValue.returncode)
+        userSpaceCMD(3) # Make new pancake
+        print("Told system to make a new pancake.")
         return
     def checkIfPancakeIsDone(self):
         time.sleep(1) # DONT REMOVE. It is necessary or the watchdog will bug!
@@ -169,11 +167,10 @@ class BatterStatus:
     def getBatterStatus(self):
         # Brug driver til at finde ud af hvad status på dejen er.
         # Til test er det implementeret med level_alarm filen
-        batterStatusCode = "4"
-        returnValue = subprocess.run(["./prog", batterStatusCode])
+        batterStatus = userSpaceCMD(4)
         print("Asked Jesper for batter status:")
-        print(returnValue.returncode)
-        return returnValue.returncode
+        print(batterStatus)
+        return batterStatus
     def clearBatterAlarm(self):
         # Brug driver til at skrive, at vi gerne vil slukke indikater
         # Til test er det implementeret med batter_status filen
@@ -208,6 +205,13 @@ class PancakeHandler(watchdog.events.PatternMatchingEventHandler):
             orderHandlingObj.checkIfPancakeIsDone()
                     
         self.__lastModified = newEvent
+
+def userSpaceCMD(cmd):
+    cmd = str(cmd)
+    userSpaceReturnValue = subprocess.run(["./prog", cmd])
+    print("Sent userspace cmd with code: ", cmd)
+    return userSpaceReturnValue.returncode
+
 
 # flask stuff:
 
@@ -263,15 +267,14 @@ if __name__ == "__main__":
     orderHandlingObj = OrderHandling()
     batterStatusObj = BatterStatus()
 
-    turnOnCoolingCode = "5"
-    returnValue = subprocess.run(["./prog", turnOnCoolingCode])
-    print("Asked Jesper to turn on cooling:")
-    print(returnValue.returncode)
+    userSpaceCMD(5) # Turn on cooling
+    print("Turned on cooling.")
+    
 
     #path = r"/home/morten/pandemix/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/" # For testing on mortens PC
-    path = r"/dev/"
-    fileName = 'pan'
-    event_handler = PancakeHandler(path, fileName)
+    #path = r"/dev/"
+    #fileName = 'pan'
+    #event_handler = PancakeHandler(path, fileName)
 
     # Start API:
     app.run(debug=True,use_reloader = False, host="0.0.0.0")

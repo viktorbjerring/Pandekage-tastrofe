@@ -9,7 +9,11 @@
 #ifndef I2C_SLAVE_SLAVE_H_
 #define I2C_SLAVE_SLAVE_H_
 
-
+//Sets address if not done by user to avoid compile error.
+#ifndef I2C_SLAVE_ADDR
+#warning "I2C_SLAVE_ADDR not defined, default address (0x70) used."
+#define I2C_SLAVE_ADDR 0x70
+#endif
 
 //Sets buffer length if not done by user to avoid compile error.
 #ifndef I2C_SLAVE_BUFFER_LENGTH

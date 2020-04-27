@@ -19,7 +19,8 @@ main.d main.o: .././main.cpp \
  .././main.h .././uart.h .././BatterCooler/BatterCooler.h \
  e:\programs\atmel_studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  .././BatterDispenser/BatterDispenser.h .././ControlUnit/ControlUnit.h \
- .././UltraSonic/UltraSonic.h .././PanController/PanController.h
+ .././UltraSonic/UltraSonic.h .././PanController/PanController.h \
+ .././PanController/../I2C/I2C_common.h
 
 e:\programs\atmel_studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -70,3 +71,5 @@ e:\programs\atmel_studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\i
 .././UltraSonic/UltraSonic.h:
 
 .././PanController/PanController.h:
+
+.././PanController/../I2C/I2C_common.h:

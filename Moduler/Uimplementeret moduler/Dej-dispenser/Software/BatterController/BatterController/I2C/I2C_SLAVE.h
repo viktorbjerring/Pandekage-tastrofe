@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <util/delay.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
 #include "I2C_common.h"
 
 // ## Define for port ##

@@ -18,7 +18,9 @@ function getBatterStatus() {
     let button = document.getElementById("clearBatterAlarm");
     let body = document.getElementById("body_id");
 
-    fetch('http://localhost:5000/maintenance/get_batter_status/')
+    let url = document.URL + 'get_batter_status/';
+
+    fetch(url)
     .then((response) => {
         response = response.json()
         return response;
@@ -51,7 +53,8 @@ function getBatterStatus() {
 }
 
 function clearBatterAlarm() {
-    fetch('http://localhost:5000/maintenance/clear_batter_alarm/', {
+    let url = document.URL + 'clear_batter_alarm/';
+    fetch(url, {
       method: 'POST'
     }).then((response) => {
         return response.text();

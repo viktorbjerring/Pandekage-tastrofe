@@ -4,7 +4,9 @@
 (function() {
 
     let delivery_time = document.getElementById("delivery_time");
-    fetch('http://localhost:5000/time_estimate/')
+    let url = document.URL + 'time_estimate/';
+    console.log(url);
+    fetch(url)
     .then((response) => {
         return response.json();
     })
@@ -30,7 +32,8 @@
 }());
 
 function order_pancake() {
-    fetch('http://localhost:5000/order_pancake/', {
+    let url = document.URL + 'order_pancake/'
+    fetch(url, {
       method: 'POST'
     }).then((response) => {
         return response.text();
@@ -38,7 +41,8 @@ function order_pancake() {
     .then((data) => {
         data = data.replace(/['"]+/g, '') // Remove the extra quotation marks
         console.log(data)
-        location.href = 'http://localhost:5000/waiting/';
+        url = document.URL + 'waiting/'
+        location.href = url;
     })
     .catch(err => {
         console.log("Error ordering");

@@ -15,11 +15,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001c8  00000000  00000000  00000f38  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001754  00000000  00000000  00001100  2**0
+  6 .debug_info   00001756  00000000  00000000  00001100  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000e20  00000000  00000000  00002854  2**0
+  7 .debug_abbrev 00000e20  00000000  00000000  00002856  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001082  00000000  00000000  00003674  2**0
+  8 .debug_line   00001082  00000000  00000000  00003676  2**0
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000003e0  00000000  00000000  000046f8  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -772,7 +772,7 @@ ISR(I2C_SLAVE_SCL_vect)
 			}
 			else if(I2C_SLAVE_recevedAddr == I2C_SLAVE_ADDR && I2C_SLAVE_recevedBits < 8)
  598:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <I2C_SLAVE_recevedAddr>
- 59c:	81 30       	cpi	r24, 0x01	; 1
+ 59c:	80 37       	cpi	r24, 0x70	; 112
  59e:	09 f0       	breq	.+2      	; 0x5a2 <__vector_1+0xb0>
  5a0:	c2 c0       	rjmp	.+388    	; 0x726 <__vector_1+0x234>
  5a2:	98 30       	cpi	r25, 0x08	; 8
@@ -1070,6 +1070,9 @@ I2C_commands_t I2C_SLAVE_getData()
  76e:	87 30       	cpi	r24, 0x07	; 7
  770:	51 f0       	breq	.+20     	; 0x786 <_Z9slavePollv+0x38>
  772:	08 95       	ret
+			default:
+				break;
+			
 			case MAKE_PANCAKE:
 				pancakeBegin();
  774:	0e 94 e1 03 	call	0x7c2	; 0x7c2 <_Z12pancakeBeginv>
@@ -1349,7 +1352,7 @@ void initPanController() {
 void waitForFreePan() {
 	I2C_MASTER_sendData(I2C_PAN_ADDR, GET_FIRST_PAN_STATUS);
  8ea:	61 e0       	ldi	r22, 0x01	; 1
- 8ec:	81 e0       	ldi	r24, 0x01	; 1
+ 8ec:	80 e7       	ldi	r24, 0x70	; 112
  8ee:	0e 94 f8 03 	call	0x7f0	; 0x7f0 <_Z19I2C_MASTER_sendDatac14I2C_commands_t>
  8f2:	08 95       	ret
 
@@ -1359,7 +1362,7 @@ void waitForFreePan() {
 void cookingBegin() {
 	I2C_MASTER_sendData(I2C_PAN_ADDR, BEGIN_COOKING);
  8f4:	62 e0       	ldi	r22, 0x02	; 2
- 8f6:	81 e0       	ldi	r24, 0x01	; 1
+ 8f6:	80 e7       	ldi	r24, 0x70	; 112
  8f8:	0e 94 f8 03 	call	0x7f0	; 0x7f0 <_Z19I2C_MASTER_sendDatac14I2C_commands_t>
  8fc:	08 95       	ret
 

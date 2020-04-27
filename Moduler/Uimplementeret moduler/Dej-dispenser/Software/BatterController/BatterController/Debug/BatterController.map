@@ -723,15 +723,15 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1754
+.debug_info     0x00000000     0x1756
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 E:/Programs/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x194 BatterCooler/BatterCooler.o
  .debug_info    0x00000788      0x213 BatterDispenser/BatterDispenser.o
  .debug_info    0x0000099b      0x54e ControlUnit/ControlUnit.o
  .debug_info    0x00000ee9      0x2e7 main.o
- .debug_info    0x000011d0      0x355 PanController/PanController.o
- .debug_info    0x00001525      0x22f UltraSonic/UltraSonic.o
+ .debug_info    0x000011d0      0x357 PanController/PanController.o
+ .debug_info    0x00001527      0x22f UltraSonic/UltraSonic.o
 
 .debug_abbrev   0x00000000      0xe20
  *(.debug_abbrev)

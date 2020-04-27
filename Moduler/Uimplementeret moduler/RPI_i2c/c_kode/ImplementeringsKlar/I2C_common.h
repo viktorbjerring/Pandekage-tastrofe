@@ -8,7 +8,7 @@ typedef enum {
 	MAKE_PANCAKE,			//CNTRL - BATTER
 	GET_BATTER_LEVEL,		//CNTRL - BATTER
 	TURN_ON_COOLING,		//CNTRL - BATTER
-	
+	TOGGLE_BATTER_ALARM
 } I2C_commands_t;
 
 typedef enum {

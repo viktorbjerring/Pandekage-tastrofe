@@ -36,8 +36,10 @@ let minutes;
 let seconds;
 
 async function timeEstimate(){
-
-  fetch('http://localhost:5000/time_estimate/')
+  let url = document.URL;
+  url = url.split('waiting/');
+  url = url[0] + 'time_estimate/';
+  fetch(url)
   .then((response) => {
       return response.json();
   })

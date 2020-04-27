@@ -19,6 +19,9 @@ void slavePoll() {
 		I2C_commands_t cmd = I2C_SLAVE_getData();
 		
 		switch (cmd) {
+			default:
+				break;
+			
 			case MAKE_PANCAKE:
 				pancakeBegin();
 				break;

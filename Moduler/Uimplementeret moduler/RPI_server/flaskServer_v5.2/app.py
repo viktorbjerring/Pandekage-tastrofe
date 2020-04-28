@@ -54,10 +54,6 @@ def is_server_running():
 #---------------------------PING END
 
 if __name__ == "__main__":
-    with open('/dev/pan', 'r') as systemfile: 
-            contents = systemfile.read()
-            print("Checked if pancake was done - result was:")
-            print(contents)
 
     # Object creation:
     apiObj = API()

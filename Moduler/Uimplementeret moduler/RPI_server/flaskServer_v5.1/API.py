@@ -12,9 +12,11 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
     def __init__(self):
         self.orderOverviewObj = OrderOverview()
         self.batterStatusObj = BatterStatus()
+        
+        #DISABLED BELOW BECAUSE OF I2C NOT TESTABLE
 
-        userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
-        print("Turned on cooling.")
+        #userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
+        #print("Turned on cooling.")
 
     def estimateTime(self):
         return json.dumps(self.orderOverviewObj.estimateTime())

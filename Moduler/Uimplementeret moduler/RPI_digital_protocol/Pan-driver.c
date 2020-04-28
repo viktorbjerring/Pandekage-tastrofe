@@ -11,8 +11,8 @@
 #include <linux/sched.h>
 #include <linux/delay.h>
 
-#define DONE_PIN 16
-#define TRIGGER_PIN 20
+#define DONE_PIN 16 // pancake done
+#define TRIGGER_PIN 20 // tænd / sluk pander
 #define PIN_HIGH 200
 
 //Linux device driver prototypes

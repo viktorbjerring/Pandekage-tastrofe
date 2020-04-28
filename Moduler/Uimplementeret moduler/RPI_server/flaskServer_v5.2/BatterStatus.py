@@ -11,11 +11,7 @@ class BatterStatus:
         print(batterStatus)
         return batterStatus
     def clearBatterAlarm(self):
-        # Brug driver til at skrive, at vi gerne vil slukke indikater
-        # Til test er det implementeret med batter_status filen
-        try:
-            with open('batter_status.txt', 'w') as systemfile: 
-                systemfile.write("0") 
-            return 1 # Returns 1 if it was able to clear it
-        except:
-            return 0
+        response = userSpaceCMD("CLEAR_BATTER_ALARM")
+        print("Asked to clear batter alarm:")
+        print(response)
+        return response

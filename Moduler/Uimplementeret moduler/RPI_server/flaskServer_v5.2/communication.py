@@ -11,6 +11,9 @@ def userSpaceCMD(cmd):
     elif(cmd == "TURN_ON_COOLING"):
         print("Running ", cmd)
         cmd = "5"
+    elif(cmd == "CLEAR_BATTER_ALARM"):
+        print("Running ", cmd)
+        cmd = "6"
     else:
         print("Invalid command")
         return -1

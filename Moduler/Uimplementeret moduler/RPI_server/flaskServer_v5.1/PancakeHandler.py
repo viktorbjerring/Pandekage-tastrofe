@@ -11,6 +11,7 @@ class PancakeHandler(watchdog.events.PatternMatchingEventHandler):
         self.__fileName = fileName
         self.__lastModified = 0
         self.__executeOnModified = executeOnModified
+        self.__src = src
         fileNamePath = '*'+fileName # Necessary to make it a pattern...
         observer = watchdog.observers.Observer()
         observer.schedule(self, path=src, recursive=True) 
@@ -19,7 +20,8 @@ class PancakeHandler(watchdog.events.PatternMatchingEventHandler):
                                                             ignore_directories=True, case_sensitive=False) 
 
     def on_modified(self, event): 
-        statbuf = os.stat(self.__fileName)
+        path = self.__src + self.__fileName
+        statbuf = os.stat(path)
         newEvent = statbuf.st_mtime
         if((newEvent - self.__lastModified) > 0.5):
             print("Watchdog received modified event - % s." % event.src_path)

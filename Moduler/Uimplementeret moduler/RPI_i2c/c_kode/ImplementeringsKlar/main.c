@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     {
     case MAKE_PANCAKE :     // ingen returdata.
     case TURN_ON_COOLING :
-    case TOGGLE_BATTER_ALARM:
+    case CLEAR_BATTER_ALARM:
         I2C_MASTER_sendData(ADDR,cmd);
         return(true);
 

@@ -4,7 +4,6 @@ from flask import json
 
 from OrderOverview import OrderOverview
 from BatterStatus import BatterStatus
-from PancakeHandler import PancakeHandler
 from communication import userSpaceCMD, turnOnPans
 
 

@@ -17,7 +17,6 @@ class OrderHandling:
             time.sleep(10) # Do once every 10 seconds
             with open('/dev/pan', 'r') as systemfile: 
                 contents = systemfile.read()
-                print("Checked if pancake was done - result was:")
-                print(contents)
+                print("Checked if pancake was done - result was:", contents)
             if(contents[0] == "1"):
                 self.__orderOverviewObj.oldestPancakeDone()

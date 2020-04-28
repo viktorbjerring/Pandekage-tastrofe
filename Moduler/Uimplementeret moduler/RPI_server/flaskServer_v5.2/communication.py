@@ -26,4 +26,3 @@ def turnOnPans():
     with open('/dev/pan', 'w') as systemfile: 
             systemfile.write("1")
             print("Turned on the pans.")
-            time.sleep(0.5) # Sleep 500 ms to make sure the pin has gotten low again before continuing.

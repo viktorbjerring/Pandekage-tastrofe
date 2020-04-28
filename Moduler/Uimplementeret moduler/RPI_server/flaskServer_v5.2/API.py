@@ -10,14 +10,11 @@ from communication import userSpaceCMD, turnOnPans
 class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det returneres korrekt ud.
     def __init__(self):
         userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
-        print("Turned on cooling.")
         
         turnOnPans()
 
         self.orderOverviewObj = OrderOverview()
         self.batterStatusObj = BatterStatus()
-        
-        
 
     def estimateTime(self):
         return json.dumps(self.orderOverviewObj.estimateTime())

@@ -27,6 +27,8 @@ int main(void)
 
 	I2C_commands_t temp = 0xFF;
 	
+	bool check_for_free_pan = false;
+	
     /* Replace with your application code */
     while (1) 
     {
@@ -42,6 +44,11 @@ int main(void)
 			temp = I2C_SLAVE_getData();
 		}
 		
+		if (check_for_free_pan && pan1Free && heat_ok){
+			I2C_SLAVE_sendData(pan1Free);
+			check_for_free_pan = false;
+		}
+		
 		switch (temp) {
 				
 			case PING:
@@ -50,7 +57,7 @@ int main(void)
 				break;
 
 			case GET_FIRST_PAN_STATUS:
-				I2C_SLAVE_sendData(pan1Free & heat_ok);
+				check_for_free_pan = true;
 				temp = 0xFF;
 				break;
 

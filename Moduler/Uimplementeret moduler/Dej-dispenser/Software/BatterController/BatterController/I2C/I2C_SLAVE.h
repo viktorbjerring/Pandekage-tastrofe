@@ -349,8 +349,6 @@ ISR(I2C_SLAVE_SCL_vect)
 					//More work here needs to be done in order to be able to write multiple bytes.
 					//Returns the line to reading
 					I2C_SLAVE_SCL_RISING();
-					//Makes sure nothing is read to the buffer.
-					I2C_SLAVE_recevedBits = 100;
 				}
 			}
 			else

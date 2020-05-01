@@ -10,8 +10,7 @@
 int main(int argc, char* argv[])
 {
     I2C_commands_t cmd = (argc < 2? STD_CMD : atoi(argv[1]));        
-
-    I2C_MASTER_init();
+	I2C_MASTER_init();
     printf("Writing command %x to %d\n", cmd, ADDR);
     switch (cmd)
     {

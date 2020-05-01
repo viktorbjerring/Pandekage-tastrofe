@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 00000e20  00000000  00000000  00002856  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001082  00000000  00000000  00003676  2**0
+  8 .debug_line   000010e5  00000000  00000000  00003676  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000003e0  00000000  00000000  000046f8  2**2
+  9 .debug_frame  000003e0  00000000  00000000  0000475c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000d03  00000000  00000000  00004ad8  2**0
+ 10 .debug_str    00000ce5  00000000  00000000  00004b3c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000661  00000000  00000000  000057db  2**0
+ 11 .debug_loc    00000661  00000000  00000000  00005821  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000168  00000000  00000000  00005e3c  2**0
+ 12 .debug_ranges 00000168  00000000  00000000  00005e82  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -108,12 +108,12 @@ Disassembly of section .text:
   a6:	80 83       	st	Z, r24
   a8:	8f e3       	ldi	r24, 0x3F	; 63
   aa:	9c e9       	ldi	r25, 0x9C	; 156
-  ac:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
-  b0:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+  ac:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__DATA_REGION_ORIGIN__+0x27>
+  b0:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__DATA_REGION_ORIGIN__+0x26>
   b4:	80 e2       	ldi	r24, 0x20	; 32
   b6:	9e e4       	ldi	r25, 0x4E	; 78
-  b8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
-  bc:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+  b8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
+  bc:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
   c0:	16 bc       	out	0x26, r1	; 38
   c2:	84 b5       	in	r24, 0x24	; 36
   c4:	82 60       	ori	r24, 0x02	; 2
@@ -170,8 +170,8 @@ ISR(ADC_vect) {
 	TIFR0 |= (1 << OCF0A);
  11e:	a9 9a       	sbi	0x15, 1	; 21
 	temp = ADC >> 6; // Read ADC
- 120:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
- 124:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 120:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
+ 124:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
  128:	00 24       	eor	r0, r0
  12a:	88 0f       	add	r24, r24
  12c:	99 1f       	adc	r25, r25
@@ -226,8 +226,8 @@ void initBatterDispenser() {
 	ICR1 = top; // freq 50 hz
  178:	8f e3       	ldi	r24, 0x3F	; 63
  17a:	9c e9       	ldi	r25, 0x9C	; 156
- 17c:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
- 180:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+ 17c:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__DATA_REGION_ORIGIN__+0x27>
+ 180:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__DATA_REGION_ORIGIN__+0x26>
 	extended = round(top / 10);
  184:	8f e9       	ldi	r24, 0x9F	; 159
  186:	9f e0       	ldi	r25, 0x0F	; 15
@@ -346,8 +346,8 @@ ISR(TIMER1_OVF_vect) {
 		OCR1B = servoBottom;
  26c:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <servoBottom>
  270:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <servoBottom+0x1>
- 274:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
- 278:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
+ 274:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__DATA_REGION_ORIGIN__+0x2b>
+ 278:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__DATA_REGION_ORIGIN__+0x2a>
  27c:	22 c0       	rjmp	.+68     	; 0x2c2 <__vector_13+0x82>
 	} else if (cycle == cycleCount) {
  27e:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <cycle>
@@ -365,8 +365,8 @@ ISR(TIMER1_OVF_vect) {
 		OCR1B = servoTop;	
  29a:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <servoTop>
  29e:	90 91 06 01 	lds	r25, 0x0106	; 0x800106 <servoTop+0x1>
- 2a2:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
- 2a6:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
+ 2a2:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__DATA_REGION_ORIGIN__+0x2b>
+ 2a6:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__DATA_REGION_ORIGIN__+0x2a>
  2aa:	0b c0       	rjmp	.+22     	; 0x2c2 <__vector_13+0x82>
 	} else if (cycle == cycleCount * 2) {
  2ac:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <cycle>
@@ -477,7 +477,7 @@ I2C_commands_t I2C_SLAVE_getData()
  380:	f0 e0       	ldi	r31, 0x00	; 0
  382:	80 81       	ld	r24, Z
  384:	80 61       	ori	r24, 0x10	; 16
- 386:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7e006d>
+ 386:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__DATA_REGION_ORIGIN__+0xd>
  38a:	80 81       	ld	r24, Z
  38c:	84 60       	ori	r24, 0x04	; 4
  38e:	80 83       	st	Z, r24
@@ -704,7 +704,7 @@ ISR(I2C_SLAVE_SCL_vect)
  51c:	04 c1       	rjmp	.+520    	; 0x726 <__vector_1+0x234>
 	{
 		if(I2C_SLAVE_SCL_IS_RISING())
- 51e:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__TEXT_REGION_LENGTH__+0x7e0069>
+ 51e:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__DATA_REGION_ORIGIN__+0x9>
  522:	83 70       	andi	r24, 0x03	; 3
  524:	83 30       	cpi	r24, 0x03	; 3
  526:	09 f0       	breq	.+2      	; 0x52a <__vector_1+0x38>
@@ -897,7 +897,7 @@ ISR(I2C_SLAVE_SCL_vect)
 			}
 		}
 		else if(I2C_SLAVE_SCL_IS_FALLING())
- 672:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__TEXT_REGION_LENGTH__+0x7e0069>
+ 672:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__DATA_REGION_ORIGIN__+0x9>
  676:	83 70       	andi	r24, 0x03	; 3
  678:	82 30       	cpi	r24, 0x02	; 2
  67a:	09 f0       	breq	.+2      	; 0x67e <__vector_1+0x18c>
@@ -1210,43 +1210,43 @@ void turnOffAlarm() {
  7f8:	91 e0       	ldi	r25, 0x01	; 1
  7fa:	90 93 26 01 	sts	0x0126, r25	; 0x800126 <_ZL19I2C_MASTER_hw_mutex>
  7fe:	94 ea       	ldi	r25, 0xA4	; 164
- 800:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 800:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
  804:	ec eb       	ldi	r30, 0xBC	; 188
  806:	f0 e0       	ldi	r31, 0x00	; 0
  808:	90 81       	ld	r25, Z
  80a:	99 23       	and	r25, r25
  80c:	ec f7       	brge	.-6      	; 0x808 <_Z19I2C_MASTER_sendDatac14I2C_commands_t+0x18>
- 80e:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 80e:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  812:	98 7f       	andi	r25, 0xF8	; 248
  814:	98 30       	cpi	r25, 0x08	; 8
  816:	59 f5       	brne	.+86     	; 0x86e <_Z19I2C_MASTER_sendDatac14I2C_commands_t+0x7e>
  818:	88 0f       	add	r24, r24
- 81a:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 81a:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
  81e:	84 e8       	ldi	r24, 0x84	; 132
- 820:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 820:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
  824:	ec eb       	ldi	r30, 0xBC	; 188
  826:	f0 e0       	ldi	r31, 0x00	; 0
  828:	80 81       	ld	r24, Z
  82a:	88 23       	and	r24, r24
  82c:	ec f7       	brge	.-6      	; 0x828 <_Z19I2C_MASTER_sendDatac14I2C_commands_t+0x38>
- 82e:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 82e:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  832:	88 7f       	andi	r24, 0xF8	; 248
  834:	80 32       	cpi	r24, 0x20	; 32
  836:	d9 f0       	breq	.+54     	; 0x86e <_Z19I2C_MASTER_sendDatac14I2C_commands_t+0x7e>
- 838:	60 93 bb 00 	sts	0x00BB, r22	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 838:	60 93 bb 00 	sts	0x00BB, r22	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
  83c:	84 e8       	ldi	r24, 0x84	; 132
- 83e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 83e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
  842:	ec eb       	ldi	r30, 0xBC	; 188
  844:	f0 e0       	ldi	r31, 0x00	; 0
  846:	80 81       	ld	r24, Z
  848:	88 23       	and	r24, r24
  84a:	ec f7       	brge	.-6      	; 0x846 <_Z19I2C_MASTER_sendDatac14I2C_commands_t+0x56>
- 84c:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 84c:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  850:	88 7f       	andi	r24, 0xF8	; 248
  852:	80 33       	cpi	r24, 0x30	; 48
  854:	61 f0       	breq	.+24     	; 0x86e <_Z19I2C_MASTER_sendDatac14I2C_commands_t+0x7e>
  856:	84 e9       	ldi	r24, 0x94	; 148
- 858:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 858:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
  85c:	ec eb       	ldi	r30, 0xBC	; 188
  85e:	f0 e0       	ldi	r31, 0x00	; 0
  860:	80 81       	ld	r24, Z
@@ -1256,7 +1256,7 @@ void turnOffAlarm() {
  86a:	80 e0       	ldi	r24, 0x00	; 0
  86c:	08 95       	ret
  86e:	84 e9       	ldi	r24, 0x94	; 148
- 870:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 870:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
  874:	ec eb       	ldi	r30, 0xBC	; 188
  876:	f0 e0       	ldi	r31, 0x00	; 0
  878:	80 81       	ld	r24, Z
@@ -1288,7 +1288,7 @@ ISR(TWI_vect) {
 
 	//Save data
 	local_read_data = TWDR;
- 8a4:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 8a4:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
  8a8:	80 93 25 01 	sts	0x0125, r24	; 0x800125 <_ZL15local_read_data>
 	
 	//Set flag
@@ -1299,7 +1299,7 @@ ISR(TWI_vect) {
 	//Send stop and stop interrupts
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
  8b2:	84 e9       	ldi	r24, 0x94	; 148
- 8b4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 8b4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	//Enable interrupt nesting
 	sei();
@@ -1334,14 +1334,14 @@ static volatile bool data_ready_flag = false;
 void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre)
 {
 	TWBR = bitRate;	//Set bitRate
- 8d8:	10 92 b8 00 	sts	0x00B8, r1	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7e00b8>
+ 8d8:	10 92 b8 00 	sts	0x00B8, r1	; 0x8000b8 <__DATA_REGION_ORIGIN__+0x58>
 	TWSR = (char)pre;	//Set prescaler
  8dc:	83 e0       	ldi	r24, 0x03	; 3
- 8de:	80 93 b9 00 	sts	0x00B9, r24	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 8de:	80 93 b9 00 	sts	0x00B9, r24	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
 	
 	TWCR = (1 << TWEN);	//Setup TWI to send NACK when data is recieved and enable HW
  8e2:	84 e0       	ldi	r24, 0x04	; 4
- 8e4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 8e4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
  8e8:	08 95       	ret
 
 000008ea <_Z14waitForFreePanv>:
@@ -1398,11 +1398,11 @@ ISR(PCINT1_vect) {
 	{
 		/* Turn off timer2 */
 		ULTRSNC_TCCRB = 0;
- 928:	10 92 b1 00 	sts	0x00B1, r1	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7e00b1>
+ 928:	10 92 b1 00 	sts	0x00B1, r1	; 0x8000b1 <__DATA_REGION_ORIGIN__+0x51>
 		
 		/* Calculate and save distance */
 		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(ULTRSNC_TCNT)); // Distance in mm
- 92c:	60 91 b2 00 	lds	r22, 0x00B2	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+ 92c:	60 91 b2 00 	lds	r22, 0x00B2	; 0x8000b2 <__DATA_REGION_ORIGIN__+0x52>
  930:	70 e0       	ldi	r23, 0x00	; 0
  932:	80 e0       	ldi	r24, 0x00	; 0
  934:	90 e0       	ldi	r25, 0x00	; 0
@@ -1450,10 +1450,10 @@ ISR(PCINT1_vect) {
 	{
 		/* Reset and start timer2 */
 		ULTRSNC_TCNT = 0;
- 98e:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+ 98e:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__DATA_REGION_ORIGIN__+0x52>
 		ULTRSNC_TCCRB = 0b00000110;
  992:	86 e0       	ldi	r24, 0x06	; 6
- 994:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7e00b1>
+ 994:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__DATA_REGION_ORIGIN__+0x51>
 		
 		isEcho_ = true;
  998:	81 e0       	ldi	r24, 0x01	; 1
@@ -1486,7 +1486,7 @@ void initUltrasonic() {
 	ULTRSNC_ECHO_DDR &= ~(1<<ULTRSNC_ECHO_PIN_NUM); // Echo pin
  9c2:	3a 98       	cbi	0x07, 2	; 7
 	ULTRSNC_TCCRA = 0; // Clear timer2 register A
- 9c4:	10 92 b0 00 	sts	0x00B0, r1	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
+ 9c4:	10 92 b0 00 	sts	0x00B0, r1	; 0x8000b0 <__DATA_REGION_ORIGIN__+0x50>
 	PCICR |= (1 << ULTRSNC_PCIE); // enable pin change interrupt 1
  9c8:	e8 e6       	ldi	r30, 0x68	; 104
  9ca:	f0 e0       	ldi	r31, 0x00	; 0

@@ -155,7 +155,6 @@ void I2C_SLAVE_init()
 	
 	//Sets up ports to inputs with pull up.
 	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
-	I2C_SLAVE_DDR |= 1 << 6 | 1 << 5 | 1 << 7;
 	I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
 }
 
@@ -207,6 +206,7 @@ static int I2C_SLAVE_hold()
 	else
 	{
 		//If no data is ready, then SCL is pulled low.
+		I2C_SLAVE_DDR  |=  1 << I2C_SLAVE_SCL;
 		I2C_SLAVE_PORT &=  ~(1 << I2C_SLAVE_SCL);
 	}
 	//Returns false if no data is ready.
@@ -274,6 +274,7 @@ ISR(I2C_SLAVE_SCL_vect)
 			if(I2C_SLAVE_haveSended > 7)
 			{
 				I2C_SLAVE_haveSended = 0;
+				I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
 				I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA | 1 << I2C_SLAVE_SCL);
 			}
 			//First 7 bits read Address.
@@ -327,11 +328,13 @@ ISR(I2C_SLAVE_SCL_vect)
 					I2C_SLAVE_dataReady = 1;
 					I2C_SLAVE_haveSended = 1;
 					I2C_SLAVE_toSend = I2C_SLAVE_tempSave;
+					I2C_SLAVE_DDR = I2C_SLAVE_SET_BIT(I2C_SLAVE_DDR,I2C_SLAVE_SDA,(~I2C_SLAVE_toSend),7);
 					I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,7);
 				}
 				else
 				{
 					//Frees SDA if done sending.
+					I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);
 					I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);
 				}
 				if(I2C_SLAVE_beginHold)
@@ -350,7 +353,7 @@ ISR(I2C_SLAVE_SCL_vect)
 			}
 			else
 			{
-				
+				I2C_SLAVE_DDR = I2C_SLAVE_SET_BIT(I2C_SLAVE_DDR,I2C_SLAVE_SDA,~I2C_SLAVE_toSend,(7-I2C_SLAVE_haveSended));
 				I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,(7-I2C_SLAVE_haveSended));//&= ~(1 << I2C_SLAVE_SDA);
 				
 				I2C_SLAVE_haveSended++;

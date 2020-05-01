@@ -21,6 +21,8 @@
 #define I2C_SLAVE_BUFFER_LENGTH 10
 #endif
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <util/delay.h>
@@ -122,6 +124,7 @@ void I2C_SLAVE_sendData(char data)
 		//Disables SDA interrupt to avoid stop bit triggering if toSind most significant is 1.
 		I2C_SLAVE_SDA_INT_ENAB(0);
 		//Sets the line to most significant bit.
+		I2C_SLAVE_DDR = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT, I2C_SLAVE_SDA, ~I2C_SLAVE_toSend, 7);
 		I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT, I2C_SLAVE_SDA, I2C_SLAVE_toSend, 7);
 		//Sets that first bit is sended.
 		I2C_SLAVE_haveSended++;
@@ -130,6 +133,7 @@ void I2C_SLAVE_sendData(char data)
 		//enables interrupt.
 		I2C_SLAVE_SDA_INT_ENAB(1);
 	}
+	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SCL);
 	I2C_SLAVE_PORT |= 1 << I2C_SLAVE_SCL;
 }
 
@@ -347,14 +351,12 @@ ISR(I2C_SLAVE_SCL_vect)
 					//More work here needs to be done in order to be able to write multiple bytes.
 					//Returns the line to reading
 					I2C_SLAVE_SCL_RISING();
-					//Makes sure nothing is read to the buffer.
-					I2C_SLAVE_recevedBits = 100;
 				}
 			}
 			else
 			{
 				I2C_SLAVE_DDR = I2C_SLAVE_SET_BIT(I2C_SLAVE_DDR,I2C_SLAVE_SDA,~I2C_SLAVE_toSend,(7-I2C_SLAVE_haveSended));
-				I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,(7-I2C_SLAVE_haveSended));//&= ~(1 << I2C_SLAVE_SDA);
+				I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,(7-I2C_SLAVE_haveSended));
 				
 				I2C_SLAVE_haveSended++;
 			}

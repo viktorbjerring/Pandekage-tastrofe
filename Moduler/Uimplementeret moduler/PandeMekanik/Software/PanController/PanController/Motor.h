@@ -44,23 +44,26 @@ static void setMotorPWM(uint8_t PWM, bool motor);
 //Direction ports
 #define MOTOR1_DIR_PORT_DDR		DDRD
 #define MOTOR2_DIR_PORT_DDR		DDRC
-#define MOTOR1_DIR_PORT			DDRD
-#define MOTOR2_DIR_PORT			DDRC
+#define MOTOR1_DIR_PORT			PORTD
+#define MOTOR2_DIR_PORT			PORTC
 
 //Enable ports
 #define MOTOR1_ENABLE_PORT_DDR	DDRD
+#define MOTOR1_ENABLE_PORT		PORTD
 #define MOTOR2_ENABLE_PORT_DDR	DDRD
+#define MOTOR2_ENABLE_PORT		PORTD
 
 //Macros
 #define MOTOR1_SETING1(x)	MOTOR1_DIR_PORT = ((MOTOR1_DIR_PORT & ~(1 << MOTOR1_DIR_PIN_LOCATION1)) | (x << MOTOR1_DIR_PIN_LOCATION1))
-#define MOTOR1_SETING2(x)	MOTOR1_DIR_PORT = ((MOTOR1_DIR_PORT & ~(1 << MOTOR1_DIR_PIN_LOCATION2)) | (x << MOTOR1_DIR_PIN_LOCATION1))
+#define MOTOR1_SETING2(x)	MOTOR1_DIR_PORT = ((MOTOR1_DIR_PORT & ~(1 << MOTOR1_DIR_PIN_LOCATION2)) | (x << MOTOR1_DIR_PIN_LOCATION2))
 #define MOTOR1_SETING(x)	{ MOTOR1_SETING1(x & 0b01); MOTOR1_SETING2(x & 0b10);}
 #define MOTOR2_SETING(x)	MOTOR2_DIR_PORT = ((MOTOR2_DIR_PORT & ~(0b11 << MOTOR2_DIR_PIN_LOCATION)) | (x << MOTOR2_DIR_PIN_LOCATION))
 
-#define MOTOR1_DISABLE()	MOTOR1_ENABLE_PORT_DDR &= ~(1 << MOTOR1_EN_PIN_LOCATION)
-#define MOTOR2_DISABLE()	MOTOR2_ENABLE_PORT_DDR &= ~(1 << MOTOR2_EN_PIN_LOCATION)
-#define MOTOR1_ENABLE()		MOTOR1_ENABLE_PORT_DDR |= (1 << MOTOR1_EN_PIN_LOCATION)
-#define MOTOR2_ENABLE()		MOTOR2_ENABLE_PORT_DDR |= (1 << MOTOR2_EN_PIN_LOCATION)
+//OCR0A/B set when counting up, duty depends on OCR0A/B,
+#define MOTOR1_DISABLE()	(TCCR0A &= ((1 << COM0B1) | (1 << COM0B0)))
+#define MOTOR2_DISABLE()	(TCCR0A &= ((1 << COM0A1) | (1 << COM0A0)))
+#define MOTOR1_ENABLE()		(TCCR0A |= ((1 << COM0B1) | (1 << COM0B0)))
+#define MOTOR2_ENABLE()		(TCCR0A |= ((1 << COM0A1) | (1 << COM0A0)))
 
 //Timer defs
 #define TIMER0_TOP		0xFF
@@ -76,6 +79,12 @@ void init_motors(){
 	MOTOR1_DIR_PORT_DDR |= (1 << MOTOR1_DIR_PIN_LOCATION1) + (1 << MOTOR1_DIR_PIN_LOCATION2);
 	MOTOR2_DIR_PORT_DDR |= 0b11 << MOTOR2_DIR_PIN_LOCATION;
 	
+	//Set enable pins to output low as default
+	MOTOR1_ENABLE_PORT_DDR |= (1 << MOTOR1_EN_PIN_LOCATION);
+	MOTOR2_ENABLE_PORT_DDR |= (1 << MOTOR2_EN_PIN_LOCATION);
+	MOTOR1_ENABLE_PORT &= ~(1 << MOTOR1_EN_PIN_LOCATION);
+	MOTOR2_ENABLE_PORT &= ~(1 << MOTOR2_EN_PIN_LOCATION);
+	
 	//Set motor to off
 	MOTOR1_SETING(MOTOR_OFF);
 	MOTOR2_SETING(MOTOR_OFF);
@@ -87,8 +96,9 @@ void init_motors(){
 		
 	//Setup timer 0 PWMs for the motors
 	PRR &= ~(1 << PRTIM0);
-	//OCRA/B set when counting up, duty depens on OCR0A/B, phase correct PWM mode, prescaler = 256, freq ~ 61,27451 Hz (8000000/(256*510)
-	TCCR0A = (1 << COM0A1) | (1 << COM0A0) | (1 << COM0B1) | (1 << COM0B1) | (1 << WGM00);
+	
+	// phase correct PWM mode, prescaler = 256, freq ~ 61,27451 Hz (8000000/(256*510)
+	TCCR0A = (1 << WGM00);
 	TCCR0B = (1 << CS02);
 	
 	//Set PWM for the motors
@@ -126,10 +136,10 @@ static volatile bool motor_flipping = MOTOR1;
 
 static void setMotorPWM(uint8_t PWM, bool motor) {
 	if (motor == MOTOR1) {
-		OCR0A = (TIMER0_TOP - ceil(((256/100) * (PWM > 100? 100 : PWM))));
+		OCR0A = (TIMER0_TOP - ceil(((TIMER0_TOP/100) * (PWM > 100? 100 : PWM))));
 	}
 	else {
-		OCR0B = (TIMER0_TOP - ceil(((256/100) * (PWM > 100? 100 : PWM))));
+		OCR0B = (TIMER0_TOP - ceil(((TIMER0_TOP/100) * (PWM > 100? 100 : PWM))));
 	}
 }
 
@@ -178,14 +188,15 @@ ISR(TIMER2_OVF_vect) {
 		//Mid way time to break
 		case MOTOR_FORWARD_TIME_S:
 		case MOTOR_BACKWARD_TIME_S:
-			setMotorPWM(MOTOR_OPTIMUM_PWM_BREAK, motor_flipping);
 			if (motor_flipping == MOTOR1) {
 				MOTOR1_DISABLE();
+				setMotorPWM(MOTOR_OPTIMUM_PWM_BREAK, motor_flipping);
 				MOTOR1_SETING(MOTOR_BREAK);
 				MOTOR1_ENABLE();
 			}
 			else {
 				MOTOR2_DISABLE();
+				setMotorPWM(MOTOR_OPTIMUM_PWM_BREAK, motor_flipping);
 				MOTOR2_SETING(MOTOR_BREAK);
 				MOTOR2_ENABLE();
 			}
@@ -193,15 +204,16 @@ ISR(TIMER2_OVF_vect) {
 		
 		//We have stopped the pan at pancake destination time to go back
 		case MOTOR_BREAK_FORWARD_TIME_S:
-			setMotorPWM(MOTOR_OPTIMUM_PWM_BACKWARD, motor_flipping);
 			if (motor_flipping == MOTOR1) {
 				MOTOR1_DISABLE();
+				setMotorPWM(MOTOR_OPTIMUM_PWM_BACKWARD, motor_flipping);
 				MOTOR1_SETING(MOTOR_BACKWARD);
 				MOTOR1_ENABLE();
 				startTimePan2();
 			}
 			else {
 				MOTOR2_DISABLE();
+				setMotorPWM(MOTOR_OPTIMUM_PWM_BACKWARD, motor_flipping);
 				MOTOR2_SETING(MOTOR_BACKWARD);
 				MOTOR2_ENABLE();
 			}

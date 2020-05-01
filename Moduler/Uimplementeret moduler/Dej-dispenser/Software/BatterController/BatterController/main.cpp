@@ -33,7 +33,6 @@ int main()
     while (1) 
     {
 		slavePoll();
-		_delay_ms(500);
     }
 }
 
@@ -61,6 +60,6 @@ void turnOffCooling() {
 }
 
 void turnOffAlarm() {
-	INDCTR_PORT &= !(1<<INDCTR_PORT_NUM); // Turn off indicator LED
+	INDCTR_PORT &= ~(1<<INDCTR_PORT_NUM); // Turn off indicator LED
 }
 

@@ -23,13 +23,12 @@
 int main()
 {
 	sei();
-	/*
 	initControlUnit();
 	initPanController();
 	initUltrasonic();
-	initBatterDispenser();*/
-	beginCoolingRegulation();
-	/* Initialize indicator */
+	initBatterDispenser();
+	
+	/* Initialize indicator */ 
 	INDCTR_DDR |= (1<<INDCTR_PORT_NUM);
     while (1) 
     {

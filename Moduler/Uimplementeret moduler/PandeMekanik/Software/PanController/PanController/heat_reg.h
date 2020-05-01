@@ -32,9 +32,6 @@ extern volatile bool heat_ok;
 #define TRIGGER_HIGH		0x3B8		//Temp > 188C
 #define OPTIMUM_TEMP		(TRIGGER_LOW + (TRIGGER_HIGH - TRIGGER_LOW)/2)
 
-//Pan temp 1 = C0
-//Pan temp 2 = C1
-
 
 void init_regulation(){
 	

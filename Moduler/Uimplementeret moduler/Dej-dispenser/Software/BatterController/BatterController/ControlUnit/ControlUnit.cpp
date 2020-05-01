@@ -17,8 +17,7 @@ void initControlUnit()
 void slavePoll() {
 	if (I2C_SLAVE_checkData()) {
 		I2C_commands_t cmd = I2C_SLAVE_getData();
-		DDRB |= (1<<PORTB0);
-		PORTB |= (1<<PORTB0);
+
 		switch (cmd) {
 			default:
 				break;

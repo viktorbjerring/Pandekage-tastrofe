@@ -1,5 +1,6 @@
 ![Pan-de-mix](./Arkitektur/Logo/Logo.png)
 
+# Pandemix
 Gruppe no. 4. Semesterprojekt F2020
 
 ![Rigt billede](./Arkitektur/Rige%20billeder/System_picture_1.png)

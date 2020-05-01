@@ -39,7 +39,7 @@
 
 #define ULTRSNC_PCIE	PCIE1
 #define ULTRSNC_PCMSK	PCMSK1
-#define ULTRSNC_PCINT	PCINT13
+#define ULTRSNC_PCINT	PCINT10
 /*------------------------------------*/
 
 

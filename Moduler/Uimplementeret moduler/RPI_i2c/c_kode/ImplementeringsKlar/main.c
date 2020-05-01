@@ -10,14 +10,14 @@
 int main(int argc, char* argv[])
 {
     I2C_commands_t cmd = (argc < 2? STD_CMD : atoi(argv[1]));        
-
-    I2C_MASTER_init();
+	I2C_MASTER_init();
     printf("Writing command %x to %d\n", cmd, ADDR);
     switch (cmd)
     {
     case MAKE_PANCAKE :     // ingen returdata.
     case TURN_ON_COOLING :
-    case CLEAR_BATTER_ALARM:
+    case TURN_OFF_COOLING :
+    case CLEAR_BATTER_ALARM :
         I2C_MASTER_sendData(ADDR,cmd);
         return(true);
 

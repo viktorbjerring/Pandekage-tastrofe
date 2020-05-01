@@ -58,9 +58,9 @@ int readBatterAmount() {
 	/* Wait for measurement */
 	_delay_ms(10);
 	
-	/* Calculate amount of pancakes that can be made with current amount of batter */
+	/* Calculate amount of pancakes that can be made with current amount of batter 
 	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
-	int pancakesLeft = batterVolume / DSG_VOL;
+	int pancakesLeft = batterVolume / DSG_VOL;*/
 	
-	return pancakesLeft;
+	return 48+ batterLevel_;
 }

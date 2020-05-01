@@ -60,8 +60,8 @@ static void setMotorPWM(uint8_t PWM, bool motor);
 #define MOTOR2_SETING(x)	MOTOR2_DIR_PORT = ((MOTOR2_DIR_PORT & ~(0b11 << MOTOR2_DIR_PIN_LOCATION)) | (x << MOTOR2_DIR_PIN_LOCATION))
 
 //OCR0A/B set when counting up, duty depends on OCR0A/B,
-#define MOTOR1_DISABLE()	(TCCR0A &= ((1 << COM0B1) | (1 << COM0B0)))
-#define MOTOR2_DISABLE()	(TCCR0A &= ((1 << COM0A1) | (1 << COM0A0)))
+#define MOTOR1_DISABLE()	(TCCR0A &= ~((1 << COM0B1) | (1 << COM0B0)))
+#define MOTOR2_DISABLE()	(TCCR0A &= ~((1 << COM0A1) | (1 << COM0A0)))
 #define MOTOR1_ENABLE()		(TCCR0A |= ((1 << COM0B1) | (1 << COM0B0)))
 #define MOTOR2_ENABLE()		(TCCR0A |= ((1 << COM0A1) | (1 << COM0A0)))
 

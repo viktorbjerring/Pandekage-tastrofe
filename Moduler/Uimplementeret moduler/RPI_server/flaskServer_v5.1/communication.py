@@ -1,4 +1,5 @@
 import subprocess
+import time
 
 def userSpaceCMD(cmd):
     if(cmd == "MAKE_PANCAKE"):
@@ -16,3 +17,10 @@ def userSpaceCMD(cmd):
     userSpaceReturnValue = subprocess.run(["./prog", cmd])
     print("Sent userspace cmd with code: ", cmd)
     return userSpaceReturnValue.returncode
+
+
+def turnOnPans():
+    with open('/dev/pan', 'w') as systemfile: 
+            systemfile.write("1")
+            print("Turned on the pans.")
+            time.sleep(0.5) # Sleep 500 ms to make sure the pin has gotten low again before continuing.

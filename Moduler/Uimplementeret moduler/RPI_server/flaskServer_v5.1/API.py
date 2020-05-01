@@ -5,16 +5,20 @@ from flask import json
 from OrderOverview import OrderOverview
 from BatterStatus import BatterStatus
 from PancakeHandler import PancakeHandler
-from communication import userSpaceCMD
+from communication import userSpaceCMD, turnOnPans
 
 
 class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det returneres korrekt ud.
     def __init__(self):
-        self.orderOverviewObj = OrderOverview()
-        self.batterStatusObj = BatterStatus()
-
         userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
         print("Turned on cooling.")
+        
+        turnOnPans()
+
+        self.orderOverviewObj = OrderOverview()
+        self.batterStatusObj = BatterStatus()
+        
+        
 
     def estimateTime(self):
         return json.dumps(self.orderOverviewObj.estimateTime())

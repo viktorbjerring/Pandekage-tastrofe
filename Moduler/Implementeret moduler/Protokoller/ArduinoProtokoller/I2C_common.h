@@ -1,7 +1,7 @@
 #ifndef I2C_COMMON_HEADER
 #define I2C_COMMON_HEADER
 
-#define I2C_SLAVE_ADDR	0x01
+#define I2C_SLAVE_ADDR	0x70
 
 typedef enum {
 	PING = 0,				//CHECK/DEBUG

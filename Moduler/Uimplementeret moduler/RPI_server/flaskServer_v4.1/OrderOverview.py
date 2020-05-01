@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 # Global vars
-timePrPancake = 3 # In minutes for now
+timePrPancake = 1 # In minutes for now
 
 from Order import Order
 from OrderHandling import OrderHandling
@@ -22,7 +22,8 @@ class OrderOverview:
         for i in self.__orders: # Check if it already has a pending order
             if(i.id == userId):
                 timeRemaining = i.timeDone - datetime.utcnow()
-                return int(timeRemaining.total_seconds())
+                timeRemaining = timeRemaining.total_seconds()
+                return int(timeRemaining) if timeRemaining > 0 else 0 # Return 0 if we have a negative number
         # Else print expected to for a new order        
         global timePrPancake
         time = timePrPancake * (len(self.__orders) + 1) * 60 # +1 because the order hasn't been put in yet. * 60 because we want it in seconds

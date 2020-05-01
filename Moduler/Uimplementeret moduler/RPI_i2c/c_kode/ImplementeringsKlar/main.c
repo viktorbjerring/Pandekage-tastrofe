@@ -4,11 +4,7 @@
 
 #include "I2C_Master.h"
 
-<<<<<<< HEAD
-#define ADDR        0x07
-=======
 #define ADDR        0x70
->>>>>>> aec73ddb97eafcd0cac05ef14a95e789140a2fc7
 #define STD_CMD     PING
 
 int main(int argc, char* argv[])

@@ -8,7 +8,7 @@ public:
 	int serverListen();
 private:
 	void error(const char*);
-	const char *readTextTCP(char *text, int length, int inFromServer);
+	void readTextTCP(char *text, int length, int inFromServer);
 	void writeTextTCP(int outToServer, char *line);
 	int serverSocket_;
 	const int port_;

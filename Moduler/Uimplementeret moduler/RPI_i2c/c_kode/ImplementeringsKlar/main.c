@@ -4,7 +4,7 @@
 
 #include "I2C_Master.h"
 
-#define ADDR        0x48
+#define ADDR        0x70
 #define STD_CMD     PING
 
 int main(int argc, char* argv[])
@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
     {
     case MAKE_PANCAKE :     // ingen returdata.
     case TURN_ON_COOLING :
+    case CLEAR_BATTER_ALARM:
         I2C_MASTER_sendData(ADDR,cmd);
         return(true);
 
@@ -27,7 +28,7 @@ int main(int argc, char* argv[])
         return(I2C_MASTER_getdata());
 
     default:
-        return(-1);
+        return(ERROR); // har værdien 255
     }
 
 }

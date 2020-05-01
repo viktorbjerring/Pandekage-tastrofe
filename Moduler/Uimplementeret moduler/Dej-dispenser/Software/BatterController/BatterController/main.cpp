@@ -49,14 +49,20 @@ int getBatterAmount() {
 	int level = readBatterAmount();
 	
 	if (level > MIN_BATTER_LEVEL)
-		INDCTR_PORT |=  (1<<INDCTR_PORT_NUM);
-	else
-		INDCTR_PORT &= !(1<<INDCTR_PORT_NUM);
+		INDCTR_PORT |=  (1<<INDCTR_PORT_NUM); // Turn on indicator LED
 	
 	return level;
 }
 
 void turnOnCooling() {
 	beginCoolingRegulation();
+}
+
+void turnOffCooling() {
+	endCoolingRegulation();
+}
+
+void turnOffAlarm() {
+	INDCTR_PORT &= !(1<<INDCTR_PORT_NUM); // Turn off indicator LED
 }
 

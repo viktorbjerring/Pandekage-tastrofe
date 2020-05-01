@@ -8,7 +8,7 @@
 
 char buffer[90000];
 
-int main() {
+/*int main() {
    int fp;
    fp = open("../flaskServer_v1/pancake_status.txt", O_RDWR);
    read(fp, buffer, 90000);
@@ -20,4 +20,8 @@ int main() {
    }
    
    close(fp);
+}*/
+
+int main(int argc, char **argv){
+   return 1;
 }

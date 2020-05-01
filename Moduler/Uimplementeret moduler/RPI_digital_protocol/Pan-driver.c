@@ -11,8 +11,8 @@
 #include <linux/sched.h>
 #include <linux/delay.h>
 
-#define DONE_PIN 16
-#define TRIGGER_PIN 20
+#define DONE_PIN 16 // pancake done
+#define TRIGGER_PIN 20 // tænd / sluk pander
 #define PIN_HIGH 200
 
 //Linux device driver prototypes
@@ -73,7 +73,7 @@ ssize_t Pan_drv_write(struct file* filep, const char* buf, size_t count, loff_t*
 	gpio_set_value(TRIGGER_PIN, 1);
 	msleep(PIN_HIGH);
 	gpio_set_value(TRIGGER_PIN, 0);
-	return 3;
+	return 1;
 }
 
 /************************************

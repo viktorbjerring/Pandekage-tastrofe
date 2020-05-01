@@ -9,6 +9,14 @@
 #ifndef I2C_SLAVE_SLAVE_H_
 #define I2C_SLAVE_SLAVE_H_
 
+#include <stdlib.h>
+#include <stdbool.h>
+#define F_CPU 16000000
+#include <util/delay.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include "I2C_common.h"
+
 //Sets address if not done by user to avoid compile error.
 #ifndef I2C_SLAVE_ADDR
 #warning "I2C_SLAVE_ADDR not defined, default address (0x70) used."
@@ -19,11 +27,6 @@
 #warning "I2C_SLAVE_BUFFER_LENGTH not defined, default buffer size of 10 used."
 #define I2C_SLAVE_BUFFER_LENGTH 10
 #endif
-
-#include <stdlib.h>
-#include <stdbool.h>
-#include <util/delay.h>
-#include "I2C_common.h"
 
 // ## Define for port ##
 // PORT defines

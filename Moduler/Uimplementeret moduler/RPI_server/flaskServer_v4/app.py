@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect, json, jsonify, Response
+from flask_cors import CORS
 from datetime import datetime, timedelta
 import threading
 import random
@@ -20,6 +21,7 @@ timePrPancake = 3 # In minutes for now
 
 # The Flask object
 app = Flask(__name__) #__name__ = filename
+CORS(app)
 
 @dataclass
 class Order:
@@ -267,10 +269,9 @@ if __name__ == "__main__":
     orderHandlingObj = OrderHandling()
     batterStatusObj = BatterStatus()
 
-
-    path = r"/home/stud/Pandekage-tastrofe/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v4/"
+    path = os.getcwd()
     fileName = 'pancakeDone.txt'
     event_handler = PancakeHandler(path, fileName)
 
     # Start API:
-    app.run(debug=True,use_reloader = False)
+    app.run(debug=True,use_reloader = False, host='0.0.0.0')

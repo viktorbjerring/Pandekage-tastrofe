@@ -1,0 +1,37 @@
+KMODULE := Pan-driver
+OBJECTS := $(KMODULE).o
+DTS_FILE := $(KMODULE)-overlay.dts
+DTBO_FILE := $(KMODULE).dtbo
+KERNELDIR := /lib/modules/`uname -r`/build
+cflags := -DDEBUG -g -std=gnu99 -Wno-declaration-after-statement
+
+
+ifeq ($(KERNELRELEASE),)
+
+	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+	PWD := $(shell pwd)
+
+modules:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules EXTRA_CFLAGS="-g -std=gnu99 -DDEBUG"
+	dtc -@ -I dts -O dtb -o $(DTBO_FILE) $(DTS_FILE)
+
+modules_install:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
+
+transfer:
+	scp * pi@192.168.137.96:transfer
+
+pure: modules
+	rm -rf *.o *~ core .depend .*.cmd *.mod.c .tmp_versions
+
+clean:
+	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions *.dtbo
+
+.PHONY: modules modules_install clean
+
+else
+    # called from kernel build system: just declare what our modules are
+	ccflags-y := -DDEBUG -g -std=gnu11 -Wno-declaration-after-statement
+	obj-m := $(KMODULE).o
+	$(KMODULE)-objs := $(KMODULE)_main.o ADCVector.o vectorRC.o
+endif

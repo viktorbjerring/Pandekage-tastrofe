@@ -17,5 +17,5 @@ void waitForFreePan() {
 } 
 
 void cookingBegin() {
-	I2C_MASTER_sendData(I2C_PAN_ADDR, BEGIN_COOCKING);
+	I2C_MASTER_sendData(I2C_PAN_ADDR, BEGIN_COOKING);
 }

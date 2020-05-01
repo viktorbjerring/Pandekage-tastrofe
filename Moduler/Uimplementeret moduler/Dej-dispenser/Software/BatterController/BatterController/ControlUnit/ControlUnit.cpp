@@ -19,12 +19,23 @@ void slavePoll() {
 		I2C_commands_t cmd = I2C_SLAVE_getData();
 		
 		switch (cmd) {
+			default:
+				break;
+			
 			case MAKE_PANCAKE:
 				pancakeBegin();
 				break;
 				
 			case TURN_ON_COOLING:
 				turnOnCooling();
+				break;
+				
+			case TURN_OFF_COOLING:
+				turnOffCooling();
+				break;
+				
+			case TURN_OFF_ALARM:
+				turnOffAlarm();
 				break;
 			
 			case GET_BATTER_AMOUNT:

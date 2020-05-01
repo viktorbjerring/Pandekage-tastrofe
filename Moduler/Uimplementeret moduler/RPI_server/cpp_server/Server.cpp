@@ -60,7 +60,7 @@ void Server::error(const char* msg){ // Private error handling function
  * @param inFromServer stream that holds data from server
  * @return En streng modtaget fra en socket
  */
-const char* Server::readTextTCP(char *text, int length, int inFromServer)
+void Server::readTextTCP(char *text, int length, int inFromServer)
 {
     char ch;
     int pos=0, len;

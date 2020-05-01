@@ -11,8 +11,11 @@
 
 
 /*------- Includes -------*/
-#include "UltraSonic.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
 #include <stdint.h>
+#define F_CPU 16000000
+#include <util/delay.h>
 /*------------------------*/
 
 

@@ -13,6 +13,8 @@
 #define BOARD_H_
 
 extern volatile bool heat_on_ctrl;
+extern volatile bool heat_ok_pan1;
+extern volatile bool heat_ok_pan2;
 extern volatile bool heat_ok;
 extern volatile bool pancake_done;
 extern volatile uint16_t pan1_cooking_time;
@@ -28,13 +30,13 @@ extern volatile bool pan2Free;
 
 //Baking time
 
-#define PANCAKE_COOKING_TIME1_S			180		//Cooking time for first side of pancake accurate to +- 1 second
-#define PANCAKE_COOKING_TIME2_S			120		//Cooking time for second side of pancake accurate to +- 1 second
+#define PANCAKE_COOKING_TIME1_S			25		//Cooking time for first side of pancake accurate to +- 1 second
+#define PANCAKE_COOKING_TIME2_S			10		//Cooking time for second side of pancake accurate to +- 1 second
 
 //Motor timing
 
-#define MOTOR_OPTIMUM_PWM_FORWARD		100		//100% duty cycle
-#define MOTOR_OPTIMUM_PWM_BACKWARD		100		//100% duty cycle
+#define MOTOR_OPTIMUM_PWM_FORWARD		33		//100% duty cycle
+#define MOTOR_OPTIMUM_PWM_BACKWARD		66		//100% duty cycle
 #define MOTOR_OPTIMUM_PWM_BREAK			100		//100% duty cycle
 
 //NOTE max 166 seconds total

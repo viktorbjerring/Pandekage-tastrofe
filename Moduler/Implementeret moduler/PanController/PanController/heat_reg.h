@@ -90,6 +90,7 @@ ISR(ADC_vect, ISR_NOBLOCK)
 	
 	uint16_t temp = readHeatLevel();
 	
+	//Change pan
 	curr_pan = !curr_pan;
 	
 	ADMUX ^= 0x01;		//Change between ADC0 and ADC1

@@ -40,7 +40,7 @@ void slavePoll() {
 			
 			case GET_BATTER_AMOUNT:
 				int level = getBatterAmount();
-				I2C_SLAVE_sendData(static_cast<char>(level));
+				I2C_SLAVE_sendData((uint8_t)level);
 				break;
 		}
 	}

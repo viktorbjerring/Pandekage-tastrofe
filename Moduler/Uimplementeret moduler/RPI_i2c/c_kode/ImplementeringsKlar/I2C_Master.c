@@ -41,7 +41,7 @@ bool I2C_MASTER_checkData()
     return(data_ready_flag);
 }
 
-char I2C_MASTER_getdata()
+uint8_t I2C_MASTER_getdata()
 {
 
     while(!I2C_MASTER_checkData());

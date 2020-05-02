@@ -62,5 +62,5 @@ int readBatterAmount() {
 	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
 	int pancakesLeft = batterVolume / DSG_VOL;*/
 	
-	return 48+ batterLevel_;
+	return 0x96;
 }

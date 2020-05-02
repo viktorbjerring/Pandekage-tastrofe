@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     case GET_BATTER_LEVEL : // rerunerer batter Level.
         while (I2C_OK!=I2C_MASTER_sendData(ADDR,cmd));
         while (I2C_OK!=I2C_MASTER_readData(ADDR));
-        I2C_MASTER_checkData();
+        //I2C_MASTER_checkData();
         return(I2C_MASTER_getdata());
 
     default:

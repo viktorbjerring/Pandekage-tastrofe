@@ -9,6 +9,13 @@
 #ifndef I2C_SLAVE_SLAVE_H_
 #define I2C_SLAVE_SLAVE_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+		
+
+#endif
+
 //Sets address if not done by user to avoid compile error.
 #ifndef I2C_SLAVE_ADDR
 #warning "I2C_SLAVE_ADDR not defined, default address (0x70) used."
@@ -390,5 +397,8 @@ ISR(I2C_SLAVE_SDA_vect)
 		}
 	}
 }
-
+#ifdef __cplusplus
+}
+	
+#endif
 #endif /* I2C_SLAVE_SLAVE_H_ */

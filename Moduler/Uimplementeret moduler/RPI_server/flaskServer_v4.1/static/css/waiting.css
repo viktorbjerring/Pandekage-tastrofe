@@ -9,3 +9,9 @@
     font-size: 5rem;
     color: #fff;
 }
+
+@media (max-height: 800px){
+    .progressBarTime{
+        font-size: 3rem;
+    }
+}

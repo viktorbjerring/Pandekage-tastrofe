@@ -43,6 +43,7 @@ async function startCountdown(){
   })
   .then((data) => {
     timeStart = data;
+    timeStart = 10; // Debugging
     timeLeftInSeconds = timeStart;
     if(timeStart <= 0) {
       togglePancakeButton(1);
@@ -64,8 +65,10 @@ async function startCountdown(){
         htmlTime[0].innerHTML = time;
         bar.animate(timeLeftInSeconds/timeStart);
         if(timeLeftInSeconds < 0){
+          htmlTime[0].innerHTML = "00:00";
           clearInterval(interval);
-          togglePancakeButton(3);
+          bar.destroy();
+          togglePancakeButton(4);
         }
     }, 1000);
   })

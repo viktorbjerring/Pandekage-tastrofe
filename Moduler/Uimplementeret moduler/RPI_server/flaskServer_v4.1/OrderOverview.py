@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
-
-# Global vars
-timePrPancake = 1 # In minutes for now
-
 from Order import Order
 from OrderHandling import OrderHandling
 
 from flask import request
 
 import random
+
+# Global vars
+timePrPancake = 1 # In minutes for now
+
 # Debugging:
 randomIP = False # Debugging. Generate random IP instead of actual ones.
 

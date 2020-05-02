@@ -15,8 +15,8 @@ extern volatile bool heat_on_ctrl;
 
 //PAN_ON_OFF interrupt
 // pin for heat on/off is B0
-#define HEAT_ON_OFF_PIN		(1 << 0)		//PB0
-#define PANCAKE_DONE_PIN	(1 << 4)		//PB4
+#define HEAT_ON_OFF_PIN		(1 << PINB0)		//PB0
+#define PANCAKE_DONE_PIN	(1 << PORTB4)		//PB4
 
 #define DIGITAL_PROTOCOL_vect	PCINT0_vect
 
@@ -29,7 +29,7 @@ void init_digital_comm() {
 	PORTB &= ~(PANCAKE_DONE_PIN | HEAT_ON_OFF_PIN);		//Set PANCAKE_DONE line to low and no pullup for heat on/off
 	
 	//Interrupt setup
-	PCICR |= PCIE0;						//Enable pin change interrupt 0
+	PCICR |= (1<<PCIE0);						//Enable pin change interrupt 0
 	PCMSK0 |=  (1 << PCINT0);			//Set pin B0 as an interrupt pin
 	
 }

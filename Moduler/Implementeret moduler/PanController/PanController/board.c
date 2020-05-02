@@ -10,7 +10,11 @@
 //Global variables
 volatile bool heat_on_ctrl = false;		//Control unit heat on/off variable
 
-volatile bool heat_ok = false;			//Heat level variable
+volatile bool heat_ok_pan1 = false;			//Heat level variable
+
+volatile bool heat_ok_pan2 = false;
+
+volatile bool heat_ok = false;
 
 volatile bool pancake_done = false;		//Internal pancake done
 

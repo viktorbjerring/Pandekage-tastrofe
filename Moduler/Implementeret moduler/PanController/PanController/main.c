@@ -28,10 +28,10 @@ int main(void)
 	I2C_commands_t temp = 0xFF;
 	
 	bool check_for_free_pan = false;
-	
+	bool check_begin_cooking = false;
     /* Replace with your application code */
     while (1) 
-    {
+    {	
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();
 		}
@@ -49,6 +49,11 @@ int main(void)
 			check_for_free_pan = false;
 		}
 		
+		if (check_begin_cooking) {
+			startTimePan1();
+			check_begin_cooking = false;
+		}
+		
 		switch (temp) {
 				
 			case PING:
@@ -62,8 +67,8 @@ int main(void)
 				break;
 
 			case BEGIN_COOKING:
-				if (pan1Free & heat_ok)
-				startTimePan1();
+				check_begin_cooking = true;
+				temp = 0xFF;
 				break;
 
 			default:
@@ -71,6 +76,7 @@ int main(void)
 		}
 		
     }
+	
 }
 
 void init_1Hz_timer(){

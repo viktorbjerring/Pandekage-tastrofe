@@ -28,15 +28,15 @@ extern volatile bool heat_ok;
 	
 */
 
-#define TRIGGER_LOW			0x3AC		//Temp > 181C
-#define TRIGGER_HIGH		0x3B8		//Temp > 188C
+#define TRIGGER_LOW			0x3A2		//Temp > 181C
+#define TRIGGER_HIGH		0x3C0		//Temp > 188C
 #define OPTIMUM_TEMP		(TRIGGER_LOW + (TRIGGER_HIGH - TRIGGER_LOW)/2)
 
 
 void init_regulation(){
 	
 	//Setup ADC
-	PRR &= ~(1 << PRADC);	//Power manegment enabling of adc
+	PRR &= ~(1 << PRADC);	//Power management enabling of adc
 	DDRC &= 0xFC;			//Port C 0 and 1 is input
 	ADMUX =	(1 << REFS0);	//REF = VCC, ADC0 selected
 	
@@ -49,7 +49,7 @@ void init_regulation(){
 	OCR1B = TIMER_1HZ_TOP;			//Set PWM level to 0 for pan2
 	
 	//OCR1A and B is set on compare match and cleared at bottom (0)
-	TCCR1A |= (1 << COM1A1) | (1 << COM1B1);
+	TCCR1A |= (1 << COM1A1) | (1 << COM1A0) | (1 << COM1B1) | (1 << COM1B0);;;;;;
 	
 	//Start the regulation loop
 	ADCSRA |= (1 << ADSC);
@@ -89,39 +89,45 @@ ISR(ADC_vect, ISR_NOBLOCK)
 {
 	
 	uint16_t temp = readHeatLevel();
-	
-	//Change pan
-	curr_pan = !curr_pan;
-	
-	ADMUX ^= 0x01;		//Change between ADC0 and ADC1
+
 	
 	//Check heat level
-	if (temp >= TRIGGER_LOW && temp <= TRIGGER_HIGH){
-		heat_ok = true;
+	if (curr_pan) {
+		if (temp >= TRIGGER_LOW && temp <= TRIGGER_HIGH){
+			heat_ok_pan1 = true;
+		} else {
+			heat_ok_pan1 = false;
+		}
+	} else {
+		if (temp >= TRIGGER_LOW && temp <= TRIGGER_HIGH){
+			heat_ok_pan2 = true;
+		} else {
+			heat_ok_pan2 = false;
+		}
 	}
-	else {
-		heat_ok = false;
-	}
+	heat_ok = heat_ok_pan1 && heat_ok_pan2;
 	
 	//If no heating control - turn off the pans
 	if (!heat_on_ctrl)		
 	{
 		integral = 0;
 		setPWMLevel(0);
-		//Restart ADC
-		ADCSRA |= (1 << ADSC);
-		return;
+	} else {
+	
+		//Calculate the values for the PI controller
+		int16_t error = OPTIMUM_TEMP - temp;
+		integral += error*DT;
+	
+		//Calculate the output
+		int16_t output = error*KP + integral*KI;
+		
+		//Set PWM
+		setPWMLevel((output < 0? 0 : output));
 	}
-	
-	//Calculate the values for the PI controller
-	int16_t error = OPTIMUM_TEMP - temp;
-	integral += error*DT;
-	
-	//Calculate the output
-	int16_t output = error*KP + integral*KI;
-	
-	//Set PWM
-	setPWMLevel((output < 0? 0 : output));
+	//Change pan
+	curr_pan = !curr_pan;
+		
+	ADMUX ^= 0x01;		//Change between ADC0 and ADC1
 	
 	//Restart conversion
 	ADCSRA |= (1 << ADSC);

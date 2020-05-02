@@ -5,7 +5,7 @@
  *  Author: au615804
  */ 
 
-
+//#include "../main.h"
 #include "UltraSonic.h"
 
 volatile uint16_t batterLevel_ = 0;
@@ -62,5 +62,5 @@ int readBatterAmount() {
 	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
 	int pancakesLeft = batterVolume / DSG_VOL;*/
 	
-	return 48+ batterLevel_;
+	return batterLevel_;
 }

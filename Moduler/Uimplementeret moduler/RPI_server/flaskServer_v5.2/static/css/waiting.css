@@ -1,11 +1,17 @@
 #waiting {
     margin: 20px;
-    width: 600px;
-    height: 600px;
+    /*width: 600px;
+    height: 600px;*/
 }
 
 .progressBarTime {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 5rem;
     color: #fff;
+}
+
+@media (max-height: 800px){
+    .progressBarTime{
+        font-size: 3rem;
+    }
 }

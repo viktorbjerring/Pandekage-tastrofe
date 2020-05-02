@@ -44,7 +44,18 @@ def get_batter_status():
 def set_batter_alarm():
     return apiObj.clearBatterAlarm()
 
+@app.route('/maintenance/cooling_on/', methods=['POST'])
+def cooling_on():
+    return apiObj.turnCoolingOn()
 
+@app.route('/maintenance/cooling_off/', methods=['POST'])
+def cooling_off():
+    return apiObj.turnCoolingOff()
+
+@app.route('/maintenance/toggle_pans/', methods=['POST'])
+def toggle_pans():
+    return apiObj.togglePans()
+    
 #---------------------------MaintenanceIF END
 
 #---------------------------PING:

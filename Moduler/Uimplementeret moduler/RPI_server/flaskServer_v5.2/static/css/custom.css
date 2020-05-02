@@ -46,11 +46,28 @@ body > .container {
   max-height: 70px;
 }
 
+.custom_logo {
+  max-height: 35vw;
+}
+
+@media (max-height: 800px){
+  .custom_logo {
+    max-height: 20vw;
+  }
+}
+
 /* Pancake Button
 -------------------------------------------------- */
 .pancake-button {
   max-width: 80vw;
   max-height: 50vh;
+}
+
+@media (max-height: 800px){
+  .pancake-button{
+    max-width: 60vw;
+    max-height: 40vh;
+  }
 }
 
 /* System status
@@ -141,7 +158,10 @@ body > .container {
   flex-direction: column;
 }
 
-/*Mangler media queries*/
+.nav_styling{
+  width: 100%;
+}
+
 .nav_styling h1{
   text-align: center;
   font-size: 1.25rem;
@@ -149,12 +169,20 @@ body > .container {
   padding-top: 2vh;
 }
 
-/*Mangler media queries*/
 .nav_styling p{
   text-align: center;
   padding-left: 7vw;
   padding-right: 7vw;
   margin-bottom: 0px;
+  font-size: 1rem;
+}
+@media (max-height: 800px){
+  .nav_styling p{
+    font-size: 0.8rem;
+  }
+  .nav_styling h1{
+    font-size: 1rem;
+  }
 }
 
 .nav_styling img{
@@ -168,8 +196,14 @@ body > .container {
   margin-top:1.5rem;
 }
 #nav_pancake {
-  max-height: 100px;
-  max-width: 100px;
+  margin-top: -1.1vh;
+  max-height: 10vh;
+  max-width: 10vh;
+}
+@media (max-height: 800px){
+  #nav_pancake {
+    display:none;
+  }
 }
 
 /* Modal confirmation box 
@@ -202,4 +236,13 @@ body > .container {
 .modal-header{
   border: none;
   padding: none;
+}
+
+.modal-header .close {
+  padding: 1rem 1rem 0rem 0rem;
+  margin-left: -1rem;
+}
+
+.modal-body p{
+  text-align: center;
 }

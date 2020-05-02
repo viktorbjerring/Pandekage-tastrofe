@@ -11,9 +11,12 @@ def userSpaceCMD(cmd):
     elif(cmd == "TURN_ON_COOLING"):
         print("Running ", cmd)
         cmd = "5"
-    elif(cmd == "CLEAR_BATTER_ALARM"):
+    elif(cmd == "TURN_OFF_COOLING"):
         print("Running ", cmd)
         cmd = "6"
+    elif(cmd == "CLEAR_BATTER_ALARM"):
+        print("Running ", cmd)
+        cmd = "7"
     else:
         print("Invalid command")
         return -1
@@ -22,7 +25,7 @@ def userSpaceCMD(cmd):
     return userSpaceReturnValue.returncode
 
 
-def turnOnPans():
+def togglePans():
     with open('/dev/pan', 'w') as systemfile: 
             systemfile.write("1")
             print("Turned on the pans.")

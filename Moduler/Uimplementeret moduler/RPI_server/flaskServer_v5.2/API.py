@@ -16,6 +16,7 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
         self.orderOverviewObj = OrderOverview()
         self.batterStatusObj = BatterStatus()
         self.__panstatus = False
+        self.__coolingStatus = False
     def estimateTime(self):
         return json.dumps(self.orderOverviewObj.estimateTime())
     def orderPancake(self):
@@ -53,12 +54,23 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
         return json.dumps(status)
     def turnCoolingOn(self):
         userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
-        return json.dumps("1")
+        self.__coolingStatus = True
+        value = "1" if self.__coolingStatus == True else "0"
+        return json.dumps(value)
     def turnCoolingOff(self):
         userSpaceCMD("TURN_OFF_COOLING") # Send command to turn on cooling
-        return json.dumps("1")
+        self.__coolingStatus = False
+        value = "1" if self.__coolingStatus == True else "0"
+        return json.dumps(value)
+    def coolingStatus(self):
+        value = "1" if self.__coolingStatus == True else "0"
+        return json.dumps(value)
     def togglePans(self):
         togglePans()
         self.__panstatus = not self.__panstatus
+        print("Pans are now: ", self.__panstatus)
+        value = "1" if self.__panstatus == True else "0"
+        return json.dumps(value)
+    def panStatus(self):
         value = "1" if self.__panstatus == True else "0"
         return json.dumps(value)

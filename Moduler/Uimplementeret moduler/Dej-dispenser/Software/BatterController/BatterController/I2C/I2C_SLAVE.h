@@ -123,6 +123,8 @@ void I2C_SLAVE_sendData(char data)
 	//Indicates that data is needed to be send.
 	I2C_SLAVE_dataReady = 1;
 	
+	
+	
 	//If begin hold is sat, then sending will begin imidiatly.
 	if(I2C_SLAVE_beginHold)
 	{
@@ -344,6 +346,7 @@ ISR(I2C_SLAVE_SCL_vect)
 				}
 				else
 				{
+					I2C_SLAVE_dataReady = 0;
 					//Frees SDA if done sending.
 					I2C_SLAVE_dataReady = 0;
 					I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);

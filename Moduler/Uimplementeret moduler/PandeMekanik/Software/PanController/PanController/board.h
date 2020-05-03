@@ -28,8 +28,8 @@ extern volatile bool pan2Free;
 
 //Baking time
 
-#define PANCAKE_COOKING_TIME1_S			180		//Cooking time for first side of pancake accurate to +- 1 second
-#define PANCAKE_COOKING_TIME2_S			120		//Cooking time for second side of pancake accurate to +- 1 second
+#define PANCAKE_COOKING_TIME1_S			5		//Cooking time for first side of pancake accurate to +- 1 second
+#define PANCAKE_COOKING_TIME2_S			10		//Cooking time for second side of pancake accurate to +- 1 second
 
 //Motor timing
 

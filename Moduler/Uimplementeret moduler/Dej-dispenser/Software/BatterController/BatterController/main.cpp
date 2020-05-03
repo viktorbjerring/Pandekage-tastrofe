@@ -38,7 +38,7 @@ int main()
 
 void pancakeBegin() {
 	waitForFreePan();
-	addDough();
+	//addDough();
 	cookingBegin();
 }
 

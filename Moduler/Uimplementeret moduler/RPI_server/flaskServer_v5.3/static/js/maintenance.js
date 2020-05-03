@@ -41,13 +41,13 @@ function getBatterStatus() {
         }
         else {
             header.innerHTML = "An error occured trying to check batter status"
-            body.setAttribute("style","background-color: red; text-align:center;");
+            body.setAttribute("style","background-color: coral; text-align:center;");
         }
     })
     .catch(err => {
         console.log(err);
         header.innerHTML = "An error occured trying to check batter status"
-        body.setAttribute("style","background-color: red; text-align:center;");
+        body.setAttribute("style","background-color: coral; text-align:center;");
     });
 }
 

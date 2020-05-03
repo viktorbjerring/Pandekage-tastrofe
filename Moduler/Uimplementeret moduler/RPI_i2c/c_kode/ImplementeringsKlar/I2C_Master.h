@@ -6,6 +6,7 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
 #include <stdbool.h>
 #include "I2C_common.h"
 

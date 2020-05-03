@@ -52,6 +52,14 @@ def cooling_on():
 def cooling_off():
     return apiObj.turnCoolingOff()
 
+@app.route('/maintenance/cooling_status/', methods=['GET'])
+def cooling_status():
+    return apiObj.coolingStatus()
+
+@app.route('/maintenance/pan_status/', methods=['GET'])
+def pan_status():
+    return apiObj.panStatus()
+
 @app.route('/maintenance/toggle_pans/', methods=['POST'])
 def toggle_pans():
     return apiObj.togglePans()

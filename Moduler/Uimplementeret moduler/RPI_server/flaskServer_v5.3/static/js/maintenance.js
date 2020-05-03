@@ -60,7 +60,7 @@ function clearBatterAlarm() {
     })
     .then((data) => {
         //console.log(data)
-        getBatterStatus() // Check new status
+        //getBatterStatus() // Check new status
     })
     .catch(err => {
         console.error(err);

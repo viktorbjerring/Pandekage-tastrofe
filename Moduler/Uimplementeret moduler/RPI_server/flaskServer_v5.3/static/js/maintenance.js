@@ -9,9 +9,11 @@
     getCoolingStatus();
 }());
 
+let batterInterval;
+
 // Make API call to check status every 10 seconds
 (function() {
-    setInterval(function(){
+    batterInterval = setInterval(function(){
         getBatterStatus();
     }, 10000);
 }());
@@ -60,7 +62,10 @@ function clearBatterAlarm() {
     })
     .then((data) => {
         //console.log(data)
-        //getBatterStatus() // Check new status
+        getBatterStatus() // Check new status
+        batterInterval = setInterval(function(){
+            getBatterStatus();
+        }, 10000);
     })
     .catch(err => {
         console.error(err);

@@ -9,9 +9,11 @@
     getCoolingStatus();
 }());
 
+let batterInterval;
+
 // Make API call to check status every 10 seconds
 (function() {
-    var batterInterval = setInterval(function(){
+    batterInterval = setInterval(function(){
         getBatterStatus();
     }, 10000);
 }());

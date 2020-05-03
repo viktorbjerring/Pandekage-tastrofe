@@ -62,5 +62,5 @@ int readBatterAmount() {
 	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
 	int pancakesLeft = batterVolume / DSG_VOL;*/
 	
-	return 0x96; //Skal returnere 96 for at prog 4 kan køre flere gange
+	return 0x40; //Skal returnere 96 for at prog 4 kan køre flere gange
 }

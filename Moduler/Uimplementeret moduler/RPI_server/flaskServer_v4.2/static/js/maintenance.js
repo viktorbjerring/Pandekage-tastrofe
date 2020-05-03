@@ -20,7 +20,6 @@
 function getBatterStatus() {
 
     let header = document.getElementById("batter_status");
-    let button = document.getElementById("clearBatterAlarm");
     let body = document.getElementById("body_id");
 
     let url = document.URL + 'batter_status/';
@@ -35,24 +34,20 @@ function getBatterStatus() {
         //console.log(data)
         if(data === "Dispenser is ok"){
             header.innerHTML = data;
-            button.setAttribute("style", "display:none;");
             body.setAttribute("style", "background-color: greenyellow; text-align:center;");
         }
         else if(data === "Dispenser needs batter"){
             header.innerHTML = data;
             body.setAttribute("style","background-color: yellow; text-align:center;");
-            button.setAttribute("style", "display:inline-block;");
         }
         else {
             header.innerHTML = "An error occured trying to check batter status"
-            button.setAttribute("style", "display:none;");
             body.setAttribute("style","background-color: red; text-align:center;");
         }
     })
     .catch(err => {
         console.log(err);
-        header.innerHTML = "An error occured trying to check batter status"
-        button.setAttribute("style", "display:none;");
+        header.innerHTML = "An error occured trying to check batter status";
         body.setAttribute("style","background-color: red; text-align:center;");
     });
 }

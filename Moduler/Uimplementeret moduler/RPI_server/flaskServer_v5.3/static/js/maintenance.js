@@ -9,7 +9,7 @@
     getCoolingStatus();
 }());
 
-let batterInterval;
+var batterInterval;
 
 // Make API call to check status every 10 seconds
 (function() {
@@ -40,7 +40,7 @@ function getBatterStatus() {
         else if(data === "Dispenser needs batter"){
             header.innerHTML = data;
             body.setAttribute("style","background-color: yellow; text-align:center;");
-            clearInterval(batterInterval)
+            clearInterval(batterInterval);
         }
         else {
             header.innerHTML = "An error occured trying to check batter status"

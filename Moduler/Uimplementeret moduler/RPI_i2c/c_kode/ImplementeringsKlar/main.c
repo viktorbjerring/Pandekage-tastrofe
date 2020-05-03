@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
         while (I2C_OK!=I2C_MASTER_sendData(ADDR,cmd));
         while (I2C_OK!=I2C_MASTER_readData(ADDR));
         //I2C_MASTER_checkData();
-		temp = I2C_MASTER_getData();
+		temp = I2C_MASTER_getdata();
 		break;
 		
 

@@ -22,7 +22,17 @@
     <body id="body_id" class="mt-4"> 
         <h1 id="batter_status"></h1>
 
-        <button type="button" id="clearBatterAlarm" class="btn btn-danger" data-dismiss="modal">Reset indicator</button>
+        <button type="button" id="clearBatterAlarm" class="btn btn-danger" data-dismiss="modal" style="display:block;">Reset indicator</button>
+
+        <button type="button" id="togglePans" class="btn btn-success" data-dismiss="modal" style="display:block;">Toggle pans</button>
+
+        <p id="panStatus"></p>
+
+        <button type="button" id="turnOnCooling" class="btn btn-success" data-dismiss="modal" style="display:block;">Turn on cooling</button>
+
+        <button type="button" id="turnOffCooling" class="btn btn-danger" data-dismiss="modal" style="display:block;">Turn off cooling</button>
+
+        <p id="coolingStatus"></p>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -30,7 +40,5 @@
     <script src="../static/js/maintenance.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
-    
-	
   </body>
 </html>

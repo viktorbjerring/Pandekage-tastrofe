@@ -30,8 +30,11 @@ class Maintenance:
             return 1 # Returns 1 if it was able to clear it
         except:
             return 0
-    def setCooling(self):
-        data = request.get_data(as_text = True)
+    def setCooling(self, init=False):
+        if(init == False):
+            data = request.get_data(as_text = True)
+        else:
+            data = init
         if(data == "1"): 
             self.__coolingStatus = True
         elif(data == "0"):

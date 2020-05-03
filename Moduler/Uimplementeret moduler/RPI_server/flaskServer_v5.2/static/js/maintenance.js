@@ -1,6 +1,9 @@
 // Order pancake function
 (function() {
     document.getElementById("clearBatterAlarm").addEventListener("click", clearBatterAlarm);
+    document.getElementById("togglePans").addEventListener("click", togglePans);
+    document.getElementById("turnOnCooling").addEventListener("click", turnOnCooling);
+    document.getElementById("turnOffCooling").addEventListener("click", turnOffCooling);
     getBatterStatus()
 }());
 
@@ -66,6 +69,49 @@ function clearBatterAlarm() {
     .catch(err => {
         console.error(err);
     });
-    
 } 
 
+function togglePans() {
+    let url = document.URL + 'toggle_pans/';
+    fetch(url, {
+      method: 'POST'
+    }).then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+        console.log(data)
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function turnOnCooling() {
+    let url = document.URL + 'cooling_on/';
+    fetch(url, {
+      method: 'POST'
+    }).then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+        console.log(data)
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function turnOffCooling() {
+    let url = document.URL + 'cooling_off/';
+    fetch(url, {
+      method: 'POST'
+    }).then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+        console.log(data)
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}

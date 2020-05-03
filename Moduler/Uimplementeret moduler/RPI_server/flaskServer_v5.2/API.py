@@ -9,10 +9,6 @@ from communication import userSpaceCMD, togglePans
 
 class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det returneres korrekt ud.
     def __init__(self):
-        #userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
-        
-        togglePans()
-
         self.orderOverviewObj = OrderOverview()
         self.batterStatusObj = BatterStatus()
         self.__panstatus = False

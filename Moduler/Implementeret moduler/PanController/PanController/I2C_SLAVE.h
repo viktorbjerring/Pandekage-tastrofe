@@ -9,6 +9,13 @@
 #ifndef I2C_SLAVE_SLAVE_H_
 #define I2C_SLAVE_SLAVE_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+		
+
+#endif
+
 //Sets address if not done by user to avoid compile error.
 #ifndef I2C_SLAVE_ADDR
 #warning "I2C_SLAVE_ADDR not defined, default address (0x70) used."
@@ -54,7 +61,7 @@ static char I2C_SLAVE_recevedAddr = 0;
 static char I2C_SLAVE_recevedBits = 0;
 static volatile char I2C_SLAVE_toSend = 0;
 static char I2C_SLAVE_tempSave = 0;
-static char I2C_SLAVE_dataReady = 0;
+static char I2C_SLAVE_dataReady = 0; //0 = no data ready, 1 = data ready, 2 = data ready, data in temp buf, 3 = sending data and data in temp buf
 static char I2C_SLAVE_haveSended = 0;
 static char I2C_SLAVE_recevedData = 0;
 static bool I2C_SLAVE_startRecived = false;
@@ -115,6 +122,8 @@ void I2C_SLAVE_sendData(char data)
 	I2C_SLAVE_haveSended = 0;
 	//Indicates that data is needed to be send.
 	I2C_SLAVE_dataReady = 1;
+	
+	
 	
 	//If begin hold is sat, then sending will begin imidiatly.
 	if(I2C_SLAVE_beginHold)
@@ -338,8 +347,9 @@ ISR(I2C_SLAVE_SCL_vect)
 				else
 				{
 					//Frees SDA if done sending.
+					I2C_SLAVE_dataReady = 0;
 					I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);
-					I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);
+					I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);	
 				}
 				if(I2C_SLAVE_beginHold)
 				{
@@ -384,11 +394,15 @@ ISR(I2C_SLAVE_SDA_vect)
 		//If it was a stop-bit reset received data, and set SCL trigger to rising.
 		if(I2C_SLAVE_startRecived == false)
 		{
+			I2C_SLAVE_beginHold = false;
 			I2C_SLAVE_recevedAddr = 0;
 			I2C_SLAVE_recevedBits = 0;
 			I2C_SLAVE_SCL_RISING();
 		}
 	}
 }
-
+#ifdef __cplusplus
+}
+	
+#endif
 #endif /* I2C_SLAVE_SLAVE_H_ */

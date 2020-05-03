@@ -133,10 +133,10 @@ function getPanStatus() {
         //console.log("Response:")
         //console.log(data)
         if(data === "1"){
-            paragraph.innerHTML = "Pans are turned on";
+            paragraph.innerHTML = 'Pans are turned <span style="color:forestgreen;">on</span>.';
         }
         else if(data === "0"){
-            paragraph.innerHTML = "Pans are turned off";
+            paragraph.innerHTML = 'Pans are turned <span style="color:red;">off</span>.';
         }
         else {
             paragraph.innerHTML = "An error occured trying to check for pan status"

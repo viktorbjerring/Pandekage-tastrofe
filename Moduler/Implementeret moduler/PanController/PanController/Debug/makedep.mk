@@ -6,5 +6,3 @@ board.c
 
 main.c
 
-uart.c
-

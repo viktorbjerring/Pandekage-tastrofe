@@ -70,9 +70,6 @@ async function togglePancakeButton(state) {
                 if(data == "Pancake is ready"){
                     togglePancakeButton(3);
                 } else {
-                    $(".success").css({ // Set it to same size as pancake-button. Must be after setAttribute
-                        'height': ($(".pancake-button").height() + 'px')
-                    });
                     document.getElementById("action_text").innerHTML = "YOUR PANCAKE IS READY SOON!"
                     document.getElementById("delivery_time").setAttribute('style', 'display:none;')
                     setTimeout(() => {

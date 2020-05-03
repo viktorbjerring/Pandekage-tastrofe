@@ -76,8 +76,12 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
 	
 	//Wait for stop-bit send
-	while(TWCR & (1 << TWSTO));
-
+	DDRB |= 1<<DDB4;
+	while(TWCR & (1 << TWSTO))
+	{
+		PORTB |= 1<<PORTB4;
+	}
+	PORTB &= ~(1<<PORTB4);
 	//Unlock mutex
 	I2C_MASTER_hw_mutex = false;
 	return I2C_OK;

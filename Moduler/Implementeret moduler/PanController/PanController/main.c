@@ -33,11 +33,11 @@ int main(void)
 	DDRB |= 1<<DDB3;
 	PORTB &= ~(1<<PORTB3);
     while (1) 
-    {	
-		if (check_begin_cooking)
+    {		
+		/*if (check_begin_cooking)
 		{
 			PORTB |= 1<<PORTB3;
-		}
+		}*/
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();
 		}
@@ -53,11 +53,13 @@ int main(void)
 		if (check_for_free_pan && pan1Free && heat_ok){
 			I2C_SLAVE_sendData(pan1Free);
 			check_for_free_pan = false;
+			
 		}
 		
 		if (check_begin_cooking) {
 			startTimePan1();
 			check_begin_cooking = false;
+			PORTB |= 1<<PORTB3;
 		}
 		
 		switch (temp) {

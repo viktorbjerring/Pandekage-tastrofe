@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 00000955  00000000  00000000  0000229d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000b59  00000000  00000000  00002bf2  2**0
+  8 .debug_line   00000b65  00000000  00000000  00002bf2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000030c  00000000  00000000  0000374c  2**2
+  9 .debug_frame  0000030c  00000000  00000000  00003758  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000007f2  00000000  00000000  00003a58  2**0
+ 10 .debug_str    000007f2  00000000  00000000  00003a64  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000076c  00000000  00000000  0000424a  2**0
+ 11 .debug_loc    0000076b  00000000  00000000  00004256  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000c0  00000000  00000000  000049b6  2**0
+ 12 .debug_ranges 000000c0  00000000  00000000  000049c1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1278,10 +1278,9 @@ static unsigned char I2C_SLAVE_inc(volatile unsigned char * num)
 				}
 				else
 				{
-					I2C_SLAVE_dataReady = 0;
-     7a6:	10 92 1f 01 	sts	0x011F, r1	; 0x80011f <I2C_SLAVE_dataReady>
 					//Frees SDA if done sending.
 					I2C_SLAVE_dataReady = 0;
+     7a6:	10 92 1f 01 	sts	0x011F, r1	; 0x80011f <I2C_SLAVE_dataReady>
 					I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);
      7aa:	54 98       	cbi	0x0a, 4	; 10
 					I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);	
@@ -1980,146 +1979,133 @@ int main(void)
 			I2C_SLAVE_sendData(pan1Free);
 			check_for_free_pan = false;
      b2c:	00 e0       	ldi	r16, 0x00	; 0
-				temp = 0xFF;
-				break;
-
-			case BEGIN_COOKING:
-				check_begin_cooking = true;
-				temp = 0xFF;
-     b2e:	ff 24       	eor	r15, r15
-     b30:	fa 94       	dec	r15
-				check_for_free_pan = true;
-				temp = 0xFF;
-				break;
-
-			case BEGIN_COOKING:
-				check_begin_cooking = true;
-     b32:	ee 24       	eor	r14, r14
-     b34:	e3 94       	inc	r14
-     b36:	03 c0       	rjmp	.+6      	; 0xb3e <main+0x32>
-				temp = 0xFF;
-				break;
-
-			case GET_FIRST_PAN_STATUS:
-				check_for_free_pan = true;
-				temp = 0xFF;
-     b38:	cf 2d       	mov	r28, r15
 				I2C_SLAVE_sendData(temp);
 				temp = 0xFF;
 				break;
 
 			case GET_FIRST_PAN_STATUS:
 				check_for_free_pan = true;
-     b3a:	1e 2d       	mov	r17, r14
-		if (check_begin_cooking) {
+     b2e:	ee 24       	eor	r14, r14
+     b30:	e3 94       	inc	r14
+				temp = 0xFF;
+     b32:	ff 24       	eor	r15, r15
+     b34:	fa 94       	dec	r15
+     b36:	01 c0       	rjmp	.+2      	; 0xb3a <main+0x2e>
 			startTimePan1();
 			check_begin_cooking = false;
+			PORTB |= 1<<PORTB3;
 		}
 		
 		switch (temp) {
-     b3c:	d0 2f       	mov	r29, r16
-    {	
-		if (check_begin_cooking)
+     b38:	d0 2f       	mov	r29, r16
+    {		
+		/*if (check_begin_cooking)
 		{
 			PORTB |= 1<<PORTB3;
-		}
+		}*/
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
-     b3e:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <pan1_cooking_time>
-     b42:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <pan1_cooking_time+0x1>
-     b46:	05 97       	sbiw	r24, 0x05	; 5
-     b48:	11 f4       	brne	.+4      	; 0xb4e <main+0x42>
+     b3a:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <pan1_cooking_time>
+     b3e:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <pan1_cooking_time+0x1>
+     b42:	05 97       	sbiw	r24, 0x05	; 5
+     b44:	11 f4       	brne	.+4      	; 0xb4a <main+0x3e>
 			flipPan1();
-     b4a:	0e 94 a1 04 	call	0x942	; 0x942 <flipPan1>
+     b46:	0e 94 a1 04 	call	0x942	; 0x942 <flipPan1>
 		}
 		
 		if (pan2_cooking_time == PANCAKE_COOKING_TIME2_S){
-     b4e:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
-     b52:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <__data_end+0x1>
-     b56:	0a 97       	sbiw	r24, 0x0a	; 10
-     b58:	11 f4       	brne	.+4      	; 0xb5e <main+0x52>
+     b4a:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
+     b4e:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <__data_end+0x1>
+     b52:	0a 97       	sbiw	r24, 0x0a	; 10
+     b54:	11 f4       	brne	.+4      	; 0xb5a <main+0x4e>
 			flipPan2();
-     b5a:	0e 94 b7 04 	call	0x96e	; 0x96e <flipPan2>
+     b56:	0e 94 b7 04 	call	0x96e	; 0x96e <flipPan2>
 		}
 		
 		if (I2C_SLAVE_checkData()){
-     b5e:	0e 94 29 02 	call	0x452	; 0x452 <I2C_SLAVE_checkData>
-     b62:	88 23       	and	r24, r24
-     b64:	19 f0       	breq	.+6      	; 0xb6c <main+0x60>
+     b5a:	0e 94 29 02 	call	0x452	; 0x452 <I2C_SLAVE_checkData>
+     b5e:	88 23       	and	r24, r24
+     b60:	19 f0       	breq	.+6      	; 0xb68 <main+0x5c>
 			temp = I2C_SLAVE_getData();
-     b66:	0e 94 8d 02 	call	0x51a	; 0x51a <I2C_SLAVE_getData>
-     b6a:	c8 2f       	mov	r28, r24
+     b62:	0e 94 8d 02 	call	0x51a	; 0x51a <I2C_SLAVE_getData>
+     b66:	c8 2f       	mov	r28, r24
 		}
 		
 		if (check_for_free_pan && pan1Free && heat_ok){
-     b6c:	11 23       	and	r17, r17
-     b6e:	69 f0       	breq	.+26     	; 0xb8a <main+0x7e>
-     b70:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <pan1Free>
-     b74:	88 23       	and	r24, r24
-     b76:	49 f0       	breq	.+18     	; 0xb8a <main+0x7e>
-     b78:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <heat_ok>
-     b7c:	88 23       	and	r24, r24
-     b7e:	29 f0       	breq	.+10     	; 0xb8a <main+0x7e>
+     b68:	11 23       	and	r17, r17
+     b6a:	69 f0       	breq	.+26     	; 0xb86 <main+0x7a>
+     b6c:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <pan1Free>
+     b70:	88 23       	and	r24, r24
+     b72:	49 f0       	breq	.+18     	; 0xb86 <main+0x7a>
+     b74:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <heat_ok>
+     b78:	88 23       	and	r24, r24
+     b7a:	29 f0       	breq	.+10     	; 0xb86 <main+0x7a>
 			I2C_SLAVE_sendData(pan1Free);
-     b80:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <pan1Free>
-     b84:	0e 94 34 02 	call	0x468	; 0x468 <I2C_SLAVE_sendData>
+     b7c:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <pan1Free>
+     b80:	0e 94 34 02 	call	0x468	; 0x468 <I2C_SLAVE_sendData>
 			check_for_free_pan = false;
-     b88:	10 2f       	mov	r17, r16
+     b84:	10 2f       	mov	r17, r16
+			
 		}
 		
 		if (check_begin_cooking) {
-     b8a:	dd 23       	and	r29, r29
-     b8c:	71 f0       	breq	.+28     	; 0xbaa <main+0x9e>
+     b86:	dd 23       	and	r29, r29
+     b88:	19 f0       	breq	.+6      	; 0xb90 <main+0x84>
 			startTimePan1();
-     b8e:	0e 94 9a 04 	call	0x934	; 0x934 <startTimePan1>
-     b92:	0b c0       	rjmp	.+22     	; 0xbaa <main+0x9e>
+     b8a:	0e 94 9a 04 	call	0x934	; 0x934 <startTimePan1>
+			check_begin_cooking = false;
+			PORTB |= 1<<PORTB3;
+     b8e:	2b 9a       	sbi	0x05, 3	; 5
+		}
+		
+		switch (temp) {
+     b90:	c1 30       	cpi	r28, 0x01	; 1
+     b92:	21 f0       	breq	.+8      	; 0xb9c <main+0x90>
+     b94:	38 f0       	brcs	.+14     	; 0xba4 <main+0x98>
+     b96:	c2 30       	cpi	r28, 0x02	; 2
+     b98:	59 f0       	breq	.+22     	; 0xbb0 <main+0xa4>
+     b9a:	ce cf       	rjmp	.-100    	; 0xb38 <main+0x2c>
+     b9c:	d0 2f       	mov	r29, r16
+				I2C_SLAVE_sendData(temp);
+				temp = 0xFF;
+				break;
+
+			case GET_FIRST_PAN_STATUS:
+				check_for_free_pan = true;
+     b9e:	1e 2d       	mov	r17, r14
+				temp = 0xFF;
+     ba0:	cf 2d       	mov	r28, r15
+     ba2:	cb cf       	rjmp	.-106    	; 0xb3a <main+0x2e>
 		}
 		
 		switch (temp) {
 				
 			case PING:
 				I2C_SLAVE_sendData(temp);
-     b94:	80 2f       	mov	r24, r16
-     b96:	0e 94 34 02 	call	0x468	; 0x468 <I2C_SLAVE_sendData>
-				temp = 0xFF;
-     b9a:	cf 2d       	mov	r28, r15
-				break;
-     b9c:	04 c0       	rjmp	.+8      	; 0xba6 <main+0x9a>
-	PORTB &= ~(1<<PORTB3);
-    while (1) 
-    {	
-		if (check_begin_cooking)
-		{
-			PORTB |= 1<<PORTB3;
-     b9e:	2b 9a       	sbi	0x05, 3	; 5
+     ba4:	80 2f       	mov	r24, r16
+     ba6:	0e 94 34 02 	call	0x468	; 0x468 <I2C_SLAVE_sendData>
 				temp = 0xFF;
 				break;
-
-			case BEGIN_COOKING:
-				check_begin_cooking = true;
+     baa:	d0 2f       	mov	r29, r16
+		
+		switch (temp) {
+				
+			case PING:
+				I2C_SLAVE_sendData(temp);
 				temp = 0xFF;
-     ba0:	cf 2d       	mov	r28, r15
+     bac:	cf 2d       	mov	r28, r15
+				break;
+     bae:	c5 cf       	rjmp	.-118    	; 0xb3a <main+0x2e>
 				check_for_free_pan = true;
 				temp = 0xFF;
 				break;
 
 			case BEGIN_COOKING:
 				check_begin_cooking = true;
-     ba2:	de 2d       	mov	r29, r14
-     ba4:	cc cf       	rjmp	.-104    	; 0xb3e <main+0x32>
-     ba6:	d0 2f       	mov	r29, r16
-     ba8:	ca cf       	rjmp	.-108    	; 0xb3e <main+0x32>
-		if (check_begin_cooking) {
-			startTimePan1();
-			check_begin_cooking = false;
-		}
-		
-		switch (temp) {
-     baa:	c1 30       	cpi	r28, 0x01	; 1
-     bac:	29 f2       	breq	.-118    	; 0xb38 <main+0x2c>
-     bae:	90 f3       	brcs	.-28     	; 0xb94 <main+0x88>
-     bb0:	c2 30       	cpi	r28, 0x02	; 2
-     bb2:	a9 f3       	breq	.-22     	; 0xb9e <main+0x92>
-     bb4:	f8 cf       	rjmp	.-16     	; 0xba6 <main+0x9a>
+     bb0:	de 2d       	mov	r29, r14
+				temp = 0xFF;
+     bb2:	cf 2d       	mov	r28, r15
+				break;
+     bb4:	c2 cf       	rjmp	.-124    	; 0xb3a <main+0x2e>
 
 00000bb6 <__vector_13>:
 	

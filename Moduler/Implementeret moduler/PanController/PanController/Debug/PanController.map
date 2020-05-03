@@ -726,11 +726,11 @@ END GROUP
  .debug_abbrev  0x000005a2       0x4b board.o
  .debug_abbrev  0x000005ed      0x368 main.o
 
-.debug_line     0x00000000      0xb59
+.debug_line     0x00000000      0xb65
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000133       0x8c board.o
- .debug_line    0x000001bf      0x99a main.o
+ .debug_line    0x000001bf      0x9a6 main.o
 
 .debug_frame    0x00000000      0x30c
  *(.debug_frame)
@@ -744,9 +744,9 @@ END GROUP
  .debug_str     0x000003ca      0x428 main.o
                                 0x61e (size before relaxing)
 
-.debug_loc      0x00000000      0x76c
+.debug_loc      0x00000000      0x76b
  *(.debug_loc)
- .debug_loc     0x00000000      0x76c main.o
+ .debug_loc     0x00000000      0x76b main.o
 
 .debug_macinfo
  *(.debug_macinfo)

@@ -13,7 +13,7 @@ void initPanController() {
 }
 
 void waitForFreePan() {
-	I2C_MASTER_sendData(I2C_PAN_ADDR, GET_FIRST_PAN_STATUS);
+	while (I2C_MASTER_sendData(I2C_PAN_ADDR, GET_FIRST_PAN_STATUS) != I2C_OK);	
 	I2C_MASTER_readData(I2C_PAN_ADDR);
 } 
 

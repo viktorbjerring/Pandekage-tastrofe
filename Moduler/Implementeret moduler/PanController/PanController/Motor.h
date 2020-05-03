@@ -121,6 +121,7 @@ void startTimePan1(){
 	pan1Free = false;
 	
 	
+	
 }
 
 static void startTimePan2(){

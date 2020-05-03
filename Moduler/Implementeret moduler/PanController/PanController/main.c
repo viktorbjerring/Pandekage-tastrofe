@@ -32,6 +32,8 @@ int main(void)
     /* Replace with your application code */
 	DDRB |= 1<<DDB3;
 	PORTB &= ~(1<<PORTB3);
+	DDRB |= (1<<5);
+	PORTB &= ~(1<<5);
     while (1) 
     {		
 		/*if (check_begin_cooking)
@@ -53,14 +55,22 @@ int main(void)
 		if (check_for_free_pan && pan1Free && heat_ok){
 			I2C_SLAVE_sendData(pan1Free);
 			check_for_free_pan = false;
-			
+			PORTB |= 1<<PORTB3;			
 		}
 		
 		if (check_begin_cooking) {
 			startTimePan1();
 			check_begin_cooking = false;
+		}
+		if (heat_ok_pan2)
+		{
 			PORTB |= 1<<PORTB3;
 		}
+		else
+		{
+			PORTB &= ~(1<<PORTB3);
+		}
+		
 		
 		switch (temp) {
 				

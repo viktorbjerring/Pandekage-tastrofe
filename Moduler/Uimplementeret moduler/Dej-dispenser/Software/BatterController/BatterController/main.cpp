@@ -27,7 +27,7 @@ int main()
 	initPanController();
 	initUltrasonic();
 	initBatterDispenser();
-	
+	DDRB |= (1<<4);
 	/* Initialize indicator */ 
 	INDCTR_DDR |= (1<<INDCTR_PORT_NUM);
     while (1) 
@@ -37,18 +37,23 @@ int main()
 }
 
 void pancakeBegin() {
+
 	waitForFreePan();
-	//addDough();
+	
+	addDough();
 	cookingBegin();
 }
 
 int getBatterAmount() {
 	int level = readBatterAmount();
 	
-	if (level > MIN_BATTER_LEVEL)
+	if (level < MIN_BATTER_LEVEL)
+	{
 		INDCTR_PORT |=  (1<<INDCTR_PORT_NUM); // Turn on indicator LED
+		return 1;
+	}
+	return 0;
 	
-	return level;
 }
 
 void turnOnCooling() {

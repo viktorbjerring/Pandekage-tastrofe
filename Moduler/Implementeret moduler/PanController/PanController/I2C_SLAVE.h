@@ -64,8 +64,8 @@ static char I2C_SLAVE_tempSave = 0;
 static char I2C_SLAVE_dataReady = 0; //0 = no data ready, 1 = data ready, 2 = data ready, data in temp buf, 3 = sending data and data in temp buf
 static char I2C_SLAVE_haveSended = 0;
 static char I2C_SLAVE_recevedData = 0;
-static bool I2C_SLAVE_startRecived = false;
-
+volatile static bool I2C_SLAVE_startRecived = false;
+volatile static bool I2C_SLAVE_canSend = false;
 // ## Functional macros ##
 #define I2C_SLAVE_SET_BIT(toByte,toBit,fromByte,fromBit)  (((toByte) & ~(1 << (toBit))) + ((1 << (toBit))& (((fromByte) >> (fromBit))<<(toBit))))
 
@@ -116,6 +116,8 @@ volatile bool I2C_SLAVE_checkData()
 
 void I2C_SLAVE_sendData(char data)
 {
+	while(I2C_SLAVE_startRecived && !I2C_SLAVE_canSend);
+	I2C_SLAVE_canSend = false;
 	//Sets send data to send.
 	I2C_SLAVE_toSend = data;
 	//Sets number of bits sended to 0.
@@ -144,6 +146,7 @@ void I2C_SLAVE_sendData(char data)
 	}
 	I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SCL);
 	I2C_SLAVE_PORT |= 1 << I2C_SLAVE_SCL;
+	
 }
 
 I2C_commands_t I2C_SLAVE_getData()
@@ -218,6 +221,7 @@ static int I2C_SLAVE_hold()
 	}
 	else
 	{
+		I2C_SLAVE_canSend = true;
 		//If no data is ready, then SCL is pulled low.
 		I2C_SLAVE_DDR  |=  1 << I2C_SLAVE_SCL;
 		I2C_SLAVE_PORT &=  ~(1 << I2C_SLAVE_SCL);
@@ -336,17 +340,28 @@ ISR(I2C_SLAVE_SCL_vect)
 			if(I2C_SLAVE_haveSended > 7)
 			{
 				//Updates buffer with temporary buffer if I2C_SLAVE_dataReady is 2 or 3.
-				if(I2C_SLAVE_dataReady == 2 || I2C_SLAVE_dataReady == 3)
+				if((I2C_SLAVE_dataReady == 2 || I2C_SLAVE_dataReady == 3))
 				{
+					
 					I2C_SLAVE_dataReady = 1;
-					I2C_SLAVE_haveSended = 1;
 					I2C_SLAVE_toSend = I2C_SLAVE_tempSave;
-					I2C_SLAVE_DDR = I2C_SLAVE_SET_BIT(I2C_SLAVE_DDR,I2C_SLAVE_SDA,(~I2C_SLAVE_toSend),7);
-					I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,7);
+					if (I2C_SLAVE_shouldWrite)
+					{
+						I2C_SLAVE_haveSended = 1;
+						I2C_SLAVE_DDR = I2C_SLAVE_SET_BIT(I2C_SLAVE_DDR,I2C_SLAVE_SDA,(~I2C_SLAVE_toSend),7);
+						I2C_SLAVE_PORT = I2C_SLAVE_SET_BIT(I2C_SLAVE_PORT,I2C_SLAVE_SDA,I2C_SLAVE_toSend,7);
+					}
+					else
+					{
+						I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);
+						I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);
+					}
+					
 				}
 				else
 				{
 					//Frees SDA if done sending.
+					
 					I2C_SLAVE_dataReady = 0;
 					I2C_SLAVE_DDR &= ~(1 << I2C_SLAVE_SDA);
 					I2C_SLAVE_PORT |= (1 << I2C_SLAVE_SDA);	
@@ -395,7 +410,9 @@ ISR(I2C_SLAVE_SDA_vect)
 		if(I2C_SLAVE_startRecived == false)
 		{
 			I2C_SLAVE_beginHold = false;
+			I2C_SLAVE_canSend = false;
 			I2C_SLAVE_recevedAddr = 0;
+			I2C_SLAVE_shouldWrite = 0;
 			I2C_SLAVE_recevedBits = 0;
 			I2C_SLAVE_SCL_RISING();
 		}

@@ -1,5 +1,6 @@
 UltraSonic/UltraSonic.d UltraSonic/UltraSonic.o: \
- ../UltraSonic/UltraSonic.cpp ../UltraSonic/UltraSonic.h \
+ ../UltraSonic/UltraSonic.cpp ../UltraSonic/../main.h \
+ ../UltraSonic/UltraSonic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -15,6 +16,8 @@ UltraSonic/UltraSonic.d UltraSonic/UltraSonic.o: \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
+
+../UltraSonic/../main.h:
 
 ../UltraSonic/UltraSonic.h:
 

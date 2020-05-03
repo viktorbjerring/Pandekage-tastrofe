@@ -85,14 +85,14 @@ static volatile double integral = 0;
 #define DT		((double)((128*13)/F_CPU)) //Time for single convertion ~ 1/16000000/(128*13)	(one convertion = 13 clock cyckles)
 
 //Regulation loop - not time critical
-ISR(ADC_vect, ISR_NOBLOCK)
+ISR(ADC_vect)
 {
 	
 	uint16_t temp = readHeatLevel();
 
 	
 	//Check heat level
-	if (curr_pan) {
+	if (curr_pan == PAN1) {
 		if (temp >= TRIGGER_LOW && temp <= TRIGGER_HIGH){
 			heat_ok_pan1 = true;
 		} else {

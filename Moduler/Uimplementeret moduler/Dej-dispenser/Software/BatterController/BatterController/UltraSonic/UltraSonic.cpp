@@ -5,10 +5,10 @@
  *  Author: au615804
  */ 
 
-
+#include "../main.h"
 #include "UltraSonic.h"
 
-volatile uint16_t batterLevel_ = 0;
+volatile int batterLevel_ = 0;
 bool isEcho_ = false;
 
 ISR(PCINT1_vect) {
@@ -19,7 +19,7 @@ ISR(PCINT1_vect) {
 		ULTRSNC_TCCRB = 0;
 		
 		/* Calculate and save distance */
-		batterLevel_ = static_cast<uint16_t>(10*REGRESSION(ULTRSNC_TCNT)); // Distance in mm
+		batterLevel_ = static_cast<int>(10*REGRESSION(ULTRSNC_TCNT)); // Distance in mm
 		
 		/* Calculate batter level from bottom of container */
 		batterLevel_ = CNTNR_H - batterLevel_;
@@ -62,7 +62,6 @@ int readBatterAmount() {
 	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
 	int pancakesLeft = batterVolume / DSG_VOL;*/
 	
-	DDRB |= 1<<DDB3;
-	return (PINB & (1<<PINB3) ? 1 : 0);
-	//return batterLevel_; //Skal returnere mellem 80-FF
+	
+	return batterLevel_; //Skal returnere mellem 80-FF
 }

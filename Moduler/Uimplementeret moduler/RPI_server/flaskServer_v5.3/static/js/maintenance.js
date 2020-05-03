@@ -40,6 +40,7 @@ function getBatterStatus() {
         else if(data === "Dispenser needs batter"){
             header.innerHTML = data;
             body.setAttribute("style","background-color: yellow; text-align:center;");
+            clearInterval(batterInterval)
         }
         else {
             header.innerHTML = "An error occured trying to check batter status"

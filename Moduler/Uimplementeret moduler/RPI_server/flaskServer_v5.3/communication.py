@@ -28,3 +28,4 @@ def userSpaceCMD(cmd):
 def togglePans():
     with open('/dev/pan', 'w') as systemfile: 
             systemfile.write("1")
+    print("Toggled pans")

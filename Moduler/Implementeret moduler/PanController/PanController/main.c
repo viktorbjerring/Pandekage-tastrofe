@@ -30,8 +30,14 @@ int main(void)
 	bool check_for_free_pan = false;
 	bool check_begin_cooking = false;
     /* Replace with your application code */
+	DDRB |= 1<<DDB3;
+	PORTB &= ~(1<<PORTB3);
     while (1) 
     {	
+		if (check_begin_cooking)
+		{
+			PORTB |= 1<<PORTB3;
+		}
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();
 		}

@@ -126,7 +126,7 @@ void I2C_SLAVE_sendData(char data)
 	
 	
 	//If begin hold is sat, then sending will begin imidiatly.
-	if(I2C_SLAVE_beginHold && !(I2C_SLAVE_PIN & I2C_SLAVE_SCL))
+	if(I2C_SLAVE_beginHold)
 	{
 		//Resets begin hold
 		I2C_SLAVE_beginHold = false;

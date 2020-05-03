@@ -121,6 +121,7 @@ ISR(ADC_vect, ISR_NOBLOCK)
 	int16_t output = error*KP + integral*KI;
 	
 	//Set PWM
+	output = 50;
 	setPWMLevel((output < 0? 0 : output));
 	
 	//Restart conversion

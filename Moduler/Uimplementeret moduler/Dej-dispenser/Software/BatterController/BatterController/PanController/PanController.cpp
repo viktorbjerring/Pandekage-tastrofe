@@ -9,7 +9,7 @@
 #include "../I2C/I2C_MASTER.h"
 
 void initPanController() {
-	I2C_MASTER_init(I2C_BIT_RATE, I2C_MASTER_PRESCALE_64);
+	I2C_MASTER_init(I2C_BIT_RATE, I2C_MASTER_PRESCALE_16);
 }
 
 void waitForFreePan() {

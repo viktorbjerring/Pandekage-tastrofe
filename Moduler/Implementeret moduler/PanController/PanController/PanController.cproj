@@ -138,6 +138,9 @@
     <Compile Include="I2C_SLAVE.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="I2C_SLAVE_old.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>

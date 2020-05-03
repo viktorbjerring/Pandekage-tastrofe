@@ -28,10 +28,14 @@ int main(void)
 	I2C_commands_t temp = 0xFF;
 	
 	bool check_for_free_pan = false;
-	
+	DDRB |= 1<<DDB3;
     /* Replace with your application code */
     while (1) 
     {
+		if (heat_ok)
+		{
+			PORTB ^= 1<<PORTB3;
+		}
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();
 		}

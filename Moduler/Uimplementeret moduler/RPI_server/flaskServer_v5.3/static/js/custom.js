@@ -118,6 +118,7 @@ async function deliveryTime() {
 // Order pancake function
 (function() {
     document.getElementById("order_pancake").addEventListener("click", order_pancake);
+    document.getElementById("cancel_order").addEventListener("click", cancel_order);
 }());
 
 function order_pancake() {
@@ -138,6 +139,12 @@ function order_pancake() {
         console.log("Error ordering");
         console.error(err);
     });
+}
+
+function cancel_order() {
+    paragraph = document.getElementById("cancel_order_para");
+    paragraph.setAttribute("style", "display:block;");
+    $("#cancel_order_para").fadeOut(5000);
 }
 
 // Get confirmation-time in modal

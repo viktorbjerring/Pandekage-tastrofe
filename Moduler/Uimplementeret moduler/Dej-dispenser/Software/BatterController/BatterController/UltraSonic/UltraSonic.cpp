@@ -61,6 +61,7 @@ int readBatterAmount() {
 	/* Calculate amount of pancakes that can be made with current amount of batter 
 	float batterVolume = batterLevel_ * CNTNR_W * CNTNR_L;
 	int pancakesLeft = batterVolume / DSG_VOL;*/
-	
-	return 0x96; //Skal returnere 96 for at prog 4 kan køre flere gange
+	DDRB |= 1<<DDB3;
+	return (PINB & (1<<PINB3) ? 1 : 0);
+	//return batterLevel_; //Skal returnere mellem 80-FF
 }

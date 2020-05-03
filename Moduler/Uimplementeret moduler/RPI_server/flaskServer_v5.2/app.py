@@ -24,10 +24,6 @@ def order_pancake():
 @app.route('/is_pancake_done/', methods=['GET'])
 def is_pancake_done():
     return apiObj.isPancakeDone()
-
-@app.route('/waiting/', methods=['GET'])
-def waiting():
-    return render_template('waiting.html')
 #---------------------------UserIF END
 
 
@@ -66,11 +62,6 @@ def toggle_pans():
     
 #---------------------------MaintenanceIF END
 
-#---------------------------PING:
-@app.route('/is_server_running/', methods=['GET'])
-def is_server_running():
-    return "1"
-#---------------------------PING END
 
 if __name__ == "__main__":
 

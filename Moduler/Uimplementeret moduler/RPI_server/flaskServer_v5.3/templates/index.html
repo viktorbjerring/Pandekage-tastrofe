@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Gruppe 5">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Pan-De-Mix</title>
+
+    <!-- Bootstrap core CSS -->
+	<link href="../static/css/bootstrap.css" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	
+	<link href="../static/css/waiting.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/custom.css" rel="stylesheet">
+  </head>
+
+  <body>
+	<header>
+		<div class="navbar fixed-top">
+			<div class="nav-toggle">
+				<div class="nav-toggle-bar">
+						<i class="fas fa-info-circle" id="nav-icon"></i>
+				</div>
+				</div>
+				<nav class="nav">
+					<div class="nav_styling">
+						<img class="custom_logo" id="nav_logo" class="img-responsive" src="../static/img/logo.png" alt="Logo">
+						<h1>About the project</h1>
+						<p>This project was made as a part of our 4th semester studying Electronics Engineering at 
+							Aarhus University School of Engineering.</p>
+						<h1>Contributors</h1>
+						<p>Anton Vigen Smolarz<br>
+							Jesper Juhl Knudsen<br>
+							Jonas Christian Støttrup Höft<br>
+							Mikkel Kirkegaard<br>
+							Morten Haahr Kristensen<br>
+							Oskari Kristian Tourmaa<br>
+							Thomas Kloster Ulriksen<br>
+							Viktor Tornøe Bjerring</p>
+						<h1>Thanks to:</h1>
+						<p>Arne Justesen - Advisor</p>
+						<img id="nav_pancake" class="img-responsive" src="../static/img/pancake-nav.png" alt="Pancake">
+					</div>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+		<div class="row justify-content-center mt-4">
+			<img class="img-responsive custom_logo" src="../static/img/logo.png" alt="Logo">
+		</div>
+		<div class="row justify-content-center">
+			<img class="img-responsive mt-5 pancake-button" id="pancake-button" style="display:none;" src="../static/img/pancake-button.png" data-toggle="modal" data-target="#confirmation" alt="pancake-button"></a>
+			<img class="img-responsive mt-5 success" id="success" src="../static/img/success.png" style="display:none;" alt="success"></a>
+			<img class="img-responsive mt-5 almost-success" id="almost-success" src="../static/img/almost-success.png" style="display:none;" alt="almost-success"></a>
+			<div id="waiting" class="waiting"></div>
+		</div>
+		<div class="row text-center flex-column mt-2">
+			<h1 class="action_text" id="action_text">CLICK THE PANCAKE TO ORDER!</h1>
+			<p id="delivery_time">Expected delivery time:<br></p>
+		</div>
+	</div>
+
+	<!-- Modal -->
+<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<h2 class="col-12 modal-title text-center">YOU ARE ABOUT TO MAKE AN ORDER:</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+		  <p>There is no way to undo this, once it has been confirmed.</p>
+		  <p id="confirm_delivery_time"></p>
+		</div>
+		<div class="modal-footer">
+		  <button id="order_pancake" type="button" class="btn btn-success" data-dismiss="modal">PANCAKE ME!</button>
+		  <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL IT</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+    <!-- Begin footer -->
+    <footer class="footer">
+    	<div class="container">
+			<img class="img-responsive" src="../static/img/logo_au_english.png" alt="Aarhus University">
+    	</div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<script src="../static/js/hamburger.js"></script>
+	<script src="../static/js/custom.js"></script>
+	
+	<script src="../static/js/ProgressBar.js"></script>  
+	<script src="../static/js/waiting.js"></script>
+
+  </body>
+</html>

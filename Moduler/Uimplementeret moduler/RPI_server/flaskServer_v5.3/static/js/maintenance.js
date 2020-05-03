@@ -23,7 +23,7 @@ function getBatterStatus() {
     let button = document.getElementById("clearBatterAlarm");
     let body = document.getElementById("body_id");
 
-    let url = document.URL + 'get_batter_status/';
+    let url = document.URL + 'batter_status/';
 
     fetch(url)
     .then((response) => {
@@ -58,7 +58,7 @@ function getBatterStatus() {
 }
 
 function clearBatterAlarm() {
-    let url = document.URL + 'clear_batter_alarm/';
+    let url = document.URL + 'batter_status/';
     fetch(url, {
       method: 'POST'
     }).then((response) => {
@@ -74,9 +74,9 @@ function clearBatterAlarm() {
 } 
 
 function togglePans() {
-    let url = document.URL + 'toggle_pans/';
+    let url = document.URL + 'pans/';
     fetch(url, {
-      method: 'POST'
+      method: 'POST',
     }).then((response) => {
         return response.text();
     })
@@ -89,10 +89,39 @@ function togglePans() {
     });
 }
 
+
+function getPanStatus() {
+    let paragraph = document.getElementById("panStatus");
+    url = document.URL + 'pans/';
+    fetch(url)
+    .then((response) => {
+        response = response.json()
+        return response;
+    })
+    .then((data) => {
+        //console.log("Response:")
+        //console.log(data)
+        if(data === "Pans are on"){
+            paragraph.innerHTML = 'Pans are turned <span style="color:forestgreen;">on</span>.';
+        }
+        else if(data === "Pans are off"){
+            paragraph.innerHTML = 'Pans are turned <span style="color:red;">off</span>.';
+        }
+        else {
+            paragraph.innerHTML = "An error occured trying to check for pan status"
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        paragraph.innerHTML = "An error occured trying to check for pan status";
+    });
+}
+
 function turnOnCooling() {
-    let url = document.URL + 'cooling_on/';
+    let url = document.URL + 'cooling/';
     fetch(url, {
-      method: 'POST'
+      method: 'POST',
+      body: JSON.stringify(1)
     }).then((response) => {
         return response.text();
     })
@@ -106,9 +135,10 @@ function turnOnCooling() {
 }
 
 function turnOffCooling() {
-    let url = document.URL + 'cooling_off/';
+    let url = document.URL + 'cooling/';
     fetch(url, {
-      method: 'POST'
+      method: 'POST',
+      body: JSON.stringify(0)
     }).then((response) => {
         return response.text();
     })
@@ -121,49 +151,20 @@ function turnOffCooling() {
     });
 }
 
-function getPanStatus() {
-    let paragraph = document.getElementById("panStatus");
-    url = document.URL + 'pan_status/';
-    fetch(url)
-    .then((response) => {
-        response = response.json()
-        return response;
-    })
-    .then((data) => {
-        //console.log("Response:")
-        //console.log(data)
-        if(data === "1"){
-            paragraph.innerHTML = 'Pans are turned <span style="color:forestgreen;">on</span>.';
-        }
-        else if(data === "0"){
-            paragraph.innerHTML = 'Pans are turned <span style="color:red;">off</span>.';
-        }
-        else {
-            paragraph.innerHTML = "An error occured trying to check for pan status"
-        }
-    })
-    .catch(err => {
-        console.log(err);
-        paragraph.innerHTML = "An error occured trying to check for pan status";
-    });
-}
-
 function getCoolingStatus() {
     let paragraph = document.getElementById("coolingStatus");
-    url = document.URL + 'cooling_status/';
+    url = document.URL + 'cooling/';
     fetch(url)
     .then((response) => {
         response = response.json()
         return response;
     })
     .then((data) => {
-        //console.log("Response:")
-        //console.log(data)
-        if(data === "1"){
-            paragraph.innerHTML = "Cooling is turned on";
+        if(data === "Cooling is on"){
+            paragraph.innerHTML = 'Cooling is turned <span style="color:forestgreen;">on</span>.';
         }
-        else if(data === "0"){
-            paragraph.innerHTML = "Cooling is turned off";
+        else if(data === "Cooling is off"){
+            paragraph.innerHTML = 'Cooling is turned <span style="color:red;">off</span>';
         }
         else {
             paragraph.innerHTML = "An error occured trying to check for cooling status"

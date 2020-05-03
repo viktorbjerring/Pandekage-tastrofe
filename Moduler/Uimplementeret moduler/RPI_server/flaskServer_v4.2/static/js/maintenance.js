@@ -11,7 +11,7 @@
 
 // Make API call to check status every 10 seconds
 (function() {
-    setInterval(function(){
+    var batterInterval = setInterval(function(){
         getBatterStatus();
     }, 10000);
 }());
@@ -39,6 +39,7 @@ function getBatterStatus() {
         else if(data === "Dispenser needs batter"){
             header.innerHTML = data;
             body.setAttribute("style","background-color: yellow; text-align:center;");
+            clearInterval(batterInterval)
         }
         else {
             header.innerHTML = "An error occured trying to check batter status"
@@ -62,6 +63,9 @@ function clearBatterAlarm() {
     .then((data) => {
         //console.log(data)
         getBatterStatus() // Check new status
+        batterInterval = setInterval(function(){
+            getBatterStatus();
+        }, 10000);
     })
     .catch(err => {
         console.error(err);

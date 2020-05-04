@@ -56,12 +56,44 @@ void init_regulation(){
 	
 }
 
+static void regulate(uint16_t temp);
+
+static uint16_t readHeatLevel();
 
 #define PAN1	false
 #define PAN2	true
 
-
 static volatile bool curr_pan = PAN1;
+
+static volatile bool convertion_done = false;
+
+void handle_regulation() {
+	
+	if (convertion_done) {
+	
+		uint16_t temp = readHeatLevel();
+	
+		//Check heat level
+		if (temp >= TRIGGER_LOW && temp <= TRIGGER_HIGH){
+			heat_ok = true;
+		}
+		else {
+			heat_ok = false;
+		}
+	
+		regulate(temp);
+	
+		//Change pan
+		curr_pan = !curr_pan;
+	
+		ADMUX ^= 0x01;		//Change between ADC0 and ADC1
+		
+		convertion_done = false;
+	
+		//Restart conversion
+		ADCSRA |= (1 << ADSC);
+	}
+}
 
 static void setPWMLevel(uint16_t PWM_level){	//Sets the PWM level for the heating
 	
@@ -84,48 +116,31 @@ static volatile double integral = 0;
 #define KI		((double) 0.001)
 #define DT		((double)((128*13)/F_CPU)) //Time for single convertion ~ 1/16000000/(128*13)	(one convertion = 13 clock cyckles)
 
-//Regulation loop - not time critical
-ISR(ADC_vect, ISR_NOBLOCK)
-{
-	
-	uint16_t temp = readHeatLevel();
-	
-	//Change pan
-	curr_pan = !curr_pan;
-	
-	ADMUX ^= 0x01;		//Change between ADC0 and ADC1
-	
-	//Check heat level
-	if (temp >= TRIGGER_LOW && temp <= TRIGGER_HIGH){
-		heat_ok = true;
-	}
-	else {
-		heat_ok = false;
-	}
-	
+static void regulate(uint16_t temp) {
 	//If no heating control - turn off the pans
-	if (!heat_on_ctrl)		
+	if (!heat_on_ctrl)
 	{
 		integral = 0;
 		setPWMLevel(0);
-		//Restart ADC
-		ADCSRA |= (1 << ADSC);
-		return;
 	}
-	
-	//Calculate the values for the PI controller
-	int16_t error = OPTIMUM_TEMP - temp;
-	integral += error*DT;
-	
-	//Calculate the output
-	int16_t output = error*KP + integral*KI;
-	
-	//Set PWM
-	output = 50;
-	setPWMLevel((output < 0? 0 : output));
-	
-	//Restart conversion
-	ADCSRA |= (1 << ADSC);
+	else {
+		//Calculate the values for the PI controller
+		int16_t error = OPTIMUM_TEMP - temp;
+		integral += error*DT;
+		
+		//Calculate the output
+		int16_t output = error*KP + integral*KI;
+		
+		//Set PWM
+		output = 50;
+		setPWMLevel((output < 0? 0 : output));
+	}
+}
+
+//Regulation loop - not time critical
+ISR(ADC_vect)
+{
+	convertion_done = true;	
 }
 
 #endif /* HEAT_REG_H_ */

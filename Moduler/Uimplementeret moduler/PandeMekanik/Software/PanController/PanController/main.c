@@ -32,6 +32,8 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
+		handle_regulation();
+		
 		if (heat_ok)
 		{
 			PORTB ^= 1<<PORTB3;

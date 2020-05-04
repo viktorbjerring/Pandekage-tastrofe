@@ -185,6 +185,9 @@ ISR(TIMER2_OVF_vect) {
 	
 	switch (curr_time++) {
 		
+		default:
+			break;
+		
 		//Mid way time to break
 		case MOTOR_FORWARD_TIME_S:
 		case MOTOR_BACKWARD_TIME_S:

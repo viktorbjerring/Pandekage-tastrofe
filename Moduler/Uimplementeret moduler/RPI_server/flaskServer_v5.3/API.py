@@ -11,8 +11,8 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
         self.__orderOverviewObj = OrderOverview()
         self.__maintenanceObj = Maintenance()
 
-        #self.__maintenanceObj.togglePans()
-        #self.__maintenanceObj.setCooling(init="1")
+        self.__maintenanceObj.togglePans()
+        self.__maintenanceObj.setCooling(init="1")
     def estimateTime(self):
         return json.dumps(self.__orderOverviewObj.estimateTime())
     def orderPancake(self):

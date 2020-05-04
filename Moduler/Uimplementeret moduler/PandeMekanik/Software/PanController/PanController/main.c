@@ -36,7 +36,10 @@ int main(void)
 		
 		if (heat_ok)
 		{
-			PORTB ^= 1<<PORTB3;
+			PORTB |= 1<<PORTB3;
+		}
+		else {
+			PORTB &= ~(1<<PORTB3);
 		}
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();

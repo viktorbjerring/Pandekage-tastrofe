@@ -15,11 +15,8 @@ class Maintenance:
         response = userSpaceCMD("CLEAR_BATTER_ALARM")
         print("Asked to clear batter alarm:", response)
         return response
-    def setCooling(self, init = False):
-        if(init == False):
-            data = request.get_data(as_text = True)
-        else:
-            data = "1"
+    def setCooling(self):
+        data = request.get_data(as_text = True)
         if(data == "1"): 
             self.__coolingStatus = True
             response = userSpaceCMD("TURN_ON_COOLING") # Returnerer altid 0

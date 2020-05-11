@@ -35,10 +35,7 @@ int main(void)
 	DDRB |= (1<<5);
 	PORTB &= ~(1<<5);
     while (1) 
-    {	
-		
-		regulate();
-		
+    {		
 		/*if (check_begin_cooking)
 		{
 			PORTB |= 1<<PORTB3;

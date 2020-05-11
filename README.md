@@ -9,6 +9,8 @@ Gruppe no. 4. Semesterprojekt F2020
 
 Projektet er skrevet i Latex. For at skrive i Latex har gruppen gjort brug af Overleaf, der er en online Latex compiler. Herunder findes links til alle de Overleaf dokumenter, som gruppen har arbejdet med under forløbet.
 
+[Projektrapport](https://www.overleaf.com/3725211233bkdymzhgkhmz)
+
 [Bilagsrapport](https://www.overleaf.com/4744567293jhxghbqrgryg)
 
 [Møde Referater](https://www.overleaf.com/6178354939frypsgmrvfys)

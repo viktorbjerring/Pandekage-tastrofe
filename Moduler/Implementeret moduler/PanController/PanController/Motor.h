@@ -97,15 +97,14 @@ void init_motors(){
 	//Setup timer 0 PWMs for the motors
 	PRR &= ~(1 << PRTIM0);
 	
-	// phase correct PWM mode, prescaler = 256, freq ~ 61,27451 Hz (8000000/(256*510)
-	TCCR0A = (1 << WGM00);
-	TCCR0B = (1 << CS02);
+	// phase correct PWM mode, prescaler = 8, freq ~ 3921,5686 Hz (16000000/(8*510)
+	TCCR0A = (1 << WGM00) | (1 << CS01);
 	
 	//Set PWM for the motors
 	setMotorPWM(0, MOTOR1);
 	setMotorPWM(0, MOTOR2);
 	
-	//Setup timer 2 to 125 Hz and TOF interrupt, prescaler = 256, OCRA = 249 (16000000 Hz/(256*250) = 250 Hz (error = 125 +- 1Hz)
+	//Setup timer 2 to 125 Hz and TOF interrupt, prescaler = 256, OCRA = 249 (16000000 Hz/(256*250) = 250 Hz (error = 125 +- 1)
 	PRR &= ~(1 << PRTIM2);
 	TCCR2A = (1 << WGM21) | (1 << WGM20);
 	TCCR2B = (1 << WGM22);

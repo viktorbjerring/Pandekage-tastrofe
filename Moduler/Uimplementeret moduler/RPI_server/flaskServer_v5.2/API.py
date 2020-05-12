@@ -4,18 +4,15 @@ from flask import json
 
 from OrderOverview import OrderOverview
 from BatterStatus import BatterStatus
-from communication import userSpaceCMD, turnOnPans
+from communication import userSpaceCMD, togglePans
 
 
 class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det returneres korrekt ud.
     def __init__(self):
-        userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
-        
-        turnOnPans()
-
         self.orderOverviewObj = OrderOverview()
         self.batterStatusObj = BatterStatus()
-
+        self.__panstatus = False
+        self.__coolingStatus = False
     def estimateTime(self):
         return json.dumps(self.orderOverviewObj.estimateTime())
     def orderPancake(self):
@@ -51,3 +48,25 @@ class API: # Ansvarlig for alt kommunikation fra IF ind, og sørger for at det r
         else:
             status = "Unable to clear batter alarm"
         return json.dumps(status)
+    def turnCoolingOn(self):
+        userSpaceCMD("TURN_ON_COOLING") # Send command to turn on cooling
+        self.__coolingStatus = True
+        value = "1" if self.__coolingStatus == True else "0"
+        return json.dumps(value)
+    def turnCoolingOff(self):
+        userSpaceCMD("TURN_OFF_COOLING") # Send command to turn on cooling
+        self.__coolingStatus = False
+        value = "1" if self.__coolingStatus == True else "0"
+        return json.dumps(value)
+    def coolingStatus(self):
+        value = "1" if self.__coolingStatus == True else "0"
+        return json.dumps(value)
+    def togglePans(self):
+        togglePans()
+        self.__panstatus = not self.__panstatus
+        print("Pans are now: ", self.__panstatus)
+        value = "1" if self.__panstatus == True else "0"
+        return json.dumps(value)
+    def panStatus(self):
+        value = "1" if self.__panstatus == True else "0"
+        return json.dumps(value)

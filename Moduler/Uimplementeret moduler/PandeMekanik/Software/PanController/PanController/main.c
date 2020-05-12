@@ -27,9 +27,20 @@ int main(void)
 
 	I2C_commands_t temp = 0xFF;
 	
+	bool check_for_free_pan = false;
+	DDRB |= 1<<DDB3;
     /* Replace with your application code */
     while (1) 
     {
+		handle_regulation();
+		
+		if (heat_ok)
+		{
+			PORTB |= 1<<PORTB3;
+		}
+		else {
+			PORTB &= ~(1<<PORTB3);
+		}
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();
 		}
@@ -42,6 +53,11 @@ int main(void)
 			temp = I2C_SLAVE_getData();
 		}
 		
+		if (check_for_free_pan && pan1Free && heat_ok){
+			I2C_SLAVE_sendData(pan1Free);
+			check_for_free_pan = false;
+		}
+		
 		switch (temp) {
 				
 			case PING:
@@ -50,7 +66,7 @@ int main(void)
 				break;
 
 			case GET_FIRST_PAN_STATUS:
-				I2C_SLAVE_sendData(pan1Free & heat_ok);
+				check_for_free_pan = true;
 				temp = 0xFF;
 				break;
 

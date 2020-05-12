@@ -1,6 +1,6 @@
 # Kernel Module
 KMODULE := Pan-driver
-KERNELDIR = ~/lib/modules/$(uname -r)/build
+KERNELDIR = ~/sources/rpi-4.19
 CCPREFIX = arm-poky-linux-gnueabi-
 # To build modules outside of the kernel tree, we run "make"
 # in the kernel source tree; the Makefile these then includes this

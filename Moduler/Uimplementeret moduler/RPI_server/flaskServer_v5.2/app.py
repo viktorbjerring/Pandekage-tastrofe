@@ -24,10 +24,6 @@ def order_pancake():
 @app.route('/is_pancake_done/', methods=['GET'])
 def is_pancake_done():
     return apiObj.isPancakeDone()
-
-@app.route('/waiting/', methods=['GET'])
-def waiting():
-    return render_template('waiting.html')
 #---------------------------UserIF END
 
 
@@ -44,14 +40,28 @@ def get_batter_status():
 def set_batter_alarm():
     return apiObj.clearBatterAlarm()
 
+@app.route('/maintenance/cooling_on/', methods=['POST'])
+def cooling_on():
+    return apiObj.turnCoolingOn()
 
+@app.route('/maintenance/cooling_off/', methods=['POST'])
+def cooling_off():
+    return apiObj.turnCoolingOff()
+
+@app.route('/maintenance/cooling_status/', methods=['GET'])
+def cooling_status():
+    return apiObj.coolingStatus()
+
+@app.route('/maintenance/pan_status/', methods=['GET'])
+def pan_status():
+    return apiObj.panStatus()
+
+@app.route('/maintenance/toggle_pans/', methods=['POST'])
+def toggle_pans():
+    return apiObj.togglePans()
+    
 #---------------------------MaintenanceIF END
 
-#---------------------------PING:
-@app.route('/is_server_running/', methods=['GET'])
-def is_server_running():
-    return "1"
-#---------------------------PING END
 
 if __name__ == "__main__":
 

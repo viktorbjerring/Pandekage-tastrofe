@@ -27,9 +27,19 @@ int main(void)
 
 	I2C_commands_t temp = 0xFF;
 	
+	bool check_for_free_pan = false;
+	bool check_begin_cooking = false;
     /* Replace with your application code */
+	DDRB |= 1<<DDB3;
+	PORTB &= ~(1<<PORTB3);
+	DDRB |= (1<<5);
+	PORTB &= ~(1<<5);
     while (1) 
-    {
+    {		
+		/*if (check_begin_cooking)
+		{
+			PORTB |= 1<<PORTB3;
+		}*/
 		if (pan1_cooking_time == PANCAKE_COOKING_TIME1_S){
 			flipPan1();
 		}
@@ -42,6 +52,26 @@ int main(void)
 			temp = I2C_SLAVE_getData();
 		}
 		
+		if (check_for_free_pan && pan1Free && heat_ok){
+			I2C_SLAVE_sendData(pan1Free);
+			check_for_free_pan = false;
+			PORTB |= 1<<PORTB3;			
+		}
+		
+		if (check_begin_cooking) {
+			startTimePan1();
+			check_begin_cooking = false;
+		}
+		if (heat_ok_pan2)
+		{
+			PORTB |= 1<<PORTB3;
+		}
+		else
+		{
+			PORTB &= ~(1<<PORTB3);
+		}
+		
+		
 		switch (temp) {
 				
 			case PING:
@@ -50,13 +80,13 @@ int main(void)
 				break;
 
 			case GET_FIRST_PAN_STATUS:
-				I2C_SLAVE_sendData(pan1Free & heat_ok);
+				check_for_free_pan = true;
 				temp = 0xFF;
 				break;
 
 			case BEGIN_COOKING:
-				if (pan1Free & heat_ok)
-				startTimePan1();
+				check_begin_cooking = true;
+				temp = 0xFF;
 				break;
 
 			default:
@@ -64,6 +94,7 @@ int main(void)
 		}
 		
     }
+	
 }
 
 void init_1Hz_timer(){

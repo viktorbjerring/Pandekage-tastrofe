@@ -1,13 +1,18 @@
 // Order pancake function
 (function() {
     document.getElementById("clearBatterAlarm").addEventListener("click", clearBatterAlarm);
-    getBatterStatus()
+    document.getElementById("togglePans").addEventListener("click", togglePans);
+    document.getElementById("turnOnCooling").addEventListener("click", turnOnCooling);
+    document.getElementById("turnOffCooling").addEventListener("click", turnOffCooling);
+    getBatterStatus();
+    getPanStatus();
+    getCoolingStatus();
 }());
 
 // Make API call to check status every 10 seconds
 (function() {
     setInterval(function(){
-        getBatterStatus()
+        getBatterStatus();
     }, 10000);
 }());
 
@@ -66,6 +71,106 @@ function clearBatterAlarm() {
     .catch(err => {
         console.error(err);
     });
-    
 } 
 
+function togglePans() {
+    let url = document.URL + 'toggle_pans/';
+    fetch(url, {
+      method: 'POST'
+    }).then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+        console.log(data);
+        getPanStatus();
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function turnOnCooling() {
+    let url = document.URL + 'cooling_on/';
+    fetch(url, {
+      method: 'POST'
+    }).then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+        console.log(data)
+        getCoolingStatus();
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function turnOffCooling() {
+    let url = document.URL + 'cooling_off/';
+    fetch(url, {
+      method: 'POST'
+    }).then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+        console.log(data)
+        getCoolingStatus();
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function getPanStatus() {
+    let paragraph = document.getElementById("panStatus");
+    url = document.URL + 'pan_status/';
+    fetch(url)
+    .then((response) => {
+        response = response.json()
+        return response;
+    })
+    .then((data) => {
+        //console.log("Response:")
+        //console.log(data)
+        if(data === "1"){
+            paragraph.innerHTML = 'Pans are turned <span style="color:forestgreen;">on</span>.';
+        }
+        else if(data === "0"){
+            paragraph.innerHTML = 'Pans are turned <span style="color:red;">off</span>.';
+        }
+        else {
+            paragraph.innerHTML = "An error occured trying to check for pan status"
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        paragraph.innerHTML = "An error occured trying to check for pan status";
+    });
+}
+
+function getCoolingStatus() {
+    let paragraph = document.getElementById("coolingStatus");
+    url = document.URL + 'cooling_status/';
+    fetch(url)
+    .then((response) => {
+        response = response.json()
+        return response;
+    })
+    .then((data) => {
+        //console.log("Response:")
+        //console.log(data)
+        if(data === "1"){
+            paragraph.innerHTML = "Cooling is turned on";
+        }
+        else if(data === "0"){
+            paragraph.innerHTML = "Cooling is turned off";
+        }
+        else {
+            paragraph.innerHTML = "An error occured trying to check for cooling status"
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        paragraph.innerHTML = "An error occured trying to check for cooling status";
+    });
+}

@@ -11,7 +11,7 @@
 
 #include "../I2C/I2C_common.h"
 
-#define I2C_BIT_RATE 57600
+#define I2C_BIT_RATE 50
 #define I2C_PAN_ADDR I2C_SLAVE_ADDR
 
 /* Initializes I2C connection */

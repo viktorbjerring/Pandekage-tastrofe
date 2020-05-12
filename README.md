@@ -1,3 +1,5 @@
+![Pan-de-mix](./Arkitektur/Logo/Logo.png)
+
 # Pandemix
 Gruppe no. 4. Semesterprojekt F2020
 
@@ -6,6 +8,8 @@ Gruppe no. 4. Semesterprojekt F2020
 ## Overleaf dokumenter
 
 Projektet er skrevet i Latex. For at skrive i Latex har gruppen gjort brug af Overleaf, der er en online Latex compiler. Herunder findes links til alle de Overleaf dokumenter, som gruppen har arbejdet med under forløbet.
+
+[Projektrapport](https://www.overleaf.com/3725211233bkdymzhgkhmz)
 
 [Bilagsrapport](https://www.overleaf.com/4744567293jhxghbqrgryg)
 

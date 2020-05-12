@@ -6,6 +6,7 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
 #include <stdbool.h>
 #include "I2C_common.h"
 
@@ -23,9 +24,11 @@ I2C_err_t I2C_MASTER_readData(char addr);
 
 bool I2C_MASTER_checkData();
 
-char I2C_MASTER_getdata();
+uint8_t I2C_MASTER_getdata();
 
 void I2C_MASTER_init();
+
+void I2C_MASTER_close();
 
 #ifdef __cplusplus
 }

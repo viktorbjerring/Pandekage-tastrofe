@@ -22,6 +22,8 @@ legend('l = 0.1 m, h = 0.1 m', ...
        'l = 0.5 m, h = 1 m', ...
        'l = 1 m, h = 1 m', ...
        'Location', 'southeast');
-title('EMK induceret i strømsløjfer af forskellig størelse (E=1 V/m)');
+title('EMK induceret i strømsløjfer af forskellig størrelser (E=1 V/m)');
 xlabel('Frekvens [Hz]');
-ylabel('Induseret spænding [V]');
+ylabel('Induceret spænding [V]');
+grid('on');
+xlim([10^3,10^10]);

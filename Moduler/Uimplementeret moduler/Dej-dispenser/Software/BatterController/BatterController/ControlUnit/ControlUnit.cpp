@@ -17,7 +17,7 @@ void initControlUnit()
 void slavePoll() {
 	if (I2C_SLAVE_checkData()) {
 		I2C_commands_t cmd = I2C_SLAVE_getData();
-		
+
 		switch (cmd) {
 			default:
 				break;
@@ -40,7 +40,8 @@ void slavePoll() {
 			
 			case GET_BATTER_AMOUNT:
 				int level = getBatterAmount();
-				I2C_SLAVE_sendData(static_cast<char>(level));
+				_delay_ms(1);
+				I2C_SLAVE_sendData((uint8_t)level);
 				break;
 		}
 	}

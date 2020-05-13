@@ -2,7 +2,7 @@ ARCH?=host
 CC=gcc
 ifeq (${ARCH},host)
 BUILD_DIR=./build/host
-BUILD_BIN=./bin/host
+BUILD_BIN="/home/pi/Pandekage-tastrofe/Moduler/Uimplementeret moduler/RPI_server/flaskServer_v5.2/"
 endif
 
 ifeq (${ARCH},target)

@@ -1,0 +1,15 @@
+function Y = CreateEMK(f,l,h,E)
+C = 299792458;
+f_change = C/(l*2);
+
+A = l*h;
+mu_0 = 1.2566370621219*10^(-6);
+
+%Makes everything 0 until f_change then everything is 1
+f_atChange = ceil(floor(f/f_change)/max(f));
+f_val = abs(f_atChange-1).*f+f_atChange.*f_change;
+
+
+Y = 2 * pi * f_val * mu_0 * A * E/377;
+
+end

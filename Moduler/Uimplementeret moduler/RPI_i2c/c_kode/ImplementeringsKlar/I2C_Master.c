@@ -30,7 +30,7 @@ I2C_err_t I2C_MASTER_readData(char addr)
 
     //Read I2C data
     while (read(I2CFile, &buf, I2C_COMMAND_LENGTH) < I2C_COMMAND_LENGTH);
-    printf("%c\n",buf);
+    printf("%x\n",buf);
     //Set read flag
     data_ready_flag = true;
     return I2C_OK;
@@ -41,7 +41,7 @@ bool I2C_MASTER_checkData()
     return(data_ready_flag);
 }
 
-char I2C_MASTER_getdata()
+uint8_t I2C_MASTER_getdata()
 {
 
     while(!I2C_MASTER_checkData());
@@ -56,4 +56,9 @@ void I2C_MASTER_init()
         I2CFile = open("/dev/i2c-1", O_RDWR);
     } while (I2CFile == -1);
 
+}
+
+void I2C_MASTER_close()
+{
+	close(I2CFile);	
 }

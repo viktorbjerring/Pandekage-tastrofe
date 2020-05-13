@@ -23,24 +23,23 @@
 int main()
 {
 	sei();
-	
 	initControlUnit();
 	initPanController();
 	initUltrasonic();
 	initBatterDispenser();
-	
-	/* Initialize indicator */
+	DDRB |= (1<<4);
+	/* Initialize indicator */ 
 	INDCTR_DDR |= (1<<INDCTR_PORT_NUM);
-	
     while (1) 
     {
 		slavePoll();
-		_delay_ms(500);
     }
 }
 
 void pancakeBegin() {
+
 	waitForFreePan();
+	
 	addDough();
 	cookingBegin();
 }
@@ -48,10 +47,13 @@ void pancakeBegin() {
 int getBatterAmount() {
 	int level = readBatterAmount();
 	
-	if (level > MIN_BATTER_LEVEL)
+	if (level < MIN_BATTER_LEVEL)
+	{
 		INDCTR_PORT |=  (1<<INDCTR_PORT_NUM); // Turn on indicator LED
+		return 1;
+	}
+	return 0;
 	
-	return level;
 }
 
 void turnOnCooling() {
@@ -63,6 +65,6 @@ void turnOffCooling() {
 }
 
 void turnOffAlarm() {
-	INDCTR_PORT &= !(1<<INDCTR_PORT_NUM); // Turn off indicator LED
+	INDCTR_PORT &= ~(1<<INDCTR_PORT_NUM); // Turn off indicator LED
 }
 

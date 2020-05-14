@@ -20,10 +20,10 @@ int main(void)
 	sei();
 	init_1Hz_timer();
 	init_motors();				//Initialize the motor pins and PWMs
-	
+	pan1_cooking_time = 0;
     while (1) 
     {	
-		if (pan1_cooking_time >= 10 && pan2Free) {
+		if (pan1_cooking_time >= 10) {
 			pan1_cooking_time = 0;
 		}
 		
@@ -31,7 +31,7 @@ int main(void)
 			flipPan1();
 		}
 		
-		if (pan2_cooking_time == 2){
+		if (pan1_cooking_time == 3){
 			flipPan2();
 		}
 		
@@ -58,7 +58,6 @@ void init_1Hz_timer(){
 ISR(TIMER1_OVF_vect){
 	
 	//Control cooking time
-	pan1_cooking_time += (pan1Free ? 0 : 1);
-	pan2_cooking_time += (pan2Free ? 0 : 1);
-	
+	pan1_cooking_time += 1;
+	return;
 }

@@ -28,8 +28,8 @@ extern volatile bool heat_ok;
 	
 */
 
-#define TRIGGER_LOW			500		//Temp > 181C
-#define TRIGGER_HIGH		300		//Temp > 188C
+#define TRIGGER_LOW			300		//Temp > 181C
+#define TRIGGER_HIGH		600		//Temp > 188C
 #define OPTIMUM_TEMP		(TRIGGER_LOW + (TRIGGER_HIGH - TRIGGER_LOW)/2)
 
 

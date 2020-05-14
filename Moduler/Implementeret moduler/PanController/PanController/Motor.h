@@ -104,7 +104,7 @@ void init_motors(){
 	setMotorPWM(0, MOTOR1);
 	setMotorPWM(0, MOTOR2);
 	
-	//Setup timer 2 to 125 Hz and TOF interrupt, prescaler = 256, OCRA = 249 (16000000 Hz/(256*250) = 250 Hz (error = 125 +- 1)
+	//Setup timer 2 to 125 Hz and TOF interrupt, prescaler = 256, OCRA = 249 (16000000 Hz/(256*250) = 250 Hz (error = 125 +- 1Hz)
 	PRR &= ~(1 << PRTIM2);
 	TCCR2A = (1 << WGM21) | (1 << WGM20);
 	TCCR2B = (1 << WGM22);

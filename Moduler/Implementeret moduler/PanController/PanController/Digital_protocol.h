@@ -30,7 +30,7 @@ void init_digital_comm() {
 	
 	//Interrupt setup
 	PCICR |= (1<<PCIE0);						//Enable pin change interrupt 0
-	PCMSK0 |=  (1 << PCINT0);			//Set pin B0 as an interrupt pin
+	PCMSK0 |=  (1 << PCINT0);					//Set pin B0 as an interrupt pin
 	
 }
 

@@ -35,8 +35,8 @@ extern volatile bool pan2Free;
 
 //Motor timing
 
-#define MOTOR_OPTIMUM_PWM_FORWARD		33		//100% duty cycle
-#define MOTOR_OPTIMUM_PWM_BACKWARD		66		//100% duty cycle
+#define MOTOR_OPTIMUM_PWM_FORWARD		33		//33% duty cycle
+#define MOTOR_OPTIMUM_PWM_BACKWARD		66		//66% duty cycle
 #define MOTOR_OPTIMUM_PWM_BREAK			100		//100% duty cycle
 
 //NOTE max 166 seconds total

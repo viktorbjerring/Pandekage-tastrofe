@@ -18,11 +18,14 @@ int main(void)
 {
 	//Enable interrupts
 	sei();
-	init_1Hz_timer();
+	//init_1Hz_timer();
 	init_motors();				//Initialize the motor pins and PWMs
 	pan1_cooking_time = 0;
     while (1) 
     {	
+		_delay_ms(1000);
+		pan1_cooking_time++;	
+	
 		if (pan1_cooking_time >= 10) {
 			pan1_cooking_time = 0;
 		}
@@ -53,11 +56,4 @@ void init_1Hz_timer(){
 	
 	//Overflow interrupt enabled
 	TIMSK1 = (1 << TOIE1);
-}
-
-ISR(TIMER1_OVF_vect){
-	
-	//Control cooking time
-	pan1_cooking_time += 1;
-	return;
 }

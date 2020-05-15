@@ -26,13 +26,13 @@ int main(void)
 	init_regulation();			//Initialize the regulation
 	
 	DDRB |= (1 << 5) | (1 << 0);
-
+	heat_ok = true;
     while (1) 
-    {		
-		if (heat_ok){
-			PORTB |= (1 << 5);
+    {
+		if (heat_ok) {
+			PORTB |= (1<<PORTB5);
 		} else {
-			PORTB &= ~(1 << 5);
+			PORTB &= ~(1<<PORTB5);
 		}
 
 
@@ -57,11 +57,9 @@ void init_1Hz_timer(){
 }
 
 ISR(TIMER1_OVF_vect){
-	
+	sekunder++;
 	if ((sekunder % 4) == 0){
 		heat_on_ctrl = !heat_on_ctrl;
 		PORTB ^= (1<<0);
 	}
-	
-
 }

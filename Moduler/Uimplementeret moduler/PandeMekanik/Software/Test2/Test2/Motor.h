@@ -98,7 +98,7 @@ void init_motors(){
 	PRR &= ~(1 << PRTIM0);
 	
 	// phase correct PWM mode, prescaler = 8, freq ~ 3921,5686 Hz (16000000/(8*510)
-	TCCR0A = (1 << WGM00);
+	TCCR0A |= (1 << WGM00);
 	TCCR0B |= (1 << CS02);
 	
 	//Set PWM for the motors
@@ -136,7 +136,7 @@ static volatile uint32_t curr_time = 0;
 static volatile bool motor_flipping = MOTOR1;
 
 static void setMotorPWM(uint8_t PWM, bool motor) {
-	if (motor == MOTOR1) {
+	if (motor != MOTOR1) {
 		OCR0A = (TIMER0_TOP - ceil(((TIMER0_TOP/100) * (PWM))));
 	}
 	else {
@@ -191,8 +191,7 @@ ISR(TIMER2_OVF_vect) {
 		case MOTOR_BACKWARD_TIME_S:
 			if (motor_flipping == MOTOR1) {
 				MOTOR1_DISABLE();
-				OCR0A = 125;
-				//setMotorPWM(MOTOR_OPTIMUM_PWM_BREAK, motor_flipping);
+				setMotorPWM(MOTOR_OPTIMUM_PWM_BREAK, motor_flipping);
 				MOTOR1_SETING(MOTOR_BREAK);
 				MOTOR1_ENABLE();
 			}
@@ -208,8 +207,7 @@ ISR(TIMER2_OVF_vect) {
 		case MOTOR_BREAK_FORWARD_TIME_S:
 			if (motor_flipping == MOTOR1) {
 				MOTOR1_DISABLE();
-				OCR0A = 0;
-				//setMotorPWM(MOTOR_OPTIMUM_PWM_BACKWARD, motor_flipping);
+				setMotorPWM(MOTOR_OPTIMUM_PWM_BACKWARD, motor_flipping);
 				MOTOR1_SETING(MOTOR_BACKWARD);
 				MOTOR1_ENABLE();
 				startTimePan2();

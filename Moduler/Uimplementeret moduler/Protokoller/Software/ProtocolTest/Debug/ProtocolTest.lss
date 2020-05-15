@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 00000a5c  00000000  00000000  00001a45  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000a0e  00000000  00000000  000024a1  2**0
+  8 .debug_line   00000a0a  00000000  00000000  000024a1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000250  00000000  00000000  00002eb0  2**2
+  9 .debug_frame  00000250  00000000  00000000  00002eac  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000082a  00000000  00000000  00003100  2**0
+ 10 .debug_str    00000823  00000000  00000000  000030fc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000548  00000000  00000000  0000392a  2**0
+ 11 .debug_loc    00000548  00000000  00000000  0000391f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000c0  00000000  00000000  00003e72  2**0
+ 12 .debug_ranges 000000c0  00000000  00000000  00003e67  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -230,7 +230,7 @@ void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre)
  1c0:	f0 e0       	ldi	r31, 0x00	; 0
  1c2:	80 81       	ld	r24, Z
  1c4:	80 61       	ori	r24, 0x10	; 16
- 1c6:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7e006d>
+ 1c6:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__DATA_REGION_ORIGIN__+0xd>
  1ca:	80 81       	ld	r24, Z
  1cc:	84 60       	ori	r24, 0x04	; 4
  1ce:	80 83       	st	Z, r24
@@ -302,7 +302,7 @@ void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre)
  25c:	88 23       	and	r24, r24
  25e:	09 f4       	brne	.+2      	; 0x262 <__vector_1+0x2c>
  260:	55 c1       	rjmp	.+682    	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
- 262:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__TEXT_REGION_LENGTH__+0x7e0069>
+ 262:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__DATA_REGION_ORIGIN__+0x9>
  266:	83 70       	andi	r24, 0x03	; 3
  268:	83 30       	cpi	r24, 0x03	; 3
  26a:	09 f0       	breq	.+2      	; 0x26e <__vector_1+0x38>
@@ -449,7 +449,7 @@ void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre)
  3c4:	88 e0       	ldi	r24, 0x08	; 8
  3c6:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <I2C_SLAVE_recevedBits>
  3ca:	a0 c0       	rjmp	.+320    	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
- 3cc:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__TEXT_REGION_LENGTH__+0x7e0069>
+ 3cc:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <__DATA_REGION_ORIGIN__+0x9>
  3d0:	83 70       	andi	r24, 0x03	; 3
  3d2:	82 30       	cpi	r24, 0x02	; 2
  3d4:	09 f0       	breq	.+2      	; 0x3d8 <__vector_1+0x1a2>
@@ -668,7 +668,7 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
 	//Start by sending a start condition
 	TWCR = (1 << TWEN) | (1 << TWSTA) | (1 << TWINT);
  59c:	94 ea       	ldi	r25, 0xA4	; 164
- 59e:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 59e:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 
 	//Wait for start to transmit
 	while (!(TWCR & (1<<TWINT)));
@@ -678,7 +678,7 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
  5a8:	99 23       	and	r25, r25
  5aa:	ec f7       	brge	.-6      	; 0x5a6 <I2C_MASTER_sendData+0x18>
 	if ((TWSR & 0xF8) != 0x08)
- 5ac:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 5ac:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  5b0:	98 7f       	andi	r25, 0xF8	; 248
  5b2:	98 30       	cpi	r25, 0x08	; 8
  5b4:	59 f5       	brne	.+86     	; 0x60c <I2C_MASTER_sendData+0x7e>
@@ -687,12 +687,12 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
 	//Insert slave ADDR and write bit to data register
 	TWDR = (addr << 1) + I2C_write;
  5b6:	88 0f       	add	r24, r24
- 5b8:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 5b8:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
 	
 	//Send addr and W
 	TWCR = (1 << TWEN) | (1 << TWINT);
  5bc:	84 e8       	ldi	r24, 0x84	; 132
- 5be:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 5be:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 
 	//Wait for status
 	while (!(TWCR & (1 << TWINT)));
@@ -702,7 +702,7 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
  5c8:	88 23       	and	r24, r24
  5ca:	ec f7       	brge	.-6      	; 0x5c6 <I2C_MASTER_sendData+0x38>
 	if ((TWSR & 0xF8) == 0x20)
- 5cc:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 5cc:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  5d0:	88 7f       	andi	r24, 0xF8	; 248
  5d2:	80 32       	cpi	r24, 0x20	; 32
  5d4:	d9 f0       	breq	.+54     	; 0x60c <I2C_MASTER_sendData+0x7e>
@@ -710,10 +710,10 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
 	
 	//Write data
 	TWDR = cmd;
- 5d6:	60 93 bb 00 	sts	0x00BB, r22	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 5d6:	60 93 bb 00 	sts	0x00BB, r22	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
 	TWCR = (1 << TWEN) | (1 << TWINT);
  5da:	84 e8       	ldi	r24, 0x84	; 132
- 5dc:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 5dc:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	//Wait for status
 	while (!(TWCR & (1 << TWINT)));
@@ -723,7 +723,7 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
  5e6:	88 23       	and	r24, r24
  5e8:	ec f7       	brge	.-6      	; 0x5e4 <I2C_MASTER_sendData+0x56>
 	if ((TWSR & 0xF8) == 0x30)
- 5ea:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 5ea:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  5ee:	88 7f       	andi	r24, 0xF8	; 248
  5f0:	80 33       	cpi	r24, 0x30	; 48
  5f2:	61 f0       	breq	.+24     	; 0x60c <I2C_MASTER_sendData+0x7e>
@@ -732,7 +732,7 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
 	//Send stop
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
  5f4:	84 e9       	ldi	r24, 0x94	; 148
- 5f6:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 5f6:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	//Wait for stop-bit send
 	while(TWCR & (1 << TWSTO));
@@ -753,7 +753,7 @@ I2C_err_t I2C_MASTER_sendData(char addr, I2C_commands_t cmd)
 	//Send stop and stop interrupts
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
  60c:	84 e9       	ldi	r24, 0x94	; 148
- 60e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 60e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 
 	//Wait for stop-bit send
 	while(TWCR & (1 << TWSTO));
@@ -809,7 +809,7 @@ I2C_err_t I2C_MASTER_readData(char addr) {
 	//Start by sending a start condition
 	TWCR = (1 << TWEN) | (1 << TWSTA) | (1 << TWINT);
  640:	94 ea       	ldi	r25, 0xA4	; 164
- 642:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 642:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	//Wait for start to transmit
 	while (!(TWCR & (1<<TWINT)));
@@ -819,7 +819,7 @@ I2C_err_t I2C_MASTER_readData(char addr) {
  64c:	99 23       	and	r25, r25
  64e:	ec f7       	brge	.-6      	; 0x64a <I2C_MASTER_readData+0x18>
 	if ((TWSR & 0xF8) != 0x08)
- 650:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 650:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  654:	98 7f       	andi	r25, 0xF8	; 248
  656:	98 30       	cpi	r25, 0x08	; 8
  658:	b1 f4       	brne	.+44     	; 0x686 <I2C_MASTER_readData+0x54>
@@ -830,12 +830,12 @@ I2C_err_t I2C_MASTER_readData(char addr) {
 	TWDR = (addr << 1) + I2C_read;
  65a:	88 0f       	add	r24, r24
  65c:	8f 5f       	subi	r24, 0xFF	; 255
- 65e:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 65e:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
 	
 	//Send addr and R
 	TWCR = (1 << TWEN) | (1 << TWINT);
  662:	84 e8       	ldi	r24, 0x84	; 132
- 664:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 664:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	//Wait for status
 	while (!(TWCR & (1 << TWINT))){}
@@ -845,7 +845,7 @@ I2C_err_t I2C_MASTER_readData(char addr) {
  66e:	88 23       	and	r24, r24
  670:	ec f7       	brge	.-6      	; 0x66c <I2C_MASTER_readData+0x3a>
 	if ((TWSR & 0xF8) == 0x48)
- 672:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 672:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
  676:	88 7f       	andi	r24, 0xF8	; 248
  678:	88 34       	cpi	r24, 0x48	; 72
  67a:	29 f0       	breq	.+10     	; 0x686 <I2C_MASTER_readData+0x54>
@@ -853,7 +853,7 @@ I2C_err_t I2C_MASTER_readData(char addr) {
 	//Enable read interrupt, so CPU can do other stuff
 	TWCR = (1 << TWEN) | (1 << TWIE) | (1 << TWINT);
  67c:	85 e8       	ldi	r24, 0x85	; 133
- 67e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 67e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	return I2C_OK;
  682:	80 e0       	ldi	r24, 0x00	; 0
@@ -864,7 +864,7 @@ I2C_err_t I2C_MASTER_readData(char addr) {
 	//Send stop and stop interrupts
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
  686:	84 e9       	ldi	r24, 0x94	; 148
- 688:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 688:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 
 	//Wait for stop-bit send
 	while(TWCR & (1 << TWSTO));
@@ -945,7 +945,7 @@ ISR(TWI_vect) {
 
 	//Save data
 	local_read_data = TWDR;
- 6d4:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+ 6d4:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
  6d8:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <local_read_data>
 	
 	//Set flag
@@ -956,7 +956,7 @@ ISR(TWI_vect) {
 	//Send stop and stop interrupts
 	TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
  6e2:	84 e9       	ldi	r24, 0x94	; 148
- 6e4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 6e4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	
 	//Enable interrupt nesting
 	sei();
@@ -1004,14 +1004,14 @@ void I2C_MASTER_init(char bitRate, I2C_MASTER_prescale_t pre)
 {
 	TWBR = bitRate;	//Set bitRate
  710:	8f ef       	ldi	r24, 0xFF	; 255
- 712:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7e00b8>
+ 712:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__DATA_REGION_ORIGIN__+0x58>
 	TWSR = (char)pre;	//Set prescaler
  716:	83 e0       	ldi	r24, 0x03	; 3
- 718:	80 93 b9 00 	sts	0x00B9, r24	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 718:	80 93 b9 00 	sts	0x00B9, r24	; 0x8000b9 <__DATA_REGION_ORIGIN__+0x59>
 	
 	TWCR = (1 << TWEN);	//Setup TWI to send NACK when data is recieved and enable HW
  71c:	84 e0       	ldi	r24, 0x04	; 4
- 71e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+ 71e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
 	I2C_MASTER_init(255,I2C_MASTER_PRESCALE_64);
 	I2C_SLAVE_SCL_INT_ENAB(1);
  722:	e8 9a       	sbi	0x1d, 0	; 29
@@ -1140,9 +1140,9 @@ char readChar()
  7bc:	08 f0       	brcs	.+2      	; 0x7c0 <initUART+0x34>
  7be:	4f c0       	rjmp	.+158    	; 0x85e <initUART+0xd2>
  7c0:	38 e1       	ldi	r19, 0x18	; 24
- 7c2:	30 93 c1 00 	sts	0x00C1, r19	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+ 7c2:	30 93 c1 00 	sts	0x00C1, r19	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
  7c6:	44 0f       	add	r20, r20
- 7c8:	40 93 c2 00 	sts	0x00C2, r20	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+ 7c8:	40 93 c2 00 	sts	0x00C2, r20	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
  7cc:	22 23       	and	r18, r18
  7ce:	29 f0       	breq	.+10     	; 0x7da <initUART+0x4e>
  7d0:	e1 ec       	ldi	r30, 0xC1	; 193
@@ -1211,8 +1211,8 @@ char readChar()
  84e:	0e 94 3d 04 	call	0x87a	; 0x87a <__udivmodsi4>
  852:	21 50       	subi	r18, 0x01	; 1
  854:	31 09       	sbc	r19, r1
- 856:	30 93 c5 00 	sts	0x00C5, r19	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
- 85a:	20 93 c4 00 	sts	0x00C4, r18	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+ 856:	30 93 c5 00 	sts	0x00C5, r19	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+ 85a:	20 93 c4 00 	sts	0x00C4, r18	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
  85e:	0f 91       	pop	r16
  860:	ff 90       	pop	r15
  862:	ef 90       	pop	r14
@@ -1231,7 +1231,7 @@ void sendChar(char sChar)
  872:	fd cf       	rjmp	.-6      	; 0x86e <sendChar+0x4>
 	{}
 	UDR0 = sChar;
- 874:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+ 874:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
  878:	08 95       	ret
 
 0000087a <__udivmodsi4>:

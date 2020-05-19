@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
+
+# Global vars
+timePrPancake = 3 # In minutes for now
+
 from Order import Order
 from OrderHandling import OrderHandling
 
 from flask import request
 
 import random
-
-# Global vars
-timePrPancake = 2 # In minutes for now
-
 # Debugging:
 randomIP = False # Debugging. Generate random IP instead of actual ones.
 
@@ -22,8 +22,7 @@ class OrderOverview:
         for i in self.__orders: # Check if it already has a pending order
             if(i.id == userId):
                 timeRemaining = i.timeDone - datetime.utcnow()
-                timeRemaining = timeRemaining.total_seconds()
-                return int(timeRemaining) if timeRemaining > 0 else 0 # Return 0 if we have a negative number
+                return int(timeRemaining.total_seconds())
         # Else print expected to for a new order        
         global timePrPancake
         time = timePrPancake * (len(self.__orders) + 1) * 60 # +1 because the order hasn't been put in yet. * 60 because we want it in seconds

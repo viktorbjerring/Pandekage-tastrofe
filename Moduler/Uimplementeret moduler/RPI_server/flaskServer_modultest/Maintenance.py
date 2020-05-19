@@ -17,7 +17,6 @@ class Maintenance:
         return response
     def setCooling(self):
         data = request.get_data(as_text = True)
-        print("setCooling: ", data)
         if(data == "1"): 
             self.__coolingStatus = True
             response = userSpaceCMD("TURN_ON_COOLING") # Returnerer altid 0

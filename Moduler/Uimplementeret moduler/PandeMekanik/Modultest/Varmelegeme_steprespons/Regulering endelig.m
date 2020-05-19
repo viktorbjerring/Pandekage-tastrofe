@@ -24,4 +24,10 @@ margin(G60Own_Bode*Gp);
 %%
 
 figure; clf;
-margin(G60Own_Bode*3*((s*150+1)/(s*150)));
+margin(G60Own_Bode*3*((s*75+1)/(s*75)));
+figure; clf;
+margin(G60Own_Bode*Gp*((s*400+1)/(s*400)));
+figure; clf;
+pzmap(G60Own_Bode*3*((s*75+1)/(s*75)));
+figure; clf;
+pzmap(G60Own_Bode*Gp*((s*300+1)/(s*300)));

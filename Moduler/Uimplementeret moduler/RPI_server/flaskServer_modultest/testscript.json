@@ -26,9 +26,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/",
+					"raw": "192.168.0.107:5000/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -62,9 +65,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/time_estimate/",
+					"raw": "192.168.0.107:5000/time_estimate/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -88,7 +94,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Order wasn't made or an error occured\");",
+							"    pm.response.to.have.body('\"Order wasn\\'t made or an error occured\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -99,9 +105,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/pancake/",
+					"raw": "192.168.0.107:5000/pancake/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -125,7 +134,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Successfully ordered a pancake\");",
+							"    pm.response.to.have.body('\"Successfully ordered a pancake\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -136,9 +145,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/pancake/",
+					"raw": "192.168.0.107:5000/pancake/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -162,7 +174,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Error in processing order: either the IP has made an order already, or a a bug has occured\");",
+							"    pm.response.to.have.body('\"Error in processing order: either the IP has made an order already, or a a bug has occured\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -173,9 +185,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/pancake/",
+					"raw": "192.168.0.107:5000/pancake/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -199,7 +214,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Pancake is not ready\");",
+							"    pm.response.to.have.body('\"Pancake is not ready\"');",
 							"});",
 							""
 						],
@@ -211,9 +226,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/pancake/",
+					"raw": "192.168.0.107:5000/pancake/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -250,9 +268,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/time_estimate/",
+					"raw": "192.168.0.107:5000/time_estimate/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -284,9 +305,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/maintenance/",
+					"raw": "192.168.0.107:5000/maintenance/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -310,7 +334,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Dispenser needs batter\");",
+							"    pm.response.to.have.body('\"Dispenser needs batter\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -321,9 +345,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/maintenance/batter_status/",
+					"raw": "192.168.0.107:5000/maintenance/batter_status/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -348,7 +375,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Batter alarm cleared\");",
+							"    pm.response.to.have.body('\"Batter alarm cleared\"');",
 							"});",
 							""
 						],
@@ -360,9 +387,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/maintenance/batter_status/",
+					"raw": "192.168.0.107:5000/maintenance/batter_status/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -387,7 +417,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Cooling turned off\");",
+							"    pm.response.to.have.body('\"Cooling turned off\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -407,9 +437,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/maintenance/cooling/",
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -434,7 +467,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Cooling is off\");",
+							"    pm.response.to.have.body('\"Cooling is off\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -445,9 +478,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/maintenance/cooling/",
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -472,7 +508,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Cooling turned on\");",
+							"    pm.response.to.have.body('\"Cooling turned on\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -492,9 +528,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/maintenance/cooling/",
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -519,7 +558,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Cooling is on\");",
+							"    pm.response.to.have.body('\"Cooling is on\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -530,9 +569,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/maintenance/cooling/",
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -557,7 +599,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Pans are off\");",
+							"    pm.response.to.have.body('\"Pans are off\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -580,9 +622,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/maintenance/pans/",
+					"raw": "192.168.0.107:5000/maintenance/pans/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -607,7 +652,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Pans turned on\");",
+							"    pm.response.to.have.body('\"Pans turned on\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -627,9 +672,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/maintenance/pans/",
+					"raw": "192.168.0.107:5000/maintenance/pans/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -654,7 +702,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Pans are on\");",
+							"    pm.response.to.have.body('\"Pans are on\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -677,9 +725,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/maintenance/pans/",
+					"raw": "192.168.0.107:5000/maintenance/pans/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -704,7 +755,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Pans turned off\");",
+							"    pm.response.to.have.body('\"Pans turned off\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -724,9 +775,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/maintenance/pans/",
+					"raw": "192.168.0.107:5000/maintenance/pans/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -746,10 +800,10 @@
 					"script": {
 						"id": "4862104b-e68e-4bf3-a054-39bbfd2d910b",
 						"exec": [
-							"setTimeout(function(){",
-							"          console.log(\"You now have 20 seconds to write 0 to batterLevel.txt and to send a pancake done signal \");",
+							"setTimeout(function () {",
+							"    console.log(\"Resuming...\")",
 							"}, 20000);",
-							"console.log(\"Resuming...\")"
+							"console.log(\"You now have 20 seconds to write 0 to batterLevel.txt and to send a pancake done signal \");"
 						],
 						"type": "text/javascript"
 					}
@@ -783,7 +837,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Dispenser is ok\");",
+							"    pm.response.to.have.body('\"Dispenser is ok\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -794,9 +848,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/maintenance/batter_status/",
+					"raw": "192.168.0.107:5000/maintenance/batter_status/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -821,7 +878,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Pancake is ready\");",
+							"    pm.response.to.have.body('\"Pancake is ready\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -832,9 +889,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/pancake/",
+					"raw": "192.168.0.107:5000/pancake/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -858,7 +918,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"Order wasn't made or an error occured\");",
+							"    pm.response.to.have.body('\"Order wasn\\'t made or an error occured\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -869,9 +929,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/pancake/",
+					"raw": "192.168.0.107:5000/pancake/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [
@@ -895,7 +958,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body(\"180\");",
+							"    pm.response.to.have.body('\"180\"');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -906,9 +969,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/time_estimate/",
+					"raw": "192.168.0.107:5000/time_estimate/",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"0",
+						"107"
 					],
 					"port": "5000",
 					"path": [

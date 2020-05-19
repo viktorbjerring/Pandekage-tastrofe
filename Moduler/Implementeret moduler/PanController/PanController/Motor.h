@@ -135,7 +135,7 @@ static volatile uint16_t curr_time = 0;
 static volatile bool motor_flipping = MOTOR1;
 
 static void setMotorPWM(uint8_t PWM, bool motor) {
-	if (motor == MOTOR1) {
+	if (motor != MOTOR1) {
 		OCR0A = (TIMER0_TOP - ceil(((TIMER0_TOP/100) * (PWM > 100? 100 : PWM))));
 	}
 	else {

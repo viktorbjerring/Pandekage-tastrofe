@@ -28,9 +28,14 @@ extern volatile bool heat_ok;
 	
 */
 
-#define TRIGGER_LOW			0x3A2		//Temp > 181C
-#define TRIGGER_HIGH		0x3C0		//Temp > 188C
-#define OPTIMUM_TEMP		(TRIGGER_LOW + (TRIGGER_HIGH - TRIGGER_LOW)/2)
+#define CONVERT_TO_STEP(x)	((uint16_t) (18152*((double)x)-4650000)/(3.9*((double)x)+7200))
+#define CONVERT_TO_TEMP(x)	((double) -((1.71*((double)x))/(0.000107*((double)x)-5))-256)
+#define CONVERT_TO_DUTY(x)	((uint8_t) (((double)x)-96.29)/(1.432))
+
+
+#define TRIGGER_LOW			CONVERT_TO_STEP(182)		
+#define TRIGGER_HIGH		CONVERT_TO_STEP(188)		
+#define OPTIMUM_TEMP		CONVERT_TO_DUTY(CONVERT_TO_TEMP(TRIGGER_LOW + (TRIGGER_HIGH - TRIGGER_LOW)/2))
 
 
 void init_regulation(){
@@ -80,16 +85,20 @@ static uint16_t readHeatLevel(){
 
 static volatile double integral = 0;
 
-#define KP		((double) 1.001)
-#define KI		((double) 0.001)
-#define DT		((double)((128*13)/F_CPU)) //Time for single convertion ~ 1/16000000/(128*13)	(one convertion = 13 clock cyckles)
+#define KP		((double) 3)
+#define KI		((double) 75)
+#define DT		((double)((128*13)/F_CPU)) //Time for single convertion ~ 1/16000000/(128*13)	((one convertion = 13 clock cyckles) * prescaler)/F_CPU)
+#define HYSTERESIS_HIGH		CONVERT_TO_STEP(170)
+#define HYSTERESIS_LOW		CONVERT_TO_STEP(130)
+
+static bool has_been_on = false;
 
 //Regulation loop - not time critical
 ISR(ADC_vect)
 {
 	
 	uint16_t temp = readHeatLevel();
-
+	
 	
 	//Check heat level
 	if (curr_pan == PAN1) {
@@ -113,16 +122,35 @@ ISR(ADC_vect)
 		integral = 0;
 		setPWMLevel(0);
 	} else {
-	
-		//Calculate the values for the PI controller
-		int16_t error = OPTIMUM_TEMP - temp;
-		integral += error*DT;
-	
-		//Calculate the output
-		int16_t output = error*KP + integral*KI;
 		
-		//Set PWM
-		setPWMLevel((output < 0? 0 : output));
+		if (temp > HYSTERESIS_HIGH){
+			has_been_on = true;
+		}
+		else if (temp < HYSTERESIS_LOW){
+			integral = 0;
+			has_been_on = false;
+		}
+		
+		if (has_been_on) {
+			
+			uint8_t duty = CONVERT_TO_DUTY(CONVERT_TO_TEMP(temp));
+			
+			
+			//Calculate the values for the PI controller
+			int16_t error = OPTIMUM_TEMP - duty;
+			integral += error*DT;
+					
+			//Calculate the output
+			int16_t output = error*KP + integral*KI;
+					
+			//Set PWM
+			setPWMLevel((output < 0? 0 : output));
+		}
+		else {
+			setPWMLevel(100);
+		}
+	
+
 	}
 	//Change pan
 	curr_pan = !curr_pan;

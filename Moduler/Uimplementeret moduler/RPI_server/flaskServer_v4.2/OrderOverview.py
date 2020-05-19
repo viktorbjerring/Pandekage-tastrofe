@@ -7,7 +7,7 @@ from flask import request
 import random
 
 # Global vars
-timePrPancake = 1 # In minutes for now
+timePrPancake = 2 # In minutes for now
 
 # Debugging:
 randomIP = False # Debugging. Generate random IP instead of actual ones.

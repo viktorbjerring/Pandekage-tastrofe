@@ -97,9 +97,8 @@ void init_motors(){
 	//Setup timer 0 PWMs for the motors
 	PRR &= ~(1 << PRTIM0);
 	
-	// phase correct PWM mode, prescaler = 256, freq ~ 61,27451 Hz (8000000/(256*510)
-	TCCR0A = (1 << WGM00);
-	TCCR0B = (1 << CS02);
+	// phase correct PWM mode, prescaler = 8, freq ~ 3921,5686 Hz (16000000/(8*510)
+	TCCR0A = (1 << WGM00) | (1 << CS01);
 	
 	//Set PWM for the motors
 	setMotorPWM(0, MOTOR1);
@@ -136,7 +135,7 @@ static volatile uint16_t curr_time = 0;
 static volatile bool motor_flipping = MOTOR1;
 
 static void setMotorPWM(uint8_t PWM, bool motor) {
-	if (motor == MOTOR1) {
+	if (motor != MOTOR1) {
 		OCR0A = (TIMER0_TOP - ceil(((TIMER0_TOP/100) * (PWM > 100? 100 : PWM))));
 	}
 	else {

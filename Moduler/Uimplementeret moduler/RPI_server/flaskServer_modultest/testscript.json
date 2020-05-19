@@ -429,7 +429,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\"0\"",
+					"raw": "0",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -520,7 +520,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\"1\"",
+					"raw": "1",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -793,38 +793,6 @@
 			"response": []
 		},
 		{
-			"name": "Wait",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "4862104b-e68e-4bf3-a054-39bbfd2d910b",
-						"exec": [
-							"setTimeout(function () {",
-							"    console.log(\"Resuming...\")",
-							"}, 20000);",
-							"console.log(\"You now have 20 seconds to write 0 to batterLevel.txt and to send a pancake done signal \");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://www.google.com",
-					"protocol": "https",
-					"host": [
-						"www",
-						"google",
-						"com"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get batter_status - batter ok",
 			"event": [
 				{
@@ -839,6 +807,19 @@
 							"pm.test(\"Returned expected value\", function () {",
 							"    pm.response.to.have.body('\"Dispenser is ok\"');",
 							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "be68184a-45e9-4656-bfbd-04f077cbf19d",
+						"exec": [
+							"setTimeout(function () {",
+							"    console.log(\"Resuming...\")",
+							"}, 20000);",
+							"console.log(\"You now have 10 seconds to write 0 to batterLevel.txt and to send a pancake done signal \");"
 						],
 						"type": "text/javascript"
 					}
@@ -958,7 +939,7 @@
 							"});",
 							"",
 							"pm.test(\"Returned expected value\", function () {",
-							"    pm.response.to.have.body('\"180\"');",
+							"    pm.response.to.have.body(\"180\");",
 							"});"
 						],
 						"type": "text/javascript"

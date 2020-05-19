@@ -24,7 +24,7 @@ Det ville være lækkert hvis denne også kunne ses af logic analyseren.
 Forbind pin B4 til logic analyser.
 
 Upload programmet der kan findes i mappen:
-Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Software/Test1/Test1/
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Modultest/Test1/Test1/
 
 Se at der skiftet status på B5 hver gang der er rising edge på B0.
 Se at der hver 5. sekund er en puls med længden 1 sekund på B4.
@@ -40,7 +40,7 @@ Forbind C4 til logic analyser	- dir21
 Forbind C5 til logic analyser 	- dir22
 
 Upload programmet der kan finde i mappen:
-Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Software/Test2/Test2/
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Modultest/Test2/Test2/
 
 Der burde kunne observeres et PWM signal på en1.
 Herefter burde dir11 og dir12 ændre status hvert halve sekund.
@@ -66,7 +66,7 @@ Forbind C1 til logic analyser
 Forbind C1 til en anden dc wavegen som du kan styre.
 
 Upload programmet der kan findes i mappen:
-Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Software/Test3/Test3/
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Modultest/Test3/Test3/
 
 Det burde kunne ses at B0 skifter status hvert 4. sekund.
 Ved wavegens = 0 V

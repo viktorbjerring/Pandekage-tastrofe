@@ -123,9 +123,6 @@
     <Compile Include="I2C_common.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="I2C_MASTER.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="I2C_MASTER.h">
       <SubType>compile</SubType>
     </Compile>

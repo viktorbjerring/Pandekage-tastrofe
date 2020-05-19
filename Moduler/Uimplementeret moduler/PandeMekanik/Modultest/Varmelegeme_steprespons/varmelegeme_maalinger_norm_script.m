@@ -90,39 +90,41 @@ G60 = ((steadyState60)*(1/(RC_Time-100)))/((1/(RC_Time-100))+ss);
 
 wn50=0.0049;
 z50 = 0.9;
-G50Own = (wn50^2)/((ss^2)+(2*z50*wn50*ss)+wn50^2)*(200-T.Temp50(1))/0.5+T.Temp50(1)/0.5;
-G50Own_Bode = (wn50^2)/((s^2)+(2*z50*wn50*s)+wn50^2)*(200-T.Temp50(1))/0.5+T.Temp50(1)/0.5;
+G50Own = (wn50^2)/((ss^2)+(2*z50*wn50*ss)+wn50^2)*(200-T.Temp50(1))/50+T.Temp50(1)/50;
+G50Own_Bode = (wn50^2)/((s^2)+(2*z50*wn50*s)+wn50^2)*(200-T.Temp50(1))/50+T.Temp50(1)/50;
 
 G50OwnOL = 1/(1/G50Own-1);
 G50OwnOL_Bode = 1/(1/G50Own_Bode-1);
 
 wn60=0.0043;
 z60 = 0.85;
-G60Own = (wn60^2)/((ss^2)+(2*z60*wn60*ss)+wn60^2)*(175-T.Temp60(1))/0.6+T.Temp60(1)/0.6;
-G60Own_Bode = (wn60^2)/((s^2)+(2*z60*wn60*s)+wn60^2)*(175-T.Temp60(1))/0.6+T.Temp60(1)/0.6;
+G60Own = (wn60^2)/((ss^2)+(2*z60*wn60*ss)+wn60^2)*(175-T.Temp60(1))/60+T.Temp60(1)/60;
+G60Own_Bode = (wn60^2)/((s^2)+(2*z60*wn60*s)+wn60^2)*(175-T.Temp60(1))/60+T.Temp60(1)/60;
 
 G60OwnOL = 1/(1/G60Own-1);
 G60OwnOL_Bode = 1/(1/G60Own_Bode-1);
 
 wn70=0.004;
 z70 = 0.86;
-G70Own = (wn70^2)/((ss^2)+(2*z70*wn70*ss)+wn70^2)*(172-T.Temp70(1))/0.7+T.Temp70(1)/0.7;
-G70Own_Bode = (wn70^2)/((s^2)+(2*z70*wn70*s)+wn70^2)*(172-T.Temp70(1))/0.7+T.Temp70(1)/0.7;
+G70Own = (wn70^2)/((ss^2)+(2*z70*wn70*ss)+wn70^2)*(172-T.Temp70(1))/70+T.Temp70(1)/70;
+G70Own_Bode = (wn70^2)/((s^2)+(2*z70*wn70*s)+wn70^2)*(172-T.Temp70(1))/70+T.Temp70(1)/70;
 
 G70OwnOL = 1/(1/G70Own-1);
 G70OwnOL_Bode = 1/(1/G70Own_Bode-1);
 
 figure('name','Steprespons'); clf;
 %fplot((ilaplace(G60*1/ss))/(steadyState60-steadyStateMinReal60),[0,1500]);
-fplot(ilaplace(G50Own*(0.5/ss)),[0,1800]);
+fplot(ilaplace(G50Own*(50/ss)),[0,1800]);
 hold on;
-fplot(ilaplace(G60Own*(0.6/ss)),[0,1800]);
-fplot(ilaplace(G70Own*0.7/ss),[0,1800]);
+fplot(ilaplace(G60Own*(60/ss)),[0,1800]);
+fplot(ilaplace(G70Own*70/ss),[0,1800]);
 plot((T.Tid50),(T.Temp50));
 plot((T.Tid60),(T.Temp60));
 plot((T.Tid70),(T.Temp70));
 hold off;
 legend('epprox 50', 'epprox 60', 'epprox 70', '50', '60', '70', 'Location', 'southeast');
+xlabel('Tid [s]');
+ylabel('Temperatur [C]');
 %ylim([0 1])
 
 figure('name','Bodeplot'); clf;

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Gruppe 5">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Pan-De-Mix - Maintenance</title>
+
+    <!-- Bootstrap core CSS -->
+	<link href="../static/css/bootstrap.css" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/maintenance.css" rel="stylesheet">
+
+  </head>
+
+    <body id="body_id" class="mt-4"> 
+      
+        <h1 id="batter_status"></h1>
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+
+          <button type="button" id="clearBatterAlarm" class="btn btn-danger mb-2" data-dismiss="modal">Reset indicator</button>
+
+          <button type="button" id="togglePans" class="btn btn-success mb-2" data-dismiss="modal">Toggle pans</button>
+
+          <p id="panStatus"></p>
+
+          <button type="button" id="turnOnCooling" class="btn btn-success mb-2" data-dismiss="modal">Turn on cooling</button>
+
+          <button type="button" id="turnOffCooling" class="btn btn-danger mb-2" data-dismiss="modal">Turn off cooling</button>
+
+          <p id="coolingStatus"></p>
+
+      </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/maintenance.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    
+	
+  </body>
+</html>

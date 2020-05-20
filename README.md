@@ -27,6 +27,6 @@ Projektet er skrevet i Latex. For at skrive i Latex har gruppen gjort brug af Ov
 
 [Læsevejledning](https://www.overleaf.com/4921423825gnmvqqcdypjq)
 
-Gammle dokumenter:
+Gamle dokumenter:
 
 [Læsevejledning (Review 1)](https://www.overleaf.com/2763173569ybszpmthgpyg)

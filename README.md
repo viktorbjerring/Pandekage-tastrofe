@@ -1,4 +1,4 @@
-![Pan-de-mix](./Arkitektur/Logo/Logo.png)
+![Pan-de-mix](./Arkitektur/Logo%20og%20GUI/Logo.png)
 
 # Pandemix
 Gruppe no. 4. Semesterprojekt F2020

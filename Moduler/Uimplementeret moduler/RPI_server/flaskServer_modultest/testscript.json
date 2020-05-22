@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "92c1cb49-a4c3-42a7-87e5-588984ffc4d8",
+		"name": "Pan-De-Mix modultest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "908af081-34f5-4f77-b268-53864a5b406e",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get time estimate - no order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b8d6d1a-ebd7-4e5d-8f43-0928ea214e3b",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body(\"180\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/time_estimate/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"time_estimate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pancake - no order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b819fe8d-2b79-4c5e-9d35-c1bf94514047",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Order wasn\\'t made or an error occured\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/pancake/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"pancake",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post pancake",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ee46a5b-a680-4193-b9ab-f636d7e1a9a8",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Successfully ordered a pancake\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/pancake/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"pancake",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post pancake - already ordered",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0240d97e-5875-4305-8911-ca0935abad21",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Error in processing order: either the IP has made an order already, or a a bug has occured\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/pancake/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"pancake",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pancake - not ready",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c191519f-25d2-44be-ae39-bc1c3c3e2799",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Pancake is not ready\"');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/pancake/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"pancake",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get time estimate - ordered",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2582012f-bf40-45bb-9078-759bad138a88",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test('Check if it returned a number', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.equal(Number(jsonData));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/time_estimate/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"time_estimate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get maintenace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f21c4af9-1c0d-4cf4-9332-4d8e2813fe33",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get batter_status - needs batter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a2307b1-89b9-4a93-ae49-cdfd6739cd87",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Dispenser needs batter\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/batter_status/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"batter_status",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post batter_status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a520166a-90eb-4c46-a16b-23cafd07e770",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Batter alarm cleared\"');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/batter_status/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"batter_status",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post cooling - off",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2cb41803-45ce-4035-9816-488f096538b4",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Cooling turned off\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "0",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"cooling",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cooling - off",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d8141f52-e035-4ad3-8b0b-616aafc95096",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Cooling is off\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"cooling",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post cooling - on",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "549ea03c-52de-432d-a50d-4dd27ca75797",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Cooling turned on\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "1",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"cooling",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cooling - on",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8326053c-93e9-43a1-88c4-881a84b6f423",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Cooling is on\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/cooling/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"cooling",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pans - off",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cbec0e9-9997-48eb-9906-c7a1369d33c7",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Pans are off\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/pans/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"pans",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post pans - turn on",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e69cb85-cf96-4703-8236-95ad4133b044",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Pans turned on\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/pans/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"pans",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pans - on",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac625723-711d-4f7d-b175-852b862b4b2f",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Pans are on\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/pans/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"pans",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post pans - turn off",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0724b5ae-079c-4163-be4d-593947872e73",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Pans turned off\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/pans/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"pans",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get batter_status - batter ok",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58da09b8-03f4-4e9b-ab86-9006f6caa9d8",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Dispenser is ok\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "be68184a-45e9-4656-bfbd-04f077cbf19d",
+						"exec": [
+							"setTimeout(function () {",
+							"    console.log(\"Resuming...\")",
+							"}, 20000);",
+							"console.log(\"You now have 10 seconds to write 0 to batterLevel.txt and to send a pancake done signal \");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/maintenance/batter_status/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"maintenance",
+						"batter_status",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pancake - ready",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b164c79d-2287-4f3b-99bd-6f9e89b3a5ec",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Pancake is ready\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/pancake/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"pancake",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pancake - no order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf89e34e-0b80-4b37-9a22-8abc2934e70d",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body('\"Order wasn\\'t made or an error occured\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/pancake/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"pancake",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get time estimate - no order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a3bf488-972e-462b-bbb2-3959ba15dbdf",
+						"exec": [
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Returned expected value\", function () {",
+							"    pm.response.to.have.body(\"180\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.0.107:5000/time_estimate/",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"107"
+					],
+					"port": "5000",
+					"path": [
+						"time_estimate",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

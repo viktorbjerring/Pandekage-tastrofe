@@ -22,9 +22,7 @@ def userSpaceCMD(cmd):
     elif(cmd == "CLEAR_BATTER_ALARM"):
         print("Running ", cmd)
         cmd = "7"
-        with open('batterLevel.txt', 'w') as systemfile: 
-                systemfile.write("0") 
-        returnVal = 0
+        returnVal = 1
     else:
         print("Invalid command")
         return -1

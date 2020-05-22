@@ -1,0 +1,88 @@
+
+
+Test af slave/master I2C
+
+Forbind pin SCL til D2. 
+Forbind SDA til D4. 
+Forbind begge disse pins til en logic analyser.
+
+Programmer Arduinoen med softwaren der kan ses i mappen:
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/Protokoller/Software/ProtocolTest/
+
+Åben også en terminal herefter.
+
+Se at der sendes data mellem master og slave, samt at dette kan ses på UARTen.
+Tag en screenshot
+
+
+
+Test af heat on off og pancake done
+
+Forbind pin B5 til logic analyser.
+Forbind pin B0 til en wavegen der har en priodetid på 0,5 sek og en duty på 40%. offset på 2,5V og amp på 2,5V
+Det ville være lækkert hvis denne også kunne ses af logic analyseren.
+Forbind pin B4 til logic analyser.
+
+Upload programmet der kan findes i mappen:
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Modultest/Test1/Test1/
+
+Se at der skiftet status på B5 hver gang der er rising edge på B0.
+Se at der hver 5. sekund er en puls med længden 1 sekund på B4.
+
+
+Test af motorer
+
+Forbind D3 til logic analyser	- dir11
+Forbind D7 til logic analyser	- dir12
+Forbind D5 til logic analyser	- en1
+Forbind D6 til logic analyser	- en2
+Forbind C4 til logic analyser	- dir21
+Forbind C5 til logic analyser 	- dir22
+
+Upload programmet der kan finde i mappen:
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Modultest/Test2/Test2/
+
+Der burde kunne observeres et PWM signal på en1.
+Herefter burde dir11 og dir12 ændre status hvert halve sekund.
+Efter 2 sekunder burde dette stoppe.
+
+Efter yderligere 1 sekund burde der være et PWM på en2.
+Herefter burde dir21 og dir22 ændre status hver halfte sekund.
+Efter 2 sekunder burde dette stoppe.
+
+Dette repetere hvert 10'ene sekund.
+
+
+
+Test af regulering
+
+Forbind B5 til logic analyser
+Forbind B0 til logic analyser
+Forbind B1 til logic analyser
+Forbind B2 til logic analyser
+Forbind C0 til logic analyser
+Forbind C0 til en dc wavegen som du kan styre.
+Forbind C1 til logic analyser
+Forbind C1 til en anden dc wavegen som du kan styre.
+
+Upload programmet der kan findes i mappen:
+Pandekage-tastrofe/Moduler/Uimplementeret moduler/PandeMekanik/Modultest/Test3/Test3/
+
+Det burde kunne ses at B0 skifter status hvert 4. sekund.
+Ved wavegens = 0 V
+Det burde kunne ses at B1 og B2 er høj når B0 er høj og lav når B0 er lav.
+
+Ved wavegen1 = 2V, wavegen2 = 0V	(Det kan godt være den ikke rammer med 2V, har prøvet at lave et stort scope, men ellers check B5 høj = god temp på C1 og C0)
+Det burde kunne ses at B1 er et PWM med duty = 50 når B0 er høj.
+Når B0 er lav burde B1 også være lav.
+B2 burde opføre sig som ved wavegens = 0V
+
+Ved wavegen2 = 2V, Wavegen1 = 0V
+Det modsatte af overstående.
+
+Ved Wavegen1 = 5V, Wavegen2 = 0V
+Når B0 er høj bude B1 være et PWM med duty = 10%. 
+Når B0 er lav burde B1 være lav.
+B2 burde opføre sig som øverste case
+
+

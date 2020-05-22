@@ -1,0 +1,138 @@
+newman
+
+Pan-De-Mix modultest
+
+→ Get index
+  GET 192.168.0.107:5000/ [200 OK, 4.66KB, 245ms]
+  ✓  Response time is less than 1s
+
+→ Get time estimate - no order
+  GET 192.168.0.107:5000/time_estimate/ [200 OK, 188B, 34ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get pancake - no order
+  GET 192.168.0.107:5000/pancake/ [200 OK, 225B, 33ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post pancake
+  POST 192.168.0.107:5000/pancake/ [200 OK, 218B, 44ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post pancake - already ordered
+  POST 192.168.0.107:5000/pancake/ [200 OK, 278B, 33ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get pancake - not ready
+  GET 192.168.0.107:5000/pancake/ [200 OK, 208B, 36ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get time estimate - ordered
+  GET 192.168.0.107:5000/time_estimate/ [200 OK, 188B, 34ms]
+  ✓  Response time is less than 1s
+  ✓  Check if it returned a number
+
+→ Get maintenace
+  GET 192.168.0.107:5000/maintenance/ [200 OK, 2.06KB, 47ms]
+  ✓  Response time is less than 1s
+
+→ Get batter_status - needs batter
+  GET 192.168.0.107:5000/maintenance/batter_status/ [200 OK, 210B, 47ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post batter_status
+  POST 192.168.0.107:5000/maintenance/batter_status/ [200 OK, 208B, 46ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post cooling - off
+  POST 192.168.0.107:5000/maintenance/cooling/ [200 OK, 206B, 57ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get cooling - off
+  GET 192.168.0.107:5000/maintenance/cooling/ [200 OK, 202B, 35ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post cooling - on
+  POST 192.168.0.107:5000/maintenance/cooling/ [200 OK, 205B, 51ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get cooling - on
+  GET 192.168.0.107:5000/maintenance/cooling/ [200 OK, 201B, 37ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get pans - off
+  GET 192.168.0.107:5000/maintenance/pans/ [200 OK, 200B, 37ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post pans - turn on
+  POST 192.168.0.107:5000/maintenance/pans/ [200 OK, 202B, 256ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get pans - on
+  GET 192.168.0.107:5000/maintenance/pans/ [200 OK, 199B, 32ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Post pans - turn off
+  POST 192.168.0.107:5000/maintenance/pans/ [200 OK, 203B, 304ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get batter_status - batter ok
+  ┌
+  │ 'You now have 10 seconds to write 0 to batterLevel.txt
+  │  and to send a pancake done signal '
+  └
+  ┌
+  │ 'Resuming...'
+  └
+  GET 192.168.0.107:5000/maintenance/batter_status/ [200 OK, 203B, 67ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get pancake - ready
+  GET 192.168.0.107:5000/pancake/ [200 OK, 204B, 45ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get pancake - no order
+  GET 192.168.0.107:5000/pancake/ [200 OK, 225B, 33ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+→ Get time estimate - no order
+  GET 192.168.0.107:5000/time_estimate/ [200 OK, 188B, 36ms]
+  ✓  Response time is less than 1s
+  ✓  Returned expected value
+
+┌─────────────────────────┬───────────────────┬───────────────────┐
+│                         │          executed │            failed │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              iterations │                 1 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│                requests │                22 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│            test-scripts │                22 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│      prerequest-scripts │                 1 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              assertions │                42 │                 0 │
+├─────────────────────────┴───────────────────┴───────────────────┤
+│ total run duration: 22.2s                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ total data received: 6.78KB (approx)                            │
+├─────────────────────────────────────────────────────────────────┤
+│ average response time: 72ms [min: 32ms, max: 304ms, s.d.: 78ms] │
+└─────────────────────────────────────────────────────────────────┘

@@ -30,3 +30,7 @@ Projektet er skrevet i Latex. For at skrive i Latex har gruppen gjort brug af Ov
 Gamle dokumenter:
 
 [Læsevejledning (Review 1)](https://www.overleaf.com/2763173569ybszpmthgpyg)
+
+## Diverse dokumenter
+
+[Video PowerPoint](https://aarhusuniversitet-my.sharepoint.com/:p:/g/personal/au608890_uni_au_dk/EaxGMQ4m6MxKjsuf-Ewf1YIBfihs0El-seBcYNA27REbyg?e=M8vPZy)
